@@ -10,7 +10,7 @@ This is a file that help you to develop the project.
 		+-	Captain:	201541404*** SuXijian
 		+-	member:		201541404428 LiJuncong
 		+-	member:		201541404422 Lzyyyyy
-		+-	member:		201541404*** name
+		+-	member:		201541404210 Wuzihao
 		+-	member:		201541404*** name
 		
 3.Enjoy your job.
