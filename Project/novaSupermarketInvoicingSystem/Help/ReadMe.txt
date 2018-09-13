@@ -9,7 +9,7 @@ This is a file that help you to develop the project.
 	--Group No.2
 		+-	Captain:	201541404*** SuXijian
 		+-	member:		201541404428 LiJuncong
-		+-	member:		201541404*** name
+		+-	member:		201541404422 Lzy
 		+-	member:		201541404*** name
 		+-	member:		201541404*** name
 		
