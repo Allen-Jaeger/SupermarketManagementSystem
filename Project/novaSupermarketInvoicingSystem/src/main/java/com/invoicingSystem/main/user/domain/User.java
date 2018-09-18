@@ -3,8 +3,11 @@ package com.invoicingSystem.main.user.domain;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,48 +30,51 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;					//数据库管理id
+	@Column(nullable=false)
 	private String workNum;				//工号，用于登陆
+	@Column(nullable=false)
 	private String password;			//密码
+	@Column(nullable=false)
 	private String name;				//真实姓名
+	@Column(nullable=false)
 	private Gender gender;				//性别
+	@Column(nullable=false)
 	private String identity;			//身份证
+	@Column(nullable=false)
 	private UserType userType;			//用户类型
+	@CollectionTable(name="t_privileges")
+	@ElementCollection(fetch=FetchType.LAZY,targetClass=Privilege.class)
 	private Set<Privilege> privileges;	//可用权限
+	@Column(nullable=false)
 	private Date hireDate;				//员工聘请日期
 	private String iconUrl;				//头像
+	@Column(nullable=false)
 	private UserStatus userStatus;		//用户状态
 	
 	public Long getId() {
 		return id;
 	}
-	@Column(nullable=false)
 	public String getWorkNum() {
 		return workNum;
 	}
-	@Column(nullable=false)
 	public String getPassword() {
 		return password;
 	}
-	@Column(nullable=false)
 	public String getName() {
 		return name;
 	}
-	@Column(nullable=false)
 	public Gender getGender() {
 		return gender;
 	}
-	@Column(nullable=false)
 	public String getIdentity() {
 		return identity;
 	}
-	@Column(nullable=false)
 	public UserType getUserType() {
 		return userType;
 	}
 	public Set<Privilege> getPrivileges() {
 		return privileges;
 	}
-	@Column(nullable=false)
 	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
 	public Date getHireDate() {
 		return hireDate;
@@ -76,7 +82,6 @@ public class User {
 	public String getIconUrl() {
 		return iconUrl;
 	}
-	@Column(nullable=false)
 	public UserStatus getUserStatus() {
 		return userStatus;
 	}
