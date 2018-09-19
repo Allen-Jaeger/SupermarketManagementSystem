@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.invoicingSystem.main.deal.domain.Deal;
+import com.invoicingSystem.main.deal.repository.IDealRepository;
 
 /**
  * @author LiJuncong
@@ -15,18 +16,17 @@ import com.invoicingSystem.main.deal.domain.Deal;
 @Service
 public class DealService implements IDealService{
 	@Autowired
-	IDealService dealService;
-
+	IDealRepository dealRepository;
 	@Override
 	public void save(Deal deal) {
 		// TODO Auto-generated method stub
-		dealService.save(deal);
+		dealRepository.save(deal);
 	}
 
 	@Override
 	public Deal findById(Long id) {
 		// TODO Auto-generated method stub
-		return dealService.findById(id);
+		return dealRepository.findById(id).get();
 	}
 	
 	

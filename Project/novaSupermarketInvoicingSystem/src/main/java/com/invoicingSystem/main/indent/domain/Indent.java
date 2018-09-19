@@ -35,23 +35,23 @@ public class Indent {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String indentNum;
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="indent_commodities")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
 	private Double cost;	//订单总成本
 	private IndentStatus indentStatus;
 	private Date createDate;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User creator;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User keeper;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User manager;
 	private boolean isInside;	//是否内部调货
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Warehouse fromWarehouse;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Warehouse toWarehouse;
 	private String note;
 	

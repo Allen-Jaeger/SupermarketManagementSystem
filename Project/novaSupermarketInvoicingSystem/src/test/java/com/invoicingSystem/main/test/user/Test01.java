@@ -5,13 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import com.invoicingSystem.main.test.TestBase;
 import com.invoicingSystem.main.user.domain.User;
-import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.Gender;
 import com.invoicingSystem.main.user.util.Privilege;
 import com.invoicingSystem.main.user.util.UserStatus;
@@ -21,11 +17,9 @@ import com.invoicingSystem.main.user.util.UserType;
  * @author LiJuncong
  * at 2018年9月18日
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class Test01 {
-	@Autowired
-	IUserService userService;
+
+public class Test01 extends TestBase{
+
 	
 	@Test
 	public void userAdd() {
