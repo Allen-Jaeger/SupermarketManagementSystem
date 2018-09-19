@@ -9,4 +9,5 @@ import com.invoicingSystem.main.user.domain.User;
 
 public interface IUserService {
 	public void updateUser(User user);
+	public User findById(Long id);
 }

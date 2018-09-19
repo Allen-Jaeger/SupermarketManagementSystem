@@ -1,6 +1,7 @@
 package com.invoicingSystem.main.user.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -43,8 +44,8 @@ public class User {
 	@Column(nullable=false)
 	private UserType userType;			//用户类型
 	@CollectionTable(name="t_privileges")
-	@ElementCollection(fetch=FetchType.LAZY,targetClass=Privilege.class)
-	private Set<Privilege> privileges;	//可用权限
+	@ElementCollection(fetch=FetchType.EAGER,targetClass=Privilege.class)
+	private Set<Privilege> privileges = new HashSet<Privilege>();	//可用权限
 	@Column(nullable=false)
 	private Date hireDate;				//员工聘请日期
 	private String iconUrl;				//头像
