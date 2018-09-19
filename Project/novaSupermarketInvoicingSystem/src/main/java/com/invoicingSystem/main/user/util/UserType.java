@@ -6,10 +6,11 @@ package com.invoicingSystem.main.user.util;
  */
 
 public enum UserType {
-	MANAGER(1,"超级管理员"),
+	SUPER_MANAGER(1,"超级管理员"),
 	PURCHASER(2,"采购员"),
-	KEEPER(3,"货品管理员"),
-	SALESMAN(4,"销售员");
+	KEEPER(3,"仓库管理员"),
+	STORE_MANAGER(4,"门店管理员"),
+	SALESMAN(5,"销售员");
 	
 	private final int index;
 	private final String mean;

@@ -18,7 +18,7 @@ public class UserService implements IUserService {
 	IUserRepository userRepository;
 	
 	@Override
-	public void updateUser(User user) {
+	public void save(User user) {
 		// TODO Auto-generated method stub
 		userRepository.save(user);
 	}

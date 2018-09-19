@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.indent.domain.Indent;
+import com.invoicingSystem.main.indent.service.IIndentService;
+import com.invoicingSystem.main.indent.util.IndentStatus;
 import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.warehouse.domain.Warehouse;
 import com.invoicingSystem.main.warehouse.service.IWarehouseService;
@@ -18,22 +22,37 @@ import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 @SpringBootTest
 public class TestWarehouse {
 	@Autowired
-	IWarehouseService warehouseService;
+	IIndentService indentService;
+	@Autowired
+	ICommodityService commodityService;
 	@Autowired
 	IUserService userService;
+	@Autowired
+	IWarehouseService warehouseService;
+	
 	@Test
 	public void addWarehouse() {
 		Warehouse warehouse = new Warehouse();
-		warehouse.setLocation("东莞松山湖大学路2号");
-		warehouse.setName("3号仓库");
-		warehouse.getKeepers().add(userService.findById(1L));
-		warehouseService.updateWarehouse(warehouse);
+		warehouse.setLocation("东莞松山湖华为小实验室");
+		warehouse.setName("东12仓库");
+		warehouse.getKeepers().add(userService.findById(8L));
+		warehouseService.save(warehouse);
 	}
 	
 	@Test
 	public void addKeeper() {
 		Warehouse warehouse = warehouseService.findById(1L);
 		warehouse.getKeepers().add(userService.findById(3L));
-		warehouseService.updateWarehouse(warehouse);
+		warehouseService.save(warehouse);
+	}
+	
+	@Test
+	public void indentInputWarehouse() {
+		Warehouse warehouse = warehouseService.findById(2L);
+		Indent indent = indentService.findById(1L);
+		indent.setIndentStatus(IndentStatus.FINISHED);
+		warehouse.getCommodities().addAll(indent.getCommodities());
+		indentService.save(indent);
+		warehouseService.save(warehouse);
 	}
 }

@@ -43,7 +43,7 @@ public class Test01 {
 			user.setUserStatus(UserStatus.NORMAL);
 			user.setUserType(UserType.SALESMAN);
 			user.setWorkNum("wk000111"+i);
-			userService.updateUser(user);
+			userService.save(user);
 		}
 	}
 }

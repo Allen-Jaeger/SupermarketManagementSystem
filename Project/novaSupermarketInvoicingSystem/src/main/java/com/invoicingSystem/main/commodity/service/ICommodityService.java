@@ -9,4 +9,5 @@ import com.invoicingSystem.main.commodity.domain.Commodity;
 
 public interface ICommodityService {
 	public void save(Commodity commodity);
+	public Commodity findById(Long id);
 }

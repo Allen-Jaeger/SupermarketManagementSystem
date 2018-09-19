@@ -3,6 +3,7 @@ package com.invoicingSystem.main.warehouse.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,16 +30,19 @@ public class Warehouse {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@OneToMany(fetch=FetchType.EAGER)
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="bad_commodities")	//省略中间表
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> badCommodities = new ArrayList<Commodity>();
-	@OneToMany(fetch=FetchType.EAGER)
+	
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="commodities")
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
 	private String location;
-	@OneToMany(fetch=FetchType.EAGER)
+	
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="keepers")
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<User> keepers = new ArrayList<User>();

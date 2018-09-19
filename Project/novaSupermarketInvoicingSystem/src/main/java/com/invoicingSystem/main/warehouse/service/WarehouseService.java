@@ -18,7 +18,7 @@ public class WarehouseService implements IWarehouseService {
 	IWarehouseRepository warehouseRepository;
 	
 	@Override
-	public void updateWarehouse(Warehouse warehouse) {
+	public void save(Warehouse warehouse) {
 		// TODO Auto-generated method stub
 		warehouseRepository.save(warehouse);
 	}

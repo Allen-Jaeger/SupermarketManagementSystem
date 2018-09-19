@@ -2,6 +2,7 @@ package com.invoicingSystem.main.commodity.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Commodity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Long barCode;
-	private Date period;
+	private Date period;	//保质期
 	private String name;
 	private String picUrl;
 	private int amount;
@@ -33,8 +34,7 @@ public class Commodity {
 	private Double cost;	//单价，总价=cost*amount
 	private String note;
 	private Boolean saleable;
-	private Boolean purchasing;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Indent indent;
 	public Long getId() {
 		return id;
@@ -69,9 +69,6 @@ public class Commodity {
 	}
 	public Boolean getSaleable() {
 		return saleable;
-	}
-	public Boolean getPurchasing() {
-		return purchasing;
 	}
 	public Indent getIndent() {
 		return indent;
@@ -108,9 +105,6 @@ public class Commodity {
 	}
 	public void setSaleable(Boolean saleable) {
 		this.saleable = saleable;
-	}
-	public void setPurchasing(Boolean purchasing) {
-		this.purchasing = purchasing;
 	}
 	public void setIndent(Indent indent) {
 		this.indent = indent;

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.commodity.domain.Commodity;
@@ -30,22 +35,23 @@ public class Indent {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String indentNum;
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="indent_commodities")
+	@Fetch(FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
 	private Double cost;	//订单总成本
 	private IndentStatus indentStatus;
 	private Date createDate;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private User creator;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private User keeper;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private User manager;
-	private boolean isInside;
-	@ManyToOne
+	private boolean isInside;	//是否内部调货
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Warehouse fromWarehouse;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Warehouse toWarehouse;
 	private String note;
 	

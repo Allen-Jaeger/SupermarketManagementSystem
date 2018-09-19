@@ -23,4 +23,10 @@ public class CommodityService implements ICommodityService {
 		commodityRepository.save(commodity);
 	}
 
+	@Override
+	public Commodity findById(Long id) {
+		// TODO Auto-generated method stub
+		return commodityRepository.findById(id).get();
+	}
+
 }

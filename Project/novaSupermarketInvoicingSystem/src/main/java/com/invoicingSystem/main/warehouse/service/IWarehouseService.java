@@ -8,6 +8,6 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
  */
 
 public interface IWarehouseService {
-	public void updateWarehouse(Warehouse warehouse);
+	public void save(Warehouse warehouse);
 	public Warehouse findById(Long id);
 }
