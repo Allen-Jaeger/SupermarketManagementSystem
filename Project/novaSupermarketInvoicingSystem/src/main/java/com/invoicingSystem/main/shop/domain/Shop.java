@@ -1,4 +1,4 @@
-package com.invoicingSystem.main.warehouse.domain;
+package com.invoicingSystem.main.shop.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,67 +24,63 @@ import com.invoicingSystem.main.util.Location;
  * @author LiJuncong
  * at 2018年9月19日
  */
-@Table(name="t_warehouse")
 @Entity
-public class Warehouse {
+@Table(name="t_shop")
+public class Shop {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	@JoinColumn(name="bad_commodities")	//省略中间表
-	@Fetch(value=FetchMode.SUBSELECT)
-	private List<Commodity> badCommodities = new ArrayList<Commodity>();
-	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="commodities")
+	@JoinColumn(name="shop_commodities")
 	@Fetch(value=FetchMode.SUBSELECT)
-	private List<Commodity> commodities = new ArrayList<Commodity>();
+	private List<Commodity> Commodities = new ArrayList<Commodity>();
 	private Location location;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="keepers")
+	@JoinColumn(name="shop_manager")
 	@Fetch(value=FetchMode.SUBSELECT)
-	private List<User> keepers = new ArrayList<User>();
-	
-	
+	private List<User> shopManager = new ArrayList<User>();
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getName() {
 		return name;
 	}
-	public List<Commodity> getBadCommodities() {
-		return badCommodities;
-	}
+
 	public List<Commodity> getCommodities() {
-		return commodities;
+		return Commodities;
 	}
+
 	public Location getLocation() {
 		return location;
 	}
-	public List<User> getKeepers() {
-		return keepers;
+
+	public List<User> getShopManager() {
+		return shopManager;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setBadCommodities(List<Commodity> badCommodities) {
-		this.badCommodities = badCommodities;
-	}
+
 	public void setCommodities(List<Commodity> commodities) {
-		this.commodities = commodities;
+		Commodities = commodities;
 	}
+
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	public void setKeepers(List<User> keepers) {
-		this.keepers = keepers;
-	}
 
+	public void setShopManager(List<User> shopManager) {
+		this.shopManager = shopManager;
+	}
 	
 }

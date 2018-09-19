@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,10 +30,12 @@ public class Deal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private VipCard vipCard;
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User salesman;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="sold_deal_id")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Commodity> commodities;

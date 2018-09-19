@@ -11,6 +11,7 @@ import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.service.IIndentService;
 import com.invoicingSystem.main.indent.util.IndentStatus;
 import com.invoicingSystem.main.user.service.IUserService;
+import com.invoicingSystem.main.util.Location;
 import com.invoicingSystem.main.warehouse.domain.Warehouse;
 import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 
@@ -33,7 +34,7 @@ public class TestWarehouse {
 	@Test
 	public void addWarehouse() {
 		Warehouse warehouse = new Warehouse();
-		warehouse.setLocation("东莞松山湖华为小实验室");
+		warehouse.setLocation(new Location(1.0,1.0,"东莞理工"));
 		warehouse.setName("东12仓库");
 		warehouse.getKeepers().add(userService.findById(8L));
 		warehouseService.save(warehouse);
