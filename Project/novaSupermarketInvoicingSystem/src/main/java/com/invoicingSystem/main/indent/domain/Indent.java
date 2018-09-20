@@ -21,6 +21,7 @@ import org.hibernate.annotations.FetchMode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.indent.util.IndentStatus;
+import com.invoicingSystem.main.indent.util.IndentType;
 import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.warehouse.domain.Warehouse;
@@ -58,6 +59,8 @@ public class Indent {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Shop toShop;
 	private String note;
+	private IndentType indentType;
+
 
 	public Long getId() {
 		return id;
@@ -115,6 +118,11 @@ public class Indent {
 	public String getNote() {
 		return note;
 	}
+	
+	public IndentType getIndentType() {
+		return indentType;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -173,6 +181,9 @@ public class Indent {
 		this.note = note;
 	}
 
+	public void setIndentType(IndentType indentType) {
+		this.indentType = indentType;
+	}
 	/**
 	 * 遍历订单货物，更新订单成本
 	 */
