@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.vipcard.domain.VipCard;
 
@@ -41,6 +42,8 @@ public class Deal {
 	private Double price; // 实际交易额
 	private Double cost; // 总进货成本
 	private Date dealDate;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private Shop shop;
 
 
 	public Long getId() {
@@ -71,6 +74,10 @@ public class Deal {
 		return dealDate;
 	}
 
+	public Shop getShop() {
+		return shop;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -98,6 +105,10 @@ public class Deal {
 
 	public void setDealDate(Date dealDate) {
 		this.dealDate = dealDate;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 	/**
 	 * 遍历货物，更新成本
