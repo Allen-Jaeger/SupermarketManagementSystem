@@ -21,6 +21,7 @@ import org.hibernate.annotations.FetchMode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.indent.util.IndentStatus;
+import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.warehouse.domain.Warehouse;
 
@@ -48,91 +49,126 @@ public class Indent {
 	private User keeper;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private User manager;
-	private boolean isInside;	//是否内部调货
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Warehouse fromWarehouse;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Warehouse toWarehouse;
+	@ManyToOne(cascade=CascadeType.MERGE)
+	private Shop fromShop;
+	@ManyToOne(cascade=CascadeType.MERGE)
+	private Shop toShop;
 	private String note;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getIndentNum() {
 		return indentNum;
 	}
+
 	public List<Commodity> getCommodities() {
 		return commodities;
 	}
+
 	public Double getCost() {
 		return cost;
 	}
+
 	public IndentStatus getIndentStatus() {
 		return indentStatus;
 	}
-	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
+	
+	@JsonFormat(pattern="YYYY/MM/DD HH:mm:ss", timezone="GMT+8")
 	public Date getCreateDate() {
 		return createDate;
 	}
+
 	public User getCreator() {
 		return creator;
 	}
+
 	public User getKeeper() {
 		return keeper;
 	}
+
 	public User getManager() {
 		return manager;
 	}
-	public boolean isInside() {
-		return isInside;
-	}
+
 	public Warehouse getFromWarehouse() {
 		return fromWarehouse;
 	}
+
 	public Warehouse getToWarehouse() {
 		return toWarehouse;
 	}
+
+	public Shop getFromShop() {
+		return fromShop;
+	}
+
+	public Shop getToShop() {
+		return toShop;
+	}
+
 	public String getNote() {
 		return note;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public void setIndentNum(String indentNum) {
 		this.indentNum = indentNum;
 	}
+
 	public void setCommodities(List<Commodity> commodities) {
 		this.commodities = commodities;
 	}
+
 	public void setCost(Double cost) {
 		this.cost = cost;
-		this.updateCost();
+		updateCost();
 	}
+
 	public void setIndentStatus(IndentStatus indentStatus) {
 		this.indentStatus = indentStatus;
 	}
+
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
+
 	public void setKeeper(User keeper) {
 		this.keeper = keeper;
 	}
+
 	public void setManager(User manager) {
 		this.manager = manager;
 	}
-	public void setInside(boolean isInside) {
-		this.isInside = isInside;
-	}
+
 	public void setFromWarehouse(Warehouse fromWarehouse) {
 		this.fromWarehouse = fromWarehouse;
 	}
+
 	public void setToWarehouse(Warehouse toWarehouse) {
 		this.toWarehouse = toWarehouse;
 	}
+
+	public void setFromShop(Shop fromShop) {
+		this.fromShop = fromShop;
+	}
+
+	public void setToShop(Shop toShop) {
+		this.toShop = toShop;
+	}
+
 	public void setNote(String note) {
 		this.note = note;
 	}

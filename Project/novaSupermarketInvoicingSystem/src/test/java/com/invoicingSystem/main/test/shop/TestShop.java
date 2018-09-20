@@ -36,10 +36,9 @@ public class TestShop {
 	@Test
 	public void addShop() {
 		Shop shop = new Shop();
-		shop.setName("第一门店");
-		shop.setLocation(new Location(5.0,5.0,"北京路23号"));
-		shop.getShopManager().add(userService.findById(5L));
-		shop.getCommodities().add(commodityService.findById(1L));
+		shop.setName("第4门店");
+		shop.setLocation(new Location(5.0,5.0,"北京路55号"));
+		//shop.getCommodities().add(commodityService.findById(1L));
 		shopService.save(shop);
 	}
 	

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -12,13 +13,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.user.util.Gender;
 import com.invoicingSystem.main.user.util.Privilege;
 import com.invoicingSystem.main.user.util.UserStatus;
 import com.invoicingSystem.main.user.util.UserType;
+import com.invoicingSystem.main.warehouse.domain.Warehouse;
 
 /**
  * @author LiJuncong
@@ -51,6 +55,12 @@ public class User {
 	private String iconUrl;				//头像
 	@Column(nullable=false)
 	private UserStatus userStatus;		//用户状态
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
+	private Shop shop;
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
+	private Warehouse warehouse;
 	
 	public Long getId() {
 		return id;
@@ -86,6 +96,12 @@ public class User {
 	public UserStatus getUserStatus() {
 		return userStatus;
 	}
+	public Shop getShop() {
+		return shop;
+	}
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
 	
 	//setter
 	public void setId(Long id) {
@@ -120,5 +136,11 @@ public class User {
 	}
 	public void setUserStatus(UserStatus userStatus) {
 		this.userStatus = userStatus;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
 	}
 }

@@ -40,4 +40,19 @@ public class Test01 extends TestBase{
 			userService.save(user);
 		}
 	}
+	
+	@Test
+	public void saveSales() {
+		User user = new User();
+		user.setGender(Gender.MALE);
+		user.setHireDate(new Date());
+		user.setIdentity("1201000000");
+		user.setName("SalesT");
+		user.setPassword("123456");
+		user.setUserStatus(UserStatus.NORMAL);
+		user.setUserType(UserType.SALESMAN);
+		user.setWorkNum("wk00011127");
+		user.setWarehouse(warehouseService.findById(1L));
+		userService.save(user);
+	}
 }

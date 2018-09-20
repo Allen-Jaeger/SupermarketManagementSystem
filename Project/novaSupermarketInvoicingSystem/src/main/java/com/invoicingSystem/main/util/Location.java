@@ -6,10 +6,15 @@ import javax.persistence.Embeddable;
  * @author LiJuncong
  * at 2018年9月19日
  */
+
+/**
+ * 经度 东经为+ 西经为-
+ * 纬度 北纬为+ 南纬为-
+ */
 @Embeddable
 public class Location {
-	double longitude;	//经度
-	double latitude;	//纬度
+	double longitude;	//经度 东经为+ 西经为-
+	double latitude;	//纬度 北纬为+ 南纬为-
 	String address;
 	
 	public Location() {
@@ -18,6 +23,9 @@ public class Location {
 	}
 	
 	/**
+	 * 
+	 * 经度 东经为+ 西经为-
+	 * 纬度 北纬为+ 南纬为-
 	 * @param longitude
 	 * @param latitude
 	 * @param address

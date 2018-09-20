@@ -34,19 +34,16 @@ public class TestIndent {
 	@Test
 	public void saveIndent() {
 		Indent indent = new Indent();
-		indent.getCommodities().add(commodityService.findById(1L));
+		//indent.getCommodities().add(commodityService.findById(1L));
 		//indent.getCommodities().add(commodityService.findById(2L));
-		indent.setCost(1.0);
+		//indent.setCost(1.0);
 		indent.setCreateDate(new Date());
 		indent.setCreator(userService.findById(2L));
-		indent.setFromWarehouse(null);
-		indent.setIndentNum("BY15312145");
+		//indent.setIndentNum("BY15312145");
 		indent.setIndentStatus(IndentStatus.EXTRACTING);
-		indent.setInside(false);
-		indent.setKeeper(userService.findById(4L));
-		indent.setManager(userService.findById(5L));
+		indent.setKeeper(userService.findById(1L));
+		indent.setManager(userService.findById(2L));
 		indent.setNote("测试的采购单");
-		indent.setToWarehouse(warehouseService.findById(1L));
 		indentService.save(indent);
 	}
 }

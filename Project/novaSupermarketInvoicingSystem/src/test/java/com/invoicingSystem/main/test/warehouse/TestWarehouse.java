@@ -35,8 +35,8 @@ public class TestWarehouse {
 	public void addWarehouse() {
 		Warehouse warehouse = new Warehouse();
 		warehouse.setLocation(new Location(1.0,1.0,"东莞理工"));
-		warehouse.setName("东12仓库");
-		warehouse.getKeepers().add(userService.findById(8L));
+		warehouse.setName("东753仓库");
+		//warehouse.getKeepers().add(userService.findById(8L));
 		warehouseService.save(warehouse);
 	}
 	
