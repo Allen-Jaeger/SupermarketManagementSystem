@@ -38,11 +38,11 @@ public class TestIndent {
 		//indent.getCommodities().add(commodityService.findById(2L));
 		//indent.setCost(1.0);
 		indent.setCreateDate(new Date());
-		indent.setCreator(userService.findById(2L));
+		//indent.setCreator(userService.findById(2L));
 		//indent.setIndentNum("BY15312145");
 		indent.setIndentStatus(IndentStatus.EXTRACTING);
-		indent.setKeeper(userService.findById(1L));
-		indent.setManager(userService.findById(2L));
+		//indent.setKeeper(userService.findById(1L));
+		//indent.setManager(userService.findById(2L));
 		indent.setNote("测试的采购单");
 		indentService.save(indent);
 	}

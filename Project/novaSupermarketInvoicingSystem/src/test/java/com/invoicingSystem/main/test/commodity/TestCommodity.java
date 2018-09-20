@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 
 /**
  * @author LiJuncong
@@ -40,7 +41,7 @@ public class TestCommodity {
 		commodity.setPeriod(period);
 		commodity.setPicUrl("//111//url");
 		commodity.setPrice(3.0);
-		commodity.setSaleable(true);
+		commodity.setCommodityStatus(CommodityStatus.UNSALEABLE);
 		commodity.setSaveStock(100);
 		commodityService.save(commodity);
 	}

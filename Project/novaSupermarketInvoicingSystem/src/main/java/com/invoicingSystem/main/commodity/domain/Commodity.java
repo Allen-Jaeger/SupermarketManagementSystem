@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.indent.domain.Indent;
 
 /**
@@ -25,6 +26,8 @@ public class Commodity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Long barCode;
+
+	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
 	private Date period;	//保质期
 	private String name;
 	private String picUrl;
@@ -33,7 +36,7 @@ public class Commodity {
 	private Double price;
 	private Double cost;	//单价，总价=cost*amount
 	private String note;
-	private Boolean saleable;
+	private CommodityStatus commodityStatus;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Indent indent;
 	public Long getId() {
@@ -42,7 +45,6 @@ public class Commodity {
 	public Long getBarCode() {
 		return barCode;
 	}
-	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
 	public Date getPeriod() {
 		return period;
 	}
@@ -67,8 +69,8 @@ public class Commodity {
 	public String getNote() {
 		return note;
 	}
-	public Boolean getSaleable() {
-		return saleable;
+	public CommodityStatus getCommodityStatus() {
+		return commodityStatus;
 	}
 	public Indent getIndent() {
 		return indent;
@@ -103,12 +105,11 @@ public class Commodity {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public void setSaleable(Boolean saleable) {
-		this.saleable = saleable;
+	public void setCommodityStatus(CommodityStatus commodityStatus) {
+		this.commodityStatus = commodityStatus;
 	}
 	public void setIndent(Indent indent) {
 		this.indent = indent;
 	}
-
 	
 }
