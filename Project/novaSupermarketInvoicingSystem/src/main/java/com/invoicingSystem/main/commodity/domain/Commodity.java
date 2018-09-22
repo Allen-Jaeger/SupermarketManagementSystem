@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.indent.domain.Indent;
 
 /**
@@ -22,12 +24,9 @@ import com.invoicingSystem.main.indent.domain.Indent;
 @Table(name="t_commodity")
 @Entity
 public class Commodity {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Long barCode;
-
-	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
+	private CommodityType commodityType;
 	private Date period;	//保质期
 	private String name;
 	private String picUrl;
@@ -37,14 +36,18 @@ public class Commodity {
 	private Double cost;	//单价，总价=cost*amount
 	private String note;
 	private CommodityStatus commodityStatus;
-	@ManyToOne(cascade=CascadeType.ALL)
 	private Indent indent;
+	private int version;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 	public Long getBarCode() {
 		return barCode;
 	}
+	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
 	public Date getPeriod() {
 		return period;
 	}
@@ -72,8 +75,18 @@ public class Commodity {
 	public CommodityStatus getCommodityStatus() {
 		return commodityStatus;
 	}
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	public Indent getIndent() {
 		return indent;
+	}
+	
+	public CommodityType getCommodityType() {
+		return commodityType;
+	}
+	@Version
+	public int getVersion() {
+		return version;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -111,5 +124,11 @@ public class Commodity {
 	public void setIndent(Indent indent) {
 		this.indent = indent;
 	}
-	
+
+	public void setCommodityType(CommodityType commodityType) {
+		this.commodityType = commodityType;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
 }

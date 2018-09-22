@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 
 /**
  * @author LiJuncong
@@ -42,6 +43,7 @@ public class TestCommodity {
 		commodity.setPicUrl("//111//url");
 		commodity.setPrice(3.0);
 		commodity.setCommodityStatus(CommodityStatus.UNSALEABLE);
+		commodity.setCommodityType(CommodityType.DRINK);
 		commodity.setSaveStock(100);
 		commodityService.save(commodity);
 	}
