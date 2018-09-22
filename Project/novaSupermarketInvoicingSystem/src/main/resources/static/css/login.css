@@ -69,7 +69,7 @@ body{
 }
 @keyframes forHead
 {
-	from {top: 1000px;left: -2200px;}
+	from {top: 1000px; left: -2500px;}
 	to {top: -100px;left: -150px;}
 }
 @keyframes forLogin
@@ -125,11 +125,10 @@ body{
 	margin: 40px auto 0 auto;
 	cursor: pointer;
 	text-shadow: white 0 0 0;
-	transition: 0.5s;
+	transition: 0.3s;
 }
 .sbm:hover{
-	padding: 5px;
-	width: 55%;
+	text-shadow: white 0 0 5px;
 }
 
 .error{
