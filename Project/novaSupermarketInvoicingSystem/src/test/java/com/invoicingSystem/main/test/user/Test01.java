@@ -30,7 +30,7 @@ public class Test01 extends TestBase{
 			User user = new User();
 			user.setGender(Gender.MALE);
 			user.setHireDate(new Date());
-			user.setIdentity("01000000"+i);
+			user.setIdentity("0165400"+i);
 			user.setName("Sales"+i);
 			user.setPassword("123456");
 			user.setPrivileges(privileges);

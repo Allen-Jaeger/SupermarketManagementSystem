@@ -1,5 +1,6 @@
 package com.invoicingSystem.main.user.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,6 @@ import com.invoicingSystem.main.user.domain.User;
  */
 @Repository
 public interface IUserRepository extends PagingAndSortingRepository<User, Long>{
-
+	@Query(value="from User user where user.workNum like ?1")
+	public User findByWorkNum(String workNum);
 }
