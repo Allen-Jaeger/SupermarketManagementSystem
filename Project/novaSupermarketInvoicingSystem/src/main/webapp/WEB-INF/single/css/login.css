@@ -1,0 +1,138 @@
+*{
+	margin: 0;
+}
+.head{
+	position: absolute;
+	top: -100px;	
+	left: -150px;
+	width: 100%;
+	height: 200px;
+	background: linear-gradient(to right, #295325, #7CEE72,white);
+	transform: rotate(-25deg);
+	animation: forHead 0.8s;
+	animation-delay: 0.5s;
+	animation-fill-mode: backwards;
+	z-index: 99;
+	cursor: default;
+}
+.blank{
+	padding: 20px 50px;
+	left: 100px;
+	position: absolute;
+	color: white;
+	font-size: 60px;
+}
+.bg01{
+	filter: blur(5px);
+}
+body{
+	overflow: hidden;
+}
+.foot{
+	position: absolute;
+	background: linear-gradient(to left, #295325, #7CEE72,white);
+	bottom: -100px;
+	width: 100%;
+	height: 200px;
+	transform: rotate(25deg);
+	left: -200px;
+	animation: forFoot 0.8s;
+	cursor: default;
+}
+.msg{
+	color: #3D7E31;
+    font-size: 20px;
+    font-weight: bolder;
+    left: 250px;
+    position: absolute;
+    padding: 30px 0 0 0;
+    line-height: 2em;
+	cursor: default;
+}
+.login{
+	position: absolute;
+    top: 10%;
+    right: 100px;
+    width: 400px;
+    height: 500px;
+    background: white;
+    animation: forLogin 0.5s;
+	animation-delay: 1s;
+	animation-fill-mode: backwards;
+	filter: opacity(1);
+	text-align: center;
+}
+@keyframes forFoot
+{
+	from {left: 2000px;bottom: -1000px;}
+	to {left: -200px;bottom: -100px;}
+}
+@keyframes forHead
+{
+	from {top: 1000px;left: -2200px;}
+	to {top: -100px;left: -150px;}
+}
+@keyframes forLogin
+{
+	from {filter: opacity(0);}
+	to {filter: opacity(1);}
+}
+.welcome{
+	font-size: 35px;
+	font-weight: lighter;
+	background-color: #5D9D5D;
+	color: white;
+	width: 100%;
+	padding: 15px 0px 15px 0px;
+	letter-spacing: 5px;
+	margin: 0 0 70px 0;
+	cursor: default;
+}
+.inputSpan{
+	top: 50px;
+	display: inline-block;
+	margin: 10px auto;
+	text-align: center;
+	font-size: 25px;
+	padding: 5px;
+	border-color: gray;
+	border-style: solid;
+	border-width: 1px;
+	width: 60%;
+	height: 40px;
+}
+.inputSpan input{
+	border:none;
+	height: 25px;
+	outline: none;
+	padding: 0 5px 5px 5px;
+}
+.inputSpan i{
+	color: #5D9D5D;
+	padding: 10px 5px 0 0;
+}
+.sbm{
+	width: 60%;
+	background: #5D9D5D;
+	font-weight: lighter;
+	color: white;
+	border:none;
+	font-size: 25px;
+	letter-spacing: 2em;
+	padding: 10px;
+	text-indent: 2em;
+	text-align: center;
+	margin: 40px auto 0 auto;
+	cursor: pointer;
+	text-shadow: white 0 0 0;
+	transition: 0.5s;
+}
+.sbm:hover{
+	padding: 5px;
+	width: 55%;
+}
+
+.error{
+	margin: 5px 0 0 0;
+	color: red;
+}
