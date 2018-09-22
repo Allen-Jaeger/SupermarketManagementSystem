@@ -1,0 +1,360 @@
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1599 */
+.x-button-alt.x-button-decline {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1602 */
+.x-button-alt.x-button-decline .x-inner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1606 */
+.x-button-alt.x-button-decline .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1610 */
+.x-button-alt.x-button-decline.x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1613 */
+.x-button-alt.x-button-decline.x-hovered .x-inner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1617 */
+.x-button-alt.x-button-decline.x-hovered .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1622 */
+.x-button-alt.x-button-decline.x-pressing,
+.x-button-alt.x-button-decline.x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1625 */
+.x-button-alt.x-button-decline.x-pressing .x-inner-el,
+.x-button-alt.x-button-decline.x-pressed .x-inner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1629 */
+.x-button-alt.x-button-decline.x-pressing .x-icon-el,
+.x-button-alt.x-button-decline.x-pressed .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1635 */
+.x-keyboard-mode .x-button-alt.x-button-decline.x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1638 */
+.x-keyboard-mode .x-button-alt.x-button-decline.x-focused .x-inner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1642 */
+.x-keyboard-mode .x-button-alt.x-button-decline.x-focused .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1599 */
+.x-button-alt.x-button-confirm {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1602 */
+.x-button-alt.x-button-confirm .x-inner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1606 */
+.x-button-alt.x-button-confirm .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1610 */
+.x-button-alt.x-button-confirm.x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1613 */
+.x-button-alt.x-button-confirm.x-hovered .x-inner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1617 */
+.x-button-alt.x-button-confirm.x-hovered .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1622 */
+.x-button-alt.x-button-confirm.x-pressing,
+.x-button-alt.x-button-confirm.x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1625 */
+.x-button-alt.x-button-confirm.x-pressing .x-inner-el,
+.x-button-alt.x-button-confirm.x-pressed .x-inner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1629 */
+.x-button-alt.x-button-confirm.x-pressing .x-icon-el,
+.x-button-alt.x-button-confirm.x-pressed .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1635 */
+.x-keyboard-mode .x-button-alt.x-button-confirm.x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1638 */
+.x-keyboard-mode .x-button-alt.x-button-confirm.x-focused .x-inner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/Button.scss:1642 */
+.x-keyboard-mode .x-button-alt.x-button-confirm.x-focused .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1456 */
+.x-splitButton-alt.x-splitButton-decline {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1459 */
+.x-splitButton-alt.x-splitButton-decline .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1463 */
+.x-splitButton-alt.x-splitButton-decline .x-arrow-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1467 */
+.x-splitButton-alt.x-splitButton-decline .x-splitBody-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1477 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-right .x-splitArrow-el {
+    border-left: 1px solid #fff;
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1480 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-right .x-splitArrow-el.x-hovered {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1484 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-right .x-splitArrow-el.x-focused {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1488 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-right .x-splitArrow-el.x-pressing,
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-right .x-splitArrow-el.x-pressed {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1493 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-bottom .x-splitArrow-el {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1496 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-bottom .x-splitArrow-el.x-hovered {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1500 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-bottom .x-splitArrow-el.x-focused {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1504 */
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-bottom .x-splitArrow-el.x-pressing,
+.x-splitButton-alt.x-splitButton-decline.x-arrow-align-bottom .x-splitArrow-el.x-pressed {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1509 */
+.x-splitButton-alt.x-splitButton-decline.x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1512 */
+.x-splitButton-alt.x-splitButton-decline.x-hovered .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1517 */
+.x-splitButton-alt.x-splitButton-decline .x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1520 */
+.x-splitButton-alt.x-splitButton-decline .x-hovered.x-splitBody-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1524 */
+.x-splitButton-alt.x-splitButton-decline .x-hovered.x-splitInner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1528 */
+.x-splitButton-alt.x-splitButton-decline .x-hovered.x-splitArrow-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1533 */
+.x-splitButton-alt.x-splitButton-decline.x-pressing,
+.x-splitButton-alt.x-splitButton-decline.x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1536 */
+.x-splitButton-alt.x-splitButton-decline.x-pressing .x-icon-el,
+.x-splitButton-alt.x-splitButton-decline.x-pressed .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1541 */
+.x-splitButton-alt.x-splitButton-decline .x-pressing,
+.x-splitButton-alt.x-splitButton-decline .x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1544 */
+.x-splitButton-alt.x-splitButton-decline .x-pressing.x-splitBody-el,
+.x-splitButton-alt.x-splitButton-decline .x-pressed.x-splitBody-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1548 */
+.x-splitButton-alt.x-splitButton-decline .x-pressing.x-splitInner-el,
+.x-splitButton-alt.x-splitButton-decline .x-pressed.x-splitInner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1552 */
+.x-splitButton-alt.x-splitButton-decline .x-pressing.x-splitArrow-el,
+.x-splitButton-alt.x-splitButton-decline .x-pressed.x-splitArrow-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1558 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline.x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1561 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline.x-focused .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1568 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline .x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1571 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline .x-focused.x-splitBody-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1575 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline .x-focused.x-splitInner-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1579 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-decline .x-focused.x-splitArrow-el {
+    background-color: #c62828;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1456 */
+.x-splitButton-alt.x-splitButton-confirm {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1459 */
+.x-splitButton-alt.x-splitButton-confirm .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1463 */
+.x-splitButton-alt.x-splitButton-confirm .x-arrow-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1467 */
+.x-splitButton-alt.x-splitButton-confirm .x-splitBody-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1477 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-right .x-splitArrow-el {
+    border-left: 1px solid #fff;
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1480 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-right .x-splitArrow-el.x-hovered {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1484 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-right .x-splitArrow-el.x-focused {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1488 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-right .x-splitArrow-el.x-pressing,
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-right .x-splitArrow-el.x-pressed {
+    border-left: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1493 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-bottom .x-splitArrow-el {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1496 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-bottom .x-splitArrow-el.x-hovered {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1500 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-bottom .x-splitArrow-el.x-focused {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1504 */
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-bottom .x-splitArrow-el.x-pressing,
+.x-splitButton-alt.x-splitButton-confirm.x-arrow-align-bottom .x-splitArrow-el.x-pressed {
+    border-top: 1px solid #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1509 */
+.x-splitButton-alt.x-splitButton-confirm.x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1512 */
+.x-splitButton-alt.x-splitButton-confirm.x-hovered .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1517 */
+.x-splitButton-alt.x-splitButton-confirm .x-hovered {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1520 */
+.x-splitButton-alt.x-splitButton-confirm .x-hovered.x-splitBody-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1524 */
+.x-splitButton-alt.x-splitButton-confirm .x-hovered.x-splitInner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1528 */
+.x-splitButton-alt.x-splitButton-confirm .x-hovered.x-splitArrow-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1533 */
+.x-splitButton-alt.x-splitButton-confirm.x-pressing,
+.x-splitButton-alt.x-splitButton-confirm.x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1536 */
+.x-splitButton-alt.x-splitButton-confirm.x-pressing .x-icon-el,
+.x-splitButton-alt.x-splitButton-confirm.x-pressed .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1541 */
+.x-splitButton-alt.x-splitButton-confirm .x-pressing,
+.x-splitButton-alt.x-splitButton-confirm .x-pressed {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1544 */
+.x-splitButton-alt.x-splitButton-confirm .x-pressing.x-splitBody-el,
+.x-splitButton-alt.x-splitButton-confirm .x-pressed.x-splitBody-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1548 */
+.x-splitButton-alt.x-splitButton-confirm .x-pressing.x-splitInner-el,
+.x-splitButton-alt.x-splitButton-confirm .x-pressed.x-splitInner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1552 */
+.x-splitButton-alt.x-splitButton-confirm .x-pressing.x-splitArrow-el,
+.x-splitButton-alt.x-splitButton-confirm .x-pressed.x-splitArrow-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1558 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm.x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1561 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm.x-focused .x-icon-el {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1568 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm .x-focused {
+    color: #fff;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1571 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm .x-focused.x-splitBody-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1575 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm .x-focused.x-splitInner-el {
+    background-color: #7cb342;
+}
+/* /home/teamcity/buildAgent/work/8cc7421dd8da164c/staging/modern/theme-neptune/sass/var/SplitButton.scss:1579 */
+.x-keyboard-mode .x-splitButton-alt.x-splitButton-confirm .x-focused.x-splitArrow-el {
+    background-color: #7cb342;
+}

@@ -1,0 +1,39 @@
+.process-definition-grid .x-fa {
+    height: 20px;
+    width: 20px;
+    background: $grid-item-edit-btn-color;
+    line-height: 20px;
+    float: left;
+    margin-right: 10px;
+
+    &:before {
+        display: block;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    &.fa-trash-o{
+        background-color: $grid-item-fa-trash-o-btn-color;
+        color: $lightest-color;
+    }
+    &.fa-file-excel-o{
+        background-color: $grid-item-fa-file-excel-o-btn-color;
+        color: $lightest-color;
+    }
+    &.fa-file-picture-o{
+        background-color: $grid-item-ffa-file-picture-o-btn-color;
+        color: $lightest-color;
+    }
+    &.fa-ban{
+        background-color: $grid-item-fa-ban-btn-color;
+        color: $lightest-color;
+    }
+    &.fa-exchange{
+        background-color: $grid-item-fa-exchange-btn-color;
+        color: $lightest-color;
+    }
+
+    &.x-action-col-icon{
+        font-size: 13px !important;
+    }
+}
