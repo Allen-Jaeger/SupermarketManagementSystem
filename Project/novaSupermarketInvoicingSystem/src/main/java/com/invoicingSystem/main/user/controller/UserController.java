@@ -24,19 +24,31 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 	
-	
+	/**
+	 * 	登陆请求
+	 * @param userDTO
+	 * @param request
+	 * @return
+	 */
 	@PostMapping(value = "/login")
-	public String login(UserDTO userDTO) {
+	public String login(UserDTO userDTO, HttpServletRequest request) {
 		User user = userService.findByWorkNum(userDTO.getWorkNum());
-		String loginResult = userService.userLogin(userDTO.toUserObject(), user);
+		String loginResult = userService.userLogin(userDTO.toLoginUser(), user);
 		if(loginResult.equals("登陆成功")) {
-			//跳转到主页
+			//登陆成功需要存入Session
+			request.getSession().setAttribute("userId", user.getId());
 			return loginResult;
 		}else {
 			return loginResult;
 		}
 	}
 	
+	/**
+	 * 
+	 * 	跳转到登陆页面
+	 * @param request
+	 * @param response
+	 */
 	@GetMapping(value="/login")
 	public void miss(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -46,5 +58,15 @@ public class UserController {
 		}
 	}
 	
-	
+	/**
+	 * 	获取已经登陆者的信息
+	 * @param request
+	 */
+	@GetMapping(value="/findMe")
+	public UserDTO findMe(HttpServletRequest request) {
+		String userId = request.getSession().getAttribute("userId").toString();
+		User user = userService.findById(Long.parseLong(userId));
+		UserDTO userDTO = new UserDTO(user);
+		return userDTO;
+	}
 }

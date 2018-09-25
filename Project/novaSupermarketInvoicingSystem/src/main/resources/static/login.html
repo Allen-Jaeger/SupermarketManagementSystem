@@ -7,6 +7,8 @@
 	<title>登陆</title>
 	<script>
 		function sub(){
+			document.getElementById("eMsg").innerHTML = 
+						'<i style = "color: #5D9D5D; font-size: 20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>&nbsp;<span style = "color: #5D9D5D;">Login...</span>';
 			var num = document.getElementById('workNum').value;
 			var password = document.getElementById('password').value;
 			console.log(num + password);
@@ -15,26 +17,7 @@
 				return 0;
 			}else{
 				//document.getElementById('eMsg').innerHTML = "执行Ajax";
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				{
-					//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-					xmlhttp=new XMLHttpRequest();
-				}
-				else
-				{
-					// IE6, IE5 浏览器执行代码
-					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange=function()
-				{
-					if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-						document.getElementById("eMsg").innerHTML=xmlhttp.responseText;
-					}
-				}
-				xmlhttp.open("POST","/login",true);
-				xmlhttp.send();
+				//使用JQ
 			}
 		}
 	</script>
@@ -51,12 +34,12 @@
 		<div class = "welcome" onselectstart="return false;">欢迎登陆</div>
 		<form action="">
 			<span class = "inputSpan">
-				<i class = "fa fa-home"></i>
-				<input type="text" placeholder="工号" id="workNum">
+				<i class = "fa fa-user"></i>
+				<input type="text" placeholder="工号" id="workNum" name = "workNum">
 			</span><br>
 			<span class = "inputSpan">
 				<i class = "fa fa-lock"></i>
-				<input type="password" placeholder="密码" id="password">
+				<input type="password" placeholder="密码" id="password" name = "password">
 			</span><br>
 			<input type="button" class = "sbm" value="登陆" onclick='sub();'>
 			<p class="error" id = "eMsg"></p>

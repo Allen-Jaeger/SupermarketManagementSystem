@@ -3358,7 +3358,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/classic/src/view/main/Main.scss:87 */
 .sencha-logo {
-    background-color: #35baf6;
+    background-color: #5d9d5d;
     height: 65px;
     font-size: 16px;
     color: #fff;
@@ -3419,7 +3419,7 @@
 .hot-icon.new-icon:after,
 .new-icon.new-icon:after {
     content: "NEW";
-    background: #35baf6;
+    background: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/classic/src/view/main/Main.scss:152 */
 .hot-icon:after,
@@ -3443,7 +3443,7 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/classic/src/view/main/Main.scss:170 */
 .x-treelist-item-tool.hot-icon:after,
 .x-treelist-item-tool.new-icon:after {
-    background: #35baf6;
+    background: #5d9d5d;
     content: '';
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/classic/src/view/main/Main.scss:178 */
@@ -3696,9 +3696,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-blue-small {
     background-image: none;
     background-color: #2eadf5;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-blue-small .x-btn-arrow-el {
@@ -3711,7 +3711,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-blue-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-blue-small {
@@ -3721,9 +3721,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-blue-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-blue-small,
@@ -3735,9 +3735,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-blue-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-blue-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-blue-small {
@@ -3961,18 +3961,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-blue-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-blue-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-blue-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-blue-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-blue-large {
@@ -4220,9 +4220,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-blue-large {
     background-image: none;
     background-color: #2eadf5;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-blue-large .x-btn-arrow-el {
@@ -4235,7 +4235,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-blue-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-blue-large {
@@ -4245,9 +4245,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-blue-large {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-blue-large,
@@ -4259,9 +4259,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-blue-large,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-blue-large {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-blue-large {
@@ -4485,18 +4485,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-blue-large:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-blue-large:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-blue-large:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-blue-large:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-blue-toolbar-small {
@@ -4744,9 +4744,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-blue-toolbar-small {
     background-image: none;
     background-color: #2eadf5;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-blue-toolbar-small .x-btn-arrow-el {
@@ -4759,7 +4759,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-blue-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-blue-toolbar-small {
@@ -4769,9 +4769,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-blue-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-blue-toolbar-small,
@@ -4783,9 +4783,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-blue-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-blue-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-blue-toolbar-small {
@@ -5009,18 +5009,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-blue-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-blue-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-blue-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-blue-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-facebook-small {
@@ -5268,9 +5268,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-facebook-small {
     background-image: none;
     background-color: #167abc;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-facebook-small .x-btn-arrow-el {
@@ -5283,7 +5283,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-facebook-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-facebook-small {
@@ -5293,9 +5293,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-facebook-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-facebook-small,
@@ -5307,9 +5307,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-facebook-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-facebook-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-facebook-small {
@@ -5533,18 +5533,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-facebook-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-facebook-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-facebook-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-facebook-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-facebook-large {
@@ -5792,9 +5792,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-facebook-large {
     background-image: none;
     background-color: #167abc;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-facebook-large .x-btn-arrow-el {
@@ -5807,7 +5807,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-facebook-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-facebook-large {
@@ -5817,9 +5817,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-facebook-large {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-facebook-large,
@@ -5831,9 +5831,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-facebook-large,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-facebook-large {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-facebook-large {
@@ -6057,18 +6057,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-facebook-large:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-facebook-large:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-facebook-large:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-facebook-large:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-cyan-small {
@@ -6316,9 +6316,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-cyan-small {
     background-image: none;
     background-color: #03b4d5;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-cyan-small .x-btn-arrow-el {
@@ -6331,7 +6331,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-cyan-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-cyan-small {
@@ -6341,9 +6341,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-cyan-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-cyan-small,
@@ -6355,9 +6355,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-cyan-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-cyan-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-cyan-small {
@@ -6581,18 +6581,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-cyan-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-cyan-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-cyan-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-cyan-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-cyan-toolbar-small {
@@ -6840,9 +6840,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-cyan-toolbar-small {
     background-image: none;
     background-color: #03b4d5;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-cyan-toolbar-small .x-btn-arrow-el {
@@ -6855,7 +6855,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-cyan-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-cyan-toolbar-small {
@@ -6865,9 +6865,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-cyan-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-cyan-toolbar-small,
@@ -6879,9 +6879,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-cyan-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-cyan-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-cyan-toolbar-small {
@@ -7105,18 +7105,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-cyan-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-cyan-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-cyan-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-cyan-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-green-small {
@@ -7364,9 +7364,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-green-small {
     background-image: none;
     background-color: #9cc96b;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-green-small .x-btn-arrow-el {
@@ -7379,7 +7379,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-green-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-green-small {
@@ -7389,9 +7389,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-green-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-green-small,
@@ -7403,9 +7403,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-green-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-green-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-green-small {
@@ -7629,18 +7629,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-green-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-green-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-green-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-green-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-green-large {
@@ -7888,9 +7888,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-green-large {
     background-image: none;
     background-color: #9cc96b;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-green-large .x-btn-arrow-el {
@@ -7903,7 +7903,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-green-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-green-large {
@@ -7913,9 +7913,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-green-large {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-green-large,
@@ -7927,9 +7927,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-green-large,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-green-large {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-green-large {
@@ -8153,18 +8153,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-green-large:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-green-large:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-green-large:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-green-large:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-green-toolbar-small {
@@ -8412,9 +8412,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-green-toolbar-small {
     background-image: none;
     background-color: #9cc96b;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-green-toolbar-small .x-btn-arrow-el {
@@ -8427,7 +8427,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-green-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-green-toolbar-small {
@@ -8437,9 +8437,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-green-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-green-toolbar-small,
@@ -8451,9 +8451,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-green-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-green-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-green-toolbar-small {
@@ -8677,18 +8677,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-green-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-green-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-green-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-green-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-red-small {
@@ -8936,9 +8936,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-red-small {
     background-image: none;
     background-color: #e44959;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-red-small .x-btn-arrow-el {
@@ -8951,7 +8951,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-red-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-red-small {
@@ -8961,9 +8961,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-red-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-red-small,
@@ -8975,9 +8975,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-red-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-red-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-red-small {
@@ -9201,18 +9201,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-red-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-red-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-red-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-red-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-red-toolbar-small {
@@ -9460,9 +9460,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-red-toolbar-small {
     background-image: none;
     background-color: #e44959;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-red-toolbar-small .x-btn-arrow-el {
@@ -9475,7 +9475,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-red-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-red-toolbar-small {
@@ -9485,9 +9485,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-red-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-red-toolbar-small,
@@ -9499,9 +9499,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-red-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-red-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-red-toolbar-small {
@@ -9725,18 +9725,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-red-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-red-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-red-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-red-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-purple-small {
@@ -9984,9 +9984,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-purple-small {
     background-image: none;
     background-color: #925e8b;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-purple-small .x-btn-arrow-el {
@@ -9999,7 +9999,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-purple-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-purple-small {
@@ -10009,9 +10009,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-purple-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-purple-small,
@@ -10023,9 +10023,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-purple-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-purple-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-purple-small {
@@ -10249,18 +10249,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-purple-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-purple-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-purple-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-purple-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-soft-purple-toolbar-small {
@@ -10508,9 +10508,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-soft-purple-toolbar-small {
     background-image: none;
     background-color: #925e8b;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-soft-purple-toolbar-small .x-btn-arrow-el {
@@ -10523,7 +10523,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-soft-purple-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-soft-purple-toolbar-small {
@@ -10533,9 +10533,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-soft-purple-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-soft-purple-toolbar-small,
@@ -10547,9 +10547,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-soft-purple-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-soft-purple-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-soft-purple-toolbar-small {
@@ -10773,18 +10773,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-soft-purple-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-soft-purple-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-soft-purple-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-soft-purple-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-gray-small {
@@ -11032,9 +11032,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-gray-small {
     background-image: none;
     background-color: #949495;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-gray-small .x-btn-arrow-el {
@@ -11047,7 +11047,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-gray-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-gray-small {
@@ -11057,9 +11057,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-gray-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-gray-small,
@@ -11071,9 +11071,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-gray-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-gray-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-gray-small {
@@ -11297,18 +11297,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-gray-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-gray-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-gray-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-gray-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-gray-large {
@@ -11556,9 +11556,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-gray-large {
     background-image: none;
     background-color: #949495;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-gray-large .x-btn-arrow-el {
@@ -11571,7 +11571,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-gray-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-gray-large {
@@ -11581,9 +11581,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-gray-large {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-gray-large,
@@ -11595,9 +11595,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-gray-large,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-gray-large {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-gray-large {
@@ -11821,18 +11821,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-gray-large:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-gray-large:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-gray-large:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-gray-large:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-gray-toolbar-small {
@@ -12080,9 +12080,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-gray-toolbar-small {
     background-image: none;
     background-color: #949495;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-gray-toolbar-small .x-btn-arrow-el {
@@ -12095,7 +12095,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-gray-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-gray-toolbar-small {
@@ -12105,9 +12105,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-gray-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-gray-toolbar-small,
@@ -12119,9 +12119,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-gray-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-gray-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-gray-toolbar-small {
@@ -12345,18 +12345,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-gray-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-gray-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-gray-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-gray-toolbar-small:after {
     border-width: 1px;
-    border-color: #35baf6;
+    border-color: #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-green-small {
@@ -12604,9 +12604,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-green-small {
     background-image: none;
     background-color: #16b603;
-    -webkit-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    -moz-box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
-    box-shadow: #cbe5f1 0 1px 0px 0 inset, #cbe5f1 0 -1px 0px 0 inset, #cbe5f1 -1px 0 0px 0 inset, #cbe5f1 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    -moz-box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
+    box-shadow: #d3dfd3 0 1px 0px 0 inset, #d3dfd3 0 -1px 0px 0 inset, #d3dfd3 -1px 0 0px 0 inset, #d3dfd3 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-green-small .x-btn-arrow-el {
@@ -12619,7 +12619,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-green-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #cbe5f1;
+    border: 1px solid #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-green-small {
@@ -12629,9 +12629,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-green-small {
-    -webkit-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    -moz-box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
-    box-shadow: #cae2ed 0 1px 0px 0 inset, #cae2ed 0 -1px 0px 0 inset, #cae2ed -1px 0 0px 0 inset, #cae2ed 1px 0 0px 0 inset;
+    -webkit-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    -moz-box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
+    box-shadow: #d1ddd1 0 1px 0px 0 inset, #d1ddd1 0 -1px 0px 0 inset, #d1ddd1 -1px 0 0px 0 inset, #d1ddd1 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-green-small,
@@ -12643,9 +12643,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-green-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-green-small {
-    -webkit-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    -moz-box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
-    box-shadow: #c8dce5 0 1px 0px 0 inset, #c8dce5 0 -1px 0px 0 inset, #c8dce5 -1px 0 0px 0 inset, #c8dce5 1px 0 0px 0 inset;
+    -webkit-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    -moz-box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
+    box-shadow: #ced8ce 0 1px 0px 0 inset, #ced8ce 0 -1px 0px 0 inset, #ced8ce -1px 0 0px 0 inset, #ced8ce 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-green-small {
@@ -12869,18 +12869,18 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3233 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-green-small:after {
     border-width: 1px;
-    border-color: #cbe5f1;
+    border-color: #d3dfd3;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-green-small:after {
     border-width: 1px;
-    border-color: #cae2ed;
+    border-color: #d1ddd1;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:3267 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-green-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-green-small:after {
     border-width: 1px;
-    border-color: #c8dce5;
+    border-color: #ced8ce;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-btn-green-toolbar-small {
@@ -13128,9 +13128,9 @@
 .x-keyboard-mode .x-btn-focus.x-btn-green-toolbar-small {
     background-image: none;
     background-color: #16b603;
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2793 */
 .x-btn-green-toolbar-small .x-btn-arrow-el {
@@ -13143,7 +13143,7 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2810 */
 .x-keyboard-mode .x-btn-green-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #35baf6;
+    border: 1px solid #5d9d5d;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2817 */
 .x-btn-over.x-btn-green-toolbar-small {
@@ -13153,9 +13153,9 @@
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2845 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-green-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2874 */
 .x-btn.x-btn-menu-active.x-btn-green-toolbar-small,
@@ -13167,9 +13167,9 @@
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2904 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-green-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-green-toolbar-small {
-    -webkit-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    -moz-box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
-    box-shadow: #35baf6 0 1px 0px 0 inset, #35baf6 0 -1px 0px 0 inset, #35baf6 -1px 0 0px 0 inset, #35baf6 1px 0 0px 0 inset;
+    -webkit-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    -moz-box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
+    box-shadow: #5d9d5d 0 1px 0px 0 inset, #5d9d5d 0 -1px 0px 0 inset, #5d9d5d -1px 0 0px 0 inset, #5d9d5d 1px 0 0px 0 inset;
 }
 /* D:/GitHubRepository/SupermarketManagementSystem/Project/novaSupermarketInvoicingSystem/supermarketInvoicingSystem/ext/classic/theme-neutral/sass/var/button/Button.scss:2933 */
 .x-btn.x-btn-disabled.x-btn-green-toolbar-small {
