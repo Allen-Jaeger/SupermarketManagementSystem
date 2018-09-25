@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+	<title>登陆</title>
+	<script>
+		function sub(){
+			document.getElementById("eMsg").innerHTML = 
+						'<i style = "color: #5D9D5D; font-size: 20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>&nbsp;<span style = "color: #5D9D5D;">Login...</span>';
+			var num = document.getElementById('workNum').value;
+			var password = document.getElementById('password').value;
+			console.log(num + password);
+			if (num == '' || password == '' || num == undefined || password == undefined) {
+				document.getElementById('eMsg').innerHTML = "用户名或密码为空";
+				return 0;
+			}else{
+				//document.getElementById('eMsg').innerHTML = "执行Ajax";
+				//使用JQ
+			}
+		}
+	</script>
+</head>
+<body>
+	<img src="image/bg01.jpg" alt="" class="bg01" width="100%" height="100%">
+	<div class = "head">
+		<div class = "blank" onselectstart="return false;">
+			<strong onselectstart="return false;" style="text-shadow: #68FFBA 1px 1px 25px;">Nova</strong><br>
+			超市进销存系统
+		</div>
+	</div>
+	<div class = "login">
+		<div class = "welcome" onselectstart="return false;">欢迎登陆</div>
+		<form action="">
+			<span class = "inputSpan">
+				<i class = "fa fa-user"></i>
+				<input type="text" placeholder="工号" id="workNum" name = "workNum">
+			</span><br>
+			<span class = "inputSpan">
+				<i class = "fa fa-lock"></i>
+				<input type="password" placeholder="密码" id="password" name = "password">
+			</span><br>
+			<input type="button" class = "sbm" value="登陆" onclick='sub();'>
+			<p class="error" id = "eMsg"></p>
+    	</form>
+	</div>
+	<div class = "foot">
+		<div class = "msg" onselectstart="return false;">
+			College：东莞理工学院&reg;<br>
+			author：2015软件工程大四上实训二组<br>
+			CopyRight&copy;=For Study <br>
+		</div>
+	</div>
+</body>
+</html>

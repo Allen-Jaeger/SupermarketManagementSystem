@@ -38,9 +38,9 @@
                 viewType: 'leaveApproveCenterPanel',
                 leaf: true
             },{
-                text: 'Login',
-                iconCls: 'x-fa fa-check',
-                viewType: 'login',
+                text: '我的信息',
+                iconCls: 'x-fa fa-user',
+                viewType: 'person',
                 //hidden:true,
                 //style:'display:none',
                 leaf: true

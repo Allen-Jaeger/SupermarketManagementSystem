@@ -42,7 +42,6 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public String userLogin(User userTry, User user) {
-		// TODO Auto-generated method stub
 		if(user == null) {
 			return "用户不存在";
 		}else if(user.getUserStatus() != UserStatus.NORMAL) {

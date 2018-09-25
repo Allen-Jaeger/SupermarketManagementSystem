@@ -43,8 +43,6 @@ public class User {
 	private String iconUrl; // 头像
 	private UserStatus userStatus; // 用户状态
 	private Shop shop;	//商店
-
-	@ManyToOne(cascade = CascadeType.MERGE)
 	private Warehouse warehouse;
 
 	@Id
@@ -163,5 +161,17 @@ public class User {
 
 	public void setWarehouse(Warehouse warehouse) {
 		this.warehouse = warehouse;
+	}
+	
+	/**
+	 * 	将权限以字符串类型返回
+	 */
+	public String privilegeInString() {
+		StringBuffer str = new StringBuffer("");
+		for(Privilege privilege : this.privileges) {
+			str.append(privilege.getChineseName()+",");
+		}
+		str.deleteCharAt(str.length());
+		return str.toString();
 	}
 }
