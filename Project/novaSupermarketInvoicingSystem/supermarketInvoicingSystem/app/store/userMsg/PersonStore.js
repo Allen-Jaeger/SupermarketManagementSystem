@@ -4,17 +4,22 @@ Ext.define('SupermarketInvoicingSystem.store.userMsg.PersonStore', {
     alias: 'store.personStore',
 	model:'SupermarketInvoicingSystem.model.userMsg.PersonModel',
 
+	data:{
+		'items':[
+			{"name":'scc'}
+		],
+	},
 	//pageSize: 15,
-    proxy: {
-        type: 'ajax',
-        url: '/findMe',
-        reader : {  
-            type : 'json',  
-            rootProperty  : 'content',
-            totalProperty : 'totalElements'
-        }
-        ,simpleSortMode: true
-    },
+    // proxy: {
+    //     type: 'ajax',
+    //     url: '/findMe',
+    //     reader : {  
+    //         type : 'json',  
+    //         rootProperty  : 'content',
+    //         totalProperty : 'totalElements'
+    //     }
+    //     ,simpleSortMode: true
+    // },
     remoteSort: true,
     sorters: [{ property: 'workNum',direction: 'desc'}],
     autoLoad: true,

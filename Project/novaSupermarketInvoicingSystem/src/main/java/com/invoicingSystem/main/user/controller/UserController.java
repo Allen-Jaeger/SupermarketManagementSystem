@@ -31,7 +31,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value = "/login")
-	public String login(UserDTO userDTO, HttpServletRequest request) {
+	public String login(UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) {
 		User user = userService.findByWorkNum(userDTO.getWorkNum());
 		String loginResult = userService.userLogin(userDTO.toLoginUser(), user);
 		if(loginResult.equals("登陆成功")) {
@@ -63,7 +63,11 @@ public class UserController {
 	 * @param request
 	 */
 	@GetMapping(value="/findMe")
-	public UserDTO findMe(HttpServletRequest request) {
+	public UserDTO findMe(HttpServletRequest request, HttpServletResponse response) {
+		if(null == request.getSession().getAttribute("userId")) {
+			//跳转到login
+			return null;
+		}
 		String userId = request.getSession().getAttribute("userId").toString();
 		User user = userService.findById(Long.parseLong(userId));
 		UserDTO userDTO = new UserDTO(user);

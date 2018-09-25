@@ -8,6 +8,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.person', {
     xtype: 'person',
     items: [{
         bind: '{testPersonMsg}',
+        items:[{dataIndex : 'name',width : 100,sortable : true}],
     }],
 
 });

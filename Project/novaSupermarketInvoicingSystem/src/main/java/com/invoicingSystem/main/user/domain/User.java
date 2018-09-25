@@ -168,10 +168,13 @@ public class User {
 	 */
 	public String privilegeInString() {
 		StringBuffer str = new StringBuffer("");
+		if(null == privileges) {
+			return "";
+		}
 		for(Privilege privilege : this.privileges) {
 			str.append(privilege.getChineseName()+",");
 		}
-		str.deleteCharAt(str.length());
+		str.deleteCharAt(str.length()-1);
 		return str.toString();
 	}
 }
