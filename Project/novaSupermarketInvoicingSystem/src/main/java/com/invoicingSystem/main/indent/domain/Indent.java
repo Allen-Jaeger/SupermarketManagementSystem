@@ -29,6 +29,8 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
 /**
  * @author LiJuncong
  * at 2018年9月19日
+ * @author lzy
+ * at 2018年9月25日 :添加工作流数据字段
  */
 @Table(name="t_indent")
 @Entity
@@ -60,6 +62,12 @@ public class Indent {
 	private Shop toShop;
 	private String note;
 	private IndentType indentType;
+	
+	//工作流字段
+	private String userId;//启动流程的用户ID
+	//流程实例Id：用于关联流程引擎相关数据没有启动流程之前为""
+	private String processInstanceId;
+
 
 
 	public Long getId() {
@@ -193,5 +201,22 @@ public class Indent {
 			this.cost += (commodity.getCost()* commodity.getAmount());
 		}
 	}
+
+	//工作流
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
 	
 }
