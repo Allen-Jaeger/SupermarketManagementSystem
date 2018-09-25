@@ -23,6 +23,3 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### My Configuration ###
-/src/main/webapp/
