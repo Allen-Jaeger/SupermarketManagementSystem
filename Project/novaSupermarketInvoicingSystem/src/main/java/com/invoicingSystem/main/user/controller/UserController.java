@@ -68,10 +68,6 @@ public class UserController {
 	 */
 	@GetMapping(value="/findMe")
 	public UserDTO findMe(HttpServletRequest request, HttpServletResponse response) {
-		if(null == request.getSession().getAttribute("userId")) {
-			//跳转到login
-			return null;
-		}
 		String userId = request.getSession().getAttribute("userId").toString();
 		User user = userService.findById(Long.parseLong(userId));
 		UserDTO userDTO = new UserDTO(user);
