@@ -13,6 +13,7 @@ import com.invoicingSystem.main.indent.domain.IndentDTO;
  * at 2018年9月19日
  * @author lzy
  * at 2018年9月25日 :添加业务
+ * at 2018年9月26日 :修改startWorkflow 添加 processKey 属性.
  */
 
 public interface IIndentService {
@@ -27,7 +28,7 @@ public interface IIndentService {
 	//流程业务
 	
     //1.启动流程
-    public void startWorkflow(String userId,Long indentId, Map<String, Object> variables);
+    public void startWorkflow(String userId,String processKey,Long indentId, Map<String, Object> variables);
     //2.查询流程任务
     public Page<IndentDTO> findTodoTasks(String userId, Pageable pageable);
     //3.签收流程任务

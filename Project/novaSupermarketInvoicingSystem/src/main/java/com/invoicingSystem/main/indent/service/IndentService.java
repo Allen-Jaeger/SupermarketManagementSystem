@@ -25,6 +25,7 @@ import com.invoicingSystem.main.indent.repository.IIndentRepository;
  * at 2018年9月19日
  * @author lzy
  * at 2018年9月26日 : 增加工作流
+ * at 2018年9月26日 :修改startWorkflow 传递工作流程图Key
  */
 @Transactional
 @Service
@@ -63,21 +64,21 @@ public class IndentService implements IIndentService {
     }
     
     /**
-     * 开始请假流程
+     * 开始货单申请流程
      * @param userId 用户ID
      * @param pageable 分页条件
      * @return
      */
 
     @Override
-    public void startWorkflow(String userId, Long indentId, Map<String, Object> variables) {
+    public void startWorkflow(String userId,String processKey, Long indentId, Map<String, Object> variables) {
       //1.声明流程实例
         ProcessInstance processInstance = null;
         //2.获取创建好的请假实例
         Indent indent = indentRepository.findById(indentId).get();
         if(indent!=null){
             try {
-                processInstance = workflowService.startWorkflow(userId, "transfer", indent.getId().toString(), variables);
+                processInstance = workflowService.startWorkflow(userId, processKey, indent.getId().toString(), variables);
                 indent.setProcessInstanceId(processInstance.getId());
                 indent.setCreateDate(new Date());
                 //leaveRepository.save(leave);
