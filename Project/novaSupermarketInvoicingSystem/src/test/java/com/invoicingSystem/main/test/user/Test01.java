@@ -26,7 +26,7 @@ public class Test01 extends TestBase{
 		Set<Privilege> privileges = new HashSet<Privilege>();
 		privileges.add(Privilege.CHANGE_SHELF);
 		privileges.add(Privilege.EDIT_SELF);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 10; i < 20; i++) {
 			User user = new User();
 			user.setGender(Gender.MALE);
 			user.setHireDate(new Date());
@@ -46,13 +46,13 @@ public class Test01 extends TestBase{
 		User user = new User();
 		user.setGender(Gender.MALE);
 		user.setHireDate(new Date());
-		user.setIdentity("1201000000");
-		user.setName("SalesT");
-		user.setPassword("123456");
+		user.setIdentity("12678667800");
+		user.setName("MD5Test");
+		user.setPassword("qweqwe");
 		user.setUserStatus(UserStatus.NORMAL);
 		user.setUserType(UserType.SALESMAN);
-		user.setWorkNum("wk00011127");
-		user.setWarehouse(warehouseService.findById(1L));
+		user.setWorkNum("wk000111678");
+//		user.setWarehouse(warehouseService.findById(1L));
 		userService.save(user);
 	}
 }

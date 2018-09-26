@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
 import com.invoicingSystem.main.user.service.IUserService;
+import com.invoicingSystem.main.user.util.MD5Tool;
 
 /**
  * @author LiJuncong
@@ -73,4 +74,29 @@ public class UserController {
 		UserDTO userDTO = new UserDTO(user);
 		return userDTO;
 	}
+	
+	/**
+	 * 
+	 * @param pass	旧密码
+	 * @param newPass	新密码
+	 * @param request	自动注入以查找已登录用户
+	 * @return
+	 */
+	@PostMapping(value = "/password")
+	public String changePassword(String pass, String newPass, HttpServletRequest request) {
+		String userId = request.getSession().getAttribute("userId").toString();
+		User user = userService.findById(Long.parseLong(userId));
+		//确认密码长度
+		if(newPass.length() <= 5 || newPass.length() >= 15) {
+			return "修改失败！新密码长度不足，密码长度应为6-16位";
+		}
+		if(MD5Tool.ToMd5String(pass).equals(user.getPassword())) {
+			user.setPassword(newPass);
+			userService.save(user);
+			return "修改成功";
+		}else {
+			return "原密码错误！修改失败";
+		}
+	}
+	
 }

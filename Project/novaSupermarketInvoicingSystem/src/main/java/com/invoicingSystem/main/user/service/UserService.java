@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.repository.IUserRepository;
+import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.UserStatus;
 
 /**
@@ -20,7 +21,8 @@ public class UserService implements IUserService {
 	
 	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
+		// 使用MD5加密
+		user.setPassword(MD5Tool.ToMd5String(user.getPassword()));
 		userRepository.save(user);
 	}
 
@@ -46,12 +48,11 @@ public class UserService implements IUserService {
 			return "用户不存在";
 		}else if(user.getUserStatus() != UserStatus.NORMAL) {
 			return "该账户被冻结或已弃用";
-		}else if(userTry.getPassword().equals(user.getPassword())) {
+		}else if(MD5Tool.ToMd5String(userTry.getPassword()).equals(user.getPassword())) {
 			return "登陆成功";
 		}else {
 			return "账户或密码错误";
 		}
 	}
-
 
 }
