@@ -29,7 +29,7 @@ public class UserController {
 	IUserService userService;
 	
 	/**
-	 * 	登陆请求
+	 * 	执行登陆
 	 * @param userDTO
 	 * @param request
 	 * @return
@@ -49,14 +49,24 @@ public class UserController {
 	
 	/**
 	 * 
-	 * 	跳转到登陆页面
+	 * 	请求登陆页面
 	 * @param request
 	 * @param response
 	 */
 	@GetMapping(value="/login")
 	public void miss(HttpServletRequest request, HttpServletResponse response) {
+		if(null != request.getSession().getAttribute("userId") && !request.getSession().getAttribute("userId").equals("")) {
+			//认为已经登录
+			try {
+				request.getRequestDispatcher("/").forward(request, response);
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
 		try {
 			request.getRequestDispatcher("login.html").forward(request, response);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
