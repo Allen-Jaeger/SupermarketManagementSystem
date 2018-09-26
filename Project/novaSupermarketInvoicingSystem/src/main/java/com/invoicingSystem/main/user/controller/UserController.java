@@ -1,9 +1,12 @@
 package com.invoicingSystem.main.user.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,6 +99,21 @@ public class UserController {
 			return "修改成功";
 		}else {
 			return "原密码错误！修改失败";
+		}
+	}
+	
+	/**
+	 * 注销
+	 * @param request
+	 * @param response
+	 */
+	@DeleteMapping(value="/login")
+	public void logout(HttpServletRequest request,HttpServletResponse response) {
+		request.getSession().removeAttribute("userId");
+		try {
+			response.sendRedirect("login.html");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

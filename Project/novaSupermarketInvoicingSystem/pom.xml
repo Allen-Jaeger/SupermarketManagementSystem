@@ -101,6 +101,12 @@
 		    <artifactId>lombok</artifactId><!--也许会出问题...-->
 		</dependency>
 		
+		<!-- aop 切面编程 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
