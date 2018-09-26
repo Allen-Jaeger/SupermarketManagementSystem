@@ -14,3 +14,5 @@ This is a file that help you to develop the project.
 		+-	member:		201541404*** name
 		
 3.Enjoy your job.
+
+#2018/09/26 重构
