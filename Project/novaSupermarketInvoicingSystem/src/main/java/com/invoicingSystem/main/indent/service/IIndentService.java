@@ -19,7 +19,7 @@ public interface IIndentService {
     
     //申请调仓业务
 	public void save(Indent indent);
-	public Indent findOne(Long id);
+	public Indent findById(Long id);
 	public void delete(Long id);
 	public Page<Indent> findIndent(String userId,Pageable pageable);
 	
