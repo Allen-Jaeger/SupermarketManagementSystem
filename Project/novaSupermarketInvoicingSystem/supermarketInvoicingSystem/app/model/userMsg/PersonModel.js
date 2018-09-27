@@ -1,11 +1,12 @@
 Ext.define('SupermarketInvoicingSystem.model.userMsg.PersonModel', {
     extend: 'SupermarketInvoicingSystem.model.Base',
+    //alias: 'model.userMsg.personModel',
  	fields: [
     	 {type: 'auto' ,name: 'id'}
         ,{type: 'string' ,name: 'workNum'}
         ,{type: 'string' ,name: 'password'}
         ,{type: 'string' ,name: 'name'}
-		,{type: 'string' ,name: 'gender'}
+		,{type: 'auto' ,name: 'gender'}
         ,{type: 'string' ,name: 'identity'}
         ,{type: 'auto'   ,name: 'userType'}
         ,{type: 'string'   ,name: 'privileges'}
@@ -16,7 +17,7 @@ Ext.define('SupermarketInvoicingSystem.model.userMsg.PersonModel', {
     ]
 });
 /**
-    后台定义：
+    DTO：
     private Long id; // 数据库管理id
     private String workNum; // 工号，用于登陆
     private String password = "123456"; // 初始密码
