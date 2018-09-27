@@ -144,8 +144,9 @@ public class IndentController {
             Indent indent = indentService.findById(indentId);
             String userId = SessionUtil.getUserName(session);
             Map<String, Object> variables = new HashMap<String, Object>();
-            variables.put("receiverId", indent.getKeeper().getId());  //此处编写流程图需要的variables
-            variables.put("applicantId", userId);
+            //此处编写流程图需要的variables
+            variables.put("receiverId", indent.getKeeper().getId());  //请求接受方
+            variables.put("applicantId", userId); //请求申请方
            
             if(indent.getIndentType()==IndentType.PURCHASE){//判断货单是否为采购订单
                 
@@ -155,7 +156,7 @@ public class IndentController {
             }
             else {//否则跑调货流程
                 if (indent.getIndentType()==IndentType.RETREAT) {//判断调货单是否为处理残旧品
-                    variables.put("applyId", indent.getKeeper().getId());//处理残旧品为仓库端接收.
+                    variables.put("applyId", indent.getKeeper().getId());//处理残旧品为接受端接收.
                 }
                 else {
                     variables.put("applyId", userId);//处理其余调货为申请端接收.
