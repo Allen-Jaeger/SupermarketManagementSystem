@@ -2,7 +2,7 @@
     
     extend:'Ext.window.Window',
 	
-	alias: 'widget.indentAddWindow',
+	alias: 'widget.indentEditWindow',
     height: 550,
     minHeight: 350,
     minWidth: 300,

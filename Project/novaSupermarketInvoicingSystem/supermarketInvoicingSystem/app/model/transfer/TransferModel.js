@@ -2,7 +2,7 @@ Ext.define('SupermarketInvoicingSystem.model.transfer.TransferModel', {
     extend: 'SupermarketInvoicingSystem.model.Base',
     fields: [	//需要修改
 		 {type: 'int' ,name: 'id'}
-        ,
+        
         ,{type: 'string' ,name: 'processStatus'}
         ,{type: 'string' ,name: 'processInstanceId'}
         ,{type: 'string' ,name: 'taskId'}
