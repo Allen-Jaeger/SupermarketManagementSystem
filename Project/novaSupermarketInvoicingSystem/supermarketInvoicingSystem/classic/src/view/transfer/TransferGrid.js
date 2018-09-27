@@ -1,9 +1,9 @@
-﻿Ext.define('SupermarketInvoicingSystem.view.leaveapprove.LeaveApproveGrid', {
+Ext.define('SupermarketInvoicingSystem.view.transfer.TransferGrid', {
     extend: 'Ext.grid.Panel',
-	xtype:'leaveApproveGrid',
-	title: 'tiele',		//需要修改
+	xtype:'transferGrid',
+	title: '调货工作流任务查看',		//需要修改
 	iconCls: 'fa-arrow-circle-o-up',
-	bind: '{leaveApproveStore}',//调用组件4
+	bind: '{transferStore}',//调用组件4
 	columns: [{
 			xtype: 'actioncolumn',
 			items: [{
@@ -16,7 +16,7 @@
 		            }
 		            return 'x-fa fa-pencil';
 				},
-				handler: 'onClickLeaveApproveClaimButton'	//ajax  taskId
+				handler: 'onClickTransferClaimButton'	//ajax  taskId
 			},{
 				xtype: 'button',
 				iconCls: 'x-fa fa-edit',
@@ -27,12 +27,12 @@
 		            }
 		            return 'x-fa fa-edit';
 				},
-				handler: 'onClickLeaveApproveCompleteWindowButton'	//taskDefinitionKey 动态表单
+				handler: 'onClickTransferCompleteWindowButton'	//taskDefinitionKey 动态表单
 			},{
 				xtype: 'button',
 				iconCls: 'x-fa fa-object-group',
 				tooltip: '任务跟踪',
-				handler: 'onClickGraphTraceButton'	//流程跟踪
+				handler: 'onClickTransferGraphTraceButton'	//流程跟踪
 			}],
 			cls: 'content-column',
 			width: 120,
@@ -40,7 +40,7 @@
 			text: 'Actions',
 			tooltip: 'edit '
 		}
-		,{header: 'id' 			,dataIndex: 'id',width: 60,sortable: true	,hidden:true}
+		,{header: 'id' 			,dataIndex: 'id',width: 60,sortable: true	,hidden:true} //以下需要修改
 		,{header: 'processStatus',dataIndex: 'processStatus',width: 60,sortable: true,
             renderer: function(val) {
 	            if (val =='NEW') {
@@ -82,30 +82,30 @@
 		,{header: 'taskDefinitionKey',dataIndex: 'taskDefinitionKey',width: 80,sortable: true}
 		,{header: 'processDefinitionId'	,dataIndex: 'processDefinitionId',width: 80,sortable: true}
 		,{header: 'suspended'  		,dataIndex: 'suspended',width: 80,sortable: true}
-		,{header: 'version'  		,dataIndex: 'version',width: 60,sortable: true}
+		,{header: 'version'  		,dataIndex: 'version',width: 60,sortable: true}//以上需要修改
 	],
 	dockedItems: [{
 	    xtype: 'pagingtoolbar',
 	    dock: 'bottom',
-		bind: '{leaveApproveStore}',	//调用组件4
+		bind: '{transferStore}',	//调用组件4
 	    displayInfo: true,
 	    items: ['-',{
             text: 'Add',
             iconCls: 'x-fa fa-plus',
 			listeners: {
-				click: 'onClickLeaveApproveGridAddButton'
+				click: 'onClickTransferGridAddButton'
             }
         }, '-',{
             text: 'Update',
             iconCls: 'x-fa fa-pencil',
             listeners: {
-				click: 'onClickLeaveApproveGridUpdateButton'
+				click: 'onClickTransferGridUpdateButton'
             }
         }, '-', {
             text: 'Delete',
             iconCls: 'x-fa fa-close',
 			listeners: {
-				click: 'onClickLeaveApproveGridDeleteButton'
+				click: 'onClickTransferGridDeleteButton'
             }
         }]
 	}]
