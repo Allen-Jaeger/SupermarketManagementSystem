@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$(".sbm").click(function(){
+		event.preventDefault();
 		document.getElementById("eMsg").innerHTML = 
 				'<i style = "color: #5D9D5D; font-size: 20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>&nbsp;<span style = "color: #5D9D5D;">Login...</span>';
 		var num = document.getElementById('workNum').value;

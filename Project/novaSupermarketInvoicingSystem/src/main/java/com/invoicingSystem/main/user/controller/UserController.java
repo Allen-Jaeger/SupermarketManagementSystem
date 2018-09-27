@@ -1,6 +1,8 @@
 package com.invoicingSystem.main.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,21 +57,11 @@ public class UserController {
 	 */
 	@GetMapping(value="/login")
 	public void miss(HttpServletRequest request, HttpServletResponse response) {
-		if(null != request.getSession().getAttribute("userId") && !request.getSession().getAttribute("userId").equals("")) {
-			//认为已经登录
-			try {
-				request.getRequestDispatcher("/").forward(request, response);
-				return;
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-		}
 		try {
-			request.getRequestDispatcher("login.html").forward(request, response);
-			return;
+			request.getRequestDispatcher("/").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	/**
@@ -123,4 +115,17 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * Find 所有用户 仅用于开发 实际上会使用复杂查询
+	 * @return
+	 */
+	@GetMapping(value="/findAll")
+	public List<UserDTO> findAllUsers() {
+		List<UserDTO> dtos = new ArrayList<UserDTO>();
+		for(User user :userService.findAll()) {
+			UserDTO dto = new UserDTO(user);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
 }

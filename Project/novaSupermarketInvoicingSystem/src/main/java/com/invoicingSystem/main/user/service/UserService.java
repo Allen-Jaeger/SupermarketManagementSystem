@@ -1,5 +1,8 @@
 package com.invoicingSystem.main.user.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +56,18 @@ public class UserService implements IUserService {
 		}else {
 			return "账户或密码错误";
 		}
+	}
+
+	/**
+	   *  查找所有
+	 */
+	@Override
+	public List<User> findAll() {
+		List<User> users = new ArrayList<User>();
+		for(User user :userRepository.findAll()) {
+			users.add(user);
+		}
+		return users;
 	}
 
 }

@@ -40,7 +40,7 @@ public class User {
 	private UserType userType; // 用户类型
 	private Set<Privilege> privileges = new HashSet<Privilege>(); // 可用权限
 	private Date hireDate; // 员工聘请日期
-	private String iconUrl; // 头像
+	private String iconUrl = "resources/usersIcon/defaultUser.jpg"; // 默认头像
 	private UserStatus userStatus; // 用户状态
 	private Shop shop;	//商店
 	private Warehouse warehouse;

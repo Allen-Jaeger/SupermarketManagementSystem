@@ -44,6 +44,13 @@
                 //hidden:true,
                 //style:'display:none',
                 leaf: true
+            },{
+                text: '管理用户信息',
+                iconCls: 'x-fa fa-group',
+                viewType: 'users',
+                //hidden:true,
+                //style:'display:none',
+                leaf: true
            }
         ]
     }

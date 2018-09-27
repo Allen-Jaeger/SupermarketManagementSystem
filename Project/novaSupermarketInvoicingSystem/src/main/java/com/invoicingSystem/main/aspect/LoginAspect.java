@@ -37,7 +37,7 @@ public class LoginAspect {
 	/**
 	 * 开放登录功能
 	 */
-	@Pointcut("!execution(public String login(..))  && !execution(public public void miss(..))")
+	@Pointcut("!execution(public String login(..))")
 	public void openLogin() {}
 	
 	/**
