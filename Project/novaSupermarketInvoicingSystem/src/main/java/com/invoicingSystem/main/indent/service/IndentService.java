@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -144,6 +145,11 @@ public class IndentService implements IIndentService {
     public void complete(String taskId, Map<String, Object> variables) {
         workflowService.complete(taskId, variables);
     }
+
+	@Override
+	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable) {
+		return indentRepository.findAll(spec, pageable);
+	}
 
 
 }

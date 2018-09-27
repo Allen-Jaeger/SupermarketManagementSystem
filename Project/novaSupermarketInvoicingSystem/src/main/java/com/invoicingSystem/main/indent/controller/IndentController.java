@@ -1,11 +1,11 @@
 package com.invoicingSystem.main.indent.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,8 +25,14 @@ import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.common.web.SessionUtil;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
+import com.invoicingSystem.main.indent.domain.IndentQueryDTO;
 import com.invoicingSystem.main.indent.service.IIndentService;
-import com.invoicingSystem.main.indent.util.IndentType;;
+import com.invoicingSystem.main.indent.util.IndentStatus;
+import com.invoicingSystem.main.indent.util.IndentType;
+import com.invoicingSystem.main.shop.domain.Shop;
+import com.invoicingSystem.main.shop.service.IShopService;
+import com.invoicingSystem.main.user.domain.User;
+import com.invoicingSystem.main.user.service.IUserService;;
 
 /**
  * @author Lzy
@@ -39,11 +45,26 @@ public class IndentController {
 
     @Autowired
     private IIndentService indentService;
-
+    @Autowired
+	private IUserService userService;
+	@Autowired
+	private IShopService shopService;
+    
     @PostMapping
 
     public @ResponseBody ExtAjaxResponse save(Indent indent) {
         try {
+			User user = userService.findById(3L);
+			    		
+    		Shop shop = shopService.findById(1L);
+    		
+    		System.out.println(indent);
+    		indent.setCreator(user);
+    		indent.setToShop(shop);
+    		indent.setCreateDate(new Date());
+    		indent.setIndentNum("BY66625412");
+    		indent.setIndentType(IndentType.PURCHASE);
+			indent.setIndentStatus(IndentStatus.INIT);
             indentService.save(indent);
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
@@ -66,7 +87,9 @@ public class IndentController {
     @DeleteMapping
     public @ResponseBody ExtAjaxResponse delete(Long id) {
         try {
-            indentService.delete(id);
+        	Indent entity = indentService.findById(id);
+			if(entity!=null) {
+				indentService.delete(id);}
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,19 +97,39 @@ public class IndentController {
         }
     }
 
-    @GetMapping
-    public @ResponseBody Page<Indent> findLeaveByUserId(HttpSession session, ExtjsPageRequest pageable) {
-        Page<Indent> page = new PageImpl<Indent>(new ArrayList<Indent>(), pageable.getPageable(), 0);
-        try {
-            String userId = SessionUtil.getUserName(session);
-            page = indentService.findIndent(userId, pageable.getPageable());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return page;
+	@GetMapping
+    public Page<Indent> findIndentByCreatorId(IndentQueryDTO indentQueryDTO,HttpSession session,ExtjsPageRequest pageable) 
+	{
+		Page<Indent> page;
+		//String Creator_id = SessionUtil.getUserName(session);
+		//Long CreatorId = 9L;
+		if(true) {
+			//indentQueryDTO.setUserId(1L);
+			//indentQueryDTO.setIndentType(IndentType.PURCHASE);//SessionUtil.getUserName(session)
+			
+			page = indentService.findAll(IndentQueryDTO.getWhereClause(indentQueryDTO), pageable.getPageable());
+			
+		}else {
+			page = new PageImpl<Indent>(new ArrayList<Indent>(),pageable.getPageable(),0);
+		}
+		return page;
     }
-
     
+	//订单表填充USERNAME
+	 @RequestMapping(value = "/userName")
+	    public @ResponseBody ExtAjaxResponse fillUserName(HttpSession session) 
+	    {
+	    	try {
+	    		Map<String,String> map=new HashMap<String, String>();
+	    		//map.put("userName", SessionUtil.getUserName(session));
+	    		map.put("userName", "test");
+	        	return new ExtAjaxResponse(true,map);
+			} catch (Exception e) {
+				return new ExtAjaxResponse(false,"登出失败!");
+			}
+	    }
+	
+	
     /*-------------------------------------流程引擎web层------------------------------------------*/
     
     /**

@@ -26,9 +26,15 @@ public class IndentQueryDTO {
     private IndentStatus indentStatus;//货单进行程度
     private Date createDate;//货单创建日期
     private IndentType indentType;//货单类型
+    private Long id;
     
-    
-    public String getIndentNum() {
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getIndentNum() {
         return indentNum;
     }
     public void setIndentNum(String indentNum) {

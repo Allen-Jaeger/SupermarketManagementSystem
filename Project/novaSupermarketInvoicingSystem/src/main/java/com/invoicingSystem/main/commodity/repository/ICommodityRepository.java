@@ -1,14 +1,22 @@
 package com.invoicingSystem.main.commodity.repository;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.indent.domain.Indent;
 
 /**
  * @author LiJuncong
  * at 2018年9月19日
+ * 
  */
 
-public interface ICommodityRepository extends PagingAndSortingRepository<Commodity, Long>{
+/**
+ * @author wzh
+ * at 2018年9月27日 上午10:15:18
+ * 继承JpaSpecificationExecutor
+ */
+public interface ICommodityRepository extends PagingAndSortingRepository<Commodity, Long>,JpaSpecificationExecutor<Commodity>{
 
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
@@ -24,7 +25,7 @@ public interface IIndentService {
 	public void delete(Long id);
 	public Page<Indent> findIndent(String userId,Pageable pageable);
 	
-	
+	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable);
 	//流程业务
 	
     //1.启动流程

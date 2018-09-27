@@ -33,11 +33,13 @@ public class TestCommodity {
 		}catch (Exception e){
 		    e.printStackTrace();
 		}
+		for(int i=0;i<20;i++)
+		{
 		Commodity commodity = new Commodity();
 		commodity.setAmount(1000);
 		commodity.setBarCode(6902538004045L);
 		commodity.setCost(2.0);
-		commodity.setName("可乐500ml");
+		commodity.setName("可乐50"+i+"ml");
 		commodity.setNote("冷藏");
 		commodity.setPeriod(period);
 		commodity.setPicUrl("//111//url");
@@ -45,6 +47,7 @@ public class TestCommodity {
 		commodity.setCommodityStatus(CommodityStatus.UNSALEABLE);
 		commodity.setCommodityType(CommodityType.DRINK);
 		commodity.setSaveStock(100);
-		commodityService.save(commodity);
+		
+		commodityService.save(commodity);}
 	}
 }

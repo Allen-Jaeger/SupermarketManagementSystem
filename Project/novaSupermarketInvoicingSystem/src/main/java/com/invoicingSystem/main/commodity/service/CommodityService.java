@@ -3,6 +3,9 @@ package com.invoicingSystem.main.commodity.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
@@ -28,5 +31,23 @@ public class CommodityService implements ICommodityService {
 		// TODO Auto-generated method stub
 		return commodityRepository.findById(id).get();
 	}
+
+	@Override
+	public Page<Commodity> findAll(Pageable pageable) {
+		
+		return commodityRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Commodity> findAll(Specification<Commodity> spec, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return commodityRepository.findAll(spec,pageable);
+	}
+
+	
+	
+	
+	
+	
 
 }

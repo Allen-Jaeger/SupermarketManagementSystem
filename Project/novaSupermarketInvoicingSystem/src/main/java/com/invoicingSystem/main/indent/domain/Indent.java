@@ -31,6 +31,7 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
  * at 2018年9月19日
  * @author lzy
  * at 2018年9月25日 :添加工作流数据字段
+ * 
  */
 @Table(name="t_indent")
 @Entity
@@ -90,7 +91,7 @@ public class Indent {
 		return indentStatus;
 	}
 	
-	@JsonFormat(pattern="YYYY/MM/DD HH:mm:ss", timezone="GMT+8")
+	@JsonFormat(pattern="YYYY/MM/dd HH:mm:ss", timezone="GMT+8")
 	public Date getCreateDate() {
 		return createDate;
 	}
