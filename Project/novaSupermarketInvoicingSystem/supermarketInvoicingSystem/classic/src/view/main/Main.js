@@ -33,7 +33,7 @@
                     reference: 'senchaLogo',
                     cls: 'sencha-logo',
                     html: '<div class="main-logo"><img src="resources/images/logoNova.png" width="35%"; /><span style="font-weight: lighter;color: white;">Supermarket</span></div>',
-                    width: 250
+                    width: 64
                 },
                 {
                     margin: '0 0 0 8',
@@ -75,8 +75,9 @@
                     reference: 'navigationTreeList',
                     itemId: 'navigationTreeList',
                     ui: 'nav',
+                    micro:true,
                     store: 'NavigationTree',
-                    width: 250,
+                    width: 64,
                     expanderFirst: false,
                     expanderOnly: false,
                     listeners: {
