@@ -16,7 +16,7 @@ Ext.define('SupermarketInvoicingSystem.store.users.UsersStore', {
 	// 		userStatus:'scc000',
 	// 		depName:'scc0000'}
 	// ],
-	pageSize: 15,
+	pageSize: 5,
     proxy: {
         type: 'ajax',
         url: '/findAll',

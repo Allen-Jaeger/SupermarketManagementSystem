@@ -14,4 +14,7 @@ import com.invoicingSystem.main.user.domain.User;
 public interface IUserRepository extends PagingAndSortingRepository<User, Long>{
 	@Query(value="from User user where user.workNum like ?1")
 	public User findByWorkNum(String workNum);
+	
+//	@Query(value="from User user where user.workNum like ?1")
+//	public User findPage(String workNum);
 }

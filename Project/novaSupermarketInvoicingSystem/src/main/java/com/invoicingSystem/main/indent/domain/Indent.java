@@ -62,8 +62,8 @@ public class Indent {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Shop toShop;
 	private String note;
+	private String supplier;	//供应商
 	private IndentType indentType;
-	
 	//工作流字段
 	private String userId;//启动流程的用户ID
 	//流程实例Id：用于关联流程引擎相关数据没有启动流程之前为""
@@ -131,6 +131,9 @@ public class Indent {
 	public IndentType getIndentType() {
 		return indentType;
 	}
+	public String getSupplier() {
+		return supplier;
+	}
 
 
 	public void setId(Long id) {
@@ -193,6 +196,10 @@ public class Indent {
 	public void setIndentType(IndentType indentType) {
 		this.indentType = indentType;
 	}
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
 	/**
 	 * 遍历订单货物，更新订单成本
 	 */

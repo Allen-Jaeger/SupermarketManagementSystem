@@ -13,7 +13,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
             bind: '{allUsers}',
             scrollable: true,
             columns: [
-                {xtype: 'gridcolumn',width: 40,dataIndex: 'id',text: 'id'},
+                //{xtype: 'gridcolumn',width: 40,dataIndex: 'id',text: 'id'},
                 // {xtype: 'gridcolumn',width: 75,dataIndex: 'profile_pic',text: 'User',
                 //     renderer: function(value) {
                 //         return "<img src='resources/usersIcon/defaultUser.jpg" + value + "' alt='Profile Pic' height='40px' width='40px'>";
@@ -54,12 +54,12 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
                     ]
                 }
             ],
-            // dockedItems: [{
-            //     xtype: 'pagingtoolbar',
-            //     dock: 'bottom',
-            //     itemId: 'userPaginationToolbar',
-            //     displayInfo: true,
-            //     bind: '{testPersonMsg}'
-            // }]
+            dockedItems: [{
+                xtype: 'pagingtoolbar',
+                dock: 'bottom',
+                itemId: 'userPaginationToolbar',
+                displayInfo: true,
+                bind: '{allUsers}'
+            }]
         }],
 });

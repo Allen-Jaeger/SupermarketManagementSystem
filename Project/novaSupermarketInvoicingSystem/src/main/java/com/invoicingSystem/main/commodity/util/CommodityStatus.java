@@ -9,7 +9,8 @@ public enum CommodityStatus {
 	PURCHASING(1,"采购中"),
 	UNSALEABLE(2,"不可售的"),
 	SALEABLE(2,"可售的"),
-	SOLD(4,"已经出售的");
+	SOLD(4,"已经出售的"),
+	MODEL(5,"采购模板");
 
 	private final int index;
 	private final String mean;
