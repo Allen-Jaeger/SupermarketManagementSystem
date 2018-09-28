@@ -26,6 +26,26 @@
                 iconCls: 'x-fa fa-address-card',
                 viewType: 'indentCenterPanel',
                 leaf: true
+            }, {
+                text: '货单工作流模块',
+                iconCls: 'x-fa fa-leanpub',
+                expanded: false,
+                selectable: false,
+                //routeId: 'pages-parent',
+                //id: 'pages-parent',
+                children: [
+                    {
+                        text: '采购工作流模块',
+                        iconCls: 'x-fa fa-file-o',
+                        viewType: '',
+                        leaf: true
+                    },{
+                        text: '调货工作流模块',
+                        iconCls: 'x-fa fa-exclamation-triangle',
+                        viewType: 'transferCenterPanel',
+                        leaf: true
+                    }
+                ]
             },{
                 text: '我的信息',
                 iconCls: 'x-fa fa-user',
