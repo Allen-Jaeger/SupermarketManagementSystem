@@ -1,5 +1,6 @@
 *{
 	margin: 0;
+	user-select: none;
 }
 .head{
 	position: absolute;
@@ -85,7 +86,7 @@ body{
 	width: 100%;
 	padding: 15px 0px 15px 0px;
 	letter-spacing: 5px;
-	margin: 0 0 70px 0;
+	margin: 0 0 40px 0;
 	cursor: default;
 }
 .inputSpan{
@@ -123,15 +124,56 @@ body{
 	text-indent: 2em;
 	text-align: center;
 	margin: 40px auto 0 auto;
-	cursor: pointer;
 	text-shadow: white 0 0 0;
 	transition: 0.3s;
 }
-.sbm:hover{
-	text-shadow: white 0 0 5px;
-}
 
 .error{
-	margin: 5px 0 0 0;
+	margin: 10px 0 0 0;
 	color: red;
+}
+
+.slider{
+	height: 40px;
+	width: 100%;
+	background-color: #5D9D5D;
+	color: white;
+	user-select: none;
+}
+.moveBar{
+	height: 95%;
+	width: 15%;
+	background-color: white;
+	border: solid 1px #5D9D5D;
+	color: black;
+	font-size: 20px;
+	padding: 0 0 0 5px;
+	z-index: 99;
+	position: relative;
+	left: 0px;
+	margin: 0;
+}
+.vTip{
+	float: right;
+	color: white;
+	font-size: 15px;
+	font-weight: lighter;
+	letter-spacing: 10px;
+	z-index: 9;
+	margin: 10px 0 0 0;
+	cursor: default;
+}
+.verSpan{
+    position: relative;
+    top: -40px;
+    width: 40px;
+    left: 100px;
+    background: rgba(255,255,255,0.5);
+}
+.verScc{
+	color: #5D9D5D;
+	font-size: 20px;
+	font-weight: lighter;
+	z-index: 999;
+	display: none;
 }

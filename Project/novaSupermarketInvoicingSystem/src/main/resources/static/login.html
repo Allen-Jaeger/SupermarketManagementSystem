@@ -20,6 +20,19 @@
 	<div class = "login">
 		<div class = "welcome" onselectstart="return false;">欢迎登陆</div>
 		<form action="" id = "loginForm">
+			<span class = "inputSpan"  style="border:none;">
+				<div class = "slider">
+					<span class = "vTip" onselectstart="return false;">请滑动到浅色区</span>
+					<div class = "moveBar" id="moveBar">
+						<i class="fa fa-hand-o-right"></i>
+					</div>
+					<div class = "verSpan moveBar"></div>
+				</div>
+				<div class = "verScc">
+					<i class="fa  fa-check-circle"></i>
+					验证成功,请登录
+				</div>
+			</span>
 			<span class = "inputSpan">
 				<i class = "fa fa-user"></i>
 				<input type="text" placeholder="工号" id="workNum" name = "workNum">
@@ -28,7 +41,7 @@
 				<i class = "fa fa-lock"></i>
 				<input type="password" placeholder="密码" id="password" name = "password">
 			</span><br>
-			<input type="submit" class = "sbm" value="登陆">
+			<input type="submit" class = "sbm" value="登陆" id="sbm">
 			<p class="error" id = "eMsg"></p>
     	</form>
 	</div>

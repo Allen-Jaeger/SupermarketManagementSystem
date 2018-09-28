@@ -44,6 +44,11 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findAll(spec,pageable);
 	}
 
+	public Page<Commodity> findCommodities(Pageable pageable) {
+		
+		return findCommodities(pageable);
+	}
+
 	
 	
 	

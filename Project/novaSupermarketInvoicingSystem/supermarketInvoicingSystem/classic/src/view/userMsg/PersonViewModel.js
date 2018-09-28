@@ -1,7 +1,6 @@
 Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.personViewModel',
-
     requires: [
         'Ext.data.Store',
         'Ext.data.proxy.Memory',
@@ -13,6 +12,8 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonViewModel', {
     ],
 
     stores: {
-		testPersonMsg: {type: 'personStore'}
+		testPersonMsg: {
+            type: 'personStore'
+        }
     }
 });

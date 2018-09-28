@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.indent.domain.Indent;
@@ -21,6 +23,11 @@ import com.invoicingSystem.main.indent.domain.Indent;
  * at 2018年9月19日
  */
 
+/**
+ * @author wzh
+ * at 2018年9月28日 上午9:17:08
+ * getIndent()加@JsonIgnore
+ */
 @Table(name="t_commodity")
 @Entity
 public class Commodity {
@@ -39,6 +46,10 @@ public class Commodity {
 	private Indent indent;
 	private int version;
 
+	public Commodity() {
+		
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
@@ -77,6 +88,7 @@ public class Commodity {
 	}
 	
 	@ManyToOne(cascade=CascadeType.ALL)
+	@JsonIgnore
 	public Indent getIndent() {
 		return indent;
 	}
