@@ -1,10 +1,13 @@
 package com.invoicingSystem.main.commodity.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
-import com.invoicingSystem.main.indent.domain.Indent;
+
 
 /**
  * @author LiJuncong
@@ -19,4 +22,7 @@ import com.invoicingSystem.main.indent.domain.Indent;
  */
 public interface ICommodityRepository extends PagingAndSortingRepository<Commodity, Long>,JpaSpecificationExecutor<Commodity>{
 
+    @Query("from Commodity commodity") 
+    public Page<Commodity> findCommodities(Pageable pageable); 
+	
 }

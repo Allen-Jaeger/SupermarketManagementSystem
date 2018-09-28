@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,4 +41,12 @@ public class CommodityController {
 			
 			return page;
 		}
+		
+		 @RequestMapping(value = "/findAll1")
+		public Page<Commodity> findCommodities(Pageable pageable) {
+			
+			return CommodityService.findCommodities(pageable);
+		}
+
+		
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,7 @@ import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
 import com.invoicingSystem.main.indent.domain.IndentQueryDTO;
 import com.invoicingSystem.main.indent.service.IIndentService;
+import com.invoicingSystem.main.indent.util.GenerateRandIndentNum;
 import com.invoicingSystem.main.indent.util.IndentStatus;
 import com.invoicingSystem.main.indent.util.IndentType;
 import com.invoicingSystem.main.shop.domain.Shop;
@@ -51,18 +53,17 @@ public class IndentController {
 	private IShopService shopService;
     
     @PostMapping
-
-    public @ResponseBody ExtAjaxResponse save(Indent indent) {
+    public @ResponseBody ExtAjaxResponse save(@RequestBody Indent indent) {
         try {
 			User user = userService.findById(3L);
 			    		
     		Shop shop = shopService.findById(1L);
     		
-    		System.out.println(indent);
+    		System.out.println("[indent]"+indent);
     		indent.setCreator(user);
     		indent.setToShop(shop);
     		indent.setCreateDate(new Date());
-    		indent.setIndentNum("BY66625412");
+    		indent.setIndentNum(GenerateRandIndentNum.GenerateNum());
     		indent.setIndentType(IndentType.PURCHASE);
 			indent.setIndentStatus(IndentStatus.INIT);
             indentService.save(indent);

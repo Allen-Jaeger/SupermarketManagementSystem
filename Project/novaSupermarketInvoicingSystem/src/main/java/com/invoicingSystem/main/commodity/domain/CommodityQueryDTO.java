@@ -46,7 +46,7 @@ public class CommodityQueryDTO {
         return new Specification<Commodity>() {
             @Override
             public Predicate toPredicate(Root<Commodity> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-            
+            	
                 List<Predicate> predicate = new ArrayList<>();
         
                 if (null!=commodityQueryDTO.getCommodityType()) {

@@ -17,4 +17,5 @@ public interface ICommodityService {
 	public Commodity findById(Long id);
 	public Page<Commodity> findAll(Pageable pageable);
 	Page<Commodity> findAll(@Nullable Specification<Commodity> spec, Pageable pageable);
+	public Page<Commodity> findCommodities(Pageable pageable); 
 }

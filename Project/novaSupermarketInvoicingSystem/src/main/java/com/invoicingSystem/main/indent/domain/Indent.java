@@ -40,7 +40,7 @@ public class Indent {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String indentNum;
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinColumn(name="indent_commodities")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
@@ -219,5 +219,14 @@ public class Indent {
     public void setProcessInstanceId(String processInstanceId) {
         this.processInstanceId = processInstanceId;
     }
+
+	@Override
+	public String toString() {
+		return "Indent [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
+				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
+				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouse
+				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", indentType=" + indentType
+				+ ", userId=" + userId + ", processInstanceId=" + processInstanceId + "]";
+	}
 	
 }

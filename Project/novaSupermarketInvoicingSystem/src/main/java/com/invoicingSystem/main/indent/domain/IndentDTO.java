@@ -143,6 +143,15 @@ public class IndentDTO {
     public void setProcessInstanceId(String processInstanceId) {
         this.processInstanceId = processInstanceId;
     }
+	@Override
+	public String toString() {
+		return "IndentDTO [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
+				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
+				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouse
+				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", indentType=" + indentType
+				+ ", userId=" + userId + ", processInstanceId=" + processInstanceId + "]";
+	}
 
+    
 
 }
