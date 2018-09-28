@@ -110,12 +110,19 @@
                 // If we are leaving micro mode (expanding), we do that first so that the
                 // text of the items in the navlist will be revealed by the animation.
                 navigationList.setMicro(false);
+                Ext.get("logoimg").setStyle("width","35%");
             }
             navigationList.canMeasure = false;
 
             // Start this layout first since it does not require a layout
             refs.senchaLogo.animate({dynamic: true, to: {width: new_width}});
-
+            //console.log(Ext.get("logoimg").getWidth());
+            // if (Ext.get("logoimg").getWidth()==52) {
+            //     Ext.get("logoimg").setStyle("width","35%");
+            // }else{
+            //     Ext.get("logoimg").setStyle("width","80%");
+            // }
+            
             // Directly adjust the width config and then run the main wrap container layout
             // as the root layout (it and its chidren). This will cause the adjusted size to
             // be flushed to the element and animate to that new size.
@@ -132,6 +139,7 @@
                         navigationList.setMicro(true);
                         navigationList.el.removeCls('nav-tree-animating');
                         navigationList.canMeasure = true;
+                        Ext.get("logoimg").setStyle("width","80%");
                     },
                     single: true
                 });

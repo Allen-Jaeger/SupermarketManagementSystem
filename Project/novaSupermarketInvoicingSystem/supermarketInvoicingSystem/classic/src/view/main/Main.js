@@ -32,7 +32,7 @@
                     xtype: 'component',
                     reference: 'senchaLogo',
                     cls: 'sencha-logo',
-                    html: '<div class="main-logo"><img src="resources/images/logoNova.png" width="35%"; /><span style="font-weight: lighter;color: white;">Supermarket</span></div>',
+                    html: '<div class="main-logo"><img id="logoimg" src="resources/images/logoNova.png" width="80%";/><span style="font-weight: lighter;color: white;">Supermarket</span></div>',
                     width: 64
                 },
                 {
