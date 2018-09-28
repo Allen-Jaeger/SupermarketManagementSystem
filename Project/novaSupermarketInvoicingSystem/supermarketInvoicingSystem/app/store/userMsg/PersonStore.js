@@ -12,8 +12,8 @@ Ext.define('SupermarketInvoicingSystem.store.userMsg.PersonStore', {
 			identity:'scc6',
 			userType:'scc7',
 			privileges:'scc8',
-			hireDate:'scc9',
-			iconUrl:'scc00',
+			hireDate:'2019-08-18',
+			iconUrl:'resources/usersIcon/defaultUser.jpg',
 			userStatus:'scc000',
 			depName:'scc0000'}
 	],
