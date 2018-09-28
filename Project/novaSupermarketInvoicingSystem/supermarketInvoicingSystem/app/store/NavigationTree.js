@@ -49,7 +49,7 @@
             },{
                 text: '我的信息',
                 iconCls: 'x-fa fa-user',
-                viewType: 'person',
+                viewType: 'personMsg',
                 //hidden:true,
                 //style:'display:none',
                 leaf: true

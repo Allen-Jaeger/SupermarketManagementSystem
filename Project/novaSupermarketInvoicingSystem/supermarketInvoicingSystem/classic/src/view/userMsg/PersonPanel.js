@@ -7,12 +7,12 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
         'Ext.Glyph',
         'Ext.layout.container.Column'
     ],
-    scrollable: true,
+    scrollable: false,
     layout: 'fit',
     layout: 'column',
     items: [
         {
-            margin: '50 100',
+            margin: '50 0 20 100',
             defaults: {
                 margin:'10',
             },
@@ -44,17 +44,21 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 xtype: 'filefield',
                 //fieldLabel: '新头像',
                 labelWidth: 50,
+                id: 'imgFile',
                 msgTarget: 'side',
                 allowBlank: true,
                 anchor: '100% 50%',
                 buttonText: '预览上传图片',
                 accept: 'image/*',
+                readOnly: false,
                 width: 250,
-                // listeners:{ //监听预览 浏览器保护
-                //     change:function(file){
-                //         Ext.getCmp("preId").getEl().dom.src = file.inputEl.dom.value;
-                //     }
-                // }
+                listeners:{ //监听预览 浏览器保护
+                    change:function(file){
+                        var newImg= Ext.getCmp("imgFile").inputEl.component.fileInputEl.dom.files[0];//新图片
+                        //console.log(newImg);
+                        Ext.getCmp("newIconId").getEl().dom.src = window.URL.createObjectURL(newImg);
+                    }
+                }
             },],
         },{
             border:false,
@@ -108,6 +112,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
     listeners:{
         afterRender: function(view) {
             var record=Ext.data.StoreManager.lookup('personStoreId').getAt(0);
+            console.log(record);
             view.getForm().loadRecord(record);
             Ext.getCmp("iconId").getEl().dom.src = "../../../../../"+record.data.iconUrl;
             Ext.getCmp("hireDateId").inputEl.dom.value = Ext.Date.format(record.data.hireDate,'Y年m月d日');

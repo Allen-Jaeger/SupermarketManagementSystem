@@ -2,7 +2,9 @@ package com.invoicingSystem.main.user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,11 +71,13 @@ public class UserController {
 	 * @param request
 	 */
 	@GetMapping(value="/findMe")
-	public UserDTO findMe(HttpServletRequest request, HttpServletResponse response) {
+	public Map<String , UserDTO >  findMe(HttpServletRequest request, HttpServletResponse response) {
+		Map<String , UserDTO > map = new HashMap<String , UserDTO >();
 		String userId = request.getSession().getAttribute("userId").toString();
 		User user = userService.findById(Long.parseLong(userId));
 		UserDTO userDTO = new UserDTO(user);
-		return userDTO;
+		map.put("userInfo", userDTO);
+		return map;
 	}
 	
 	/**

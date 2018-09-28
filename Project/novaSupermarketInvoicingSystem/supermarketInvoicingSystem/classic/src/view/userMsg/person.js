@@ -4,9 +4,9 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.person', {
     
     layout: 'fit',
     title: '我的信息',
-    xtype: 'person',
+    xtype: 'personMsg',
     items: [{
     	xtype:'personPanel',
     }],
 
-});
+}); 

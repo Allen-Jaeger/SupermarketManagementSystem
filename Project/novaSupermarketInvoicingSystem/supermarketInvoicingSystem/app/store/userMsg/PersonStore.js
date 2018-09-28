@@ -17,16 +17,19 @@ Ext.define('SupermarketInvoicingSystem.store.userMsg.PersonStore', {
 			userStatus:'scc000',
 			depName:'scc0000'}
 	],
-	// pageSize: 15,
+	// pageSize: 1,
  //    proxy: {
  //        type: 'ajax',
  //        url: '/findMe',
  //        reader : {  
  //            type : 'json',  
- //            rootProperty  : 'content',
- //            totalProperty : 'totalElements'
- //        }
- //        ,simpleSortMode: true
+ //            rootProperty  : 'content'
+ //            // totalProperty : 'totalElements',
+ //        },
+ //        simpleSortMode: true,
+ //        actionMethods: {
+ //            read: 'GET',
+ //        },
  //    },
  //    remoteSort: true,
  //    sorters: [{ property: 'workNum',direction: 'desc'}],
@@ -36,7 +39,8 @@ Ext.define('SupermarketInvoicingSystem.store.userMsg.PersonStore', {
         type: 'memory',
         //url: '/findMe',
         reader : {  
-            type : 'json',  
+            type : 'json'
+
             //rootProperty  : 'content',
             //totalProperty : 'totalElements'
         }
