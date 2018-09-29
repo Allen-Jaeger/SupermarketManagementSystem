@@ -6,11 +6,15 @@ package com.invoicingSystem.main.commodity.util;
  */
 
 public enum CommodityStatus {
-	PURCHASING(1,"采购中"),
-	UNSALEABLE(2,"不可售的"),
+	PURCHASING(0,"采购中"),
+	UNSALEABLE(1,"不可售的"),
 	SALEABLE(2,"可售的"),
-	SOLD(4,"已经出售的"),
-	MODEL(5,"采购模板");
+	SOLD(3,"已经出售的"),
+	/**
+	 * 以下两种状态供进货和管理商品模板使用
+	 */
+	ALLOW(4,"允许进货"),
+	UNALLOWED(5,"不允许进货");
 
 	private final int index;
 	private final String mean;

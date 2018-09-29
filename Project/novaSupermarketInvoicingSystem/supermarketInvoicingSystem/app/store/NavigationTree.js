@@ -47,6 +47,26 @@
                     }
                 ]
             },{
+                text: '商品管理',
+                iconCls: 'x-fa fa-truck',
+                expanded: false,
+                selectable: false,
+                //routeId: 'pages-parent',
+                //id: 'pages-parent',
+                children: [
+                    {
+                        text: '管理商品模板',
+                        iconCls: 'x-fa fa-anchor',
+                        viewType: 'comModel',
+                        leaf: true
+                    },{
+                        text: '校准库存',
+                        iconCls: 'x-fa fa-cubes',
+                        //viewType: 'transferCenterPanel',
+                        leaf: true
+                    }
+                ],
+            },{
                 text: '我的信息',
                 iconCls: 'x-fa fa-user',
                 viewType: 'personMsg',

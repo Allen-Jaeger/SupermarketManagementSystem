@@ -2,37 +2,15 @@ package com.invoicingSystem.main.commodity.domain;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Version;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.invoicingSystem.main.commodity.util.CommodityStatus;
-import com.invoicingSystem.main.commodity.util.CommodityType;
-import com.invoicingSystem.main.indent.domain.Indent;
-
 /**
  * @author LiJuncong
- * at 2018年9月19日
+ * at 2018年9月29日
  */
 
-/**
- * @author wzh
- * at 2018年9月28日 上午9:17:08
- * getIndent()加@JsonIgnore
- */
-@Table(name="t_commodity")
-@Entity
-public class Commodity {
+public class CommodityDTO {
 	private Long id;
 	private Long barCode;
-	private CommodityType commodityType;
+	private String commodityType;
 	private Date period;	//保质期
 	private String name;
 	private String picUrl;
@@ -41,23 +19,43 @@ public class Commodity {
 	private Double price;
 	private Double cost;	//单价，总价=cost*amount
 	private String note;
-	private CommodityStatus commodityStatus;
-	private Indent indent;
-	private int version;
+	private String commodityStatus;
+	private String indentNum;
 
-	public Commodity() {
+	public CommodityDTO() {
 		super();
 	}
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/**
+	 * 利用实体构造DTO
+	 * @param commodity
+	 */
+	public CommodityDTO(Commodity commodity) {
+		this.id = commodity.getId();
+		this.barCode = commodity.getBarCode();
+		this.commodityType = commodity.getCommodityType().getChineseName();
+		this.period = commodity.getPeriod();
+		this.name = commodity.getName();
+		this.picUrl = commodity.getPicUrl();
+		this.amount = commodity.getAmount();
+		this.saveStock = commodity.getSaveStock();
+		this.price = commodity.getPrice();
+		this.cost = commodity.getCost();
+		this.note = commodity.getNote();
+		this.commodityStatus = commodity.getCommodityStatus().getChineseName();
+		this.indentNum = commodity.getIndent().getIndentNum();
+	}
+	
+	//Getter and Setter
 	public Long getId() {
 		return id;
 	}
 	public Long getBarCode() {
 		return barCode;
 	}
-	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
+	public String getCommodityType() {
+		return commodityType;
+	}
 	public Date getPeriod() {
 		return period;
 	}
@@ -82,28 +80,20 @@ public class Commodity {
 	public String getNote() {
 		return note;
 	}
-	public CommodityStatus getCommodityStatus() {
+	public String getCommodityStatus() {
 		return commodityStatus;
 	}
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonIgnore
-	public Indent getIndent() {
-		return indent;
-	}
-	
-	public CommodityType getCommodityType() {
-		return commodityType;
-	}
-	@Version
-	public int getVersion() {
-		return version;
+	public String getIndentNum() {
+		return indentNum;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setBarCode(Long barCode) {
 		this.barCode = barCode;
+	}
+	public void setCommodityType(String commodityType) {
+		this.commodityType = commodityType;
 	}
 	public void setPeriod(Date period) {
 		this.period = period;
@@ -129,17 +119,12 @@ public class Commodity {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public void setCommodityStatus(CommodityStatus commodityStatus) {
+	public void setCommodityStatus(String commodityStatus) {
 		this.commodityStatus = commodityStatus;
 	}
-	public void setIndent(Indent indent) {
-		this.indent = indent;
+	public void setIndentNum(String indentNum) {
+		this.indentNum = indentNum;
 	}
-
-	public void setCommodityType(CommodityType commodityType) {
-		this.commodityType = commodityType;
-	}
-	public void setVersion(int version) {
-		this.version = version;
-	}
+	
+	
 }
