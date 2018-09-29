@@ -28,7 +28,7 @@ Ext.define('SupermarketInvoicingSystem.store.users.UsersStore', {
         ,simpleSortMode: true
     },
     remoteSort: true,
-    sorters: [{ property: 'workNum',direction: 'desc'}],
+    //sorters: [{ property: 'workNum',direction: 'desc'}],
     autoLoad: true,
     listeners: {}
    // proxy: {

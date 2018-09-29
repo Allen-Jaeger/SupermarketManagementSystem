@@ -112,7 +112,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
     listeners:{
         afterRender: function(view) {
             var record=Ext.data.StoreManager.lookup('personStoreId').getAt(0);
-            console.log(record);
+            //console.log(record);
             view.getForm().loadRecord(record);
             Ext.getCmp("iconId").getEl().dom.src = "../../../../../"+record.data.iconUrl;
             Ext.getCmp("hireDateId").inputEl.dom.value = Ext.Date.format(record.data.hireDate,'Y年m月d日');

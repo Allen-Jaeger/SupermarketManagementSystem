@@ -1,6 +1,7 @@
 package com.invoicingSystem.main.user.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.invoicingSystem.main.user.domain.User;
 
@@ -14,5 +15,5 @@ public interface IUserService {
 	public User findById(Long id);
 	public User findByWorkNum(String workNum);
 	public String userLogin(User userTry, User user);
-	public List<User> findAll();
+	public Page<User> findAll(Pageable pageable);
 }

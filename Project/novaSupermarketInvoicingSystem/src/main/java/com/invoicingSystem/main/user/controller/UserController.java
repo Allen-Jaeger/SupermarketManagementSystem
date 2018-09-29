@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
 import com.invoicingSystem.main.user.service.IUserService;
@@ -120,16 +123,19 @@ public class UserController {
 	}
 	
 	/**
-	 * Find 所有用户 仅用于开发 实际上会使用复杂查询
+	 * Find 所有用户 仅用于开发 实际上会使用分页查询
 	 * @return
 	 */
 	@GetMapping(value="/findAll")
-	public List<UserDTO> findAllUsers() {
-		List<UserDTO> dtos = new ArrayList<UserDTO>();
-		for(User user :userService.findAll()) {
+	public Page<UserDTO> findAllUsers(ExtjsPageRequest pageRequest) {
+		//	分页的User
+		Page<User> userPage = userService.findAll(pageRequest.getPageable());
+		//  将User转化成DTO类
+		List<UserDTO> userDtoList = new ArrayList<UserDTO>();
+		for(User user :userPage){
 			UserDTO dto = new UserDTO(user);
-			dtos.add(dto);
+			userDtoList.add(dto);
 		}
-		return dtos;
+		return new PageImpl<UserDTO>(userDtoList,userPage.getPageable(),userPage.getTotalElements());
 	}
 }
