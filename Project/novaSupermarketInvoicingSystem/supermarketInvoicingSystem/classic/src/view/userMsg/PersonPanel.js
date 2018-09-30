@@ -18,7 +18,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
             },
             items:[{
                 anchor: '100% 50%',
-                xtpye: 'box',
+                xtype: 'box',
                 name: 'iconUrl',
                 id: 'iconId',
                 autoEl: {
@@ -30,7 +30,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 },
             },{
                 anchor: '100% 50%',
-                xtpye: 'box',
+                xtype: 'box',
                 name: 'newIcon',
                 id: 'newIconId',
                 autoEl: {
@@ -111,11 +111,18 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
         }],
     listeners:{
         afterRender: function(view) {
-            var record=Ext.data.StoreManager.lookup('personStoreId').getAt(0);
-            //console.log(record);
-            view.getForm().loadRecord(record);
-            Ext.getCmp("iconId").getEl().dom.src = "../../../../../"+record.data.iconUrl;
-            Ext.getCmp("hireDateId").inputEl.dom.value = Ext.Date.format(record.data.hireDate,'Y年m月d日');
+            var recordStore = Ext.data.StoreManager.lookup('personStoreId');
+            recordStore.load();
+            recordStore.on("load", function() {  
+                var myInfo = recordStore.getAt(0).data.content[0];
+                var Record = recordStore.recordType;
+                var r = new Ext.data.Model(myInfo); //转成Record
+                recordStore.insert(1, r);
+                console.log(recordStore);
+                view.getForm().loadRecord(recordStore.getAt(1));
+                Ext.getCmp('iconId').getEl().dom.src = '../../../../../' + myInfo.iconUrl;
+                Ext.getCmp('hireDateId').inputEl.dom.value = Ext.Date.format(new Date(myInfo.hireDate), 'Y年m月d日');
+            });
         }
     },
 });

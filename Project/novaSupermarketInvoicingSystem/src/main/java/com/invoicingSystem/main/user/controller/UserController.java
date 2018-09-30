@@ -2,9 +2,7 @@ package com.invoicingSystem.main.user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -73,13 +71,13 @@ public class UserController {
 	 * @param request
 	 */
 	@GetMapping(value="/findMe")
-	public Map<String , UserDTO >  findMe(HttpServletRequest request, HttpServletResponse response) {
-		Map<String , UserDTO > map = new HashMap<String , UserDTO >();
+	public Page<UserDTO>  findMe(HttpServletRequest request) {
 		String userId = request.getSession().getAttribute("userId").toString();
 		User user = userService.findById(Long.parseLong(userId));
-		UserDTO userDTO = new UserDTO(user);
-		map.put("userInfo", userDTO);
-		return map;
+		//  将User转化成DTO类
+		List<UserDTO> userDtoList = new ArrayList<UserDTO>();
+		userDtoList.add(new UserDTO(user));
+		return new PageImpl<UserDTO>(userDtoList);
 	}
 	
 	/**
@@ -122,7 +120,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Find 所有用户 仅用于开发 实际上会使用分页查询
+	 * Find 分页查询
 	 * @return
 	 */
 	@GetMapping(value="/findAll")
