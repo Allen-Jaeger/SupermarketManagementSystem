@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.invoicingSystem.main.activiti.util.WorkflowVariable;
+import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.common.web.SessionUtil;
@@ -34,7 +36,10 @@ import com.invoicingSystem.main.indent.util.IndentType;
 import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.user.domain.User;
-import com.invoicingSystem.main.user.service.IUserService;;
+import com.invoicingSystem.main.user.service.IUserService;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;;
 
 /**
  * @author Lzy
@@ -51,22 +56,43 @@ public class IndentController {
 	private IUserService userService;
 	@Autowired
 	private IShopService shopService;
+	@Autowired
+	private ICommodityService commodityService;
     
     @PostMapping
     public @ResponseBody ExtAjaxResponse save(@RequestBody Indent indent) {
         try {
-			User user = userService.findById(3L);
-			    		
+        	User user = userService.findById(3L);
+    		
     		Shop shop = shopService.findById(1L);
     		
+    		JSONArray commoditiesJSONObject = JSONArray.fromObject(indent.getCommoditiesJSON());
     		System.out.println("[indent]"+indent);
+    		if(commoditiesJSONObject.size()>0){
+    			  for(int i=0;i<commoditiesJSONObject.size();i++){
+    			 // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+    			JSONObject job = commoditiesJSONObject.getJSONObject(i); 
+    			// 得到 每个对象中的属性值
+	    			String name = job.get("name").toString();
+	    			int amount = Integer.parseInt(job.get("num").toString());
+	    			
+	    			Commodity commodity = new Commodity();
+	    			commodity.setName(name);
+	    			commodity.setAmount(amount);
+    			    commodityService.save(commodity);
+    			    indent.getCommodities().add(commodity);
+    			  }
+    			}
+    	
+    
     		indent.setCreator(user);
     		indent.setToShop(shop);
     		indent.setCreateDate(new Date());
     		indent.setIndentNum(GenerateRandIndentNum.GenerateNum());
     		indent.setIndentType(IndentType.PURCHASE);
 			indent.setIndentStatus(IndentStatus.INIT);
-            indentService.save(indent);
+			
+			indentService.save(indent);
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
             e.printStackTrace();

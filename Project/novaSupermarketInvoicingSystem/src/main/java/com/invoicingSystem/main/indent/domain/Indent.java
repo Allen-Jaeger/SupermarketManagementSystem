@@ -63,6 +63,11 @@ public class Indent {
 	private Shop toShop;
 	private String note;
 	private String supplier;	//供应商
+	
+	//用于接收前端发来的货单中的订单列表
+	//转化成commodity类
+	private String  commoditiesJSON;
+		
 	private IndentType indentType;
 	//工作流字段
 	private String userId;//启动流程的用户ID
@@ -226,6 +231,17 @@ public class Indent {
     public void setProcessInstanceId(String processInstanceId) {
         this.processInstanceId = processInstanceId;
     }
+
+    
+    
+    
+	public String getCommoditiesJSON() {
+		return commoditiesJSON;
+	}
+
+	public void setCommoditiesJSON(String commoditiesJSON) {
+		this.commoditiesJSON = commoditiesJSON;
+	}
 
 	@Override
 	public String toString() {
