@@ -11,6 +11,7 @@
 		,{type:'string',name:'managerId'}  //创建者id
 		,{type:'string',name:'toWarehouseId'}
 		,{type:'string',name:'toShopId'}
+		,{type:'string',name:'commoditiesJSON'}
 		,{type:'date',name:'createDate',dateFormat:'Y/m/d H:i:s'}  //创建时间
 		,{type:'string',name:'indentStatus'}  //订单状态
 		,{type:'number',name:'cost'}

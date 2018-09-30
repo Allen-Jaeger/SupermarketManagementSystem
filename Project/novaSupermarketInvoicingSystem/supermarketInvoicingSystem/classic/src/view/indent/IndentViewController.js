@@ -127,16 +127,35 @@
     });
   },
 
-  submitAddForm: function (btn) {
-    var win = btn.up('window');
-    var form = win.down('form');
-    var record = Ext.create('SupermarketInvoicingSystem.model.indent.IndentModel');
-    var values = form.getValues();
-    record.set(values);
-    record.save();
-    Ext.data.StoreManager.lookup('indentStore').load();
-    win.close();
-  },
+  submitAddForm:function(btn) {
+  var win = btn.up('window');
+  var form = win.down('form');
+  var record = Ext.create('SupermarketInvoicingSystem.model.indent.IndentModel');
+  
+ 
+  var leftgrid = Ext.getCmp('leftList').getStore();
+  var leftgridData = leftgrid.getRange();
+  var leftgridDataJson = [];
+  for(var i in leftgridData){
+    leftgridDataJson.push({
+        'name':leftgridData[i].get('name'),
+        'num':'100'
+        //leftgridData[i].get('num')
+      } )
+  }
+   var removecharacter = Ext.encode(leftgridDataJson);
+  //var removecharacter = (Ext.encode(leftgridDataJson)).replace("[","");
+  //removecharacter = removecharacter.replace("]","");
+  Ext.getCmp('commoditiesJSON').setValue(removecharacter);
+
+   var values = form.getValues();
+
+
+  record.set(values);
+  record.save();
+  Ext.data.StoreManager.lookup('indentStore').load();
+  win.close();
+},
   submitEditForm: function (btn) {
     var win = btn.up('window');
     var store = Ext.data.StoreManager.lookup('indentStore');

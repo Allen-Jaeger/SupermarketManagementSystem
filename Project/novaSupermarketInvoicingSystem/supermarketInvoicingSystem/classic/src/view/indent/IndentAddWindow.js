@@ -42,6 +42,13 @@
 			disabled:true,
 			value:'wumao'
 		},
+     {
+          xtype:'textfield',
+          hidden:'true',
+          id:'commoditiesJSON',
+          name:'commoditiesJSON'
+
+        },
 		{
 			xtype: 'fieldcontainer',
 			fieldLabel: '添加商品',
@@ -49,6 +56,11 @@
 			name:'commoditiesList',
 			id:'commoditiesList',
 				items:[
+       
+
+
+
+
 				{
 					xtype:'gridpanel',
 					id:'leftList',
@@ -113,14 +125,22 @@
 						hideLabel:true, 
 						store:Ext.create('Ext.data.Store', {
 						fields:['name', 'value'], 
-						data:[{name:'粮油零食', value:'FOOD'}
+						data:[
+              {name:'全部',value:''}
+              ,{name:'粮油零食', value:'FOOD'}
 							,{name:'酒水饮料',value:'DRINK'}
 							,{name:'家居清洁',value:'DAILY'}
+              ,{name:'电器',value:'ELETRICAL'}
+              ,{name:'厨房用品',value:'COOKER'}
+              ,{name:'美容洗浴',value:'BATH'}
+              ,{name:'母婴用品',value:'INFANT'}
+              ,{name:'果蔬生鲜',value:'FRESH'}
+
 							
 						]}),	
 						displayField:'name',
 						valueField:'value', 
-						value:'粮油零食', 
+						value:'全部', 
 						editable:false, 
 						queryMode:'local',
 						triggerAction:'all',
@@ -130,11 +150,24 @@
 					}, 
 						'-', 
 					{
-						xtype:'textfield', 
-						hideLabel:true,
-						width:125,
-						reference:'searchDataFieldValue', 
-						name:'from_date'
+						xtype: 'combobox',
+            
+            displayField: 'name',
+            anchor: '-15',
+            store: {
+                type: 'commoditiesStore'
+            },
+
+            // We're forcing the query to run every time by setting minChars to 0
+            // (default is 4)
+            minChars: 0,
+            queryParam: 'q',
+            queryMode: 'remote',
+            listConfig: {
+                itemTpl: [
+                    '<div data-qtip="{name}">{name}</div>'
+                ]
+            }
 					},
 							
 						{
@@ -167,7 +200,7 @@
 		},
 		{
 			xtype     : 'textfield',
-			name      : 'cost',
+			name      : 'toshop',
 			fieldLabel: '进货点',
 			
 		},
