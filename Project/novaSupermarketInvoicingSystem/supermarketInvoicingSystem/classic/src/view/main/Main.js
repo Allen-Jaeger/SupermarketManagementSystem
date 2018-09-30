@@ -42,27 +42,36 @@
                     id: 'main-navigation-btn',
                     handler: 'onToggleNavigationSize'
                 },
-                '->',
+                '->',//使用查找
                 {
                     xtype: 'tbtext',
-                    text: '用户名:SupermarketInvoicingSystem',
+                    //text: '用户名:SupermarketInvoicingSystem',
                     id:'loginUserName',
                     cls: 'top-user-name'
                 },{
                     xtype: 'image',
                     cls: 'header-right-profile-image',
-                    id:'loginUserImage',
+                    id:'toolBarIcon',
                     height: 35,
                     width: 35,
                     alt:'current user image',
-                    src: 'resources/images/user-profile/2.png'
+                    //src: 'resources/images/user-profile/2.png'
                 },{
                     iconCls:'x-fa fa-sign-out',
                     ui: 'header',
                     tooltip: 'Logout',
                     handler: 'logoutButton'
                 }
-            ]
+            ],
+            listeners:{
+                afterRender: function(view) {
+                    //console.log(Ext.data.StoreManager.lookup('personStoreId'));
+                    var record=Ext.data.StoreManager.lookup('personStoreId').getAt(0);
+                    Ext.getCmp("toolBarIcon").getEl().dom.src = "../../../../../"+record.data.iconUrl;
+                    //console.log(Ext.getCmp("loginUserName").getEl().dom);
+                    Ext.getCmp("loginUserName").getEl().dom.innerHTML = record.data.name;
+                }
+            },
         },
         {
             xtype: 'maincontainerwrap',

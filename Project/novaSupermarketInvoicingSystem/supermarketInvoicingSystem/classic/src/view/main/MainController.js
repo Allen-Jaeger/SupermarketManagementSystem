@@ -169,16 +169,11 @@
 	,logoutButton: function(){
 		var me = this;
         Ext.Ajax.request({
-            url: 'logout',
-            method: 'post',
+            url: '/logout',
+            method: 'GET',
             success: function(response, options) {
-            	var json = Ext.util.JSON.decode(response.responseText);
-	            if(json.success){
-	            	me.redirectTo('login', true);
-	            	window.location.reload();
-		        }else{
-		        	Ext.Msg.alert('登出失败', json.msg);
-		        }
+                console.log('注销成功');
+                location.replace("http://localhost:8080/login");
             }
         });
     }

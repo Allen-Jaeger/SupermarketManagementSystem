@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,7 +111,7 @@ public class UserController {
 	 * @param request
 	 * @param response
 	 */
-	@DeleteMapping(value="/login")
+	@GetMapping(value="/logout")
 	public void logout(HttpServletRequest request,HttpServletResponse response) {
 		request.getSession().removeAttribute("userId");
 		try {
