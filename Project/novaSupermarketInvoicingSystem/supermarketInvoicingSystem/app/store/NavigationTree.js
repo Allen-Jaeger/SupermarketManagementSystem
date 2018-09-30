@@ -18,12 +18,12 @@
                 leaf: true
             },{
                 text: '流程定义模块',
-                iconCls: 'x-fa fa-address-card',
+                iconCls: 'x-fa fa-font-awesome',
                 viewType: 'processDefinitionCenterPanel',
                 leaf: true
             },{
                 text: '货单申请模块',
-                iconCls: 'x-fa fa-address-card',
+                iconCls: 'x-fa fa-file-o',
                 viewType: 'indentCenterPanel',
                 leaf: true
             }, {
@@ -36,12 +36,12 @@
                 children: [
                     {
                         text: '采购工作流模块',
-                        iconCls: 'x-fa fa-file-o',
+                        iconCls: 'x-fa fa-shopping-cart',
                         viewType: '',
                         leaf: true
                     },{
                         text: '调货工作流模块',
-                        iconCls: 'x-fa fa-exclamation-triangle',
+                        iconCls: 'x-fa fa-exchange',
                         viewType: 'transferCenterPanel',
                         leaf: true
                     }
