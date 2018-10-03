@@ -13,13 +13,17 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
 import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.MD5Tool;
+
+import net.sf.json.JSONObject;
 
 /**
  * @author LiJuncong
@@ -93,10 +97,10 @@ public class UserController {
 		User user = userService.findById(Long.parseLong(userId));
 		//确认密码长度
 		if(newPass.length() <= 5 || newPass.length() >= 15) {
-			return "修改失败！新密码长度不足，密码长度应为6-16位";
+			return "修改失败！<br>密码长度应为6-16位";
 		}
 		if(MD5Tool.ToMd5String(pass).equals(user.getPassword())) {
-			user.setPassword(newPass);
+			user.setPassword(MD5Tool.ToMd5String(newPass));
 			userService.save(user);
 			return "修改成功";
 		}else {
@@ -134,5 +138,32 @@ public class UserController {
 			userDtoList.add(dto);
 		}
 		return new PageImpl<UserDTO>(userDtoList,userPage.getPageable(),userPage.getTotalElements());
+	}
+	
+	/**
+	 * 上传头像
+	 * @param extFile
+	 * @param request
+	 * @return
+	 * @throws IOException 
+	 */
+	@PostMapping(value = "/userIcon")
+	public void changeIcon(MultipartFile imgFile, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("text/plain; charset=utf-8");
+		//判断上传文件
+		if(null == imgFile || imgFile.isEmpty()) {
+			response.getWriter().write("{\"success\": true,\"info\":\"上传文件为空文件！\"}");
+			return;
+		}
+		//获取用户信息
+		String userId = request.getSession().getAttribute("userId").toString();
+		User user = userService.findById(Long.parseLong(userId));
+		//执行业务
+		String res = userService.writeIcon(user, imgFile);
+		response.getWriter().write("{\r\n" + 
+				"    \"success\": true,\r\n" + 
+				"    \"info\": \""+ res +"\"\r\n" + 
+				"}");
+		return;
 	}
 }

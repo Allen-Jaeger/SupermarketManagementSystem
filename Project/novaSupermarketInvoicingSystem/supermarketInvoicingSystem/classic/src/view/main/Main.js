@@ -71,7 +71,7 @@
                       //console.log("shit");
                       //console.log(record.getAt(0).data.content[0].name);
                       record = record.getAt(0).data.content[0];
-                      Ext.getCmp('toolBarIcon').getEl().dom.src = '../../../../../' + record.iconUrl;
+                      Ext.getCmp('toolBarIcon').getEl().dom.src = '../../../../../resources/usersIcon/' + record.iconUrl;
                       Ext.getCmp('loginUserName').getEl().dom.innerHTML = record.name;
                     }); 
                 }

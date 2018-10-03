@@ -80,6 +80,15 @@ $(document).ready(function(){
 					document.getElementById('eMsg').innerHTML = result;
 					if(result == '登陆成功'){
 						location.replace("http://localhost:8080/");
+					}else{
+						$(".verSpan").css({'left': (Math.random()*140+50)});
+						$('#moveBar').css({'left': 0});
+						$(".sbm").attr({
+							"disabled":"true",
+							"style": "filter:grayscale(1); cursor:url('image/ban.ico'),auto;",
+						});
+						$(".slider").show("slow");
+						$(".verScc").hide("slow");
 					}
 				}
 			});

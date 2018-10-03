@@ -2,6 +2,7 @@ package com.invoicingSystem.main.user.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.invoicingSystem.main.user.domain.User;
 
@@ -16,4 +17,5 @@ public interface IUserService {
 	public User findByWorkNum(String workNum);
 	public String userLogin(User userTry, User user);
 	public Page<User> findAll(Pageable pageable);
+	public String writeIcon(User user, MultipartFile icon);
 }
