@@ -13,7 +13,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,8 +21,6 @@ import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
 import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.MD5Tool;
-
-import net.sf.json.JSONObject;
 
 /**
  * @author LiJuncong
