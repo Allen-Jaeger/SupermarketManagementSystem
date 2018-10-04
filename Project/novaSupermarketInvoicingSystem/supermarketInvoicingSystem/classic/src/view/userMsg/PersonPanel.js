@@ -15,7 +15,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
             margin: '0 0 0 80',    
             items:[{
                 xtype: 'form',
-                title: '上传头像',                
+                title: '<i class = "fa fa-upload"></i> 上传头像',                
                 border: 1,
                 items:[
                 {
@@ -83,10 +83,12 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 margin:'20 0 0 0',
                 anchor: '100% 50%',
                 xtype: 'form',
-                title: '修改密码',
+                title: '<i class = "fa fa-key"></i> 修改密码',
                 allowBlank: true,
                 border: 1,
                 maskOnDisable: true,
+                shadow: 'drop',
+                shadowOffset: 5,
                 //anchor: '100% 50%',
                 defaults:{
                     margin: '5 15 0 0',
@@ -145,8 +147,11 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
             ],
         },{
             border:false,
-            width: 600,
-            margin: '20 50',
+            width: 650,
+            height: 538,
+            margin: '0 0 0 20',
+            title: '<i class = "fa fa-newspaper-o"></i> 基本资料',
+            border: 1,
             layout: 'column',
             readOnlyCls: 'color: green;',
             defaults: {
@@ -183,8 +188,8 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 fieldLabel: '用户类型',
                 name: 'userType'
             },{
-                fieldLabel: '权限',
-                name: 'privileges'
+                fieldLabel: '所属部门',
+                name: 'depName'
             },{
                 fieldLabel: '入职日期',
                 id:'hireDateId'
@@ -192,8 +197,21 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 fieldLabel: '用户状态',
                 name: 'userStatus'
             },{
-                fieldLabel: '所属部门',
-                name: 'depName'
+                xtype: 'textarea',
+                fieldLabel: '权限',
+                name: 'privileges',
+                scrollable: false,
+                // value: 'efbaubdafbiafbalfb;aufbaufba;fba;ufbafbjhkfvakvfghvawgkfvkagfvkagfvkawghfvka',
+                id:'privilegesId',
+            },{
+                xtype: 'box',
+                html:'<i style="color: orange;" class = "fa fa-warning"> 基本资料不允许随意修改<br/>如有变动请联系管理员</i>',
+                style:{
+                    float: 'right',
+                    right:'50px',
+                    bottom:'-200px',
+                },
+                padding:'10',
             }],
         }],
     listeners:{
@@ -209,6 +227,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 view.getForm().loadRecord(recordStore.getAt(1));
                 Ext.getCmp('iconId').getEl().dom.src = '../../../../../resources/usersIcon/' + myInfo.iconUrl;
                 Ext.getCmp('hireDateId').inputEl.dom.value = Ext.Date.format(new Date(myInfo.hireDate), 'Y年m月d日');
+                Ext.getCmp('privilegesId').inputEl.dom.value = myInfo.privileges.replace(/,/g,'\n');
             });
         }
     },
