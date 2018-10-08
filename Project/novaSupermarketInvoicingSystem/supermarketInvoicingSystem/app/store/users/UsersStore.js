@@ -2,6 +2,7 @@ Ext.define('SupermarketInvoicingSystem.store.users.UsersStore', {
     extend: 'Ext.data.Store',
     alias: 'store.usersStore',
 	model:'SupermarketInvoicingSystem.model.userMsg.PersonModel',
+  storeId: 'usersStoreId',
 	// data:[
 	// 		{id:'scc1',
 	// 		workNum:'scc2',

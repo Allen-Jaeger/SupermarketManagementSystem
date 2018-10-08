@@ -3,6 +3,7 @@ package com.invoicingSystem.main.user.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,14 +14,19 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.invoicingSystem.main.common.enum_tools.EnumTool;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
+import com.invoicingSystem.main.user.domain.UserQueryDTO;
 import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.MD5Tool;
+import com.invoicingSystem.main.user.util.Privilege;
+import com.invoicingSystem.main.user.util.UserType;
 
 /**
  * @author LiJuncong
@@ -162,5 +168,29 @@ public class UserController {
 				"    \"info\": \""+ res +"\"\r\n" + 
 				"}");
 		return;
+	}
+	
+	@PostMapping(value="/specFind")
+	public Page<UserDTO> specFindUsers(UserQueryDTO userQueryDTO ,ExtjsPageRequest pageRequest){
+		Page<User> res =  userService.findAll(UserQueryDTO.getWhereClause(userQueryDTO), pageRequest.getPageable());
+		List<UserDTO> userDtoList = new ArrayList<UserDTO>();
+		for(User user : res) {
+			userDtoList.add(new UserDTO(user));
+		}
+		return new PageImpl<UserDTO>(userDtoList,res.getPageable(),res.getTotalElements());
+	}
+	
+	@GetMapping(value = "/getEnum")
+	public List<Map<String,String>> allUserType(@RequestParam String enumName) {
+		EnumTool<?> et = null;
+		switch(enumName) {
+		case "UserType":
+			et = new EnumTool<UserType>(UserType.KEEPER);
+			break;
+		case "Privilege":
+			et = new EnumTool<Privilege>(Privilege.ALL);
+			break;
+		}
+		return et.allToMap();
 	}
 }

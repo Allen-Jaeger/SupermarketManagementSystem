@@ -7,6 +7,7 @@ import java.io.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -120,6 +121,14 @@ public class UserService implements IUserService {
 		user.setIconUrl(filename);
 		userRepository.save(user);
 		return "修改成功";
+	}
+
+	/* 
+	 * 条件查询
+	 */
+	@Override
+	public Page<User> findAll(Specification<User> spec, Pageable pageable) {
+		return userRepository.findAll(spec, pageable);
 	}
 
 }

@@ -20,7 +20,7 @@ public class UserDTO {
 	private Date hireDate; // 员工聘请日期
 	private String iconUrl; // 头像
 	private String userStatus; // 用户状态
-	private String depName;	//商店
+	private String depName;	//任职单位
 
 	public UserDTO() {
 		super();
