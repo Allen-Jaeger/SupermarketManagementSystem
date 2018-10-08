@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 
 
@@ -29,9 +30,9 @@ public class CommodityQueryDTO {
 
 
     
-    private CommodityType commodityType;//货单类型
+    private CommodityType commodityType;//商品类型
    
-    
+    private CommodityStatus commodityStatus;
     
     public CommodityType getCommodityType() {
         return commodityType;
@@ -40,7 +41,16 @@ public class CommodityQueryDTO {
         this.commodityType = commodityType;
     }
     
-    @SuppressWarnings({ "serial"})
+    
+    
+    
+    public CommodityStatus getCommodityStatus() {
+		return commodityStatus;
+	}
+	public void setCommodityStatus(CommodityStatus commodityStatus) {
+		this.commodityStatus = commodityStatus;
+	}
+	@SuppressWarnings({ "serial"})
     public static Specification<Commodity> getWhereClause(final CommodityQueryDTO commodityQueryDTO) {
         return new Specification<Commodity>() {
             @Override
@@ -52,6 +62,13 @@ public class CommodityQueryDTO {
                     predicate.add(criteriaBuilder.equal(root.get("commodityType").as(CommodityType.class),
                             commodityQueryDTO.getCommodityType()));
                 }
+                
+                if (null!=commodityQueryDTO.getCommodityStatus()) {
+                    predicate.add(criteriaBuilder.equal(root.get("commodityStatus").as(CommodityStatus.class),
+                            commodityQueryDTO.getCommodityStatus()));
+                }
+                
+                
                 
                 
                 Predicate[] pre = new Predicate[predicate.size()];

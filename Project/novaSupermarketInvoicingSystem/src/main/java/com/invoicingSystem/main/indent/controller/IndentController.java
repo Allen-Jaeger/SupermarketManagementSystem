@@ -5,10 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +48,11 @@ import net.sf.json.JSONObject;;
  * @version 创建时间：2018年9月26日 上午9:01:07 
  * 类说明 : 流程控制层
  */
+
+/**
+ * @author wuzihao
+ * 创建完善 
+ */
 @RestController
 @RequestMapping(value = "/indent")
 public class IndentController {
@@ -60,14 +67,24 @@ public class IndentController {
 	private ICommodityService commodityService;
     
     @PostMapping
-    public @ResponseBody ExtAjaxResponse save(@RequestBody Indent indent) {
+    public @ResponseBody ExtAjaxResponse save(@RequestBody IndentDTO indentDTO) {
         try {
+        	
+        	Indent indent = new Indent();
+        	
         	User user = userService.findById(3L);
+    		//User user = userService.findById(session.getAttribute('userId'));
+    		indent.setCommoditiesJSON(indentDTO.getCommoditiesJSON());
+    		indent.setToShop(shopService.findById(indentDTO.getToShop()));
+        	indent.setNote(indentDTO.getNote());
+        	indent.setCost(indentDTO.getCost());
+        	
+        	
+    		JSONArray commoditiesJSONObject = JSONArray.fromObject(indentDTO.getCommoditiesJSON());
     		
-    		Shop shop = shopService.findById(1L);
     		
-    		JSONArray commoditiesJSONObject = JSONArray.fromObject(indent.getCommoditiesJSON());
-    		System.out.println("[indent]"+indent);
+    		
+    		
     		if(commoditiesJSONObject.size()>0){
     			  for(int i=0;i<commoditiesJSONObject.size();i++){
     			 // 遍历 jsonarray 数组，把每一个对象转成 json 对象
@@ -75,22 +92,25 @@ public class IndentController {
     			// 得到 每个对象中的属性值
 	    			String name = job.get("name").toString();
 	    			int amount = Integer.parseInt(job.get("num").toString());
-	    			
+	    			double cost = Integer.parseInt(job.get("cost").toString());
 	    			Commodity commodity = new Commodity();
 	    			commodity.setName(name);
 	    			commodity.setAmount(amount);
+	    			commodity.setCost(cost);
     			    commodityService.save(commodity);
     			    indent.getCommodities().add(commodity);
     			  }
     			}
-    	
+    
     
     		indent.setCreator(user);
-    		indent.setToShop(shop);
+    		
     		indent.setCreateDate(new Date());
     		indent.setIndentNum(GenerateRandIndentNum.GenerateNum());
     		indent.setIndentType(IndentType.PURCHASE);
 			indent.setIndentStatus(IndentStatus.INIT);
+			
+			System.out.println("[indent]"+indent);
 			
 			indentService.save(indent);
             return new ExtAjaxResponse(true, "操作成功!");

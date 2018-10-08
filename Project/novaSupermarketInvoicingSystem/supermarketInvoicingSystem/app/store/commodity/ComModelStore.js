@@ -19,7 +19,7 @@ Ext.define('SupermarketInvoicingSystem.store.commodity.ComModelStore', {
 	pageSize: 5,
     proxy: {
         type: 'ajax',
-        url: '/commodity/findAll',
+        url: '/commodity/findAll1',
         reader : {  
             type : 'json',  
             rootProperty  : 'content',

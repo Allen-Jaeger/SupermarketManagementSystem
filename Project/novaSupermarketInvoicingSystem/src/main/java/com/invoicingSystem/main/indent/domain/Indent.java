@@ -155,7 +155,7 @@ public class Indent {
 
 	public void setCost(Double cost) {
 		this.cost = cost;
-		updateCost();
+	
 	}
 
 	public void setIndentStatus(IndentStatus indentStatus) {
