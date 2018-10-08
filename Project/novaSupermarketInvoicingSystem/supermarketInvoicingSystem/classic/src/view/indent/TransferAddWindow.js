@@ -17,61 +17,100 @@
     height: 535,
     width: 847,
     layout: 'absolute',
-    title: 'Add Transfer Window',
+    title: '添加调货工作单',
 
     items: [
         {
             xtype: 'textfield',
             x: 10,
             y: 10,
-            width: 201,
-            fieldLabel: 'CreatorId',
+            width: 200,
+            name: 'creatorId',
+            fieldLabel: '货单创建者',
+            id:'creatorId',
             value: 'Lzyyyy',
-            editable: false
+            disabled:true
+        },
+        {//虽说hidden 不知道会不会影响布局
+            xtype:'textfield',
+            hidden:'true',
+            id:'commoditiesJSON',
+            name:'commoditiesJSON'
         },
         {
             xtype: 'gridpanel',
+            id:'leftList',
+            name:'leftList',
+            //bind: '{leftList}',
             x: 10,
             y: 90,
             height: 250,
-            width: 201,
-			title: '',
+            width: 301,
 			scrollable: true,
-			selModel: {
-				type: 'checkboxmodel'
-			},
+			selModel: {type: 'checkboxmodel'},
             columns: [
                 {
-					header:'Name',
-                    dataIndex: 'Name',
+					header:'商品名',
+                    dataIndex: 'name',
 					sortable: true,
 					flex:1
                 },
                 {
-					header:'Num',
-					dataIndex: 'Num',
-					width: 80,
-                    text: 'Number'
+					header:'数量',
+					dataIndex: 'num',
+					width: 60
+                },
+                {
+                    header:'保质期',
+                    xtype: 'datecolumn',
+					dataIndex: 'date',
+                    format: 'Y/m/d',
+					width: 120
                 }
             ],
             viewConfig: {
                 width: 402
-            }
+            },
+            store: Ext.create('Ext.data.Store', {
+				fields: ['name', 'num','date'],
+				data: [{
+						name: 'coco',
+                        num: '2',
+                        date:'2018/9/9'
+					}, {
+						name: 'diner',
+                        num: '1',
+                        date:'2018/10/7'
+					}, {
+						name: 'coffee',
+                        num: '5',
+                        date:'2017/12/20 09:09:09'
+					}, {
+						name: 'rice',
+                        num: '20',
+                        date:'2018/5/25'
+					}
+				]
+			})
         },
         {
             xtype: 'textfield',
             x: 10,
             y: 50,
-            width: 201,
-            fieldLabel: 'ToPlace',
-            editable: false
+            width: 200,
+            name:'toPlace',
+			id:'toPlace',
+            fieldLabel: '送往:',
+            disabled:true
         },
         {
             xtype: 'combobox',
             x: 240,
             y: 10,
             width: 220,
-			fieldLabel: 'FromPlace',
+            fieldLabel: '货源:',
+            name:'fromPlace',
+			id:'fromPlace',
 			store: Ext.create('Ext.data.Store', {
 				fields: ['name', 'value'],
 				data: [{
@@ -91,12 +130,11 @@
 			}),
 			displayField: 'name',
 			valueField: 'value',
-			value: '全部',
+			value: 'WH1',
 			editable: false,
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: 'Select a warehouse...',
-			editable: false,
 			listeners: {
 				select: '...'
 			}
@@ -106,7 +144,9 @@
             x: 470,
             y: 10,
             width: 120,
-			fieldLabel: '',
+            reference:'searchFieldName', 
+			id:'commodityType',
+			hideLabel:true, 
 			store: Ext.create('Ext.data.Store', {
 				fields: ['name', 'value'],
 				data: [{
@@ -146,7 +186,6 @@
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: 'Select a type...',
-			editable: false,
 			listeners: {
 				select: '...'
 			}
@@ -156,7 +195,7 @@
             x: 600,
             y: 10,
             width: 160,
-            fieldLabel: 'KeyWord'
+            fieldLabel: '关键字'
         },
         {
             xtype: 'button',
@@ -166,29 +205,30 @@
         },
         {
             xtype: 'gridpanel',
-            x: 290,
+            x: 390,
             y: 50,
             height: 250,
-            width: 540,
-			title: '',
+            width: 440,
+            name:'rightList',
+            id:'rightList',
+            //bind: '{commodityList}',
 			scrollable: true,
-			selModel: {
-				type: 'checkboxmodel'
-			},
+			selModel: {type: 'checkboxmodel'},
             columns: [
 				{
-					header:'Name',
-                    dataIndex: 'Name',
+					header:'商品名',
+                    dataIndex: 'name',
 					sortable: true,
 					flex:1
                 },{
-					header:'Num',
-					dataIndex: 'Num',
+					header:'数量',
+					dataIndex: 'num',
 					width: 60
                 },{
                     xtype: 'datecolumn',
+                    header:'保质期',
                     dataIndex: 'date',
-					text: 'EXP Date',
+                    format: 'Y/m/d',
 					width: 180
                 }
             ]
@@ -198,66 +238,66 @@
             x: 10,
             y: 360,
             width: 820,
-            fieldLabel: 'Remark'
+            fieldLabel: '备注'
         },
         {
             xtype: 'button',
-            x: 220,
+            x: 320,
             y: 110,
             width: 60,
             iconCls: 'x-fa fa-arrow-left'
         },
         {
             xtype: 'button',
-            x: 220,
+            x: 320,
             y: 160,
             width: 60,
+            disabled: true,
             iconCls: 'x-fa fa-arrow-right'
         },
         {
             xtype: 'button',
-            x: 220,
+            x: 320,
             y: 220,
             width: 60,
             iconCls: 'x-fa fa-refresh'
         },
         {
             xtype: 'textfield',
-            x: 290,
+            x: 390,
             y: 310,
             width: 200,
-			fieldLabel: 'Cost',
+			fieldLabel: '成本',
 			editable: false
         },
         {
             xtype: 'button',
-            x: 500,
+            x: 600,
             y: 310,
-            text: 'Calculate'
+            text: '计算'
         },
         {
             xtype: 'button',
             x: 290,
             y: 450,
             width: 120,
-            text: 'Submit'
+            text: '提交'
         },
         {
             xtype: 'button',
             x: 430,
             y: 450,
             width: 120,
-			text: 'Close',
+			text: '关闭',
 			handler: function(btn) {
 				btn.up('window').close();
 			}
 		},
 		{
             xtype: 'checkboxfield',
-            x: 610,
-            y: 310,
-            fieldLabel: '',
-            boxLabel: 'Become a RETREAT Indent'
+            x: 220,
+            y: 50,
+            boxLabel: '残旧品处理货单!!!'
         }
     ]
 

@@ -43,7 +43,7 @@ public class TestWarehouse {
 	@Test
 	public void addKeeper() {
 		Warehouse warehouse = warehouseService.findById(1L);
-		warehouse.getKeepers().add(userService.findById(3L));
+		warehouse.setKeeper(userService.findById(3L));
 		warehouseService.save(warehouse);
 	}
 	

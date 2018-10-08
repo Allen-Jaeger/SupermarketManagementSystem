@@ -10,8 +10,29 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
     items: [{
             xtype: 'gridpanel',
             title: '管理用户信息',
+            iconCls: 'fa fa-street-view',
             bind: '{allUsers}',
             scrollable: true,
+            tbar: [{
+                xtype:'textfield',
+                // text: '工号、姓名、身份证',
+                // iconCls: 'fa fa-search',
+                // handler: 'quickSearch'
+                emptyText: '工号、姓名、身份证',
+                id:'tbarTextId',
+            },{
+                text: '过滤',
+                iconCls: 'fa fa-filter',
+                handler: 'filter'
+            },{
+                text: '取消过滤',
+                iconCls: 'fa fa-reply fa-filter',
+                handler: 'cancelFilter'
+            },'->',{
+                text: '添加用户',
+                iconCls: 'fa fa-user-plus',
+                handler: 'addUser'
+            }],
             columns: [
                 //{xtype: 'gridcolumn',width: 40,dataIndex: 'id',text: 'id'},
                 // {xtype: 'gridcolumn',width: 75,dataIndex: 'profile_pic',text: 'User',
@@ -29,8 +50,8 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
             	},
                 {xtype: 'gridcolumn',cls: 'content-column',dataIndex: 'iconUrl',text: '头像',flex: 1,
                     renderer: function(value) {
-                        return "<img src='" + value + "' alt='user Pic' height='40px' width='40px'>";
-                    }
+                        return "<img src='resources/usersIcon/" + value + "' alt='user Pic' height='40px' width='40px'>";
+                    },sortable:false,
                 },
                 {xtype: 'gridcolumn',cls: 'content-column',dataIndex: 'userStatus',text: '状态',flex: 1,
 		            renderer: function(val) {
@@ -45,7 +66,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
 				        return "<span style='color:"+color+";'>"+val+"</span>";
 		            }
 		        },
-                {xtype: 'gridcolumn',cls: 'content-column',dataIndex: 'depName',text: '所属部门',flex: 1},
+                {xtype: 'gridcolumn',cls: 'content-column',dataIndex: 'depName',text: '所属部门',flex: 1,sortable:false,},
                 {xtype: 'actioncolumn',cls: 'content-column', width: 120,dataIndex: 'bool',text: 'Actions',tooltip: 'edit ',
                     items: [
                         {xtype: 'button', iconCls: 'x-fa fa-pencil' ,handler: ''},

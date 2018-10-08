@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -105,7 +106,7 @@ public class User {
 		return shop;
 	}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.MERGE)
 	public Warehouse getWarehouse() {
 		return warehouse;
 	}
