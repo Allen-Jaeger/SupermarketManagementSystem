@@ -12,6 +12,7 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
 
 public interface IWarehouseService {
 	public void save(Warehouse warehouse);
+	public void delete(Long id);
 	public Warehouse findById(Long id);
 	public List<Map<String,String>> getAllForMapList();
 }

@@ -110,34 +110,36 @@
             width: 220,
             fieldLabel: '货源:',
             name:'fromPlace',
+            hiddenName: 'fromPlace',
 			id:'fromPlace',
-			store: Ext.create('Ext.data.Store', {
-				fields: ['name', 'value'],
-				data: [{
-						name: '仓库一',
-						value: 'WH1'
-					}, {
-						name: '仓库二',
-						value: 'WH2'
-					}, {
-						name: '仓库三',
-						value: 'WH3'
-					}, {
-						name: '仓库四',
-						value: 'WH4'
-					}
-				]
-			}),
+            store:{type:'wareStore'},
+
+            // store: Ext.create('Ext.data.Store', {
+			// 	fields: ['name', 'value'],
+			// 	data: [{
+			// 			name: '仓库一',
+			// 			value: 'WH1'
+			// 		}, {
+			// 			name: '仓库二',
+			// 			value: 'WH2'
+			// 		}, {
+			// 			name: '仓库三',
+			// 			value: 'WH3'
+			// 		}, {
+			// 			name: '仓库四',
+			// 			value: 'WH4'
+			// 		}
+			// 	]
+            // }),
+            
+            allowBlank:false,
 			displayField: 'name',
-			valueField: 'value',
-			value: 'WH1',
+			valueField: 'index',
 			editable: false,
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: 'Select a warehouse...',
-			listeners: {
-				select: '...'
-			}
+			listeners: {}
         },
         {
             xtype: 'combobox',

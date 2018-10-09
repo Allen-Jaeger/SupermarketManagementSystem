@@ -49,4 +49,11 @@ public class WarehouseService implements IWarehouseService {
 		return list;
 	}
 
+    @Override
+    public void delete(Long id) {
+        // TODO Auto-generated method stub
+        warehouseRepository.deleteById(id);
+    }
+
+
 }

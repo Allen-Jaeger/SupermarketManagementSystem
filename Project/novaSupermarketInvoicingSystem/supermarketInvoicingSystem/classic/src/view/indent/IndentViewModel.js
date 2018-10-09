@@ -4,6 +4,8 @@
 	stores:{
 		indentLists:{type:'indentStore'}, 
 		commodityList:{type:'commoditiesStore'}, 
-		leftList:{type:'leftStore'}}
+		leftList:{type:'leftStore'},
+		wareList:{type:'wareStore'}
+	}
 	}
 );
