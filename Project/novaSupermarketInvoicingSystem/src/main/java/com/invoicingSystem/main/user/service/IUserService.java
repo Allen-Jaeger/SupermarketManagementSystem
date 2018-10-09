@@ -16,6 +16,7 @@ public interface IUserService {
 	public void save(User user);
 	public User findById(Long id);
 	public User findByWorkNum(String workNum);
+	public User findByIdentity(String identity);
 	public String userLogin(User userTry, User user);
 	public Page<User> findAll(Pageable pageable);
 	public Page<User> findAll(Specification<User> spec,Pageable pageable);

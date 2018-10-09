@@ -75,4 +75,25 @@ public class EnumTool<E extends Enum<E>> {
 		}
 		return null;
 	}
+	
+	public Enum<?> getEnumFromInt(int index){
+		try {
+			//获取枚举的values()方法
+			Method m = this.clazz.getMethod("values", null);
+			//执行取得枚举型数组
+			objG = (Object[]) m.getReturnType().cast(m.invoke(null, null));
+			//获取枚举索引和getIndex方法
+			Method m_getIndex = this.clazz.getMethod("getIndex", null);
+			Object obj = null;
+			for(int i = 0; i < objG.length; i++) {
+				obj = m_getIndex.invoke(objG[i], null);
+				if(obj.equals(index)) {
+					return (Enum<?>) objG[i];
+				}
+			}
+		}catch(Exception e) { 
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

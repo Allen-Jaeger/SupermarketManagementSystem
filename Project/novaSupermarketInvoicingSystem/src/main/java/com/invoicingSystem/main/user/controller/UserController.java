@@ -1,14 +1,19 @@
 package com.invoicingSystem.main.user.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +49,8 @@ public class UserController {
 	IWarehouseService warehouseService;
 	@Autowired
 	IShopService shopService;
+	@Value("${application.user.default.password:123456}")
+	private String defPass; // 初始密码
 	/**
 	 * 	执行登陆
 	 * @param userDTO
@@ -203,6 +210,11 @@ public class UserController {
 		}
 		return et.allToMap();
 	}
+	/**
+	 * 	获取对应用户类型的对应部门
+	 * @param userT
+	 * @return
+	 */
 	@GetMapping(value = "/getDep")
 	public List<Map<String,String>> getDep(@RequestParam String userT){
 		EnumTool<UserType> et = new EnumTool<UserType>(UserType.KEEPER);
@@ -218,5 +230,84 @@ public class UserController {
 		}else {
 			return null;
 		}
+	}
+	
+	/**
+	 *  	用于验证工号或证件是否被使用
+	 * @param wk_num
+	 * @return
+	 */
+	@GetMapping(value="/valWorkNum")
+	public String valWorkNum(String wk_num){
+		String res = null;
+		if(null != userService.findByWorkNum(wk_num)) {
+			res = "该工号已经被占用";
+		}
+		return res;
+	}
+	@GetMapping(value="/valIdentity")
+	public String valIdentity(String identity){
+		String res = null;
+		if(null != userService.findByIdentity(identity)) {
+			res= "该证件号已经被录入";
+		}
+		return res;
+	}
+
+	/**
+	 * 返回一个未被使用的工号
+	 * @return
+	 */
+	@GetMapping(value="/randomWkNum")
+	public String getRandomWkNum(){
+		String res = null;
+		Random random = new Random();
+		while(true) {
+			res = "wk" + random.nextInt(9999999);
+			if(null == userService.findByWorkNum(res)){
+				break;
+			}
+		}
+		return res;
+	}
+	
+	/**
+	 * 		日期需要特别处理
+	 * @param userDTO
+	 * @param hireDateEx
+	 * @return
+	 */
+	@PostMapping(value="/addUser")
+	public String addUser(UserDTO userDTO, String hireDateEx, HttpServletRequest request, HttpServletResponse response) {
+		//权限控制
+		String userId = request.getSession().getAttribute("userId").toString();
+		User opUser = userService.findById(Long.parseLong(userId));
+		for(Privilege pr : opUser.getPrivileges()) {
+			if(pr.equals(Privilege.EDIT_USER)) {
+				User user = userDTO.toUserExDep();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					user.setHireDate(sdf.parse(hireDateEx));
+				response.getWriter().write("{\r\n" + 
+						"    \"success\": true,\r\n" + 
+						"    \"info\": \""+ "添加成功，初始密码为"+defPass +"\"\r\n" + 
+						"}");
+				} catch (Exception e) {
+					user.setHireDate(new Date());
+				}
+				userService.save(user);
+				return "添加成功，初始密码为"+defPass;
+			}
+		}
+		try {
+			response.getWriter().write("{\r\n" + 
+					"    \"success\": true,\r\n" + 
+					"    \"info\": \""+ "添加成功，初始密码为"+defPass +"\"\r\n" + 
+					"}");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "您没有执行此操作的权限";
 	}
 }

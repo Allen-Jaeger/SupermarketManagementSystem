@@ -131,4 +131,12 @@ public class UserService implements IUserService {
 		return userRepository.findAll(spec, pageable);
 	}
 
+	/**
+	 *   证件号查询
+	 */
+	@Override
+	public User findByIdentity(String identity) {
+		return userRepository.findByIdentity(identity);
+	}
+
 }

@@ -1,8 +1,15 @@
 package com.invoicingSystem.main.user.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.invoicingSystem.main.common.enum_tools.EnumTool;
 import com.invoicingSystem.main.user.util.Gender;
+import com.invoicingSystem.main.user.util.MD5Tool;
+import com.invoicingSystem.main.user.util.Privilege;
+import com.invoicingSystem.main.user.util.UserStatus;
+import com.invoicingSystem.main.user.util.UserType;
 
 /**
  * @author LiJuncong at 2018年9月22日
@@ -47,13 +54,34 @@ public class UserDTO {
 		}
 	}
 	
-	public User toUserObject() {
+	/**
+	 *	1. 转化为User 对象 addUser为设计
+	 *  2.不处理Dep
+	 * @return
+	 */
+	public User toUserExDep() {
 		User user = new User();
 		user.setWorkNum(workNum);
-		user.setPassword(password);
+		user.setUserStatus(UserStatus.NORMAL);//默认正常
+		EnumTool<?> et;
+		et = new EnumTool<UserType>(UserType.KEEPER);
+		user.setUserType((UserType) et.getEnumFromInt(Integer.parseInt(this.userType)));
+		
+		String[] priStr = privileges.split(",");
+		et = new EnumTool<Privilege>(Privilege.ALL);
+		Set<Privilege> pris = new HashSet<>();
+		for(String str:priStr) {
+			pris.add((Privilege) et.getEnumFromInt(Integer.parseInt(str)));
+		}
+		user.setPrivileges(pris);
+		user.setPassword(MD5Tool.ToMd5String(password));
 		user.setName(name);
-		user.setGender(Gender.getFromInt(Integer.parseInt(gender)));
-		user.setIconUrl(iconUrl);
+		user.setHireDate(hireDate);
+		
+		user.setGender(Gender.valueOf(gender));
+		if(null != iconUrl && !iconUrl.equals("")) {
+			user.setIconUrl(iconUrl);
+		}
 		user.setIdentity(identity);
 		return user;
 	}

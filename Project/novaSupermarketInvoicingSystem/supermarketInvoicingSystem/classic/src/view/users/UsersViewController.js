@@ -80,6 +80,9 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    modal:true,//设置是否添加遮罩
 		    items: [{  
 		    	xtype:'form',
+		    	url:'/addUser',
+		    	method:'POST',
+		    	id:'addUserFormId',
 		    	layout:'column',
 		    	defaults:{
 		    		xtype: 'textfield',
@@ -94,11 +97,39 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    	},{
 		    		fieldLabel:'身份证',
 		    		name:'identity',
+		    		id:'identityId',
+		    		regex: /(^\d{15}$)|(^\d{17}([0-9Xx])$)/,
+					regexText : '输入的身份证号码不符合规定！<br/>15位号码应全为数字<br/>18位号码末位可以为数字或X',
+		    		listeners:{
+		    			blur:function(){
+		    				var v = Ext.getCmp('identityId').getValue();
+		    				Ext.Ajax.request( {
+								url : '/valIdentity',
+								method : 'GET',
+								params : {
+									identity: v,
+								},
+								success:function(response, options) {
+									if ("" != response.responseText) {
+										// Ext.getCmp('identityId').setValue(response.responseText);
+										Ext.getCmp('IDEN_Tip').setHtml(response.responseText);
+										Ext.getCmp('IDEN_Tip').show();
+				        				Ext.getCmp('identityId').setValue("");
+									}else{
+										Ext.getCmp('IDEN_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>');
+									}
+								},
+								failure:function() {
+								}
+							});
+		    			}
+		    		},
 		    	},{
 		    		fieldLabel:'性别',
 		    		xtype: 'fieldcontainer',
 		    		defaultType: 'radiofield',
 		    		layout: 'hbox',
+		    		name:'gender',
 		    		defaults:{
 		    			margin:'0 10',
 		    		},
@@ -106,6 +137,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		                    boxLabel  : '<i style="color:#03D6D8; font-weight:bolder;" class="fa fa-mars"></i> 男',
 		                    name      : 'gender',
 		                    inputValue: 'MALE',
+		                    checked: true,
 		                    //id        : 'radio1'
 		                }, {
 		                    boxLabel  : '<i style="color:pink; font-weight:bolder;" class="fa fa-venus"></i> 女',
@@ -116,18 +148,56 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		            ],
 		    	},{
 		    		fieldLabel:'工号',
-		    		name:'',
+		    		name:'workNum',
+		    		id:'wkId',
+		    		regex:/^[a-zA-Z\d]+$/,
+		    		regexText:'输入值非法<br/>请输入字母和数字的组合',
+		    		listeners:{
+		    			blur:function(){
+		    				var wkNum = Ext.getCmp('wkId').getValue();
+		    				Ext.Ajax.request( {
+								url : '/valWorkNum',
+								method : 'GET',
+								params : {
+									wk_num: wkNum,
+								},
+								success:function(response, options) {
+									// console.log(this);									
+									if ("" != response.responseText) {
+										Ext.getCmp('WK_Tip').setHtml(response.responseText);
+										Ext.getCmp('WK_Tip').show();
+				        				Ext.getCmp('wkId').setValue("");
+									}else{
+										Ext.getCmp('WK_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>');
+									}
+								},
+								failure:function() {
+								}
+							});
+		    			}
+		    		},
 		    	},{
 		    		xtype:'button',
-		    		iconCls:'fa fa-random fa-lg',
-		    		width:'10',
+		    		text:'<i class = "fa fa-refresh fa-lg"></i>',
+		    		width:'8',
 		    		handler: function() {
-				        alert('You clicked the button!');
+		    			//后台获取
+				        Ext.Ajax.request( {
+							url : '/randomWkNum',
+							method : 'GET',
+							success:function(response, options) {
+								// console.log(this);
+				        		Ext.getCmp('wkId').setValue(response.responseText);
+				        		
+							},
+							failure:function() {
+							}
+						});
 				    },
 		    	},{
 		    		fieldLabel:'用户类型',
 		    		xtype: 'combobox',
-		    		name:'',
+		    		name:'userType',
 		    		// id:'userTId',
 		    		editable: false,
 		    		selectOnFocus: false, 
@@ -153,14 +223,14 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			        },
 		    	},{
 		    		fieldLabel:'雇佣日期',
-		    		name:'',
+		    		name:'hireDateEx',
     		        xtype: 'datefield',
-    		        format:'Y年M月d日',
+    		        format:'Y-M-d',
 			        maxValue: new Date(),
 		    	},{
 		    		fieldLabel:'所属部门',
 		    		xtype: 'combobox',
-		    		name:'',
+		    		name:'depName',
 		    		id:'depId',
 		    		editable: false,
 		    		selectOnFocus: false, 
@@ -172,6 +242,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    	},{
 		    		fieldLabel:'权限',
 		    		xtype: 'tagfield',
+		    		name:'privileges',
 		    		editable: false,
 		    		selectOnFocus: false, 
 		    		store: privilegeStore,
@@ -180,15 +251,51 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			        valueField: 'index',
 			        height:'400',
 		    	},{
-		    		width: 150,
-		    		xtype:'button',
-		    		text: '添加',
+
+		    		items:[{
+			    		width: 150,
+			    		xtype:'button',
+			    		text: '添加',
+			    		id:'addBtId',
+			    		handler: function(){
+			    			var form = this.up('form').getForm();
+							if (form.isValid()) {
+								form.submit({
+									success: function(form, action) {
+										Ext.Msg.alert('Success', action.result.message);
+									},
+									failure: function(form, action) {
+										Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');
+									}
+								});
+							}
+			    		},
+		    		},],
 		    		style:{
 		    			left: '50px',
 		    			// top:'300px',
-		    		}
+		    		},
+		    		xtype:'panel',
 		    	}],
 		    }],
+		    listeners:{
+		    	afterrender:function(){
+		    		Ext.create('Ext.tip.ToolTip', {
+					    target: 'wkId',
+					    html: '此项唯一',
+					    // autoHide:false,
+					    // closable: false,
+					    id:'WK_Tip'
+					});
+					Ext.create('Ext.tip.ToolTip', {
+					    target: 'identityId',
+					    html: '身份信息请保密，且精确输入',
+					    // autoHide:false,
+					    // closable: false,
+					    id:'IDEN_Tip'
+					});
+		    	}
+		    },
 		}).show();
     }
 });
