@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.domain.CommodityQueryDTO;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 
@@ -36,17 +37,17 @@ public class CommodityController {
 		@GetMapping
 		public Page<Commodity> findAll(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable){
 			Page<Commodity> page;
-			
+			commodityQueryDTO.setCommodityStatus(CommodityStatus.ALLOW);
 			page = CommodityService.findAll(CommodityQueryDTO.getWhereClause(commodityQueryDTO),pageable.getPageable());
 			
 			return page;
 		}
 		
 		 @RequestMapping(value = "/findAll1")
-		public Page<Commodity> findCommodities(Pageable pageable) {
-			
-			return CommodityService.findCommodities(pageable);
-		}
+			public Page<Commodity> findCommodities(ExtjsPageRequest pageable) {
+				
+				return CommodityService.findCommodities(CommodityStatus.ALLOW,pageable.getPageable());
+			}
 
 		
 }
