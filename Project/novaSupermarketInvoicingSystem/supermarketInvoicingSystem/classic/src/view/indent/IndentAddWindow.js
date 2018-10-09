@@ -1,21 +1,24 @@
 ﻿Ext.define('SupermarketInvoicingSystem.view.indent.IndentAddWindow', {
     extend:'Ext.window.Window',
   
-  alias: 'widget.indentAddWindow',
+    alias: 'widget.indentAddWindow',
+    id:'indentAddWindow',
     height: 550,
     minHeight: 350,
     minWidth: 300,
     width: 820,
     scrollable: true,
+    resizable:false,
     title: 'Add Indent Window',
     closable: true,
     constrain: true,
     defaultFocus: 'textfield',
     modal:true,
     layout: 'fit',
-     
-
-   defaults: {
+    maximizable:true,
+    listeners:{resize:'adaptMax',},
+    
+    defaults: {
         bodyPadding: 10
    },
     items: [{
@@ -42,8 +45,7 @@
       fieldLabel: '订单创建者',
       id:'creatorId',
       editable:false,
-      value:'wumao'
-    },
+     },
      {
           xtype:'textfield',
           hidden:'true',
@@ -68,11 +70,11 @@
           id:'leftList',
           name:'leftList',
           bind: '{leftList}',
-          width:200,
+          width:820*0.25,
           height:300,
           scrollable:true,
           selModel: {type: 'cellmodel'},
-          
+         
            plugins: {
               ptype: 'cellediting',
               clicksToEdit: 1,
@@ -96,7 +98,7 @@
           xtype:'panel',
           name:'middleButton',
           id:'middleButton',
-          width:50,
+          width:820*0.05,
           height:300,
           layout: {align: 'middle',pack: 'center',type: 'vbox'},        
           items:[
@@ -110,7 +112,7 @@
           xtype:'gridpanel',
           marginLeft:20,
           bind: '{commodityList}',
-          width:400,
+          width:820*0.5,
           height:300,
           paddingLeft:20,
           scrollable:true,
@@ -131,7 +133,6 @@
           ],
           tbar:[
           {xtype:'combobox', 
-            reference:'searchFieldName', 
             id:'commodityType',
             hideLabel:true, 
             store:Ext.create('Ext.data.Store', {
@@ -157,7 +158,7 @@
             triggerAction:'all',
             emptyText:'Select a state...',
             width:125, 
-            listeners:{select:'searchComboboxSelectChuang'}
+            listeners:{select:'searchByCommodityType'}
           }, 
             '-', 
           {

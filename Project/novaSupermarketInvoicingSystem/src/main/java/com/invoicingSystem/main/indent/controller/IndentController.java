@@ -67,13 +67,13 @@ public class IndentController {
 	private ICommodityService commodityService;
     
     @PostMapping
-    public @ResponseBody ExtAjaxResponse save(@RequestBody IndentDTO indentDTO) {
+    public @ResponseBody ExtAjaxResponse save(@RequestBody IndentDTO indentDTO,HttpServletRequest request) {
         try {
         	
         	Indent indent = new Indent();
         	
-        	User user = userService.findById(3L);
-    		//User user = userService.findById(session.getAttribute('userId'));
+        	String userId = request.getSession().getAttribute("userId").toString();
+    		User user = userService.findById(Long.parseLong(userId));
     		indent.setCommoditiesJSON(indentDTO.getCommoditiesJSON());
     		indent.setToShop(shopService.findById(indentDTO.getToShop()));
         	indent.setNote(indentDTO.getNote());
@@ -110,8 +110,6 @@ public class IndentController {
     		indent.setIndentType(IndentType.PURCHASE);
 			indent.setIndentStatus(IndentStatus.INIT);
 			
-			System.out.println("[indent]"+indent);
-			
 			indentService.save(indent);
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
@@ -145,13 +143,13 @@ public class IndentController {
     }
 
 	@GetMapping
-    public Page<Indent> findIndentByCreatorId(IndentQueryDTO indentQueryDTO,HttpSession session,ExtjsPageRequest pageable) 
+    public Page<Indent> findIndentByCreatorId(IndentQueryDTO indentQueryDTO,HttpServletRequest request,ExtjsPageRequest pageable) 
 	{
 		Page<Indent> page;
-		//String Creator_id = SessionUtil.getUserName(session);
-		//Long CreatorId = 9L;
-		if(true) {
-			//indentQueryDTO.setUserId(1L);
+		String userId = request.getSession().getAttribute("userId").toString();
+		User user = userService.findById(Long.parseLong(userId));
+		if(user != null) {
+			indentQueryDTO.setCreator(user);
 			//indentQueryDTO.setIndentType(IndentType.PURCHASE);//SessionUtil.getUserName(session)
 			
 			page = indentService.findAll(IndentQueryDTO.getWhereClause(indentQueryDTO), pageable.getPageable());
@@ -164,12 +162,15 @@ public class IndentController {
     
 	//订单表填充USERNAME
 	 @RequestMapping(value = "/userName")
-	    public @ResponseBody ExtAjaxResponse fillUserName(HttpSession session) 
+	    public @ResponseBody ExtAjaxResponse fillUserName(HttpServletRequest request) 
 	    {
 	    	try {
 	    		Map<String,String> map=new HashMap<String, String>();
-	    		//map.put("userName", SessionUtil.getUserName(session));
-	    		map.put("userName", "test");
+	    		String userId = request.getSession().getAttribute("userId").toString();
+	    		User user = userService.findById(Long.parseLong(userId));
+	    		String userName = user.getName();
+	    		map.put("userName", userName);
+	    		//map.put("userId", userId);
 	        	return new ExtAjaxResponse(true,map);
 			} catch (Exception e) {
 				return new ExtAjaxResponse(false,"登出失败!");

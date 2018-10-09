@@ -11,39 +11,23 @@
   var rightgridLength = rightgrid.getStore().getCount();
   for (var i = 0; i < rightgridrecord.length; i++) {
     var rowLength = leftgrid.getStore().data.length + 1;
-    
     rightgridrecord[i].data.cost2 = 0;
     leftgrid.store.insert(rowLength, rightgridrecord[i].data);
-
   }
-},updateSingleCost:function(val) { 
-   
-
-  //修改当前行
+}, updateSingleCost:function(val) {
   var grid = Ext.getCmp('leftList');
   var record = grid.getSelectionModel().getSelection();
   var num = record[0].get('num');
   var cost = record[0].data.cost;
-  record[0].set('cost2',val.value*cost);
-
-  //修改总价格
+  record[0].set('cost2', val.value * cost);
   var gridLength = grid.getStore().getCount();
-  var sum=0;
-  var money=0;
-  for(var i = 0;i<gridLength;i++){
-    sum+=grid.getStore().getAt(i).get('cost2');
-
+  var sum = 0;
+  var money = 0;
+  for (var i = 0; i < gridLength; i++) {
+    sum += grid.getStore().getAt(i).get('cost2');
   }
-    Ext.getCmp('cost').setValue(sum);
-
-}
-
-
-
-
-
-
-, cancelselectcommoditiesList:function(grid, rowIndex, colIndex) {
+  Ext.getCmp('cost').setValue(sum);
+}, cancelselectcommoditiesList:function(grid, rowIndex, colIndex) {
   var leftgridrecord = Ext.getCmp('leftList').getSelection();
   var rightgrid = Ext.getCmp('rightList');
   var leftgrid = Ext.getCmp('leftList');
@@ -52,14 +36,25 @@
     leftgrid.store.remove(leftgridrecord);
   }
 }, displayorhideright:function() {
+   var theWindow = Ext.getCmp('indentAddWindow');
   if (!Ext.getCmp('rightList').hidden) {
     Ext.getCmp('middleButton').hide();
     Ext.getCmp('rightList').hide();
-    Ext.getCmp('leftList').setWidth(650);
+    if(!theWindow.maximized)
+    {Ext.getCmp('leftList').setWidth(820*0.8);}
+      else {Ext.getCmp('leftList').setWidth(theWindow.width*0.87);}
   } else {
+    
+    if(!theWindow.maximized)
+    {Ext.getCmp('leftList').setWidth(820*0.25);
+      Ext.getCmp('rightList').setWidth(820*0.5);
+      }
+      else {Ext.getCmp('leftList').setWidth(theWindow.width*0.34);
+             Ext.getCmp('rightList').setWidth(theWindow.width*0.5);
+    }
     Ext.getCmp('middleButton').show();
     Ext.getCmp('rightList').show();
-    Ext.getCmp('leftList').setWidth(200);
+    
   }
 }, editBlock:function(grid, rowIndex, colIndex) {
   alert('1');
@@ -83,8 +78,37 @@
     }
   }});
   toolbar.up('panel').up('container').add(Ext.widget('transferAddWindow')).show();
-}, fillWithUserName:function(btn) {
-}, openEditWindow:function(grid, rowIndex, colIndex) {
+}, 
+fillWithUserName:function(btn) {
+ 
+}, adaptMax:function() {
+  var theWindow = Ext.getCmp('indentAddWindow');
+    if(theWindow.maximized) //缩小
+        {
+          if(Ext.getCmp('rightList').hidden)
+                 Ext.getCmp('leftList').setWidth(theWindow.width*0.8);
+               else
+                {Ext.getCmp('leftList').setWidth(theWindow.width*0.25);
+                  Ext.getCmp('rightList').setWidth(theWindow.width*0.5);
+            }
+        }
+      else //放大 打开
+        {
+          if(theWindow.width != 820){//排除打开
+              if(Ext.getCmp('rightList').hidden)
+                 Ext.getCmp('leftList').setWidth(theWindow.width*0.87);
+               else{
+                Ext.getCmp('leftList').setWidth(theWindow.width*0.34);
+                Ext.getCmp('rightList').setWidth(theWindow.width*0.5);
+                }
+          }
+        }
+ 
+}, 
+
+
+
+openEditWindow:function(grid, rowIndex, colIndex) {
   var record = grid.getStore().getAt(rowIndex);
   if (record) {
     if (record.data.indentStatus == 'INIT') {
@@ -97,12 +121,29 @@
   }
 }, openSearchWindow:function(toolbar, rowIndex, colIndex) {
   toolbar.up('panel').up('container').add(Ext.widget('indentSearchWindow')).show();
-}, searchComboboxSelectChuang:function(combo, record, index) {
+}, searchByCommodityType:function(combo, record, index) {
   var selectedCat = Ext.getCmp('commodityType').getValue();
   var store = Ext.getCmp('rightList').getStore();
   Ext.apply(store.proxy.extraParams, {commodityType:selectedCat});
   store.load({params:{start:0, limit:20, page:1}});
-}, submitAddForm:function(btn) {
+}, 
+  searchIndentByDateorNum:function(combo, record, index) {
+    //alert(record.data.name);
+      
+      var searchField = this.lookupReference('searchFieldName').getValue();
+      if(searchField==='indentTime'){
+        this.lookupReference('searchIndentNumField').hide();
+        this.lookupReference('searchDataFieldValue').show();
+        this.lookupReference('searchDataFieldValue2').show();
+      }else{
+        this.lookupReference('searchIndentNumField').show();
+        this.lookupReference('searchDataFieldValue').hide();
+        this.lookupReference('searchDataFieldValue2').hide();
+      }
+  }, 
+
+
+submitAddForm:function(btn) {
   var win = btn.up('window');
   var form = win.down('form');
   var record = Ext.create('SupermarketInvoicingSystem.model.indent.IndentModel');
@@ -110,10 +151,7 @@
   var leftgridData = leftgrid.getRange();
   var leftgridDataJson = [];
   for (var i in leftgridData) {
-    leftgridDataJson.push({'name':leftgridData[i].get('name'), 
-                'num':leftgridData[i].get('num'),
-                'cost':leftgridData[i].get('cost')
-              });
+    leftgridDataJson.push({'name':leftgridData[i].get('name'), 'num':leftgridData[i].get('num'), 'cost':leftgridData[i].get('cost')});
   }
   var removecharacter = Ext.encode(leftgridDataJson);
   Ext.getCmp('commoditiesJSON').setValue(removecharacter);
@@ -130,14 +168,18 @@
   var record = store.getById(values.id);
   record.set(values);
   win.close();
+
 }, quickSearch:function(btn) {
   var searchField = this.lookupReference('searchFieldName').getValue();
   var searchDataFieldValue = this.lookupReference('searchDataFieldValue').getValue();
   var searchDataFieldValue2 = this.lookupReference('searchDataFieldValue2').getValue();
+  var IndentNumFieldValue = this.lookupReference('searchIndentNumField').getValue();
   var store = btn.up('gridpanel').getStore();
-  Ext.apply(store.proxy.extraParams, {startTime:'', endTime:''});
+  Ext.apply(store.proxy.extraParams, {startDate:'', endDate:'',indentNum:''});
   if (searchField === 'indentTime') {
     Ext.apply(store.proxy.extraParams, {startTime:Ext.util.Format.date(searchDataFieldValue, 'Y/m/d H:i:s'), endTime:Ext.util.Format.date(searchDataFieldValue2, 'Y/m/d H:i:s')});
+  }else{
+    Ext.apply(store.proxy.extraParams, {indentNum:IndentNumFieldValue});
   }
   store.load({params:{start:0, limit:20, page:1}});
 }, submitSearchForm:function(btn) {
@@ -204,4 +246,3 @@
 }, cancelIndentProcess:function(grid, rowIndex, colIndex) {
   Ext.Msg.alert('Title', 'Cancel Indent Process');
 }});
-
