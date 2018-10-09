@@ -1,5 +1,10 @@
 package com.invoicingSystem.main.shop.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +33,21 @@ public class ShopService implements IShopService{
 	public Shop findById(Long id) {
 		// TODO Auto-generated method stub
 		return shopRepository.findById(id).get();
+	}
+
+	/* 
+	 * 前端显示
+	 */
+	@Override
+	public List<Map<String, String>> getAllForMapList() {
+		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
+		for(Shop shop : shopRepository.findAll()) {
+			Map<String,String> map = new HashMap<>();
+			map.put("index", shop.getId().toString());
+			map.put("name", shop.getName());
+			list.add(map);
+		}
+		return list;
 	}
 
 }

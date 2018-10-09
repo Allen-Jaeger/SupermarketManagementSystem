@@ -18,4 +18,10 @@ public class EnumTest{
 		EnumTool<UserStatus> et = new EnumTool<UserStatus>(UserStatus.LAIDOFF);
 		System.out.println(et.allToMap().toString());
 	}
+	
+	@Test
+	public void test2() {
+		EnumTool<UserStatus> et = new EnumTool<UserStatus>(UserStatus.LAIDOFF);
+		System.out.println(et.transToEnum("冻结的").toString());
+	}
 }

@@ -6,11 +6,11 @@ package com.invoicingSystem.main.user.util;
  */
 
 public enum UserType {
-	SUPER_MANAGER(1,"超级管理员"),
-	PURCHASER(2,"采购员"),
-	KEEPER(3,"仓库管理员"),
-	STORE_MANAGER(4,"门店管理员"),
-	SALESMAN(5,"销售员");
+	SUPER_MANAGER(0,"超级管理员"),
+	PURCHASER(1,"采购员"),
+	KEEPER(2,"仓库管理员"),
+	STORE_MANAGER(3,"门店管理员"),
+	SALESMAN(4,"销售员");
 	
 	private final int index;
 	private final String mean;
@@ -23,19 +23,6 @@ public enum UserType {
 	}
 	public int getIndex() {
 		return index;
-	}
-	public static String allToJsonString() {
-		StringBuffer strBf = new StringBuffer();
-//		strBf.append("{");
-		for(UserType userType: UserType.values()) {
-			strBf.append("{");
-			strBf.append(" \"index\": \""+userType.index+"\", ");
-			strBf.append(" \"name\": \""+userType.mean+"\" ");
-			strBf.append("},");
-		}
-		strBf.deleteCharAt(strBf.length()-1);
-//		strBf.append("}");
-		return strBf.toString();
 	}
 	
 //	已经利用反射+泛型实现

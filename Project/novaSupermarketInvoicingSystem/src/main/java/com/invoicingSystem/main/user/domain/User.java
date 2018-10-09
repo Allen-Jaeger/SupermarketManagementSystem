@@ -168,14 +168,14 @@ public class User {
 	 * 	将权限以字符串类型返回
 	 */
 	public String privilegeInString() {
-		StringBuffer str = new StringBuffer("");
+		StringBuffer str = new StringBuffer();
 		if(null == privileges) {
 			return "";
 		}
 		for(Privilege privilege : this.privileges) {
 			str.append(privilege.getChineseName()+",");
 		}
-		str.deleteCharAt(str.length()-1);
+		//str.deleteCharAt(str.lastIndexOf(","));
 		return str.toString();
 	}
 }

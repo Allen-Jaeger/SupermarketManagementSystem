@@ -19,21 +19,34 @@ var userTypeStore = Ext.create('Ext.data.Store', {
 
 var privilegeStore = Ext.create('Ext.data.Store', {
     fields: ['index', 'name'],
-    // data : [
-    //     {"index":"AL", "name":"Alabama"},
-    //     {"index":"AK", "name":"Alaska"},
-    //     {"index":"AZ", "name":"Arizona"}
-    // ],
 	proxy: {
 		type: 'ajax',
 		url: '/getEnum?enumName=Privilege',
 		reader: {
 			type: 'json',
-			//rootProperty: 'users'
 		},
 		method: 'GET',
 	},
 	autoLoad: true
+});
+var userT = "/getDep?userT=采购员";
+var depStore = Ext.create('Ext.data.Store', {
+    fields: ['index', 'name'],
+	proxy: {
+		type: 'ajax',
+		url: userT,
+		reader: {
+			type: 'json',
+		},
+		method: 'GET',
+	},
+
+	// data : [
+ //        {"index":"AL", "name": userT},
+ //        {"index":"AK", "name":"Alaska"},
+ //        {"index":"AZ", "name":"Arizona"}
+ //    ],
+	autoLoad: true,
 });
 
 Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
@@ -105,34 +118,64 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		fieldLabel:'工号',
 		    		name:'',
 		    	},{
+		    		xtype:'button',
+		    		iconCls:'fa fa-random fa-lg',
+		    		width:'10',
+		    		handler: function() {
+				        alert('You clicked the button!');
+				    },
+		    	},{
 		    		fieldLabel:'用户类型',
 		    		xtype: 'combobox',
 		    		name:'',
+		    		// id:'userTId',
 		    		editable: false,
+		    		selectOnFocus: false, 
 	    		    store: userTypeStore,
-				    queryMode: 'local',
+				    queryMode: 'remote',
 				    displayField: 'name',
 			        valueField: 'index',
+			        listeners:{
+			        	change:function(){
+			        		userT = this.getDisplayValue();
+			        		if (userT == "超级管理员" || userT == "采购员") {
+			        			Ext.getCmp('depId').setDisabled(true);
+								Ext.getCmp('depId').select (null);
+			        		}else{
+			        			Ext.getCmp('depId').setDisabled(false);
+			        		}
+			        		userT = "/getDep?userT=" + this.getDisplayValue();
+		        		    depStore.getProxy().url = userT;
+							depStore.load();
+			        		// console.log(userT);
+			        		// console.log(depStore);
+			        	},
+			        },
 		    	},{
 		    		fieldLabel:'雇佣日期',
 		    		name:'',
     		        xtype: 'datefield',
-    		        //format:'Y-M-d',
+    		        format:'Y年M月d日',
 			        maxValue: new Date(),
 		    	},{
 		    		fieldLabel:'所属部门',
 		    		xtype: 'combobox',
 		    		name:'',
+		    		id:'depId',
 		    		editable: false,
-	    		    store: userTypeStore,
-				    queryMode: 'local',
+		    		selectOnFocus: false, 
+	    		    store: depStore,
+				    queryMode: 'remote',
 				    displayField: 'name',
 			        valueField: 'index',
+			        allowBlank: true,
 		    	},{
 		    		fieldLabel:'权限',
 		    		xtype: 'tagfield',
+		    		editable: false,
+		    		selectOnFocus: false, 
 		    		store: privilegeStore,
-				    queryMode: 'local',
+				    queryMode: 'remote',
 				    displayField: 'name',
 			        valueField: 'index',
 			        height:'400',

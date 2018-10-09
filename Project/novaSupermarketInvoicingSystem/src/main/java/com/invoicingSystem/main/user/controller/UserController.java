@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.invoicingSystem.main.common.enum_tools.EnumTool;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.domain.UserDTO;
 import com.invoicingSystem.main.user.domain.UserQueryDTO;
@@ -27,6 +28,7 @@ import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.Privilege;
 import com.invoicingSystem.main.user.util.UserType;
+import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 
 /**
  * @author LiJuncong
@@ -38,7 +40,10 @@ import com.invoicingSystem.main.user.util.UserType;
 public class UserController {
 	@Autowired
 	IUserService userService;
-	
+	@Autowired
+	IWarehouseService warehouseService;
+	@Autowired
+	IShopService shopService;
 	/**
 	 * 	执行登陆
 	 * @param userDTO
@@ -180,6 +185,11 @@ public class UserController {
 		return new PageImpl<UserDTO>(userDtoList,res.getPageable(),res.getTotalElements());
 	}
 	
+	/**
+	 * 获取Enum的键值对集合
+	 * @param enumName
+	 * @return
+	 */
 	@GetMapping(value = "/getEnum")
 	public List<Map<String,String>> allUserType(@RequestParam String enumName) {
 		EnumTool<?> et = null;
@@ -192,5 +202,21 @@ public class UserController {
 			break;
 		}
 		return et.allToMap();
+	}
+	@GetMapping(value = "/getDep")
+	public List<Map<String,String>> getDep(@RequestParam String userT){
+		EnumTool<UserType> et = new EnumTool<UserType>(UserType.KEEPER);
+		UserType ut = (UserType) et.transToEnum(userT);
+		if(null == ut) {
+			return null;
+		}else if(ut.equals(UserType.KEEPER)) {
+			//返回仓库
+			return warehouseService.getAllForMapList();
+		}else if(ut.equals(UserType.STORE_MANAGER) || ut.equals(UserType.SALESMAN)) {
+			//返回商店
+			return shopService.getAllForMapList();
+		}else {
+			return null;
+		}
 	}
 }
