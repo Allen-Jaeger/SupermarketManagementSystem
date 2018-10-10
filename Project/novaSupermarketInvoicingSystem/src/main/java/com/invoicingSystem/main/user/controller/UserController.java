@@ -31,6 +31,7 @@ import com.invoicingSystem.main.user.domain.UserQueryDTO;
 import com.invoicingSystem.main.user.service.IUserService;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.Privilege;
+import com.invoicingSystem.main.user.util.UserStatus;
 import com.invoicingSystem.main.user.util.UserType;
 import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 
@@ -218,6 +219,11 @@ public class UserController {
 	 */
 	@GetMapping(value = "/getDep")
 	public List<Map<String,String>> getDep(@RequestParam String userT){
+		if(userT.equals("all")) {
+			List<Map<String,String>> list = warehouseService.getAllForMapList();
+			list.addAll(shopService.getAllForMapList());
+			return list;
+		}
 		EnumTool et = new EnumTool(UserType.class);
 		UserType ut = (UserType) et.transToEnum(userT);
 		if(null == ut) {
@@ -232,6 +238,14 @@ public class UserController {
 			return null;
 		}
 	}
+	/**
+	 * 获取所有可用部门
+	 * @return
+	 */
+	@GetMapping(value = "/getAllDep")
+	public List<Map<String,String>> getAllDep(){
+		return userService.getAllDep();
+	}
 	
 	/**
 	 *  	用于验证工号或证件是否被使用
@@ -239,18 +253,24 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value="/valWorkNum")
-	public String valWorkNum(String wk_num){
+	public String valWorkNum(String wk_num ,String wk_Id){
 		String res = null;
 		if(null != userService.findByWorkNum(wk_num)) {
 			res = "该工号已经被占用";
 		}
+		if(null != wk_Id && userService.findById(Long.parseLong(wk_Id)).getWorkNum().equals(wk_num)) {
+			res = null;
+		}
 		return res;
 	}
 	@GetMapping(value="/valIdentity")
-	public String valIdentity(String identity){
+	public String valIdentity(String identity, String wk_Id){
 		String res = null;
 		if(null != userService.findByIdentity(identity)) {
 			res= "该证件号已经被录入";
+		}
+		if(null != wk_Id && userService.findById(Long.parseLong(wk_Id)).getIdentity().equals(identity)) {
+			res = null;
 		}
 		return res;
 	}
@@ -300,5 +320,53 @@ public class UserController {
 		userService.buildDepartment(user, Long.parseLong(userDTO.getDepName()));
 		userService.save(user);
 		return "{\"success\":\"true\",\"info\":\"添加成功，初始密码为" +defPass+ "\"}";
+	}
+	/**
+	 * 使用复杂查询  与userService的getAllDep()对应
+	 * @return
+	 */
+	@GetMapping(value="/findDepAll")
+	public Page<UserDTO> findUsersByDep(ExtjsPageRequest pageRequest, String indexStr) {
+		//拆分 0:部门类型,1:id
+		UserQueryDTO userQ = new UserQueryDTO();
+		String[] strs = indexStr.split(",");
+		if(strs[0].equals("warehouse")) {
+			//仓库
+			userQ.setWarehouse(warehouseService.findById(Long.parseLong(strs[1])));
+		}else {
+			//门店
+			userQ.setShop(shopService.findById(Long.parseLong(strs[1])));
+		}
+		//	分页的User
+		Page<User> userPage = userService.findAll(UserQueryDTO.getWhereClause(userQ),pageRequest.getPageable());
+		//  将User转化成DTO类
+		List<UserDTO> userDtoList = new ArrayList<UserDTO>();
+		for(User user :userPage){
+			UserDTO dto = new UserDTO(user);
+			userDtoList.add(dto);
+		}
+		return new PageImpl<UserDTO>(userDtoList,userPage.getPageable(),userPage.getTotalElements());
+	}
+	/**
+	 * 重置密码
+	 * @param workNum
+	 * @return
+	 */
+	@GetMapping(value="/resetPassword")
+	public String resetPassword(String workNum) {
+		User user = userService.findByWorkNum(workNum);
+		user.setPassword(MD5Tool.ToMd5String(defPass));
+		userService.save(user);
+		return " {\"success\":\"true\",\"info\":\"初始密码为:"+defPass+"\" }";
+	}
+	@GetMapping(value="/changeStatus")
+	public String changeStatus(String workNum, String toStatus) {
+		User user = userService.findByWorkNum(workNum);
+		if(user.getUserStatus().equals(UserStatus.LAIDOFF)) {
+			return " {\"success\":\"false\" }";
+		}
+		user.setUserStatus(UserStatus.valueOf(toStatus));
+		userService.save(user);
+		return " {\"success\":\"true\" }";
 	}
 }

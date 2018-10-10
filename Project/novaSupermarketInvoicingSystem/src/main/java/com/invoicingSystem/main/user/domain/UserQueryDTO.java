@@ -21,7 +21,7 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
  * @author LiJuncong
  * at 2018年10月8日
  * 
- * 难点：权限是一个队列  怎么查询？
+ * 难点：权限是一个队列  怎么查询？//另外解决
  */
 
 public class UserQueryDTO {

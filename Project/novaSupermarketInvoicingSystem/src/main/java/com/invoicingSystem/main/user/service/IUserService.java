@@ -1,5 +1,8 @@
 package com.invoicingSystem.main.user.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -22,4 +25,6 @@ public interface IUserService {
 	public Page<User> findAll(Specification<User> spec,Pageable pageable);
 	public String writeIcon(User user, MultipartFile icon);
 	public void buildDepartment(User user, Long depId);
+	public List<Map<String,String>> getAllDep();
+
 }

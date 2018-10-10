@@ -3,6 +3,10 @@ package com.invoicingSystem.main.user.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,12 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.repository.IShopRepository;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.repository.IUserRepository;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.UserStatus;
 import com.invoicingSystem.main.user.util.UserType;
+import com.invoicingSystem.main.warehouse.domain.Warehouse;
 import com.invoicingSystem.main.warehouse.repository.IWarehouseRepository;
 
 /**
@@ -161,5 +167,25 @@ public class UserService implements IUserService {
 			user.setWarehouse(warehouseRepository.findById(depId).get());
 		}
 	}
-
+	
+	/* (non-Javadoc)
+	 * 返回(index,type),name
+	 */
+	@Override
+	public List<Map<String, String>> getAllDep() {
+		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
+		for(Warehouse wh : warehouseRepository.findAll()) {
+			Map<String,String> map = new HashMap<>();
+			map.put("index","warehouse,"+String.valueOf(wh.getId()));
+			map.put("name", "仓库:"+wh.getName());
+			list.add(map);
+		}
+		for(Shop shop : shopRepository.findAll()) {
+			Map<String,String> map = new HashMap<>();
+			map.put("index","shop,"+String.valueOf(shop.getId()));
+			map.put("name", "门店:"+shop.getName());
+			list.add(map);
+		}
+		return list;
+	}
 }
