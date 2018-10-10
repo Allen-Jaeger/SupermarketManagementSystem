@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.invoicingSystem.main.shop.repository.IShopRepository;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.repository.IUserRepository;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.UserStatus;
+import com.invoicingSystem.main.user.util.UserType;
+import com.invoicingSystem.main.warehouse.repository.IWarehouseRepository;
 
 /**
  * @author LiJuncong
@@ -26,6 +29,10 @@ import com.invoicingSystem.main.user.util.UserStatus;
 public class UserService implements IUserService {
 	@Autowired
 	IUserRepository userRepository;
+	@Autowired
+	IWarehouseRepository warehouseRepository;
+	@Autowired
+	IShopRepository shopRepository;
 	
 	@Override
 	public void save(User user) {
@@ -137,6 +144,22 @@ public class UserService implements IUserService {
 	@Override
 	public User findByIdentity(String identity) {
 		return userRepository.findByIdentity(identity);
+	}
+
+	/* (non-Javadoc)
+	 * 1.UserDao 返回的是部门ID	\\n
+	 * 2.建立部门 和 用户的关系
+	 */
+	@Override
+	public void buildDepartment(User user, Long depId) {
+		if(user.getUserType().equals(UserType.STORE_MANAGER)
+				|| user.getUserType().equals(UserType.SALESMAN)) {
+			//超市
+			user.setShop(shopRepository.findById(depId).get());
+		}else if(user.getUserType().equals(UserType.KEEPER)){
+			//仓库
+			user.setWarehouse(warehouseRepository.findById(depId).get());
+		}
 	}
 
 }

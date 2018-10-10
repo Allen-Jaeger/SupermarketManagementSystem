@@ -70,7 +70,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
     	Ext.data.StoreManager.lookup('usersStoreId').clearFilter();
     },
     addUser:function(){
-		Ext.create('Ext.window.Window', {
+		var win = Ext.create('Ext.window.Window', {
 		    title: '添加用户',
             iconCls: 'fa fa-user-plus',
 		    //height: 600,
@@ -116,7 +116,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 										Ext.getCmp('IDEN_Tip').show();
 				        				Ext.getCmp('identityId').setValue("");
 									}else{
-										Ext.getCmp('IDEN_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>');
+										Ext.getCmp('IDEN_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>可用');
 									}
 								},
 								failure:function() {
@@ -168,7 +168,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 										Ext.getCmp('WK_Tip').show();
 				        				Ext.getCmp('wkId').setValue("");
 									}else{
-										Ext.getCmp('WK_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>');
+										Ext.getCmp('WK_Tip').setHtml('<i style="color:white;" class="fa fa-check"></i>可用');
 									}
 								},
 								failure:function() {
@@ -207,25 +207,49 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			        valueField: 'index',
 			        listeners:{
 			        	change:function(){
+			        		//改变部门
 			        		userT = this.getDisplayValue();
 			        		if (userT == "超级管理员" || userT == "采购员") {
 			        			Ext.getCmp('depId').setDisabled(true);
-								Ext.getCmp('depId').select (null);
 			        		}else{
 			        			Ext.getCmp('depId').setDisabled(false);
 			        		}
+							Ext.getCmp('depId').select (null);
 			        		userT = "/getDep?userT=" + this.getDisplayValue();
 		        		    depStore.getProxy().url = userT;
 							depStore.load();
 			        		// console.log(userT);
-			        		// console.log(depStore);
+			        		// 改变默认权限
+			        		var role = this.getDisplayValue();
+			        		var privilegeStr = "";
+			        		switch(role){
+			        		case '超级管理员':
+			        			privilegeStr = "0,1,2,3,4,5,6,7,8,9,10,11";
+			        			break;
+			        		case '采购员':
+			        			privilegeStr = "6,8";
+			        			break;
+			        		case '仓库管理员':
+			        			privilegeStr = "4,6,8,10";
+			        			break;
+			        		case '门店管理员':
+			        			privilegeStr = "9,8,6,4,2,12";
+			        			break;
+			        		case '销售员':
+			        			privilegeStr = "9,12";
+			        			break;
+			        		default:
+			        			break;			        			
+			        		}
+			        		var priG = privilegeStr.split(",");
+			        		Ext.getCmp('privilegeTabsId').setValue(priG);
 			        	},
 			        },
 		    	},{
 		    		fieldLabel:'雇佣日期',
 		    		name:'hireDateEx',
     		        xtype: 'datefield',
-    		        format:'Y-M-d',
+    		        format:'Y-m-d',
 			        maxValue: new Date(),
 		    	},{
 		    		fieldLabel:'所属部门',
@@ -246,6 +270,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		editable: false,
 		    		selectOnFocus: false, 
 		    		store: privilegeStore,
+		    		id:'privilegeTabsId',
 				    queryMode: 'remote',
 				    displayField: 'name',
 			        valueField: 'index',
@@ -260,9 +285,14 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			    		handler: function(){
 			    			var form = this.up('form').getForm();
 							if (form.isValid()) {
+			    				win.mask('提交中...请稍后...','fa fa-cog');
 								form.submit({
 									success: function(form, action) {
-										Ext.Msg.alert('Success', action.result.message);
+										Ext.getCmp('WK_Tip').close();
+										Ext.getCmp('IDEN_Tip').close();
+								        win.close();
+								        Ext.Msg.alert('<i class= "fa fa-check"></i>添加成功', action.result.info);
+								        Ext.data.StoreManager.lookup('usersStoreId').reload();
 									},
 									failure: function(form, action) {
 										Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');

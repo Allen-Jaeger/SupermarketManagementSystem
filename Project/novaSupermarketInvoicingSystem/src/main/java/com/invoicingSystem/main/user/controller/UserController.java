@@ -1,7 +1,6 @@
 package com.invoicingSystem.main.user.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,8 +48,10 @@ public class UserController {
 	IWarehouseService warehouseService;
 	@Autowired
 	IShopService shopService;
-	@Value("${application.user.default.password:123456}")
-	private String defPass; // 初始密码
+	@Value("#{userDefaultBean.defPassword}")
+	private String defPass; // 初始密码	
+	@Value("#{userDefaultBean.defIconUrl}")
+	private String defIconUrl; // 头像
 	/**
 	 * 	执行登陆
 	 * @param userDTO
@@ -199,13 +200,13 @@ public class UserController {
 	 */
 	@GetMapping(value = "/getEnum")
 	public List<Map<String,String>> allUserType(@RequestParam String enumName) {
-		EnumTool<?> et = null;
+		EnumTool et = null;
 		switch(enumName) {
 		case "UserType":
-			et = new EnumTool<UserType>(UserType.KEEPER);
+			et = new EnumTool(UserType.class);
 			break;
 		case "Privilege":
-			et = new EnumTool<Privilege>(Privilege.ALL);
+			et = new EnumTool(Privilege.class);
 			break;
 		}
 		return et.allToMap();
@@ -217,7 +218,7 @@ public class UserController {
 	 */
 	@GetMapping(value = "/getDep")
 	public List<Map<String,String>> getDep(@RequestParam String userT){
-		EnumTool<UserType> et = new EnumTool<UserType>(UserType.KEEPER);
+		EnumTool et = new EnumTool(UserType.class);
 		UserType ut = (UserType) et.transToEnum(userT);
 		if(null == ut) {
 			return null;
@@ -278,36 +279,26 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value="/addUser")
-	public String addUser(UserDTO userDTO, String hireDateEx, HttpServletRequest request, HttpServletResponse response) {
-		//权限控制
-		String userId = request.getSession().getAttribute("userId").toString();
-		User opUser = userService.findById(Long.parseLong(userId));
-		for(Privilege pr : opUser.getPrivileges()) {
-			if(pr.equals(Privilege.EDIT_USER)) {
-				User user = userDTO.toUserExDep();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				try {
-					user.setHireDate(sdf.parse(hireDateEx));
-				response.getWriter().write("{\r\n" + 
-						"    \"success\": true,\r\n" + 
-						"    \"info\": \""+ "添加成功，初始密码为"+defPass +"\"\r\n" + 
-						"}");
-				} catch (Exception e) {
-					user.setHireDate(new Date());
-				}
-				userService.save(user);
-				return "添加成功，初始密码为"+defPass;
-			}
-		}
+	public String addUser(UserDTO userDTO, String hireDateEx) {
+		//权限控制 使用Aspect
+//		String userId = request.getSession().getAttribute("userId").toString();
+//		User opUser = userService.findById(Long.parseLong(userId));
+//		for(Privilege pr : opUser.getPrivileges()) {
+//			if(pr.equals(Privilege.EDIT_USER)) {
+//				
+//			}
+//		}
+		userDTO.setPassword(defPass);
+		userDTO.setIconUrl(defIconUrl);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			response.getWriter().write("{\r\n" + 
-					"    \"success\": true,\r\n" + 
-					"    \"info\": \""+ "添加成功，初始密码为"+defPass +"\"\r\n" + 
-					"}");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			userDTO.setHireDate(sdf.parse(hireDateEx));
+		} catch (Exception e) {
+			userDTO.setHireDate(new Date());
 		}
-		return "您没有执行此操作的权限";
+		User user = userDTO.toUserObject();
+		userService.buildDepartment(user, Long.parseLong(userDTO.getDepName()));
+		userService.save(user);
+		return "{\"success\":\"true\",\"info\":\"添加成功，初始密码为" +defPass+ "\"}";
 	}
 }

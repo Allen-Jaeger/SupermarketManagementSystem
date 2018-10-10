@@ -21,4 +21,5 @@ public interface IUserService {
 	public Page<User> findAll(Pageable pageable);
 	public Page<User> findAll(Specification<User> spec,Pageable pageable);
 	public String writeIcon(User user, MultipartFile icon);
+	public void buildDepartment(User user, Long depId);
 }

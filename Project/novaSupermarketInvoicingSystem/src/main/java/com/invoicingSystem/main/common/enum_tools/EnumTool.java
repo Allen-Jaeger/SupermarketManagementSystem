@@ -9,12 +9,12 @@ import java.util.Map;
 /**
  * @author LiJuncong
  * at 2018年10月8日
- * 
+ * new EnumTool(UserType.class);以传递类
  */
-public class EnumTool<E extends Enum<E>> {
+public class EnumTool {
 	private Class<?> clazz;
-	public EnumTool(E e) {
-		clazz = e.getClass();
+	public EnumTool(Class<?> ce) {
+		clazz = ce;
 	}
 
 	//枚举型的所有内容
@@ -22,7 +22,7 @@ public class EnumTool<E extends Enum<E>> {
 	/**
 	 * 要求枚举类型有getChineseName()和getIndex()方法
 	 * 
-	 * new EnumTool<UserType>(UserType.KEEPER);	->以一个实例声明Class
+	 * 
 	 * 
 	 * 使用泛型和反射  使得枚举型能够返回为HashMap队列
 	 * @return  List<Map<String,String>>
@@ -63,11 +63,9 @@ public class EnumTool<E extends Enum<E>> {
 			objG = (Object[]) m.getReturnType().cast(m.invoke(null, null));
 			//获取枚举索引和中文字符串方法
 			Method m_getMean = this.clazz.getMethod("getChineseName", null);
-			Object obj = null;
-			for(int i = 0; i < objG.length; i++) {
-				obj = m_getMean.invoke(objG[i], null);
-				if(obj.toString().equals(name)) {
-					return (Enum<?>) objG[i];
+			for(Object obj: objG) {
+				if(m_getMean.invoke(obj, null).toString().equals(name)) {
+					return (Enum<?>) obj;
 				}
 			}
 		}catch(Exception e) {
@@ -84,11 +82,9 @@ public class EnumTool<E extends Enum<E>> {
 			objG = (Object[]) m.getReturnType().cast(m.invoke(null, null));
 			//获取枚举索引和getIndex方法
 			Method m_getIndex = this.clazz.getMethod("getIndex", null);
-			Object obj = null;
-			for(int i = 0; i < objG.length; i++) {
-				obj = m_getIndex.invoke(objG[i], null);
-				if(obj.equals(index)) {
-					return (Enum<?>) objG[i];
+			for(Object obj: objG) {
+				if(m_getIndex.invoke(obj, null).equals(index)) {
+					return (Enum<?>) obj;
 				}
 			}
 		}catch(Exception e) { 

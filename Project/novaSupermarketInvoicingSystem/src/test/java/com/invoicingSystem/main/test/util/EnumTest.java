@@ -15,13 +15,13 @@ public class EnumTest{
 	@Test
 	public void test() {
 //		EnumTool<UserType> et = new EnumTool(UserType.KEEPER);
-		EnumTool<UserStatus> et = new EnumTool<UserStatus>(UserStatus.LAIDOFF);
+		EnumTool et = new EnumTool(UserStatus.class);
 		System.out.println(et.allToMap().toString());
 	}
 	
 	@Test
 	public void test2() {
-		EnumTool<UserStatus> et = new EnumTool<UserStatus>(UserStatus.LAIDOFF);
+		EnumTool et = new EnumTool(UserStatus.class);
 		System.out.println(et.transToEnum("冻结的").toString());
 	}
 }
