@@ -12,6 +12,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
+import com.invoicingSystem.main.warehouse.domain.Warehouse;
+import com.invoicingSystem.main.warehouse.repository.IWarehouseRepository;
 
 
 /**
@@ -28,10 +30,9 @@ import com.invoicingSystem.main.commodity.util.CommodityType;
  */
 public class CommodityQueryDTO {
 
-
-    
     private CommodityType commodityType;//商品类型
-   
+    private Warehouse warehouse;
+    private Long warehouseId;
     private CommodityStatus commodityStatus;
     
     public CommodityType getCommodityType() {
@@ -41,15 +42,29 @@ public class CommodityQueryDTO {
         this.commodityType = commodityType;
     }
     
+    public Long getWarehouseId() {
+        return warehouseId;
+    }
+    public void setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
+    }
     
-    
-    
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
     public CommodityStatus getCommodityStatus() {
 		return commodityStatus;
 	}
 	public void setCommodityStatus(CommodityStatus commodityStatus) {
 		this.commodityStatus = commodityStatus;
 	}
+	
+	
+	
 	@SuppressWarnings({ "serial"})
     public static Specification<Commodity> getWhereClause(final CommodityQueryDTO commodityQueryDTO) {
         return new Specification<Commodity>() {
@@ -68,13 +83,17 @@ public class CommodityQueryDTO {
                             commodityQueryDTO.getCommodityStatus()));
                 }
                 
-                
-                
-                
+                if (null!=commodityQueryDTO.getWarehouse()) {//在实体读取数据库是读取不到warehouse的相关信息...
+                    predicate.add(criteriaBuilder.equal(root.get("warehouse").as(Warehouse.class),
+                            commodityQueryDTO.getWarehouse()));
+                }
+
                 Predicate[] pre = new Predicate[predicate.size()];
                 return query.where(predicate.toArray(pre)).getRestriction();
             }
         };
     }
+
+
     
 }

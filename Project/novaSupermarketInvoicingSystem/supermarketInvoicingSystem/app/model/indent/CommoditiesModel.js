@@ -12,6 +12,7 @@
 		,{type:'string',name:'name'}
 		,{type:'string',name:'picUrl'}
 		,{type:'string',name:'commodityType'}
+		,{type:'date',name:'period'}//保质期
 	
 	]
 	,

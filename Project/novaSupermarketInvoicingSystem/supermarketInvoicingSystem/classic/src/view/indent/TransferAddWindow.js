@@ -56,13 +56,13 @@
                 },
                 {
 					header:'数量',
-					dataIndex: 'num',
+					dataIndex: 'amount',
 					width: 60
                 },
                 {
                     header:'保质期',
                     xtype: 'datecolumn',
-					dataIndex: 'date',
+					dataIndex: 'period',
                     format: 'Y/m/d',
 					width: 120
                 }
@@ -74,20 +74,20 @@
 				fields: ['name', 'num','date'],
 				data: [{
 						name: 'coco',
-                        num: '2',
-                        date:'2018/9/9'
+                        amount: '2',
+                        period:'2018/9/9'
 					}, {
 						name: 'diner',
-                        num: '1',
-                        date:'2018/10/7'
+                        amount: '1',
+                        period:'2018/10/7'
 					}, {
 						name: 'coffee',
-                        num: '5',
-                        date:'2017/12/20 09:09:09'
+                        amount: '5',
+                        period:'2017/12/20 09:09:09'
 					}, {
 						name: 'rice',
-                        num: '20',
-                        date:'2018/5/25'
+                        amount: '20',
+                        period:'2018/5/25'
 					}
 				]
 			})
@@ -143,8 +143,8 @@
 			editable: false,
 			queryMode: 'local',
 			triggerAction: 'all',
-			emptyText: 'Select a warehouse...',
-			listeners: {}
+			emptyText: '空仓库',
+			listeners: {select:'searchCommodities'}
         },
         {
             xtype: 'combobox',
@@ -188,14 +188,12 @@
 			}),	
 			displayField: 'name',
 			valueField: 'value',
-			value: '全部',
+			value: '',
 			editable: false,
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: 'Select a type...',
-			listeners: {
-				select: '...'
-			}
+			listeners: {select:'searchCommodities'}
         },
         {
             xtype: 'textfield',
@@ -218,7 +216,8 @@
             width: 440,
             name:'rightList',
             id:'rightList',
-            //bind: '{commodityList}',
+            // bind: '{wareList}',//右列表bind→Store
+            store:{type:'wareCommoditiesStore'},//...真的不知道为什么bind用不了 单开store却能用
 			scrollable: true,
 			selModel: {type: 'checkboxmodel'},
             columns: [
@@ -229,12 +228,12 @@
 					flex:1
                 },{
 					header:'数量',
-					dataIndex: 'num',
+					dataIndex: 'amount',
 					width: 60
                 },{
                     xtype: 'datecolumn',
                     header:'保质期',
-                    dataIndex: 'date',
+                    dataIndex: 'period',
                     format: 'Y/m/d',
 					width: 180
                 }
