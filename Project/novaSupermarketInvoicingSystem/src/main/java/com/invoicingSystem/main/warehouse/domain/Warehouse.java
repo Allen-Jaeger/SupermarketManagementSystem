@@ -32,8 +32,8 @@ public class Warehouse extends Department{
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> badCommodities = new ArrayList<Commodity>();
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="commodities")
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy="warehouse")
+	//@JoinColumn(name="commodities")
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
 	

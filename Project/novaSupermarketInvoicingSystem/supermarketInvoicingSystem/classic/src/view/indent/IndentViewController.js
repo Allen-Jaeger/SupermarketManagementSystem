@@ -164,6 +164,23 @@
       }
     });
   },
+  searchCommodities: function (combo, record, index) {
+    alert(record.data.name);
+    var selectedType = Ext.getCmp('commodityType').getValue();
+    var selectedWare = Ext.getCmp('fromPlace').getValue();
+    var store = Ext.getCmp('rightList').getStore();
+    Ext.apply(store.proxy.extraParams, {
+      commodityType: selectedType,
+      warehouseId:selectedWare
+    });
+    store.load({
+      params: {
+        start: 0,
+        limit: 20,
+        page: 1
+      }
+    });
+  },
   searchIndentByDateorNum: function (combo, record, index) {
     //alert(record.data.name);
 

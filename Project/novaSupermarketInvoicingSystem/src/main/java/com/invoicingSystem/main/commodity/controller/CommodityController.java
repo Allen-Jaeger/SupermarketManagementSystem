@@ -17,6 +17,7 @@ import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 
 
 
@@ -34,6 +35,9 @@ public class CommodityController {
 		@Autowired
 		private ICommodityService CommodityService;
 		
+		@Autowired
+        private IWarehouseService warehouseService;
+		
 		@GetMapping
 		public Page<Commodity> findAll(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable){
 			Page<Commodity> page;
@@ -48,6 +52,18 @@ public class CommodityController {
 				
 				return CommodityService.findCommodities(CommodityStatus.ALLOW,pageable.getPageable());
 			}
+		 
+		@RequestMapping(value = "/findWarehouse")
+        public Page<Commodity> findWareCommodities(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable) {
+		    
+		    Page<Commodity> page;
+            commodityQueryDTO.setCommodityStatus(CommodityStatus.SALEABLE);
+            System.out.println(commodityQueryDTO.getWarehouseId());
+            commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getWarehouseId()));
+            page = CommodityService.findAll(CommodityQueryDTO.getWhereClause(commodityQueryDTO),pageable.getPageable());
+            
+            return page;
+        }
 
 		
 }
