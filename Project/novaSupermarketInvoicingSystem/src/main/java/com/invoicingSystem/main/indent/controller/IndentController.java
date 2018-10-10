@@ -38,6 +38,7 @@ import com.invoicingSystem.main.indent.util.IndentType;
 import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.user.domain.User;
+import com.invoicingSystem.main.user.util.*;
 import com.invoicingSystem.main.user.service.IUserService;
 
 import net.sf.json.JSONArray;
@@ -169,11 +170,24 @@ public class IndentController {
 	    		String userId = request.getSession().getAttribute("userId").toString();
 	    		User user = userService.findById(Long.parseLong(userId));
 	    		String userName = user.getName();
+	    		String userPlace,placeId;
+	    		if(user.getUserType()==UserType.STORE_MANAGER){
+	    		    userPlace=user.getShop().getName();
+	    		    placeId=user.getShop().getId().toString();
+	    		}else if(user.getUserType()==UserType.KEEPER){
+	    		    userPlace=user.getWarehouse().getName();
+                    placeId=user.getWarehouse().getId().toString();
+	    		}else {
+	    		    userPlace="bucunzai";
+                    placeId="233";
+	    		}
 	    		map.put("userName", userName);
+	    		map.put("userPlace", userPlace);
+	    		map.put("placeId", placeId);
 	    		//map.put("userId", userId);
 	        	return new ExtAjaxResponse(true,map);
 			} catch (Exception e) {
-				return new ExtAjaxResponse(false,"登出失败!");
+				return new ExtAjaxResponse(false,"填充用户信息失败!");
 			}
 	    }
 	

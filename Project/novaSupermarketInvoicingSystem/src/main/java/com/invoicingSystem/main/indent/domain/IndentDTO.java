@@ -33,7 +33,7 @@ public class IndentDTO {
     private Date createDate; 
     private Long creator;
     private Long keeper; 
-    private Long manager;
+    private Long manager;//采购(超级管理员)
     private Long fromWarehouse; 
     private Long toWarehouse;
     private Long fromShop; 
@@ -46,6 +46,7 @@ public class IndentDTO {
     private String userId;//启动流程的用户ID
     //流程实例Id：用于关联流程引擎相关数据没有启动流程之前为""
     private String processInstanceId;
+    
 	public Long getId() {
 		return id;
 	}

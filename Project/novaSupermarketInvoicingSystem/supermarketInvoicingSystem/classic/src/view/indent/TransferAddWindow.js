@@ -28,10 +28,9 @@
             name: 'creatorId',
             fieldLabel: '货单创建者',
             id:'creatorId',
-            value: 'Lzyyyy',
             disabled:true
         },
-        {//虽说hidden 不知道会不会影响布局
+        {
             xtype:'textfield',
             hidden:'true',
             id:'commoditiesJSON',
@@ -102,6 +101,12 @@
 			id:'toPlace',
             fieldLabel: '送往:',
             disabled:true
+        },
+        {
+            xtype:'textfield',
+            hidden:'true',
+            id:'toPlaceId',
+            name:'toPlaceId'
         },
         {
             xtype: 'combobox',
