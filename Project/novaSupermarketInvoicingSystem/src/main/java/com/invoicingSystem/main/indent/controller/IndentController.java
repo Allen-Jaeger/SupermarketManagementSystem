@@ -161,9 +161,9 @@ public class IndentController {
 		return page;
     }
     
-	//订单表填充USERNAME
-	 @RequestMapping(value = "/userName")
-	    public @ResponseBody ExtAjaxResponse fillUserName(HttpServletRequest request) 
+	//订单表填充
+	 @RequestMapping(value = "/fillUser")
+	    public @ResponseBody ExtAjaxResponse fillUserMsg(HttpServletRequest request) 
 	    {
 	    	try {
 	    		Map<String,String> map=new HashMap<String, String>();
@@ -179,7 +179,7 @@ public class IndentController {
                     placeId=user.getWarehouse().getId().toString();
 	    		}else {
 	    		    userPlace="bucunzai";
-                    placeId="233";
+                    placeId="23333";
 	    		}
 	    		map.put("userName", userName);
 	    		map.put("userPlace", userPlace);

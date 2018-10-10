@@ -74,7 +74,7 @@
   },
   openAddPurchaseWindow: function (toolbar, rowIndex, colIndex) {
     Ext.Ajax.request({
-      url: 'indent/userName',
+      url: 'indent/fillUser',
       method: 'post',
       success: function (response, options) {
         var json = Ext.util.JSON.decode(response.responseText);
@@ -89,7 +89,7 @@
   },
   openAddTransferWindow: function (toolbar, rowIndex, colIndex) {
     Ext.Ajax.request({
-      url: 'indent/userName',
+      url: 'indent/fillUser',
       method: 'post',
       success: function (response, options) {
         var json = Ext.util.JSON.decode(response.responseText);
