@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.indent.domain.Indent;
+import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.warehouse.domain.Warehouse;
 
 /**
@@ -46,6 +47,7 @@ public class Commodity {
 	private Indent indent;
 	private int version;
 	private Warehouse warehouse;
+	private Shop shop;
 	
 
 	public Commodity() {
@@ -154,5 +156,15 @@ public class Commodity {
 
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
+    }
+
+    @ManyToOne
+    @JsonIgnore
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }

@@ -97,10 +97,12 @@
           Ext.getCmp('creatorId').setValue(json.map.userName);
           Ext.getCmp('toPlace').setValue(json.map.userPlace);
           Ext.getCmp('toPlaceId').setValue(json.map.placeId);
+          Ext.getCmp('toPlaceType').setValue(json.map.placeType);
         } else {
           Ext.getCmp('creatorId').setValue('');
           Ext.getCmp('toPlace').setValue('');
           Ext.getCmp('toPlaceId').setValue('');
+          Ext.getCmp('toPlaceType').setValue('');
         }
       }
     });
@@ -164,14 +166,20 @@
       }
     });
   },
-  searchCommodities: function (combo, record, index) {
-    alert(record.data.name);
+  searchRightCommodities: function (combo, record, index) {
+    //alert(record.data.name);按钮返回不了name....
     var selectedType = Ext.getCmp('commodityType').getValue();
     var selectedWare = Ext.getCmp('fromPlace').getValue();
+    var keyWord = Ext.getCmp('keyWord').getValue();
+    var searchType = 'Right';
+    var placeType = 'WARE';
     var store = Ext.getCmp('rightList').getStore();
     Ext.apply(store.proxy.extraParams, {
       commodityType: selectedType,
-      warehouseId:selectedWare
+      placeId:selectedWare,
+      name:keyWord,
+      searchType:searchType,
+      placeType:placeType
     });
     store.load({
       params: {
@@ -180,6 +188,30 @@
         page: 1
       }
     });
+  },
+  searchLeftCommodities: function (combo, record, index) {
+    var toPlaceId = Ext.getCmp('toPlaceId').getValue();
+    var placeType = Ext.getCmp('toPlaceType').getValue();
+    var searchType = 'Left';
+    var store = Ext.getCmp('leftList').getStore();
+    Ext.apply(store.proxy.extraParams, {
+      placeId:toPlaceId,
+      searchType:searchType,
+      placeType:placeType
+    });
+    store.load({
+      params: {
+        start: 0,
+        limit: 20,
+        page: 1
+      }
+    });
+  },
+  refreshBtn: function (combo, record, index) {
+    Ext.getCmp('commodityType').setValue('');
+    Ext.getCmp('keyWord').setValue('');
+    this.searchRightCommodities();
+    this.searchLeftCommodities();
   },
   searchIndentByDateorNum: function (combo, record, index) {
     //alert(record.data.name);

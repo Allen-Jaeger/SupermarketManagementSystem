@@ -1,8 +1,8 @@
-Ext.define('SupermarketInvoicingSystem.store.indent.WareCommoditiesStore', {
+Ext.define('SupermarketInvoicingSystem.store.indent.TransferLeftStore', {
     extend: 'Ext.data.ArrayStore',
-    alias: 'store.wareCommoditiesStore',
+    alias: 'store.transferLeftStore',
 	model:'SupermarketInvoicingSystem.model.indent.CommoditiesModel',
-    storeId: 'wareCommoditiesStore',
+    storeId: 'transferLeftStore',
 
 	proxy: {
 		type: 'rest',
@@ -17,7 +17,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.WareCommoditiesStore', {
 		},
 		simpleSortMode: true	//简单排序模式
 	},
-	//autoLoad: true,//自动更新暂且注释 响应点击事件看看
+	//autoLoad: true,//先不自动更新获取
 	autoSync: true,
 	remoteSort: true,//全局(远程)排序
 	pageSize: 15,

@@ -1,13 +1,8 @@
 package com.invoicingSystem.main.commodity.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +10,8 @@ import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.domain.CommodityQueryDTO;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
-import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 
 
@@ -38,6 +33,9 @@ public class CommodityController {
 		@Autowired
         private IWarehouseService warehouseService;
 		
+		@Autowired
+        private IShopService shopService;
+		
 		@GetMapping
 		public Page<Commodity> findAll(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable){
 			Page<Commodity> page;
@@ -53,13 +51,40 @@ public class CommodityController {
 				return CommodityService.findCommodities(CommodityStatus.ALLOW,pageable.getPageable());
 			}
 		 
-		@RequestMapping(value = "/findWarehouse")
-        public Page<Commodity> findWareCommodities(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable) {
+		@RequestMapping(value = "/findCommodities")
+        public Page<Commodity> findCommodities(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable) {
 		    
 		    Page<Commodity> page;
             commodityQueryDTO.setCommodityStatus(CommodityStatus.SALEABLE);
-            System.out.println(commodityQueryDTO.getWarehouseId());
-            commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getWarehouseId()));
+            if(commodityQueryDTO.getSearchType().equals("Right"))//右列表查询
+            {
+                System.out.println("Right:"+commodityQueryDTO.getPlaceType()+":"+commodityQueryDTO.getPlaceId());
+                commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getPlaceId()));
+//                commodityQueryDTO.setCommodityType(commodityQueryDTO.getCommodityType());
+//                commodityQueryDTO.setPlaceId(commodityQueryDTO.getPlaceId());
+//                commodityQueryDTO.setName(commodityQueryDTO.getName());
+//                commodityQueryDTO.setPlaceType(commodityQueryDTO.getPlaceType());
+                commodityQueryDTO.setShop(null);
+            }
+            else//左列表查询
+            {
+                if(commodityQueryDTO.getPlaceType().equals("WARE")) {//查询的是仓库
+                    System.out.println("Left:"+commodityQueryDTO.getPlaceType()+":"+commodityQueryDTO.getPlaceId());
+                    commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getPlaceId()));
+                    commodityQueryDTO.setShop(null);
+                }
+                else if("SHOP"==commodityQueryDTO.getPlaceType()){//查询的是超市
+                    System.out.println("Left:"+commodityQueryDTO.getPlaceType()+":"+commodityQueryDTO.getPlaceId());
+                    commodityQueryDTO.setShop(shopService.findById(commodityQueryDTO.getPlaceId()));
+                    commodityQueryDTO.setWarehouse(null);
+                }
+                else {
+                    
+                }
+                commodityQueryDTO.setCommodityType(null);
+                commodityQueryDTO.setName(null);
+                
+            }
             page = CommodityService.findAll(CommodityQueryDTO.getWhereClause(commodityQueryDTO),pageable.getPageable());
             
             return page;

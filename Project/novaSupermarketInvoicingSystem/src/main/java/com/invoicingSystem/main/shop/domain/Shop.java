@@ -27,8 +27,8 @@ import com.invoicingSystem.main.util.Location;
 public class Shop extends Department{
 
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="shop_commodities")
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy="shop")
+	//@JoinColumn(name="shop_commodities")
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> Commodities = new ArrayList<Commodity>();
 	

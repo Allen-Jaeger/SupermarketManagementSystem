@@ -170,21 +170,25 @@ public class IndentController {
 	    		String userId = request.getSession().getAttribute("userId").toString();
 	    		User user = userService.findById(Long.parseLong(userId));
 	    		String userName = user.getName();
-	    		String userPlace,placeId;
+	    		String userPlace,placeId,placeType;
 	    		if(user.getUserType()==UserType.STORE_MANAGER){
 	    		    userPlace=user.getShop().getName();
 	    		    placeId=user.getShop().getId().toString();
+	    		    placeType="SHOP";
 	    		}else if(user.getUserType()==UserType.KEEPER){
 	    		    userPlace=user.getWarehouse().getName();
                     placeId=user.getWarehouse().getId().toString();
+                    placeType="WARE";
 	    		}else {
 	    		    userPlace="bucunzai";
                     placeId="23333";
+                    placeType="NONE";
 	    		}
 	    		map.put("userName", userName);
 	    		map.put("userPlace", userPlace);
 	    		map.put("placeId", placeId);
-	    		//map.put("userId", userId);
+	    		map.put("placeType", placeType);
+	    		System.out.println(userName+","+userPlace+","+placeId+","+placeType);
 	        	return new ExtAjaxResponse(true,map);
 			} catch (Exception e) {
 				return new ExtAjaxResponse(false,"填充用户信息失败!");

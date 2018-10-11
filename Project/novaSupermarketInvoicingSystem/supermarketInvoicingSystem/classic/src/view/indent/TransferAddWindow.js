@@ -45,7 +45,8 @@
             y: 90,
             height: 250,
             width: 301,
-			scrollable: true,
+            scrollable: true,
+            store:{type:'transferLeftStore'},
 			selModel: {type: 'checkboxmodel'},
             columns: [
                 {
@@ -69,28 +70,30 @@
             ],
             viewConfig: {
                 width: 402
-            },
-            store: Ext.create('Ext.data.Store', {
-				fields: ['name', 'num','date'],
-				data: [{
-						name: 'coco',
-                        amount: '2',
-                        period:'2018/9/9'
-					}, {
-						name: 'diner',
-                        amount: '1',
-                        period:'2018/10/7'
-					}, {
-						name: 'coffee',
-                        amount: '5',
-                        period:'2017/12/20 09:09:09'
-					}, {
-						name: 'rice',
-                        amount: '20',
-                        period:'2018/5/25'
-					}
-				]
-			})
+            }
+            
+            // ,store: Ext.create('Ext.data.Store', {
+			// 	fields: ['name', 'num','date'],
+			// 	data: [{
+			// 			name: 'coco',
+            //             amount: '2',
+            //             period:'2018/9/9'
+			// 		}, {
+			// 			name: 'diner',
+            //             amount: '1',
+            //             period:'2018/10/7'
+			// 		}, {
+			// 			name: 'coffee',
+            //             amount: '5',
+            //             period:'2017/12/20 09:09:09'
+			// 		}, {
+			// 			name: 'rice',
+            //             amount: '20',
+            //             period:'2018/5/25'
+			// 		}
+			// 	]
+            // })
+            
         },
         {
             xtype: 'textfield',
@@ -107,6 +110,12 @@
             hidden:'true',
             id:'toPlaceId',
             name:'toPlaceId'
+        },
+        {
+            xtype:'textfield',
+            hidden:'true',
+            id:'toPlaceType',
+            name:'toPlaceType'
         },
         {
             xtype: 'combobox',
@@ -144,7 +153,7 @@
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: '空仓库',
-			listeners: {select:'searchCommodities'}
+			listeners: {select:'searchRightCommodities'}
         },
         {
             xtype: 'combobox',
@@ -193,10 +202,11 @@
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: 'Select a type...',
-			listeners: {select:'searchCommodities'}
+			listeners: {select:'searchRightCommodities'}
         },
         {
             xtype: 'textfield',
+            id:'keyWord',
             x: 600,
             y: 10,
             width: 160,
@@ -204,9 +214,11 @@
         },
         {
             xtype: 'button',
+            name:'SearchButton',
             x: 770,
             y: 10,
-            text: 'Search'
+            text: 'Search',
+            handler: 'searchRightCommodities'
         },
         {
             xtype: 'gridpanel',
@@ -266,7 +278,8 @@
             x: 320,
             y: 220,
             width: 60,
-            iconCls: 'x-fa fa-refresh'
+            iconCls: 'x-fa fa-refresh',
+            handler: 'refreshBtn'
         },
         {
             xtype: 'textfield',
