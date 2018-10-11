@@ -73,7 +73,9 @@ public class UserDTO {
 			pris.add((Privilege) et.getEnumFromInt(Integer.parseInt(str)));
 		}
 		user.setPrivileges(pris);
-		user.setPassword(MD5Tool.ToMd5String(password));
+		if(null != password) {
+			user.setPassword(MD5Tool.ToMd5String(password));
+		}
 		user.setName(name);
 		user.setHireDate(hireDate);
 		user.setGender(Gender.valueOf(gender));

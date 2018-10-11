@@ -15,4 +15,5 @@ public interface IWarehouseService {
 	public void delete(Long id);
 	public Warehouse findById(Long id);
 	public List<Map<String,String>> getAllForMapList();
+	public Warehouse findByName(String name);
 }

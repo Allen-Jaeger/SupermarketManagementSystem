@@ -153,8 +153,8 @@ public class UserService implements IUserService {
 	}
 
 	/* (non-Javadoc)
-	 * 1.UserDao 返回的是部门ID	\\n
-	 * 2.建立部门 和 用户的关系
+	 * 1.UserDto 返回的是部门ID	\\n
+	 * 2.根据用户类型=建立warhouse或shop 的关系
 	 */
 	@Override
 	public void buildDepartment(User user, Long depId) {

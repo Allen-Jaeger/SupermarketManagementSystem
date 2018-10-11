@@ -50,4 +50,9 @@ public class ShopService implements IShopService{
 		return list;
 	}
 
+	@Override
+	public Shop findByName(String name) {
+		return shopRepository.findByName(name);
+	}
+
 }

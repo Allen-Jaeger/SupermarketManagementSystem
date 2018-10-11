@@ -82,8 +82,13 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 							toStatus: sta,
 							workNum: data.workNum,
 						},
-						success:function(response, options) {							
-							Ext.data.StoreManager.lookup('usersStoreId').reload();
+						success:function(response, options) {	
+							var res = Ext.decode(response.responseText);
+							if (res.success == 'false') {
+								Ext.Msg.alert('<i class= "fa fa-warning"></i>', "冻结/解冻失败,该员工可能已被辞退");
+							}else{				
+								Ext.data.StoreManager.lookup('usersStoreId').reload();
+							}
 						},
 						failure:function() {
 							Ext.Msg.alert('<i class= "fa fa-warning"></i>', "冻结/解冻失败,该员工可能已被辞退");
@@ -347,6 +352,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		id:'depId',
 		    		editable: false,
 		    		selectOnFocus: false, 
+		    		tooltip: '请先选择用户类型',
 	    		    store: depStore,
 				    queryMode: 'remote',
 				    displayField: 'name',
@@ -377,8 +383,9 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			    				win.mask('提交中...请稍后...','fa fa-cog');
 								form.submit({
 									success: function(form, action) {
-										Ext.getCmp('WK_Tip').close();
-										Ext.getCmp('IDEN_Tip').close();
+										Ext.getCmp('WK_Tip').destroy();
+										Ext.getCmp('IDEN_Tip').destroy();
+										Ext.getCmp('identityId').destroy();
 								        win.close();
 								        Ext.Msg.alert('<i class= "fa fa-check"></i>添加成功', action.result.info);
 								        Ext.data.StoreManager.lookup('usersStoreId').reload();
@@ -417,6 +424,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    	close:function(){
 					Ext.getCmp('WK_Tip').destroy();
 					Ext.getCmp('IDEN_Tip').destroy();
+					Ext.getCmp('identityId').destroy();
 		    	}
 		    },
 		}).show();
@@ -433,7 +441,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    modal:true,//设置是否添加遮罩
 		    items: [{  
 		    	xtype:'form',
-		    	url:'/editUser',
+		    	url:'/updateUser',
 		    	method:'POST',
 		    	layout:'column',
 		    	defaults:{
@@ -444,6 +452,10 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		width: 300,
 		    	},
 		    	items:[{
+		    		xtype:'hiddenfield',
+		    		name:'id',
+		    		value:data.id,
+		    	},{
 		    		fieldLabel:'姓名',
 		    		name:'name',
 		    		value:data.name,
@@ -565,7 +577,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		fieldLabel:'用户类型',
 		    		xtype: 'combobox',
 		    		name:'userType',
-		    		value:data.userType,
+		    		//emptyText:data.userType,
 		    		editable: false,
 		    		selectOnFocus: false, 
 	    		    store: userTypeStore,
@@ -573,6 +585,10 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 				    displayField: 'name',
 			        valueField: 'index',
 			        listeners:{
+			        	afterrender:function(){
+			        		var value = userTypeStore.findRecord('name',data.userType).data.index;
+			        		this.setValue(value);
+			        	},
 			        	change:function(){
 			        		//改变部门
 			        		userT = this.getDisplayValue();
@@ -582,6 +598,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			        			Ext.getCmp('depId').setDisabled(false);
 			        		}
 							Ext.getCmp('depId').select (null);
+							Ext.getCmp('depId').setEmptyText(null);
 			        		userT = "/getDep?userT=" + this.getDisplayValue();
 		        		    depStore.getProxy().url = userT;
 							depStore.load();
@@ -627,11 +644,22 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		editable: false,
 		    		selectOnFocus: false, 
 		    		emptyText: data.depName,
+		    		tooltip: '请先选择用户类型',
 	    		    store: depStore,
 				    queryMode: 'remote',
 				    displayField: 'name',
-			        valueField: 'index',
+			        valueField: 'name',
 			        allowBlank: true,
+			    //     listeners:{
+			    //     	afterrender:function(){
+       //            			if (''==data.depName) {return;}
+       //            			userT = "/getDep?userT="+data.userType;
+							// depStore.getProxy().url = userT;
+							// depStore.load();
+			    //     		var value = depStore.findRecord('name',data.depName).data.index;
+			    //     		this.setValue(value);
+			    //     	},
+			    //     },
 		    	},{
 		    		fieldLabel:'权限',
 		    		xtype: 'tagfield',
@@ -651,11 +679,11 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 						console.log(priG);
 						var vStr = "";
 						for (var i = 0; i < priG.length; i++) {
-							if(null == privilegeStore.queryRecords('name',priG[i])[0]){
+							if(null == privilegeStore.findRecord('name',priG[i])){
 								this.setValue(vStr);
 								return;
 							}
-							vStr += privilegeStore.queryRecords('name',priG[i])[0].data.index;
+							vStr += privilegeStore.findRecord('name',priG[i]).data.index;
 							if("" != priG[i+1]){
 								vStr += ",";
 							}else{
@@ -680,23 +708,74 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 			    				win.mask('提交中...请稍后...','fa fa-cog');
 								form.submit({
 									success: function(form, action) {
-										Ext.getCmp('WK_Tip').close();
-										Ext.getCmp('IDEN_Tip').close();
+										Ext.data.StoreManager.lookup('usersStoreId').reload();
+										Ext.getCmp('WK_Tip').destroy();
+										Ext.getCmp('identityId').destroy();
+										Ext.getCmp('IDEN_Tip').destroy();
+								        Ext.Msg.alert('<i class= "fa fa-check"></i>更新', "更新完成");
 								        win.close();
-								        Ext.Msg.alert('<i class= "fa fa-check"></i>更新', action.result.info);
-								        Ext.data.StoreManager.lookup('usersStoreId').reload();
 									},
 									failure: function(form, action) {
 										Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');
 									}
 								});
-							}
-			    		},
+							}			    		
+						},
 		    		},{
 			    		width: 100,
 			    		xtype:'button',
-			    		text: '开除',
-			    		Cls:'fireBt',
+			    		text: '开除 / 重用',
+			    		cls:'ljc-bg-red',
+			    		handler:function(){
+			    			var sta = 'LAIDOFF';
+			    			var tip = "您确定要<i style='color:red'>开除</i> 此用户吗？<br />"
+			    						+"姓名："+data.name+"<br />工号："+data.workNum;
+			    			if (data.userStatus == '被解雇的') {
+								tip = "您确定要<i style='color:green'>重用</i> 此用户吗？<br />"
+			    						+"姓名："+data.name+"<br />工号："+data.workNum;
+			    				sta = 'NORMAL';
+			    			}
+
+			    			Ext.create('Ext.window.Window', {
+							    title: '<i class= "fa fa-warning"></i> 注意',
+							    bodyPadding: 20,
+							    closable: false,
+							    modal:true,
+							    defaults:{
+							    	xtype:'button',
+							    	margin:'10',
+							    },
+							    items:[{
+							    	xtype: 'box',
+							    	html: tip,
+							    },{
+							    	text:'确定',
+							    	handler:function(){
+					    				Ext.Ajax.request( {
+											url : 'changeStatus',
+											method : 'GET',
+											params : {
+												toStatus: sta,
+												workNum: data.workNum,
+											},
+											success:function(response, options) {							
+												Ext.data.StoreManager.lookup('usersStoreId').reload();
+											},
+											failure:function() {
+												Ext.Msg.alert('<i class= "fa fa-warning"></i>', "操作失败");
+											}
+										});
+										this.up('window').close();			    		
+						    		}
+							    },{
+							    	text:'取消',
+							    	handler:function(){
+							    		this.up('window').close();
+						    		}
+							    }],
+							}).show();
+							this.up('window').close();
+			    		}
 		    		}],
 		    		style:{
 		    			left: '50px',
@@ -710,8 +789,6 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    		Ext.create('Ext.tip.ToolTip', {
 					    target: 'wkId',
 					    html: '此项唯一',
-					    // autoHide:false,
-					    // closable: false,
 					    id:'WK_Tip'
 					});
 					Ext.create('Ext.tip.ToolTip', {
@@ -725,6 +802,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.UsersViewController', {
 		    	close:function(){
 					Ext.getCmp('WK_Tip').destroy();
 					Ext.getCmp('IDEN_Tip').destroy();
+					Ext.getCmp('identityId').destroy();
 		    	}
 		    },
 		}).show();

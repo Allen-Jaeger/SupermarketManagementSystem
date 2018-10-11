@@ -55,5 +55,10 @@ public class WarehouseService implements IWarehouseService {
         warehouseRepository.deleteById(id);
     }
 
+	@Override
+	public Warehouse findByName(String name) {
+		return warehouseRepository.findByName(name);
+	}
+
 
 }

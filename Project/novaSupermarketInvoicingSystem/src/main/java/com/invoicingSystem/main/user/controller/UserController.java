@@ -362,10 +362,41 @@ public class UserController {
 	@GetMapping(value="/changeStatus")
 	public String changeStatus(String workNum, String toStatus) {
 		User user = userService.findByWorkNum(workNum);
-		if(user.getUserStatus().equals(UserStatus.LAIDOFF)) {
+		if(toStatus.equals("FROZEN") && user.getUserStatus().equals(UserStatus.LAIDOFF)) {
 			return " {\"success\":\"false\" }";
 		}
 		user.setUserStatus(UserStatus.valueOf(toStatus));
+		userService.save(user);
+		return " {\"success\":\"true\" }";
+	}
+	@PostMapping(value="/updateUser")
+	public String updateUser(UserDTO userDto, String hireDateEx) {
+		User user = userService.findById(userDto.getId());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			userDto.setHireDate(sdf.parse(hireDateEx));
+		} catch (Exception e) {
+			userDto.setHireDate(new Date());
+		}
+		
+		User userNew = userDto.toUserObject();
+		user.setName(userNew.getName());
+		user.setIdentity(userNew.getIdentity());
+		user.setGender(userNew.getGender());
+		user.setWorkNum(userNew.getWorkNum());
+		user.setUserType(userNew.getUserType());
+		user.setHireDate(userNew.getHireDate());
+		user.setShop(null);
+		user.setWarehouse(null);
+		if(null != userDto.getDepName()) {
+			if(user.getUserType().equals(UserType.KEEPER)) {
+				user.setWarehouse(warehouseService.findByName(userDto.getDepName()));
+			}else if(user.getUserType().equals(UserType.SALESMAN) 
+					||user.getUserType().equals(UserType.STORE_MANAGER) ) {
+				user.setShop(shopService.findByName(userDto.getDepName()));
+			}
+		}
+		user.setPrivileges(userNew.getPrivileges());
 		userService.save(user);
 		return " {\"success\":\"true\" }";
 	}
