@@ -52,6 +52,18 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findCommodities(commodityStatus, pageable);
 	}
 
+	@Override
+	public Page<Commodity> findCommoditiesByIndentId(Long indentId, Pageable pageable) {
+		
+		return commodityRepository.findCommoditiesByIndentId(indentId,pageable); 
+	}
+
+	@Override
+	public Commodity findByIndentIdAndCommodityName(Long indentId, String commodityName) {
+		
+		return (Commodity) commodityRepository.findByIndentIdAndCommodityName(indentId, commodityName);
+	}
+
 	
 	
 	

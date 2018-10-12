@@ -73,8 +73,8 @@
           width:820*0.25,
           height:300,
           scrollable:true,
-          selModel: {type: 'cellmodel'},
-         
+          selModel: {type: 'checkboxmodel'},
+          flex:1,
            plugins: {
               ptype: 'cellediting',
               clicksToEdit: 1,
@@ -90,7 +90,7 @@
               
             }
             ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true}
-            ,{header: 'cost2',dataIndex:'cost2',width: 60,sortable: true}
+            ,{header: 'price',dataIndex:'price',width: 60,sortable: true}
           ],
           
         },

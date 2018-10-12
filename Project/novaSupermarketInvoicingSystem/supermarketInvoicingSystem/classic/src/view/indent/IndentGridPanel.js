@@ -9,8 +9,9 @@
     'Ext.selection.CheckboxModel',
     'Ext.form.field.Date',
     'Ext.grid.column.Date',
-    //'Ext.grid.cell.Expander'
+    'Ext.grid.plugin.RowExpander'
   ],
+
   items: [{
     xtype: 'gridpanel',
     title: 'IndentGrid Results',
@@ -19,12 +20,7 @@
     selModel: {
       type: 'checkboxmodel'
     },
-    /*plugins: {
-　　　　ptype: 'rowexpander',
-　　　　rowBodyTpl : new Ext.XTemplate(
-　　　　　　
-　　　　)
-　　},*/
+   
     columns: [{
         header: 'id',
         dataIndex: 'id',
@@ -35,28 +31,31 @@
       {
         header: 'indentNum',
         dataIndex: 'indentNum',
-        width: 120,
-
+        width: 180,
+         align:'center',
       },
       {
         header: 'createDate',
         dataIndex: 'createDate',
+        align:'center',
         width: 180,
         sortable: true,
         renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')
       },
 
       {
-        header: 'creatorId',
+        header: 'creatorName',
         dataIndex: 'creator',
         width: 120,
+        align:'center',
         renderer: function (val) {
-          return val.id;
+          return val.name;
         }
       },
       {
         header: 'indentStatus',
         dataIndex: 'indentStatus',
+        align:'center',
         width: 120,
         sortable: true,
         renderer: function (val) {
@@ -79,7 +78,9 @@
       {
         header: 'note',
         dataIndex: 'note',
+         align:'center',
         width: 220,
+        flex:1,
         sortable: true
       },
       {
@@ -87,7 +88,7 @@
         cls: 'content-column',
         width: 120,
         text: 'Actions',
-        tooltip: 'edit ',
+        tooltip: '修改订单 ',
         items: [{
             xtype: 'button',
             iconCls: 'x-fa fa-pencil',
@@ -96,7 +97,8 @@
           {
             xtype: 'button',
             iconCls: 'x-fa fa-close',
-            handler: 'deleteOneRow'
+            tooltip: '删除订单',
+            handler: 'deleteOneIndentRow'
           },
           {
             xtype: 'button',

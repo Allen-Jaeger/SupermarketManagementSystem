@@ -248,8 +248,20 @@ public class Indent {
 		return "Indent [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
 				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
 				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouse
-				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", indentType=" + indentType
-				+ ", userId=" + userId + ", processInstanceId=" + processInstanceId + "]";
+				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", supplier=" + supplier
+				+ ", commoditiesJSON=" + commoditiesJSON + ", indentType=" + indentType + ", userId=" + userId
+				+ ", processInstanceId=" + processInstanceId + ", getId()=" + getId() + ", getIndentNum()="
+				+ getIndentNum() + ", getCommodities()=" + getCommodities() + ", getCost()=" + getCost()
+				+ ", getIndentStatus()=" + getIndentStatus() + ", getCreateDate()=" + getCreateDate()
+				+ ", getCreator()=" + getCreator() + ", getKeeper()=" + getKeeper() + ", getManager()=" + getManager()
+				+ ", getFromWarehouse()=" + getFromWarehouse() + ", getToWarehouse()=" + getToWarehouse()
+				+ ", getFromShop()=" + getFromShop() + ", getToShop()=" + getToShop() + ", getNote()=" + getNote()
+				+ ", getIndentType()=" + getIndentType() + ", getSupplier()=" + getSupplier() + ", getUserId()="
+				+ getUserId() + ", getProcessInstanceId()=" + getProcessInstanceId() + ", getCommoditiesJSON()="
+				+ getCommoditiesJSON() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
+	
 	
 }

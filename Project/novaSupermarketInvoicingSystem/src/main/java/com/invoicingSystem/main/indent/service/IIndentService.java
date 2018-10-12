@@ -23,6 +23,7 @@ public interface IIndentService {
 	public void save(Indent indent);
 	public Indent findById(Long id);
 	public void delete(Long id);
+	public void deleteAll(Long[] ids);
 	public Page<Indent> findIndent(String userId,Pageable pageable);
 	
 	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable);

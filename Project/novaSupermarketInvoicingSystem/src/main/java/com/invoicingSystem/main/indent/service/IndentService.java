@@ -1,6 +1,7 @@
 package com.invoicingSystem.main.indent.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -149,6 +150,17 @@ public class IndentService implements IIndentService {
 	@Override
 	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable) {
 		return indentRepository.findAll(spec, pageable);
+	}
+
+	@Override
+	public void deleteAll(Long[] ids) {
+		List<Long> idLists = new ArrayList<Long>(Arrays.asList(ids));
+		
+		List<Indent> indents = (List<Indent>) indentRepository.findAllById(idLists);
+		if(indents!=null) {
+			indentRepository.deleteAll(indents);
+		}
+		
 	}
 
 

@@ -26,4 +26,11 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 	 @Query("from Commodity commodity where commodity.commodityStatus =?1") 
 	    public Page<Commodity> findCommodities(CommodityStatus commodityStatus,Pageable pageable); 
 	
+	 @Query("from Commodity commodity where commodity.indent.id =?1") 
+	    public Page<Commodity> findCommoditiesByIndentId(Long indentId,Pageable pageable); 
+	 
+	 @Query("from Commodity commodity where commodity.indent.id =?1 and commodity.name = ?2") 
+	    public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName); 
+
+	
 }
