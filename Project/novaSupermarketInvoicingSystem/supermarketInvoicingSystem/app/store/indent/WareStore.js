@@ -11,6 +11,5 @@ Ext.define('SupermarketInvoicingSystem.store.indent.WareStore', {
 			rootProperty:'content',//对应后台返回的结果集名称
 		},
 		simpleSortMode: true	//简单排序模式
-	},
-	autoLoad: true
+	}//,autoLoad: true
 });

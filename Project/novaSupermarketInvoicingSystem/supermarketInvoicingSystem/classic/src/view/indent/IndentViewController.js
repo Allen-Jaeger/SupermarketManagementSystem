@@ -99,6 +99,7 @@
     toolbar.up('panel').up('container').add(Ext.widget('indentAddWindow')).show();
   },
   openAddTransferWindow: function (toolbar, rowIndex, colIndex) {
+    var me=this;
     Ext.Ajax.request({
       url: 'indent/fillUser',
       method: 'post',
@@ -115,6 +116,7 @@
           Ext.getCmp('toPlaceId').setValue('');
           Ext.getCmp('toPlaceType').setValue('');
         }
+        me.searchLeftCommodities();
       }
     });
     toolbar.up('panel').up('container').add(Ext.widget('transferAddWindow')).show();
@@ -176,7 +178,7 @@ if (record) {
   openSearchWindow: function (toolbar, rowIndex, colIndex) {
     toolbar.up('panel').up('container').add(Ext.widget('indentSearchWindow')).show();
   },
-  searchByCommodityType: function (combo, record, index) {
+  searchByCommodityType: function () {
     var selectedCat = Ext.getCmp('commodityType').getValue();
     var store = Ext.getCmp('rightList').getStore();
     Ext.apply(store.proxy.extraParams, {
@@ -191,7 +193,7 @@ if (record) {
     });
   },
   
-  searchRightCommodities: function (combo, record, index) {
+  searchRightCommodities: function () {
     //alert(record.data.name);按钮返回不了name....
     var selectedType = Ext.getCmp('commodityType').getValue();
     var selectedWare = Ext.getCmp('fromPlace').getValue();
@@ -237,6 +239,34 @@ if (record) {
     Ext.getCmp('keyWord').setValue('');
     this.searchRightCommodities();
     this.searchLeftCommodities();
+  },
+  getWareList: function (combo) {
+    var se=Ext.data.StoreManager.lookup('wareStore');
+    var me=this;//保存作用域
+
+    se.load();
+    se.on('load',function(){
+    //console.log(se.getAt(0).get('index'));
+    if(Ext.getCmp('toPlaceType').getValue()=='WARE'){
+      // alert("本用户为仓管用户...");
+      var same =(Ext.getCmp('toPlaceId').getValue())-1;//减一 0为store的第一位
+      se.remove(se.getAt(same));
+      combo.setValue(se.getAt(0).get('index'));
+      }
+    else{
+      combo.setValue(se.getAt(0).get('index'));
+      }
+    });
+    //console.log(se.getData().items);
+    //console.log(se.getData().getAt(0));//无数据
+    //Ext.getCmp('fromPlace').setValue();
+    //Ext.getCmp('fromPlace').setValue();
+    var task = new Ext.util.DelayedTask(function(){
+      //这里放置要延迟加载的代码段
+      me.searchRightCommodities();
+      //alert("-1s");
+    });
+    task.delay(750);
   },
   searchIndentByDateorNum: function (combo, record, index) {
     //alert(record.data.name);

@@ -58,12 +58,14 @@ public class CommodityController {
             commodityQueryDTO.setCommodityStatus(CommodityStatus.SALEABLE);
             if(commodityQueryDTO.getSearchType().equals("Right"))//右列表查询
             {
-                System.out.println("Right:"+commodityQueryDTO.getPlaceType()+":"+commodityQueryDTO.getPlaceId());
-                commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getPlaceId()));
-//                commodityQueryDTO.setCommodityType(commodityQueryDTO.getCommodityType());
-//                commodityQueryDTO.setPlaceId(commodityQueryDTO.getPlaceId());
-//                commodityQueryDTO.setName(commodityQueryDTO.getName());
-//                commodityQueryDTO.setPlaceType(commodityQueryDTO.getPlaceType());
+                
+                if(null!=commodityQueryDTO.getPlaceId()) {
+                    System.out.println("Right:"+commodityQueryDTO.getPlaceType()+":"+commodityQueryDTO.getPlaceId());
+                    commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getPlaceId()));
+                }
+                else {
+                    System.out.println("Right:id null");
+                }
                 commodityQueryDTO.setShop(null);
             }
             else//左列表查询

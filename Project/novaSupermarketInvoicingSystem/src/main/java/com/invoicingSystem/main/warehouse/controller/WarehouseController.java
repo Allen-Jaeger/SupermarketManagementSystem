@@ -72,6 +72,6 @@ public class WarehouseController {
     @RequestMapping(value = "/findAll")
     public List<Map<String, String>> findAll() 
     {
-        return warehouseService.getAllForMapList();
+        return warehouseService.getAllForMapList(); 
     }
 }

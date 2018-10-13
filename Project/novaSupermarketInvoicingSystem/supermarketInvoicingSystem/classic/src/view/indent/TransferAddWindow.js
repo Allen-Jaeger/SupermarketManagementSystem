@@ -12,12 +12,18 @@
     //     'Ext.grid.column.Boolean',
     //     'Ext.form.field.TextArea'
 	// ],
-	
+	controller:'indentViewController',
     autoShow: true,
     height: 535,
     width: 847,
+    constrain: true,
+    defaultFocus: 'textfield',
+    modal:true,
     layout: 'absolute',
     title: '添加调货工作单',
+    //listeners:{afterRender:'searchRightCommodities'},//显示后更新第一次?→不成功 在mainViewController中查询
+    //listeners:{callback:'getFirstLoad'},//显示后更新第一次?→不成功 完全没调用
+    //listeners:{onReady:'getFirstLoad'},//显示后更新第一次?→不成功 没调用
 
     items: [
         {
@@ -153,7 +159,14 @@
 			queryMode: 'local',
 			triggerAction: 'all',
 			emptyText: '空仓库',
-			listeners: {select:'searchRightCommodities'}
+			listeners: {
+                afterRender:'getWareList',
+                // afterrender:function () {//渲染后
+                //     this.up('transferAddWindow').getController().searchRightCommodities(); //失败  
+                // },
+                //afterRender:'searchRightCommodities',//失败 requires a scope object
+                select:'searchRightCommodities'
+            }
         },
         {
             xtype: 'combobox',
