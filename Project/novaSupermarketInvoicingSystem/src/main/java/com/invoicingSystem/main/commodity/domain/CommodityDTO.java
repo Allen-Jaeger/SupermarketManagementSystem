@@ -43,7 +43,9 @@ public class CommodityDTO {
 		this.cost = commodity.getCost();
 		this.note = commodity.getNote();
 		this.commodityStatus = commodity.getCommodityStatus().getChineseName();
-		this.indentNum = commodity.getIndent().getIndentNum();
+		if(null != commodity.getIndent()) {
+			this.indentNum = commodity.getIndent().getIndentNum();
+		}
 	}
 	
 	//Getter and Setter

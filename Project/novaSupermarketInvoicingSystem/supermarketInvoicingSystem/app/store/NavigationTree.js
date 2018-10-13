@@ -88,7 +88,7 @@
                 },{
                     text: '职员整体概况',
                     iconCls: 'fa fa-bar-chart fa-rotate-90',
-                    viewType: 'users',
+                    viewType: 'usersChart',
                     //hidden:true,
                     //style:'display:none',
                     leaf: true

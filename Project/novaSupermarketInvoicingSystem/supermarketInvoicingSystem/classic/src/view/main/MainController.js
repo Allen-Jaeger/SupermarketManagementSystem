@@ -167,6 +167,7 @@
 		}*/
     }
 	,logoutButton: function(){
+                
 		var me = this;
         Ext.Ajax.request({
             url: '/logout',
