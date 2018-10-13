@@ -1,19 +1,20 @@
-var pieStore = Ext.create('Ext.data.Store', {
-    fields: ['name', 'data1'],
+var userBarChartStore = Ext.create('Ext.data.Store', {
+    fields: ['name', 'data1','data2'],
     data: [
-        {name: '管理员',data1: 14},
-        {name: '采购员',data1: 16}, 
-        {name: '门店长',data1: 14}, 
-        {name: '销售员',data1: 16}, 
-        {name: '仓库员工',data1: 36}
+        {name: '管理员',data1: 14,data2: 20},
+        {name: '采购员',data1: 16,data2: 20}, 
+        {name: '门店长',data1: 14,data2: 20}, 
+        {name: '销售员',data1: 16,data2: 20}, 
+		{name: '仓库员工',data1: 36,data2: 16}
     ],
     proxy: {
         type: 'ajax',
+        method: 'GET',
         url: '/getEnum?enumName=UserType',
         reader: {
             type: 'json',
-        },
-        method: 'GET',
+        }
+        
     },
     autoLoad: true
 });
@@ -30,7 +31,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
         width: 400,
         height: 400,
         theme: 'green',
-        store: pieStore,
+        store: userBarChartStore,
         animation:true,
         axes: [{//轴
             type: 'radial',
@@ -40,7 +41,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
                text: '人数',
                fontSize: 15
            },
-           fields: 'data1'
+           fields:['data1','data2']
         }, {
            type: 'category',
            position: 'left',
@@ -60,7 +61,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
                 easing: 'easeIn',
            },
            xField: 'name',
-           yField: ['data1','data1'],
+           yField: ['data1','data2'],
         }],
         
     }],
