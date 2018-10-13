@@ -67,6 +67,26 @@
                     }
                 ],
             },{
+                text: '统计分析',
+                iconCls: 'x-fa fa-area-chart',
+                expanded: false,
+                selectable: false,
+                //routeId: 'pages-parent',
+                //id: 'pages-parent',
+                children: [
+                    {
+                        text: '采购统计',
+                        iconCls: 'x-fa fa-line-chart',
+                        viewType: 'purchaseStatisticsPanel',
+                        leaf: true
+                    },{
+                        text: '销售统计',
+                        iconCls: 'x-fa fa-bar-chart',
+                        viewType: 'salesStatisticsPanel',
+                        leaf: true
+                    }
+                ],
+            },{
                 text: '我的信息',
                 iconCls: 'x-fa fa-user',
                 viewType: 'personMsg',
