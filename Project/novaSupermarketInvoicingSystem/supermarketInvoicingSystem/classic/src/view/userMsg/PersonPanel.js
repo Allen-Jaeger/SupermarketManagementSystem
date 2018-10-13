@@ -223,7 +223,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonPanel', {
                 var Record = recordStore.recordType;
                 var r = new Ext.data.Model(myInfo); //转成Record
                 recordStore.insert(1, r);
-                console.log(recordStore);
+                //console.log(recordStore);
                 view.getForm().loadRecord(recordStore.getAt(1));
                 Ext.getCmp('iconId').getEl().dom.src = '../../../../../resources/usersIcon/' + myInfo.iconUrl;
                 Ext.getCmp('hireDateId').inputEl.dom.value = Ext.Date.format(new Date(myInfo.hireDate), 'Y年m月d日');

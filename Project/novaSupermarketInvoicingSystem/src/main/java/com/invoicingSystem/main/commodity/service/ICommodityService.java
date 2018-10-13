@@ -6,6 +6,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.Nullable;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 
 /**
  * @author LiJuncong
@@ -17,5 +19,7 @@ public interface ICommodityService {
 	public Commodity findById(Long id);
 	public Page<Commodity> findAll(Pageable pageable);
 	Page<Commodity> findAll(@Nullable Specification<Commodity> spec, Pageable pageable);
-	public Page<Commodity> findCommodities(Pageable pageable); 
+	public Page<Commodity> findCommodities(CommodityStatus commodityStatus,Pageable pageable); 
+	public Page<Commodity> findCommoditiesByIndentId(Long indentId,Pageable pageable); 
+	public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName);  
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 
 
 /**
@@ -22,7 +23,14 @@ import com.invoicingSystem.main.commodity.domain.Commodity;
  */
 public interface ICommodityRepository extends PagingAndSortingRepository<Commodity, Long>,JpaSpecificationExecutor<Commodity>{
 
-    @Query("from Commodity commodity") 
-    public Page<Commodity> findCommodities(Pageable pageable); 
+	 @Query("from Commodity commodity where commodity.commodityStatus =?1") 
+	    public Page<Commodity> findCommodities(CommodityStatus commodityStatus,Pageable pageable); 
+	
+	 @Query("from Commodity commodity where commodity.indent.id =?1") 
+	    public Page<Commodity> findCommoditiesByIndentId(Long indentId,Pageable pageable); 
+	 
+	 @Query("from Commodity commodity where commodity.indent.id =?1 and commodity.name = ?2") 
+	    public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName); 
+
 	
 }

@@ -5,10 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +38,10 @@ import com.invoicingSystem.main.indent.util.IndentType;
 import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.user.domain.User;
+import com.invoicingSystem.main.user.util.*;
+
+import jodd.util.StringUtil;
+
 import com.invoicingSystem.main.user.service.IUserService;
 
 import net.sf.json.JSONArray;
@@ -45,6 +51,11 @@ import net.sf.json.JSONObject;;
  * @author Lzy
  * @version 创建时间：2018年9月26日 上午9:01:07 
  * 类说明 : 流程控制层
+ */
+
+/**
+ * @author wuzihao
+ * 创建完善 
  */
 @RestController
 @RequestMapping(value = "/indent")
@@ -60,14 +71,24 @@ public class IndentController {
 	private ICommodityService commodityService;
     
     @PostMapping
-    public @ResponseBody ExtAjaxResponse save(@RequestBody Indent indent) {
+    public @ResponseBody ExtAjaxResponse save(@RequestBody IndentDTO indentDTO,HttpServletRequest request) {
         try {
-        	User user = userService.findById(3L);
+        	
+        	Indent indent = new Indent();
+        	
+        	String userId = request.getSession().getAttribute("userId").toString();
+    		User user = userService.findById(Long.parseLong(userId));
+    		indent.setCommoditiesJSON(indentDTO.getCommoditiesJSON());
+    		indent.setToShop(shopService.findById(indentDTO.getToShop()));
+        	indent.setNote(indentDTO.getNote());
+        	indent.setCost(indentDTO.getCost());
+        	
+        	
+    		JSONArray commoditiesJSONObject = JSONArray.fromObject(indentDTO.getCommoditiesJSON());
     		
-    		Shop shop = shopService.findById(1L);
     		
-    		JSONArray commoditiesJSONObject = JSONArray.fromObject(indent.getCommoditiesJSON());
-    		System.out.println("[indent]"+indent);
+    		
+    		
     		if(commoditiesJSONObject.size()>0){
     			  for(int i=0;i<commoditiesJSONObject.size();i++){
     			 // 遍历 jsonarray 数组，把每一个对象转成 json 对象
@@ -75,18 +96,19 @@ public class IndentController {
     			// 得到 每个对象中的属性值
 	    			String name = job.get("name").toString();
 	    			int amount = Integer.parseInt(job.get("num").toString());
-	    			
+	    			double cost = Integer.parseInt(job.get("cost").toString());
 	    			Commodity commodity = new Commodity();
 	    			commodity.setName(name);
 	    			commodity.setAmount(amount);
+	    			commodity.setCost(cost);
     			    commodityService.save(commodity);
     			    indent.getCommodities().add(commodity);
     			  }
     			}
-    	
+    
     
     		indent.setCreator(user);
-    		indent.setToShop(shop);
+    		
     		indent.setCreateDate(new Date());
     		indent.setIndentNum(GenerateRandIndentNum.GenerateNum());
     		indent.setIndentType(IndentType.PURCHASE);
@@ -100,22 +122,120 @@ public class IndentController {
         }
     }
 
-    @PutMapping
-    public @ResponseBody ExtAjaxResponse update(Indent indent) {
+    @PutMapping(value="{id}")
+    public @ResponseBody ExtAjaxResponse update(@PathVariable("id") Long id,@RequestBody IndentDTO indentDTO,HttpServletRequest request) {
         try {
-            indentService.save(indent);
-            return new ExtAjaxResponse(true, "操作成功!");
+
+        	Indent indent = indentService.findById(id);
+        	
+        	String userId = request.getSession().getAttribute("userId").toString();
+    		User user = userService.findById(Long.parseLong(userId));
+    		
+    		//修改前先取出
+    		String oldCommoditiesJSON = indent.getCommoditiesJSON();
+    		
+    		if(indentDTO.getToShop() != null)	indent.setToShop(shopService.findById(indentDTO.getToShop()));
+        	if(indentDTO.getNote() != null)		indent.setNote(indentDTO.getNote());
+        	if(indentDTO.getCost() != null) 	indent.setCost(indentDTO.getCost());
+        	
+        	
+    		
+    		
+    		//商品表有变动
+    		if(indentDTO.getCommoditiesJSON() != null) {
+    			JSONArray commoditiesJSONObject = JSONArray.fromObject(indentDTO.getCommoditiesJSON());
+        		JSONArray oldCommoditiesJSONObject = JSONArray.fromObject(oldCommoditiesJSON);
+    		
+		    		if(commoditiesJSONObject.size()>0){
+		    			  for(int i=0;i<commoditiesJSONObject.size();i++){
+		    			 // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+		    			JSONObject job = commoditiesJSONObject.getJSONObject(i); 
+		    			
+		    				//得到修改后的商品id
+		    				String commodityName = job.get("name").toString();
+		    				
+		    				//-----------------------存在-----------------------
+			    			if(commodityService.findByIndentIdAndCommodityName(id, commodityName)!= null) {
+			    				//检测数量是否需要修改
+			    				Commodity oldCommodity = commodityService.findByIndentIdAndCommodityName(id, commodityName);
+			    				int oldAmount = oldCommodity.getAmount();
+			    				int amount = Integer.parseInt(job.get("num").toString());
+			    				if(oldAmount != amount) {
+			    					oldCommodity.setAmount(amount);
+			    					oldCommodity.setPrice(amount*oldCommodity.getCost());
+			    					commodityService.save(oldCommodity);
+			    					
+			    				}
+			    			} 
+			    			//-----------------------添加-----------------------
+			    			else {
+			    			int amount = Integer.parseInt(job.get("num").toString());
+			    			double cost = Integer.parseInt(job.get("cost").toString());
+			    			double price = Integer.parseInt(job.get("price").toString());
+			    			Commodity commodity = new Commodity();
+			    			commodity.setName(commodityName);
+			    			commodity.setAmount(amount);
+			    			commodity.setCost(cost);
+			    			commodity.setPrice(price);
+			    			commodity.setIndent(indent);
+		    			    commodityService.save(commodity);
+		    			    indent.getCommodities().add(commodity);
+			    			}
+		    			  }
+		    		}
+    		
+			    		//-----------------------移除-----------------------
+						boolean flag = true;// true表示要移除
+						for(int i=0;i<oldCommoditiesJSONObject.size();i++){
+							JSONObject oldJob = oldCommoditiesJSONObject.getJSONObject(i);
+							String oldJobName = oldJob.get("name").toString();
+							for(int j=0;j<commoditiesJSONObject.size();j++){
+								JSONObject job = commoditiesJSONObject.getJSONObject(j);
+								if(job.get("name").toString().equals(oldJobName))
+									{flag = false;break;}
+							}
+							if(flag) {
+								Commodity commodity = commodityService.findByIndentIdAndCommodityName(id, oldJob.getString("name").toString());
+								indent.getCommodities().remove(commodity);
+								commodity.setIndent(null);
+								//commodityService.delete();
+							}
+						}
+    		}	
+		
+			indent.setCreator(user);
+			if(indentDTO.getCommoditiesJSON() != null)	indent.setCommoditiesJSON(indentDTO.getCommoditiesJSON());
+    		//indent.setCreateDate(new Date());
+    		//indent.setIndentNum(GenerateRandIndentNum.GenerateNum());
+    		//indent.setIndentType(IndentType.PURCHASE);
+			//indent.setIndentStatus(IndentStatus.INIT);
+			
+			
+			
+			indentService.save(indent);
+        	
+        	return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
             e.printStackTrace();
             return new ExtAjaxResponse(false, "操作失败!");
         }
     }
 
-    @DeleteMapping
-    public @ResponseBody ExtAjaxResponse delete(Long id) {
+    @DeleteMapping(value="{id}")
+    public @ResponseBody ExtAjaxResponse delete(@PathVariable("id") Long id) {
         try {
         	Indent entity = indentService.findById(id);
 			if(entity!=null) {
+				
+				//Long ids[];
+				//int i = 0;
+				for(Commodity commodity:entity.getCommodities()) {
+					commodity.setIndent(null);
+				}
+				
+				//ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+				
+				entity.setCommodities(null);
 				indentService.delete(id);}
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
@@ -125,13 +245,13 @@ public class IndentController {
     }
 
 	@GetMapping
-    public Page<Indent> findIndentByCreatorId(IndentQueryDTO indentQueryDTO,HttpSession session,ExtjsPageRequest pageable) 
+    public Page<Indent> findIndentByCreatorId(IndentQueryDTO indentQueryDTO,HttpServletRequest request,ExtjsPageRequest pageable) 
 	{
 		Page<Indent> page;
-		//String Creator_id = SessionUtil.getUserName(session);
-		//Long CreatorId = 9L;
-		if(true) {
-			//indentQueryDTO.setUserId(1L);
+		String userId = request.getSession().getAttribute("userId").toString();
+		User user = userService.findById(Long.parseLong(userId));
+		if(user != null) {
+			indentQueryDTO.setCreator(user);
 			//indentQueryDTO.setIndentType(IndentType.PURCHASE);//SessionUtil.getUserName(session)
 			
 			page = indentService.findAll(IndentQueryDTO.getWhereClause(indentQueryDTO), pageable.getPageable());
@@ -142,21 +262,75 @@ public class IndentController {
 		return page;
     }
     
-	//订单表填充USERNAME
-	 @RequestMapping(value = "/userName")
-	    public @ResponseBody ExtAjaxResponse fillUserName(HttpSession session) 
+	@PostMapping("/deletes")
+	public ExtAjaxResponse deleteRows(@RequestParam(name="ids") Long[] ids) 
+	{
+		try {
+			if(ids!=null) {
+				indentService.deleteAll(ids);
+			}
+			return new ExtAjaxResponse(true,"批量删除成功！");
+		} catch (Exception e) {
+			return new ExtAjaxResponse(true,"批量删除失败！");
+		}
+	}
+	
+	
+	
+	//订单表填充
+	 @RequestMapping(value = "/fillUser")
+	    public @ResponseBody ExtAjaxResponse fillUserMsg(HttpServletRequest request) 
 	    {
 	    	try {
 	    		Map<String,String> map=new HashMap<String, String>();
-	    		//map.put("userName", SessionUtil.getUserName(session));
-	    		map.put("userName", "test");
+	    		String userId = request.getSession().getAttribute("userId").toString();
+	    		User user = userService.findById(Long.parseLong(userId));
+	    		String userName = user.getName();
+	    		String userPlace,placeId,placeType;
+	    		if(user.getUserType()==UserType.STORE_MANAGER){
+	    		    userPlace=user.getShop().getName();
+	    		    placeId=user.getShop().getId().toString();
+	    		    placeType="SHOP";
+	    		}else if(user.getUserType()==UserType.KEEPER){
+	    		    userPlace=user.getWarehouse().getName();
+                    placeId=user.getWarehouse().getId().toString();
+                    placeType="WARE";
+	    		}else {
+	    		    userPlace="bucunzai";
+                    placeId="23333";
+                    placeType="NONE";
+	    		}
+	    		map.put("userName", userName);
+	    		map.put("userPlace", userPlace);
+	    		map.put("placeId", placeId);
+	    		map.put("placeType", placeType);
+	    		System.out.println(userName+","+userPlace+","+placeId+","+placeType);
 	        	return new ExtAjaxResponse(true,map);
 			} catch (Exception e) {
-				return new ExtAjaxResponse(false,"登出失败!");
+				return new ExtAjaxResponse(false,"填充用户信息失败!");
 			}
 	    }
 	
 	
+		 @RequestMapping(value = "/findCommoditiesJSON")
+		    public @ResponseBody Page<Commodity> findAddedCommodities(HttpServletRequest request,ExtjsPageRequest pageable) 
+		    {
+			 	Page<Commodity> page;
+		    	
+		    		//Map<String,String> map=new HashMap<String, String>();
+			 		if(!StringUtil.isEmpty(request.getParameter("indentId")))
+			 			{
+			 			Long indentId = Long.parseLong(request.getParameter("indentId"));
+			 			page = commodityService.findCommoditiesByIndentId(indentId, pageable.getPageable());
+			 			
+			 			}
+			 		else 
+		    			
+			 			page = null;
+			 			
+		    		return page;
+		    }
+	 
     /*-------------------------------------流程引擎web层------------------------------------------*/
     
     /**

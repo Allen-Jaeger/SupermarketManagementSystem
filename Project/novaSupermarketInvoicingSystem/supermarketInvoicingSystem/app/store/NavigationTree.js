@@ -48,7 +48,7 @@
                 ]
             },{
                 text: '商品管理',
-                iconCls: 'x-fa fa-truck',
+                iconCls: 'x-fa fa-cubes',
                 expanded: false,
                 selectable: false,
                 //routeId: 'pages-parent',
@@ -61,7 +61,7 @@
                         leaf: true
                     },{
                         text: '校准库存',
-                        iconCls: 'x-fa fa-cubes',
+                        iconCls: 'x-fa fa-cube',
                         //viewType: 'transferCenterPanel',
                         leaf: true
                     }
@@ -94,12 +94,26 @@
                 //style:'display:none',
                 leaf: true
             },{
-                text: '管理用户信息',
+                text: '用户管理',
                 iconCls: 'x-fa fa-group',
-                viewType: 'users',
-                //hidden:true,
-                //style:'display:none',
-                leaf: true
+                expanded: false,
+                selectable: false,
+                children:[{
+                    text: '管理用户信息',
+                    iconCls: 'x-fa fa-street-view',
+                    viewType: 'users',
+                    //hidden:true,
+                    //style:'display:none',
+                    leaf: true
+                },{
+                    text: '职员整体概况',
+                    iconCls: 'fa fa-bar-chart fa-rotate-90',
+                    viewType: 'usersChart',
+                    //hidden:true,
+                    //style:'display:none',
+                    leaf: true
+                }],
+
            }
         ]
     }

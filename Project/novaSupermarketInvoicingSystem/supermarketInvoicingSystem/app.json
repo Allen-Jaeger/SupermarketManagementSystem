@@ -8,6 +8,9 @@
         "charts",
         "font-awesome",
         "ux"
+
+        
+
     ],
 
     "indexHtmlPath": "index.html",
@@ -71,7 +74,11 @@
             {
                 "path": "${framework.dir}/build/ext-all-rtl-debug.js"
             }
-        ]
+        ],
+        "requires" : [
+            "locale"
+        ],
+        "locale": "zh_CN"
     },
 
     "modern": {

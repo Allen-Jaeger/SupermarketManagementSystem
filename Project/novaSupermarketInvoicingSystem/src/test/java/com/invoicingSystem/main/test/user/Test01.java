@@ -24,8 +24,8 @@ public class Test01 extends TestBase{
 	@Test
 	public void userAdd() {
 		Set<Privilege> privileges = new HashSet<Privilege>();
-		privileges.add(Privilege.CHANGE_SHELF);
-		privileges.add(Privilege.EDIT_SELF);
+		privileges.add(Privilege.CHECK_INDENT);
+		privileges.add(Privilege.EDIT_CARD);
 		for (int i = 10; i < 20; i++) {
 			User user = new User();
 			user.setGender(Gender.MALE);

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -31,16 +32,16 @@ public class Warehouse extends Department{
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> badCommodities = new ArrayList<Commodity>();
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="commodities")
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy="warehouse")
+	//@JoinColumn(name="commodities")
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Commodity> commodities = new ArrayList<Commodity>();
 	
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinColumn(name="keepers")
-	@Fetch(value=FetchMode.SUBSELECT)
-	private List<User> keepers = new ArrayList<User>();
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@JoinColumn(name="keeper")
+//	@Fetch(value=FetchMode.SUBSELECT)
+	private User keeper;
 	
 	
 	public List<Commodity> getBadCommodities() {
@@ -50,8 +51,8 @@ public class Warehouse extends Department{
 		return commodities;
 	}
 
-	public List<User> getKeepers() {
-		return keepers;
+	public User getKeeper() {
+		return keeper;
 	}
 
 
@@ -62,8 +63,8 @@ public class Warehouse extends Department{
 		this.commodities = commodities;
 	}
 
-	public void setKeepers(List<User> keepers) {
-		this.keepers = keepers;
+	public void setKeeper(User keepers) {
+		this.keeper = keepers;
 	}
 
 	

@@ -3,18 +3,28 @@ package com.invoicingSystem.main.user.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.invoicingSystem.main.shop.domain.Shop;
+import com.invoicingSystem.main.shop.repository.IShopRepository;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.repository.IUserRepository;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.UserStatus;
+import com.invoicingSystem.main.user.util.UserType;
+import com.invoicingSystem.main.warehouse.domain.Warehouse;
+import com.invoicingSystem.main.warehouse.repository.IWarehouseRepository;
 
 /**
  * @author LiJuncong
@@ -25,6 +35,10 @@ import com.invoicingSystem.main.user.util.UserStatus;
 public class UserService implements IUserService {
 	@Autowired
 	IUserRepository userRepository;
+	@Autowired
+	IWarehouseRepository warehouseRepository;
+	@Autowired
+	IShopRepository shopRepository;
 	
 	@Override
 	public void save(User user) {
@@ -122,4 +136,56 @@ public class UserService implements IUserService {
 		return "修改成功";
 	}
 
+	/* 
+	 * 条件查询
+	 */
+	@Override
+	public Page<User> findAll(Specification<User> spec, Pageable pageable) {
+		return userRepository.findAll(spec, pageable);
+	}
+
+	/**
+	 *   证件号查询
+	 */
+	@Override
+	public User findByIdentity(String identity) {
+		return userRepository.findByIdentity(identity);
+	}
+
+	/* (non-Javadoc)
+	 * 1.UserDto 返回的是部门ID	\\n
+	 * 2.根据用户类型=建立warhouse或shop 的关系
+	 */
+	@Override
+	public void buildDepartment(User user, Long depId) {
+		if(user.getUserType().equals(UserType.STORE_MANAGER)
+				|| user.getUserType().equals(UserType.SALESMAN)) {
+			//超市
+			user.setShop(shopRepository.findById(depId).get());
+		}else if(user.getUserType().equals(UserType.KEEPER)){
+			//仓库
+			user.setWarehouse(warehouseRepository.findById(depId).get());
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * 返回(index,type),name
+	 */
+	@Override
+	public List<Map<String, String>> getAllDep() {
+		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
+		for(Warehouse wh : warehouseRepository.findAll()) {
+			Map<String,String> map = new HashMap<>();
+			map.put("index","warehouse,"+String.valueOf(wh.getId()));
+			map.put("name", "仓库:"+wh.getName());
+			list.add(map);
+		}
+		for(Shop shop : shopRepository.findAll()) {
+			Map<String,String> map = new HashMap<>();
+			map.put("index","shop,"+String.valueOf(shop.getId()));
+			map.put("name", "门店:"+shop.getName());
+			list.add(map);
+		}
+		return list;
+	}
 }

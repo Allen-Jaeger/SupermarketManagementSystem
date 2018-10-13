@@ -6,11 +6,11 @@ package com.invoicingSystem.main.user.util;
  */
 
 public enum UserType {
-	SUPER_MANAGER(1,"超级管理员"),
-	PURCHASER(2,"采购员"),
-	KEEPER(3,"仓库管理员"),
-	STORE_MANAGER(4,"门店管理员"),
-	SALESMAN(5,"销售员");
+	SUPER_MANAGER(0,"超级管理员"),
+	PURCHASER(1,"采购员"),
+	KEEPER(2,"仓库管理员"),
+	STORE_MANAGER(3,"门店管理员"),
+	SALESMAN(4,"销售员");
 	
 	private final int index;
 	private final String mean;
@@ -24,4 +24,16 @@ public enum UserType {
 	public int getIndex() {
 		return index;
 	}
+	
+//	已经利用反射+泛型实现
+//	public static List<Map<String,String>> allToMap(){
+//		List<Map<String,String>> list = new ArrayList<>();
+//		for(UserType userType: UserType.values()) {
+//			Map<String, String> map = new HashMap<>();
+//			map.put("index", String.valueOf(userType.index));
+//			map.put("name", userType.mean);
+//			list.add(map);
+//		}
+//		return list;
+//	}
 }

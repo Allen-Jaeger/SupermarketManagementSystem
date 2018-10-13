@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.repository.ICommodityRepository;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 
 /**
  * @author LiJuncong
@@ -44,9 +46,22 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findAll(spec,pageable);
 	}
 
-	public Page<Commodity> findCommodities(Pageable pageable) {
+	@Override
+	public Page<Commodity> findCommodities(CommodityStatus commodityStatus,Pageable pageable) {
+	
+		return commodityRepository.findCommodities(commodityStatus, pageable);
+	}
+
+	@Override
+	public Page<Commodity> findCommoditiesByIndentId(Long indentId, Pageable pageable) {
 		
-		return findCommodities(pageable);
+		return commodityRepository.findCommoditiesByIndentId(indentId,pageable); 
+	}
+
+	@Override
+	public Commodity findByIndentIdAndCommodityName(Long indentId, String commodityName) {
+		
+		return (Commodity) commodityRepository.findByIndentIdAndCommodityName(indentId, commodityName);
 	}
 
 	

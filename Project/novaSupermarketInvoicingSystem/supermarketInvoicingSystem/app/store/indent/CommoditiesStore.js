@@ -22,7 +22,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.CommoditiesStore', {
 	remoteSort: true,//全局(远程)排序
 	pageSize: 15,
 	sorters: {
-		direction: 'DESC',property: 'id'
+		direction: 'ASC',property: 'id'
 	},
 	listeners: {}
 });

@@ -1,17 +1,23 @@
 package com.invoicingSystem.main.user.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.invoicingSystem.main.common.enum_tools.EnumTool;
 import com.invoicingSystem.main.user.util.Gender;
+import com.invoicingSystem.main.user.util.MD5Tool;
+import com.invoicingSystem.main.user.util.Privilege;
+import com.invoicingSystem.main.user.util.UserStatus;
+import com.invoicingSystem.main.user.util.UserType;
 
 /**
  * @author LiJuncong at 2018年9月22日
  */
-
 public class UserDTO {
 	private Long id; // 数据库管理id
 	private String workNum; // 工号，用于登陆
-	private String password = "123456"; // 初始密码
+	private String password; // 初始密码
 	private String name; // 真实姓名
 	private String gender; // 性别
 	private String identity; // 身份证
@@ -20,7 +26,7 @@ public class UserDTO {
 	private Date hireDate; // 员工聘请日期
 	private String iconUrl; // 头像
 	private String userStatus; // 用户状态
-	private String depName;	//商店
+	private String depName;	//任职单位
 
 	public UserDTO() {
 		super();
@@ -47,14 +53,36 @@ public class UserDTO {
 		}
 	}
 	
+	/**
+	 *	1. 转化为User 对象 addUser为设计
+	 *  2.不处理Dep 需要使用关联建立的Service
+	 * @return
+	 */
 	public User toUserObject() {
 		User user = new User();
 		user.setWorkNum(workNum);
-		user.setPassword(password);
+		user.setUserStatus(UserStatus.NORMAL);//默认正常
+		EnumTool et;
+		et = new EnumTool(UserType.class);
+		user.setUserType((UserType) et.getEnumFromInt(Integer.parseInt(this.userType)));
+		
+		String[] priStr = privileges.split(",");
+		et = new EnumTool(Privilege.class);
+		Set<Privilege> pris = new HashSet<>();
+		for(String str:priStr) {
+			pris.add((Privilege) et.getEnumFromInt(Integer.parseInt(str)));
+		}
+		user.setPrivileges(pris);
+		if(null != password) {
+			user.setPassword(MD5Tool.ToMd5String(password));
+		}
 		user.setName(name);
-		user.setGender(Gender.getFromInt(Integer.parseInt(gender)));
+		user.setHireDate(hireDate);
+		user.setGender(Gender.valueOf(gender));
 		user.setIconUrl(iconUrl);
 		user.setIdentity(identity);
+		
+		
 		return user;
 	}
 	public User toLoginUser() {

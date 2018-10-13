@@ -1,5 +1,8 @@
 package com.invoicingSystem.main.shop.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.invoicingSystem.main.shop.domain.Shop;
 
 /**
@@ -10,4 +13,6 @@ import com.invoicingSystem.main.shop.domain.Shop;
 public interface IShopService {
 	public void save(Shop shop);
 	public Shop findById(Long id);
+	public List<Map<String,String>> getAllForMapList();
+	public Shop findByName(String name);
 }

@@ -45,33 +45,33 @@ public class LoginAspect {
 	 * @param pjp 增强型 环绕切面 控制切入点函数是否可以执行
 	 * @return
 	 */
-	@Around("inUserController() && openLogin()")
-	public Object findLoginedUser(ProceedingJoinPoint pjp) {
-		//获取request
-		HttpServletRequest request = 
-				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		//获取response
-		HttpServletResponse response = 
-				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-		
-		//判断是否已经登录
-		if(null != request.getSession().getAttribute("userId") 
-				&& !request.getSession().getAttribute("userId").toString().equals("")) {
-			//已经登录，执行切入点函数
-			try {
-				return pjp.proceed();
-			} catch (Throwable e) {
-				e.printStackTrace();
-			}
-		}else {
-			//未登录，执行重定向
-			log.warn("no user had logined!");
-			try {
-				response.sendRedirect("login.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
+//	@Around("inUserController() && openLogin()")
+//	public Object findLoginedUser(ProceedingJoinPoint pjp) {
+//		//获取request
+//		HttpServletRequest request = 
+//				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//		//获取response
+//		HttpServletResponse response = 
+//				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+//		
+//		//判断是否已经登录
+//		if(null != request.getSession().getAttribute("userId") 
+//				&& !request.getSession().getAttribute("userId").toString().equals("")) {
+//			//已经登录，执行切入点函数
+//			try {
+//				return pjp.proceed();
+//			} catch (Throwable e) {
+//				e.printStackTrace();
+//			}
+//		}else {
+//			//未登录，执行重定向
+//			log.warn("no user had logined!");
+//			try {
+//				response.sendRedirect("login.html");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return null;
+//	}
 }

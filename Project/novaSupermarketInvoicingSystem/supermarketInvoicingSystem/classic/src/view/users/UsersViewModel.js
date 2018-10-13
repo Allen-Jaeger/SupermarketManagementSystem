@@ -14,6 +14,6 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersViewModel', {
     stores: {
 		allUsers: {
             type: 'usersStore'
-        }
+        },
     }
 });

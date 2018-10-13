@@ -14,7 +14,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.invoicingSystem.main.shop.domain.Shop;
@@ -33,14 +36,16 @@ import com.invoicingSystem.main.warehouse.domain.Warehouse;
 public class User {
 	private Long id; // 数据库管理id
 	private String workNum; // 工号，用于登陆
-	private String password = "123456"; // 初始密码
+	@Value("${application.user.default.password:123456}")
+	private String password; // 初始密码
 	private String name; // 真实姓名
-	private Gender gender; // 性别
+	private Gender gender = Gender.MALE; // 性别
 	private String identity; // 身份证
 	private UserType userType; // 用户类型
 	private Set<Privilege> privileges = new HashSet<Privilege>(); // 可用权限
 	private Date hireDate; // 员工聘请日期
-	private String iconUrl = "defaultUser.jpg"; // 默认头像
+	@Value("${application.user.default.iconUrl:defaultUser.jpg}")
+	private String iconUrl; // 默认头像
 	private UserStatus userStatus; // 用户状态
 	private Shop shop;	//商店
 	private Warehouse warehouse;
@@ -105,7 +110,7 @@ public class User {
 		return shop;
 	}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.MERGE)
 	public Warehouse getWarehouse() {
 		return warehouse;
 	}
@@ -167,14 +172,14 @@ public class User {
 	 * 	将权限以字符串类型返回
 	 */
 	public String privilegeInString() {
-		StringBuffer str = new StringBuffer("");
+		StringBuffer str = new StringBuffer();
 		if(null == privileges) {
 			return "";
 		}
 		for(Privilege privilege : this.privileges) {
 			str.append(privilege.getChineseName()+",");
 		}
-		str.deleteCharAt(str.length()-1);
+		//str.deleteCharAt(str.lastIndexOf(","));
 		return str.toString();
 	}
 }
