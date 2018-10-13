@@ -263,10 +263,10 @@ if (record) {
     //Ext.getCmp('fromPlace').setValue();
     var task = new Ext.util.DelayedTask(function(){
       //这里放置要延迟加载的代码段
-      me.searchRightCommodities();
       //alert("-1s");
+      me.searchRightCommodities();
     });
-    task.delay(750);
+    task.delay(700);
   },
   searchIndentByDateorNum: function (combo, record, index) {
     //alert(record.data.name);
