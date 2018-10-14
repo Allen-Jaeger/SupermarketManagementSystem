@@ -20,6 +20,7 @@ import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.repository.IShopRepository;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.repository.IUserRepository;
+import com.invoicingSystem.main.user.util.Gender;
 import com.invoicingSystem.main.user.util.MD5Tool;
 import com.invoicingSystem.main.user.util.UserStatus;
 import com.invoicingSystem.main.user.util.UserType;
@@ -188,4 +189,51 @@ public class UserService implements IUserService {
 		}
 		return list;
 	}
+	
+	/* 
+	 * 根据每种用户类型统计男女个数
+	 */
+	@Override
+	public List<Map<String, String>> getGroupGenderCount() {
+		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
+		List<Object> resultList = userRepository.findAllGenderCount();
+		boolean isExist = false;
+		for (int i = 0; i < resultList.size(); i++) {
+			Object[] obj = (Object[]) resultList.get(i);
+			UserType userType = (UserType)obj[0];
+			Gender gender = (Gender)obj[1];
+			Map<String,String> map = new HashMap<>();
+			isExist = false;
+			map.put("userType",userType.getChineseName());
+			//判断是否userType在list中已经存在
+			for (int j = 0; j < list.size(); j++) {
+				Map<String,String> map2 = list.get(j);
+				String existUserTypeValue = map2.get("userType");
+				if (map.get("userType").equals(map2.get("userType"))) {
+					if (gender.equals(Gender.MALE)) {
+						map2.put("男",String.valueOf(Long.parseLong(map2.get("男"))+(long)obj[2]));
+					} 
+					if (gender.equals(Gender.FEMALE)) {
+						map2.put("女",String.valueOf(Long.parseLong(map2.get("女"))+(long)obj[2]));
+					} 
+					list.set(j, map2);
+					isExist=true;
+					break;
+				}
+			}
+			if(!isExist) {
+				if (gender.equals(Gender.MALE)) {
+					map.put("男",String.valueOf(obj[2]));
+					map.put("女",String.valueOf(0));
+				} else {
+					map.put("男",String.valueOf(0));
+					map.put("女",String.valueOf(obj[2]));
+				}
+				list.add(map);
+			}
+		}
+		
+		return list;
+	}
+	
 }

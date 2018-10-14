@@ -26,5 +26,6 @@ public interface IUserService {
 	public String writeIcon(User user, MultipartFile icon);
 	public void buildDepartment(User user, Long depId);
 	public List<Map<String,String>> getAllDep();
+	public List<Map<String, String>> getGroupGenderCount();//根据每种用户类型统计男女个数
 
 }

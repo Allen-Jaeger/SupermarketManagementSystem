@@ -400,4 +400,15 @@ public class UserController {
 		userService.save(user);
 		return " {\"success\":\"true\" }";
 	}
+	
+	
+	/**
+	 * 根据每个用户类型统计男女个数
+	 * @return
+	 */
+	@GetMapping(value = "/getGroupGenderCount")
+	public List<Map<String,String>> getGroupGenderCount(){
+		return userService.getGroupGenderCount();
+	}
+	
 }
