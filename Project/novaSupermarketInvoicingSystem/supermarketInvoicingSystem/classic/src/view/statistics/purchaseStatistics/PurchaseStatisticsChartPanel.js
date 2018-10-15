@@ -5,7 +5,13 @@
     requires: [
         'Ext.form.field.ComboBox',
         'Ext.form.field.Date',
-        'Ext.chart.*'
+        //'Ext.chart.*'
+        'Ext.chart.CartesianChart',
+        'Ext.chart.interactions.PanZoom',
+        'Ext.chart.series.Line',
+        'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Time'
+        
     ],
     layout: 'fit',
     //width: 650,

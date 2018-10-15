@@ -41,7 +41,14 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
     xtype: 'userBarChart',
     controller: userBarChartViewController,
     requires: [
-        'Ext.chart.*'
+        'Ext.chart.CartesianChart',
+        //'Ext.chart.grid.HorizontalGrid3D',
+        //'Ext.chart.grid.VerticalGrid3D',
+        'Ext.chart.axis.Numeric3D',
+        'Ext.chart.axis.Category3D',
+        'Ext.chart.series.Bar3D',
+        //'Ext.chart.*' 
+        'Ext.chart.theme.Muted'
     ],
     width: 650,
 

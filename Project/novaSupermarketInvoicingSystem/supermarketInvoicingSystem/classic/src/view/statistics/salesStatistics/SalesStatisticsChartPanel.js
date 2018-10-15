@@ -6,7 +6,14 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
     requires: [
         'Ext.form.field.ComboBox',
         'Ext.form.field.Date',
-        'Ext.chart.*'
+        'Ext.chart.CartesianChart',
+        'Ext.chart.grid.HorizontalGrid3D',
+        'Ext.chart.grid.VerticalGrid3D',
+        'Ext.chart.axis.Numeric3D',
+        'Ext.chart.axis.Category3D',
+        'Ext.chart.series.Bar3D'
+        //'Ext.chart.*' 
+        //'Ext.chart.theme.Muted'
     ],
     //layout: 'fit',
     width: 650,
