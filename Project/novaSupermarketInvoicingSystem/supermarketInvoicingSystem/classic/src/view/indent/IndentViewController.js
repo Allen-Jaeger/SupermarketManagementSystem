@@ -233,6 +233,14 @@ if (record) {
         page: 1
       }
     });
+    // var task = new Ext.util.DelayedTask(function(){
+    //   //这里放置要延迟加载的代码段
+    //   var selectLock;
+    //   //selectLock = Ext.getCmp('leftList').getSelectionModel().selectAll();无效??
+    //   //Ext.grid.AbstractSelectionModel.lock(selectLock);错误 找不到lock函数
+    // });
+    // task.delay(500);
+    
   },
   refreshBtn: function (combo, record, index) {
     Ext.getCmp('commodityType').setValue('');
@@ -267,6 +275,43 @@ if (record) {
       me.searchRightCommodities();
     });
     task.delay(700);
+  },
+  commoditiesListRightToLeft:function() {
+    var rightGridRecord = Ext.getCmp('rightList').getSelectionModel().getSelection();
+    var leftGrid = Ext.getCmp('leftList');
+    for (var i = 0; i < rightGridRecord.length; i++) {
+      var rowLength = leftGrid.getStore().data.length + 1;
+      var addingRowCommoditiesid = rightGridRecord[i].data.id;
+      // var addingRowCommoditiesName = rightGridRecord[i].data.name;
+      // var addingRowCommoditiesEXP = rightGridRecord[i].data.period;
+      //rightGridRecord[i].data.price = 0;
+      //rightGridRecord[i].data.amount = 0;
+      //在编辑时，先判断要插入的数据是否已经存在,flag=0表示不存在，flag=1表示已存在
+      var flag = 0; 
+      leftGrid.store.each(function (record) {
+        // if(record.get("period") == addingRowCommoditiesEXP&&record.get("name") == addingRowCommoditiesName) {
+        //     flag = 1;
+        //  }
+         if(record.get("id") == addingRowCommoditiesid) {
+          flag = 1;
+          //alert(addingRowCommoditiesid);
+       }
+      });
+      if(flag == 0)
+      {
+      leftGrid.store.insert(rowLength, rightGridRecord[i].data);
+      leftGrid.store.getAt(leftGrid.store.getCount()-1).set('amount',0);
+      }
+    }
+  },
+  commoditiesListLeftToRight: function (grid, rowIndex, colIndex) {
+    // var leftgridrecord = Ext.getCmp('leftList').getSelection();
+    // var rightgrid = Ext.getCmp('rightList');
+    // var leftgrid = Ext.getCmp('leftList');
+    // for (var i = 0; i < leftgridrecord.length; i++) {
+    //   var rowLength = rightgrid.getStore().data.length + 1;
+    //   leftgrid.store.remove(leftgridrecord);
+    // }
   },
   searchIndentByDateorNum: function (combo, record, index) {
     //alert(record.data.name);

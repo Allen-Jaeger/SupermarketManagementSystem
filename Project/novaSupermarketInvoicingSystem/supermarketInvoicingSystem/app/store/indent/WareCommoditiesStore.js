@@ -18,7 +18,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.WareCommoditiesStore', {
 		simpleSortMode: true	//简单排序模式
 	},
 	//autoLoad: true,//自动更新暂且注释 响应点击事件看看
-	autoSync: true,
+	//autoSync: true,
 	remoteSort: true,//全局(远程)排序
 	pageSize: 15,
 	sorters: {

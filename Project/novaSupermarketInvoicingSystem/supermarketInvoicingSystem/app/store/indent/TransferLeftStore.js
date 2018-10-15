@@ -18,7 +18,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.TransferLeftStore', {
 		simpleSortMode: true	//简单排序模式
 	},
 	//autoLoad: true,//先不自动更新获取
-	autoSync: true,
+	//autoSync: true,
 	remoteSort: true,//全局(远程)排序
 	pageSize: 15,
 	sorters: {

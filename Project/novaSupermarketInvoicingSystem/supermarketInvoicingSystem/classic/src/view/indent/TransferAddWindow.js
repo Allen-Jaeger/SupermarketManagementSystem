@@ -52,9 +52,16 @@
             height: 250,
             width: 301,
             scrollable: true,
+            loadMask:true,//load时遮罩效果
             store:{type:'transferLeftStore'},
 			selModel: {type: 'checkboxmodel'},
             columns: [
+                {
+                    header:'id',
+                    hidden:true,
+                    dataIndex: 'id',
+					sortable: true
+                },
                 {
 					header:'商品名',
                     dataIndex: 'name',
@@ -76,7 +83,24 @@
             ],
             viewConfig: {
                 width: 402
-            }
+            },
+            listeners:{  
+                //双击  
+                itemdblclick:function(me, record, item, index, e, eOpts)
+                {
+                    if(0!=record.get('amount'))
+                        alert("不可修改原有商品!");
+                    else
+                        Ext.MessageBox.prompt("输入框","注意:勿输入超过原有数量的数字<br>请输入调货数量：",function(btn,num){  
+                            if(btn=="cancel")
+                                Ext.MessageBox.alert("Result","你点击了"+btn+"按钮,<br>操作取消...");
+                            else {
+                                Ext.MessageBox.alert("Result","确认调货数量成功,<br>数量为"+num);
+                                record.set('amount',num);
+                            }
+                    });
+                }
+            } 
             
             // ,store: Ext.create('Ext.data.Store', {
 			// 	fields: ['name', 'num','date'],
@@ -244,8 +268,15 @@
             // bind: '{wareList}',//右列表bind→Store
             store:{type:'wareCommoditiesStore'},//...真的不知道为什么bind用不了 单开store却能用
 			scrollable: true,
-			selModel: {type: 'checkboxmodel'},
+            selModel: {type: 'checkboxmodel'},
+            loadMask:true,//load时遮罩效果
             columns: [
+                {
+                    header:'id',
+                    hidden:true,
+                    dataIndex: 'id',
+					sortable: true
+                },
 				{
 					header:'商品名',
                     dataIndex: 'name',
@@ -262,7 +293,24 @@
                     format: 'Y/m/d',
 					width: 180
                 }
-            ]
+            ],
+            listeners:{  
+                //双击  
+                itemdblclick:function(me, record, item, index, e, eOpts)
+                {
+                    if(0!=record.get('amount'))
+                        alert("不可修改原有商品!");
+                    else
+                        Ext.MessageBox.prompt("输入框","注意:勿输入超过原有数量的数字<br>请输入调货数量：",function(btn,num){  
+                            if(btn=="cancel")
+                                Ext.MessageBox.alert("Result","你点击了"+btn+"按钮,<br>操作取消...");
+                            else {
+                                Ext.MessageBox.alert("Result","确认调货数量成功,<br>数量为"+num);
+                                record.set('amount',num);
+                            }
+                    });
+                }
+            }  
         },
         {
             xtype: 'textareafield',
@@ -276,7 +324,8 @@
             x: 320,
             y: 110,
             width: 60,
-            iconCls: 'x-fa fa-arrow-left'
+            iconCls: 'x-fa fa-arrow-left',
+            handler: 'commoditiesListRightToLeft'
         },
         {
             xtype: 'button',
@@ -284,7 +333,8 @@
             y: 160,
             width: 60,
             disabled: true,
-            iconCls: 'x-fa fa-arrow-right'
+            iconCls: 'x-fa fa-arrow-right',
+            handler: 'commoditiesListLeftToRight'
         },
         {
             xtype: 'button',
