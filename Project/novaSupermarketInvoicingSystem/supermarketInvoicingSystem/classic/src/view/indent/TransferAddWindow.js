@@ -189,7 +189,7 @@
                 //     this.up('transferAddWindow').getController().searchRightCommodities(); //失败  
                 // },
                 //afterRender:'searchRightCommodities',//失败 requires a scope object
-                select:'searchRightCommodities'
+                select:'refreshBtn'
             }
         },
         {
@@ -347,6 +347,7 @@
             handler: 'refreshBtn'
         },
         {
+            id:'cost',
             xtype: 'textfield',
             x: 390,
             y: 310,

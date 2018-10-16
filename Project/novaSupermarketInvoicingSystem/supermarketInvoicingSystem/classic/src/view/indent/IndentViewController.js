@@ -318,6 +318,7 @@
     Ext.getCmp('keyWord').setValue('');
     this.searchRightCommodities();
     this.searchLeftCommodities();
+    Ext.getCmp('cost').setValue('');
     Ext.getCmp('submitBtn').setDisabled(true);
   },
   getWareList: function (combo) {
@@ -401,10 +402,14 @@
   calculateTransferCost: function (btn) {
     //以后要设置判断RetreatCheck是否为true,来确定调货单是否是残缺品处理单.
     var leftGrid = Ext.data.StoreManager.lookup('transferLeftStore');
+    var fromPlaceId = Ext.getCmp('fromPlace').getValue();
+    var toPlaceId = Ext.getCmp('toPlaceId').getValue();
+    var toPlaceType = Ext.getCmp('toPlaceType').getValue();
     var leftGridData = leftGrid.getRange();
     var leftGridLength = leftGrid.getCount();
     var leftGridOriginsLength;
-    var leftGridDataJson = [];
+    //var leftGridDataJson = [];
+    var commodityCost=0;
 
     leftGrid.load({
       scope: this,
@@ -412,22 +417,35 @@
         leftGridOriginsLength = leftGrid.getCount();
         var i = leftGridOriginsLength;
         var j = leftGridLength;
-        for (i, j; i < j; i++) {
-          leftGridDataJson.push({
-            'id': leftGridData[i].get('id'),
-            'name': leftGridData[i].get('name'),
-            'amount': leftGridData[i].get('amount'),
-            'cost': leftGridData[i].get('cost'),
-          });
-        }
-        var removecharacter = Ext.encode(leftGridDataJson);
-        if(removecharacter=='[]'){
+        if(i==j)
+        {
           Ext.MessageBox.alert("提示框","未选择商品!");
         }
         else{
-          //ajax提交?
-          Ext.getCmp('submitBtn').setDisabled(false);
-          console.log(removecharacter);
+          for (i, j; i < j; i++) 
+          {
+            commodityCost+=leftGridData[i].get('cost')*leftGridData[i].get('amount');
+          }
+          Ext.Ajax.request({
+            url: '/indent/calculateCost',
+            method: 'post',
+            params: {
+              cCost: commodityCost,
+              fromPlace : fromPlaceId,
+              toPlace : toPlaceId,
+              toPlaceType : toPlaceType
+            },
+            success: function (response, options) {
+              var json = Ext.util.JSON.decode(response.responseText);
+              if (json.success) {
+                Ext.Msg.alert('计算成功','运输成本为:'+json.map.TransferCost+'元');
+                Ext.getCmp('cost').setValue(json.map.TransferCost);
+                Ext.getCmp('submitBtn').setDisabled(false);
+              } else {
+                Ext.Msg.alert('计算失败', json.msg);
+              }
+            }
+          });
           leftGrid.setData(leftGridData);//让grid回到原样.
         }
       }
@@ -449,20 +467,17 @@
 
         var i = leftGridOriginsLength;
         var j = leftGridLength;
-
+        if(i==j)
+        {
+          Ext.MessageBox.alert("提示框","未选择商品!");
+        }
+        else{
         for (i, j; i < j; i++) {
           leftGridDataJson.push({
             'id': leftGridData[i].get('id'),
             'amount': leftGridData[i].get('amount')
           });
         }
-        if(leftGridDataJson==[])
-        {
-          alert()
-          Ext.data.StoreManager.lookup('indentStore').load();
-          btn.up('window').close();
-        }
-        else{
           var removecharacter = Ext.encode(leftGridDataJson);
           Ext.getCmp('commoditiesJSON').setValue(removecharacter);
   
@@ -470,7 +485,7 @@
           // var values = win.down('form').getValues();
           // record.set(values);
           // record.save();
-  
+
           Ext.data.StoreManager.lookup('indentStore').load();
           btn.up('window').close();
         }

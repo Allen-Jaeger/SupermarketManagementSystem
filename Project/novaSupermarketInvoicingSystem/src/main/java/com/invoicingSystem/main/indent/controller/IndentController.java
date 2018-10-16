@@ -1,5 +1,6 @@
 package com.invoicingSystem.main.indent.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +40,8 @@ import com.invoicingSystem.main.shop.domain.Shop;
 import com.invoicingSystem.main.shop.service.IShopService;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.user.util.*;
+import com.invoicingSystem.main.util.LocationUtils;
+import com.invoicingSystem.main.warehouse.domain.Warehouse;
 import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 import com.invoicingSystem.main.warehouse.service.WarehouseService;
 
@@ -324,6 +327,47 @@ public class IndentController {
 				return new ExtAjaxResponse(false,"填充用户信息失败!");
 			}
 	    }
+	 
+    	 //计算运输成本.
+         @RequestMapping(value = "/calculateCost")
+        public @ResponseBody ExtAjaxResponse calculateCost(@RequestParam(name="cCost") double cCost,
+                @RequestParam(name="fromPlace") Long fp,@RequestParam(name="toPlace") Long tp,
+                @RequestParam(name="toPlaceType") String tpt) {
+            try {
+                Map<String,String> map=new HashMap<String, String>();
+                double transferCost=cCost;
+                Shop shop=null;
+                Warehouse warehouse1=null;
+                Warehouse warehouse2=null;
+                //System.out.println(cCost+","+fp+","+tp+","+tpt);
+                if(tpt.equals("WARE"))
+                {
+                    warehouse1 = warehouseService.findById(fp);
+                    warehouse2 = warehouseService.findById(tp);
+                    transferCost+=LocationUtils.getDistance(warehouse1.getLocation().getLatitude(),
+                            warehouse1.getLocation().getLongitude(), 
+                            warehouse2.getLocation().getLatitude(), 
+                            warehouse2.getLocation().getLongitude())*3;
+                }
+                else 
+                {
+                    shop=shopService.findById(tp);
+                    warehouse1 = warehouseService.findById(fp);
+                    transferCost+=LocationUtils.getDistance(warehouse1.getLocation().getLatitude(),
+                            warehouse1.getLocation().getLongitude(), 
+                            shop.getLocation().getLatitude(), 
+                            shop.getLocation().getLongitude())*3;
+                }
+                //四舍五入 小数点保留后两位
+                double value = new BigDecimal(transferCost).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                String tfc =""+value;
+                //System.out.println(tfc);
+                map.put("TransferCost", tfc);
+                return new ExtAjaxResponse(true,map);
+            } catch (Exception e) {
+                return new ExtAjaxResponse(false,"计算失败!原因:"+e);
+            }
+        }
 	
 	
 		 @RequestMapping(value = "/findCommoditiesJSON")
