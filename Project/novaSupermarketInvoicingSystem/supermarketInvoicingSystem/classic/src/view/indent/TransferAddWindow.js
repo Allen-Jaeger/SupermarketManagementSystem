@@ -320,6 +320,7 @@
             fieldLabel: '备注'
         },
         {
+            id:'leftBtn',
             xtype: 'button',
             x: 320,
             y: 110,
@@ -328,6 +329,7 @@
             handler: 'commoditiesListRightToLeft'
         },
         {
+            id:'rightBtn',
             xtype: 'button',
             x: 320,
             y: 160,
@@ -356,14 +358,18 @@
             xtype: 'button',
             x: 600,
             y: 310,
-            text: '计算'
+            text: '计算',
+            handler: 'calculateTransferCost'
         },
         {
+            id:'submitBtn',
             xtype: 'button',
             x: 290,
             y: 450,
             width: 120,
-            text: '提交'
+            text: '提交',
+            disabled: true,
+            handler:'submitTransferForm'
         },
         {
             xtype: 'button',
@@ -376,10 +382,14 @@
 			}
 		},
 		{
-            xtype: 'checkboxfield',
+            id:'retreatCheck',
+            xtype: 'checkbox',
             x: 220,
             y: 50,
-            boxLabel: '残旧品处理货单!!!'
+            boxLabel: '残旧品处理货单!!!',
+            listeners:{
+                change:'listenCheckChange'
+            }
         }
     ]
 
