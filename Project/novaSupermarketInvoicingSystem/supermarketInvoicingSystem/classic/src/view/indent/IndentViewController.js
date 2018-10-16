@@ -66,6 +66,9 @@
     var rowLength = rightgrid.getStore().data.length + 1;
     leftgrid.store.remove(leftgridrecord);
   }
+}, deleteOneSelectedIndent:function(grid, rowIndex) {
+  var leftgridDeleteRow = grid.getStore().getAt(rowIndex);
+  grid.store.remove(leftgridDeleteRow);
 }, displayorhideright:function() {
   var theWindow = Ext.getCmp('indentAddWindow');
   if (!Ext.getCmp('rightList').hidden) {
@@ -120,22 +123,22 @@
   toolbar.up('panel').up('container').add(Ext.widget('transferAddWindow')).show();
 }, displaySelectedPlaceList:function(val) {
   if (val.value == 'WARE') {
-    Ext.getCmp('wareList').show();
-    Ext.getCmp('shopList').hide();
+    Ext.getCmp('toWarehouseId').show();
+    Ext.getCmp('toShopId').hide();
   } else {
-    Ext.getCmp('wareList').hide();
-    Ext.getCmp('shopList').show();
+    Ext.getCmp('toWarehouseId').hide();
+    Ext.getCmp('toShopId').show();
   }
 }, displayShopOrWareCommoditiesInfo:function(val) {
   if(val.value != '请选择'){
       if(Ext.getCmp('placeType').value == 'WARE'){
-        Ext.Ajax.request({url:'warehouse/findById', method:'post',params:{warehouseId:val.value}, success:function(response, options) {
+        Ext.Ajax.request({url:'warehouse/findCommodityById', method:'post',params:{warehouseId:val.value}, success:function(response, options) {
         var maps = Ext.util.JSON.decode(response.responseText);
         for(var i=0;i<maps.length;i++){
             if(maps[i].amount < 50){
             for(var j=0;j<Ext.getCmp("rightList").getStore().getCount();j++){
               if(Ext.getCmp("rightList").getStore().getAt(j).get('name') == maps[i].name){
-                Ext.getCmp("rightList").getStore().getAt(j).set("lack","缺货");
+               Ext.getCmp("rightList").getStore().getAt(j).set("lack","缺货");
               }
             }
           }

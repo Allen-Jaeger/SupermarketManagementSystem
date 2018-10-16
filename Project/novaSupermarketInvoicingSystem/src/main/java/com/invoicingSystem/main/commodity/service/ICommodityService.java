@@ -1,5 +1,7 @@
 package com.invoicingSystem.main.commodity.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -22,4 +24,5 @@ public interface ICommodityService {
 	public Page<Commodity> findCommodities(CommodityStatus commodityStatus,Pageable pageable); 
 	public Page<Commodity> findCommoditiesByIndentId(Long indentId,Pageable pageable); 
 	public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName);  
+	public void deleteAll(List<Commodity> commodities);
 }

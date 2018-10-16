@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.invoicingSystem.main.activiti.domain.WorkflowDTO;
 import com.invoicingSystem.main.activiti.service.IWorkflowService;
+import com.invoicingSystem.main.commodity.domain.Commodity;
+import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
@@ -35,6 +37,9 @@ public class IndentService implements IIndentService {
     
 	@Autowired
 	IIndentRepository indentRepository;
+	
+	@Autowired
+	private ICommodityService commodityService;
 	
 	@Autowired 
     private IWorkflowService workflowService;
@@ -157,6 +162,12 @@ public class IndentService implements IIndentService {
 		List<Long> idLists = new ArrayList<Long>(Arrays.asList(ids));
 		
 		List<Indent> indents = (List<Indent>) indentRepository.findAllById(idLists);
+		
+		for(Indent indent:indents) {
+			List<Commodity> commodities = indent.getCommodities();
+			commodityService.deleteAll(commodities);
+			indent.setCommodities(null);
+		}
 		if(indents!=null) {
 			indentRepository.deleteAll(indents);
 		}

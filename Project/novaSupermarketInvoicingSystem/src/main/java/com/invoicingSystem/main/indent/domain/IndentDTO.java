@@ -35,12 +35,15 @@ public class IndentDTO {
     private Long keeper; 
     private Long manager;//采购(超级管理员)
     private Long fromWarehouse; 
-    private Long toWarehouse;
+    private String toWarehouseId;
     private Long fromShop; 
-    private Long toShop;
+    private String toShopId;
     private String note;
     private IndentType indentType;
     private String  commoditiesJSON;
+    private String placeType;
+    
+
     
     //工作流字段
     private String userId;//启动流程的用户ID
@@ -77,15 +80,11 @@ public class IndentDTO {
 	public Long getFromWarehouse() {
 		return fromWarehouse;
 	}
-	public Long getToWarehouse() {
-		return toWarehouse;
-	}
+	
 	public Long getFromShop() {
 		return fromShop;
 	}
-	public Long getToShop() {
-		return toShop;
-	}
+	
 	public String getNote() {
 		return note;
 	}
@@ -131,15 +130,11 @@ public class IndentDTO {
 	public void setFromWarehouse(Long fromWarehouse) {
 		this.fromWarehouse = fromWarehouse;
 	}
-	public void setToWarehouse(Long toWarehouse) {
-		this.toWarehouse = toWarehouse;
-	}
+	
 	public void setFromShop(Long fromShop) {
 		this.fromShop = fromShop;
 	}
-	public void setToShop(Long toShop) {
-		this.toShop = toShop;
-	}
+	
 	public void setNote(String note) {
 		this.note = note;
 	}
@@ -155,12 +150,37 @@ public class IndentDTO {
 	public void setProcessInstanceId(String processInstanceId) {
 		this.processInstanceId = processInstanceId;
 	}
+	
+	
+	public String getToWarehouseId() {
+		return toWarehouseId;
+	}
+	public void setToWarehouseId(String toWarehouseId) {
+		this.toWarehouseId = toWarehouseId;
+	}
+	public String getToShopId() {
+		return toShopId;
+	}
+	public void setToShopId(String toShopId) {
+		this.toShopId = toShopId;
+	}
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+	
+	
+	public String getPlaceType() {
+		return placeType;
+	}
+	public void setPlaceType(String placeType) {
+		this.placeType = placeType;
+	}
 	@Override
 	public String toString() {
 		return "\n\n\n IndentDTO [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
 				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
-				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouse
-				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", indentType=" + indentType
+				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouseId
+				+ ", fromShop=" + fromShop + ", toShop=" + toShopId + ", note=" + note + ", indentType=" + indentType
 				+ ", commoditiesJSON=" + commoditiesJSON + ", userId=" + userId + ", processInstanceId="
 				+ processInstanceId + "]\n\n\n";
 	}

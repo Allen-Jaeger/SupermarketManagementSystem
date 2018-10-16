@@ -1,5 +1,7 @@
 package com.invoicingSystem.main.commodity.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,15 @@ public class CommodityService implements ICommodityService {
 	public Commodity findByIndentIdAndCommodityName(Long indentId, String commodityName) {
 		
 		return (Commodity) commodityRepository.findByIndentIdAndCommodityName(indentId, commodityName);
+	}
+
+	@Override
+	public void deleteAll(List<Commodity> commodities) {
+		for(Commodity commodity :commodities) {
+			commodity.setIndent(null);
+		}
+		commodityRepository.deleteAll(commodities);
+		
 	}
 
 	

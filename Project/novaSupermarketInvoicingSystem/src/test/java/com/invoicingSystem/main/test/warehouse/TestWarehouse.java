@@ -2,6 +2,7 @@ package com.invoicingSystem.main.test.warehouse;
 
 import org.junit.Test;
 
+import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.util.IndentStatus;
 import com.invoicingSystem.main.test.TestBase;
@@ -44,5 +45,18 @@ public class TestWarehouse extends TestBase{
 	public void testFindByNAme() {
 		Warehouse warehouse = warehouseService.findByName("仓库一");
 		log.warn(warehouse.getName());
+	}
+	
+	@Test
+	public void addCommodities() {
+		Warehouse warehouse = warehouseService.findById(1L);
+		Commodity commodity = new Commodity();
+		commodity = commodityService.findById(1L);
+		commodity.setWarehouse(warehouse);
+		commodity.setAmount(49);
+		commodity.setId(null);
+		commodityService.save(commodity);
+		warehouse.getCommodities().add(commodity);
+		warehouseService.save(warehouse);
 	}
 }

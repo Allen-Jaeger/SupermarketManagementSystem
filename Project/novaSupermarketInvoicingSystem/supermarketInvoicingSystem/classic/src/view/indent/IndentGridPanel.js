@@ -9,7 +9,7 @@
     'Ext.selection.CheckboxModel',
     'Ext.form.field.Date',
     'Ext.grid.column.Date',
-    'Ext.grid.plugin.RowExpander'
+    'Ext.grid.plugin.*'
   ],
 
   items: [{
@@ -20,7 +20,6 @@
     selModel: {
       type: 'checkboxmodel'
     },
-   
     columns: [{
         header: 'id',
         dataIndex: 'id',
@@ -42,7 +41,16 @@
         sortable: true,
         renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')
       },
-
+      /*{
+        header: 'toWhere',
+        dataIndex: 'toShop',
+        align:'center',
+        width: 180,
+        sortable: true,
+        renderer: function () {
+          return toShop.name;
+        }
+      },*/
       {
         header: 'creatorName',
         dataIndex: 'creator',
@@ -126,7 +134,19 @@
         ]
       }
     ],
-     
+      plugins: {
+        rowexpander: {
+            rowBodyTpl: new Ext.XTemplate(
+                 '<p>订单编号：{indentNum}</p>',
+                 '<p>最后修改日期：{createDate}</p>',
+                 '<p>创建人:{creator.name}</p>',
+                 '<p>状态：{indentStatus}</p>',
+                 '<p>备注：{note}</p>',
+                 '<p>总成本：{cost}</p>',
+                 '<p>进货点：{toShop.location.address}  {toShop.name}</p>',
+                )
+        }
+    },
     
     tbar: [{
         xtype: 'combobox',

@@ -82,7 +82,7 @@ public class WarehouseController {
     
     
     //查找仓库下商品存货量
-    @RequestMapping(value = "/findById")
+    @RequestMapping(value = "/findCommodityById")
     public List<Map<String, String>> findById(@RequestParam(name = "warehouseId") Long id) {
     	//Long warehouseId = (Long)request.getAttribute("warehouseId");
     	System.out.println("warehouseId"+id);
@@ -91,9 +91,6 @@ public class WarehouseController {
     	List<Commodity> commodities = warehouse.getCommodities();
     	
     	List<Map<String, String>> returnList = new ArrayList<Map<String,String>>();
-    	
-    	
-    	
     	
     	for(Commodity commodity : commodities) {
     		Map<String, String>  map = new HashMap<String, String>();

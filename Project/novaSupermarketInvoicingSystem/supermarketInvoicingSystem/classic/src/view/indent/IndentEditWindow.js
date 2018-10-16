@@ -16,8 +16,11 @@
     modal:true,
     layout: 'fit',
     maximizable:true,
-    listeners:{resize:'adaptMax'},
-    
+    listeners:{resize:'adaptMax',
+               hide:function(btn) {
+                            Ext.getCmp('leftList').getStore().removeAll();
+                        }
+     },
     defaults: {
         bodyPadding: 10
    },
@@ -106,7 +109,7 @@
           height:300,
           layout: {align: 'middle',pack: 'center',type: 'vbox'},        
           items:[
-              {xtype: 'button', iconCls: 'x-fa fa-arrow-left',handler: 'addIntoselectcommoditiesList'},
+              {xtype: 'button', iconCls: 'x-fa fa-arrow-left',handler: 'addSelectedIntoselectcommoditiesList'},
               {xtype: 'button', iconCls: 'x-fa fa-arrow-right',handler: 'cancelselectcommoditiesList'}
              
           ]
@@ -133,7 +136,7 @@
              , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
              ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
               items: [
-                {xtype: 'button', iconCls: 'x-fa fa-plus',handler: ''}
+                {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}
               ]
               }
           ],
@@ -231,52 +234,69 @@
             },
             {
                 xtype     : 'combobox',
-                name      : 'toshop',
+                name      : 'placeType',
+                id:'placeType',
                 width: 100,
                 store:Ext.create('Ext.data.Store', {
                       fields:['name', 'value'], 
                       data:[
-                        {name:'仓库',value:'warehouse'}
-                        ,{name:'门店', value:'shop'}
+                       {name:'门店', value:'SHOP'},
+                        {name:'仓库',value:'WARE'}
+                        
                  ]}),
                 displayField:'name',
                 valueField:'value', 
-                value:'仓库', 
+                value:'SHOP', 
                 editable:false, 
                 queryMode:'local',
+                listeners:{
+                      select:'displaySelectedPlaceList'
+                  
+                }
             },
             {
                 xtype:'displayfield',
                 value:'地点:',
                 width:40,
-            },
-            {
+            },{
                 xtype     : 'combobox',
-                name      : 'toshop1',
+                name      : 'toshopId',
+                id:'toshopId',
                 width: 100,
-                store:Ext.create('Ext.data.Store', {
-                      fields:['name', 'value'], 
-                      data:[
-                        {name:'北京省',value:'北京省'}
-                        ,{name:'广东省', value:'广东省'}
-                 ]}),
+                store:{type:'shopStore'},
                 displayField:'name',
-                valueField:'value', 
+                valueField:'index', 
                 value:'请选择', 
                 editable:false, 
                 queryMode:'local',
+                listeners:{
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
             },
             {
-                xtype:'displayfield',
-                value:'id:',
-                width:40,
-            },
-            {
-                xtype:'textfield',
-                id:'toshopid',
-                name:'toShop'
-
+                xtype     : 'combobox',
+                name      : 'toWarehouseId',
+                id:'toWarehouseId',
+                width: 100,
+                hidden:true,
+                store:{type:'wareStore'},
+                displayField:'name',
+                valueField:'index', 
+                value:'请选择', 
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                  afterRender:function(){
+                      Ext.getCmp('toWarehouseId').store.load();
+                  },
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
             }
+           
+
+
 
 
         ]
@@ -299,6 +319,7 @@
         xtype: 'button',
         text: 'Close',
         handler: function(btn) {
+            Ext.getCmp('leftList').getStore().removeAll();
             btn.up('window').close();
         }
     },'->']
