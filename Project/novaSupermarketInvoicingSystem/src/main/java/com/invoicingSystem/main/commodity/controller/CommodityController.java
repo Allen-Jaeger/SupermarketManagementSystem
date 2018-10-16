@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
@@ -45,6 +46,8 @@ public class CommodityController {
 		
 		@Autowired
         private IShopService shopService;
+		
+		
 		
 		@GetMapping
 		public Page<Commodity> findAll(CommodityQueryDTO commodityQueryDTO ,ExtjsPageRequest pageable){
@@ -152,5 +155,7 @@ public class CommodityController {
 			}
 			return new PageImpl<CommodityDTO>(comDtoList,comPage.getPageable(),comPage.getTotalElements());
 		}
+		
+		
 		
 }

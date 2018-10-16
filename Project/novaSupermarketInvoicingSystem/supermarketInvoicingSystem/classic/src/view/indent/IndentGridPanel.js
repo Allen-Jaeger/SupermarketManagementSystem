@@ -41,16 +41,7 @@
         sortable: true,
         renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')
       },
-      /*{
-        header: 'toWhere',
-        dataIndex: 'toShop',
-        align:'center',
-        width: 180,
-        sortable: true,
-        renderer: function () {
-          return toShop.name;
-        }
-      },*/
+      
       {
         header: 'creatorName',
         dataIndex: 'creator',
@@ -144,6 +135,14 @@
                  '<p>备注：{note}</p>',
                  '<p>总成本：{cost}</p>',
                  '<p>进货点：{toShop.location.address}  {toShop.name}</p>',
+                 '<p>进货点：{afterRender:this.toWhere}</p>',
+                 {
+                    toWhere: function (v) {
+                       
+                        return Ext.util.get
+                           
+                    }
+                }
                 )
         }
     },

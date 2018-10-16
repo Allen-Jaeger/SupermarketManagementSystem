@@ -79,7 +79,7 @@
     grid.store.remove(leftgridDeleteRow);
   },
   displayorhideright: function () {
-    var theWindow = Ext.getCmp('indentAddWindow');
+    var theWindow = Ext.getCmp(btn.id);
     if (!Ext.getCmp('rightList').hidden) {
       Ext.getCmp('middleButton').hide();
       Ext.getCmp('rightList').hide();
@@ -155,7 +155,7 @@
     }
   },
   displayShopOrWareCommoditiesInfo: function (val) {
-    if (val.value != '请选择') {
+    if (val.value != null && val.value!='') {
       if (Ext.getCmp('placeType').value == 'WARE') {
         Ext.Ajax.request({
           url: 'warehouse/findCommodityById',
@@ -204,44 +204,51 @@
     }
   },
   openEditWindow: function (grid, rowIndex, colIndex) {
-    Ext.Ajax.request({
-      url: 'indent/fillUser',
-      method: 'post',
-      success: function (response, options) {
-        var json = Ext.util.JSON.decode(response.responseText);
-        if (json.success) {
-          Ext.getCmp('creatorId').setValue(json.map.userName);
-        } else {
-          Ext.getCmp('creatorId').setValue('');
-        }
-      }
-    });
-    var record = grid.getStore().getAt(rowIndex);
-    var store = Ext.data.StoreManager.lookup('leftStore');
-    Ext.apply(store.proxy.extraParams, {
-      indentId: record.id
-    });
-    store.load({
-      params: {
-        start: 0,
-        limit: 20,
-        page: 1
-      }
-    });
-    if (record) {
-      if (record.data.indentStatus == 'INIT') {
-        var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
-        win.show();
-        record.data.toshopid = record.data.toShop.id;
-        win.down('form').getForm().loadRecord(record);
-      } else {
-        Ext.Msg.alert('提示', "只可以修改'初始化'状态的信息！");
-      }
+   Ext.Ajax.request({url:'indent/fillUser', method:'post', success:function(response, options) {
+    var json = Ext.util.JSON.decode(response.responseText);
+    if (json.success) {
+      Ext.getCmp('creatorId').setValue(json.map.userName);
+    } else {
+      Ext.getCmp('creatorId').setValue('');
     }
-  },
+  }});
+  var record = grid.getStore().getAt(rowIndex);
+  var store = Ext.data.StoreManager.lookup('leftStore');
+  Ext.apply(store.proxy.extraParams, {indentId:record.id});
+  store.load({params:{start:0, limit:20, page:1}});
+  if (record) {
+    if (record.data.indentStatus == 'INIT') {
+      var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
+      win.show();
+      if(record.data.toShop != null)
+      { 
+        record.data.placeType = "SHOP";
+        record.data.toShopId= record.data.toShop.id;
+      }
+      if(record.data.toWarehouse != null)
+      {
+        Ext.getCmp('toShopId').hide();
+        Ext.getCmp('toWarehouseId').show();
+        record.data.placeType = "WARE";
+        record.data.toWarehouseId= record.data.toWarehouse.id;
+      }
+
+      win.down('form').getForm().loadRecord(record);
+    } else {
+      Ext.Msg.alert('提示', "只可以修改'初始化'状态的信息！");
+    }
+  }
+},
   openSearchWindow: function (toolbar, rowIndex, colIndex) {
     toolbar.up('panel').up('container').add(Ext.widget('indentSearchWindow')).show();
   },
+  searchByCommodityKey:function(){
+  var selectedCat = Ext.getCmp('commodityType').getValue();
+  var key = Ext.getCmp('commoditySearchField').getValue();
+  var store = Ext.getCmp('rightList').getStore();
+  Ext.apply(store.proxy.extraParams, {commodityType:selectedCat,name:key});
+  store.load({params:{start:0, limit:20, page:1}});
+},
   searchByCommodityType: function () {
     var selectedCat = Ext.getCmp('commodityType').getValue();
     var store = Ext.getCmp('rightList').getStore();
@@ -255,6 +262,10 @@
         page: 1
       }
     });
+    var store2 =  Ext.data.StoreManager.lookup('commoditiesStore');
+    Ext.apply(store2.proxy.extraParams, {commodityType:selectedCat});
+    store2.load({params:{start:0, limit:20, page:1}});
+    Ext.getCmp('commoditySearchField').setValue('');
   },
   searchRightCommodities: function () {
     var selectedType = Ext.getCmp('commodityType').getValue();
@@ -278,6 +289,12 @@
       }
     });
   },
+  resetSearchCommodityList:function(){
+  Ext.getCmp('commoditySearchField').setValue("");
+  Ext.getCmp('commodityType').setValue("");
+  Ext.getCmp('rightList').getStore().load({params:{start:0, limit:20, page:1,commodityType:"",name:""}});
+  Ext.data.StoreManager.lookup('commoditiesStore').load({params:{start:0, limit:20, page:1,commodityType:""}});
+}, 
   searchLeftCommodities: function (combo, record, index) {
     var toPlaceId = Ext.getCmp('toPlaceId').getValue();
     var placeType = Ext.getCmp('toPlaceType').getValue();

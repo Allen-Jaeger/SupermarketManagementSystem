@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 
 /**
@@ -25,4 +26,5 @@ public interface ICommodityService {
 	public Page<Commodity> findCommoditiesByIndentId(Long indentId,Pageable pageable); 
 	public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName);  
 	public void deleteAll(List<Commodity> commodities);
+	
 }

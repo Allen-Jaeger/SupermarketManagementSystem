@@ -40,15 +40,94 @@
     //订单类型:默认为订货单，枚举类型
     //{xtype: 'textfield',fieldLabel: 'indentType',name:'indentType',hidden: true,value:'1'}
     //订单编号：自动生成 随机
-    //,{xtype: 'textfield',fieldLabel: 'indentNum',name:'indentNum',hidden: true}
+    //
+    //
+    ,{xtype: 'displayfield',fieldLabel: '订单编号',name:'indentNum',editable:false}
     //生成日期
-    //,{xtype: 'datefield',fieldLabel: 'createDate',name:'createDate',hidden: true}
+    ,{xtype: 'displayfield',fieldLabel: '创建时间',name:'createDate',editable:false,renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')}
     ,{
-      xtype: 'textfield',
+      xtype: 'displayfield',
       name: 'creatorId',
       fieldLabel: '订单创建者',
       id:'creatorId',
       editable:false,
+
+     },
+    {
+      xtype: 'fieldcontainer',
+      fieldLabel: '进货点',
+      layout:"hbox" ,
+      //name:'',
+      //id:'',
+        items:[{
+              xtype:'displayfield',
+              value:'类型:',
+              width:40
+            },
+            {
+                xtype     : 'combobox',
+                name      : 'placeType',
+                id:'placeType',
+                width: 100,
+                store:Ext.create('Ext.data.Store', {
+                      fields:['name', 'value'], 
+                      data:[
+                       {name:'门店', value:'SHOP'},
+                        {name:'仓库',value:'WARE'}
+                        
+                 ]}),
+                displayField:'name',
+                valueField:'value', 
+                value:'SHOP', 
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                      select:'displaySelectedPlaceList',
+
+                  
+                }
+            },
+            {
+                xtype:'displayfield',
+                value:'地点:',
+                width:40,
+            },{
+                xtype     : 'combobox',
+                name      : 'toShopId',
+                id:'toShopId',
+                width: 100,
+                store:{type:'shopStore'},
+                displayField:'name',
+                valueField:'index', 
+                emptyText:'请选择', 
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
+            },
+            {
+                xtype     : 'combobox',
+                name      : 'toWarehouseId',
+                id:'toWarehouseId',
+                width: 100,
+                hidden:true,
+                store:{type:'wareStore'},
+                displayField:'name',
+                valueField:'index', 
+                emptyText:'请选择',
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                  afterRender:function(){
+                      Ext.getCmp('toWarehouseId').store.load();
+                  },
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
+            }
+         ]
      },
      {
           xtype:'textfield',
@@ -64,12 +143,7 @@
       name:'commoditiesList',
       id:'commoditiesList',
         items:[
-       
-
-
-
-
-        {
+         {
           xtype:'gridpanel',
           id:'leftList',
           name:'leftList',
@@ -78,7 +152,7 @@
           height:300,
           scrollable:true,
           selModel: {type: 'checkboxmodel'},
-          
+          resizable:true,
            plugins: {
               ptype: 'cellediting',
               clicksToEdit: 1,
@@ -95,8 +169,12 @@
               
             }
             ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true}
-            ,{header: 'price',dataIndex:'price',width: 60,sortable: true
-         }
+            ,{header: 'price',dataIndex:'price',width: 60,sortable: true }
+            ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
+              items: [
+                {xtype: 'button', iconCls: 'x-fa fa-minus',handler: 'deleteOneSelectedIndent'}
+              ]
+            }
           ],
           
         },
@@ -134,6 +212,7 @@
                   
            }
              , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
+             , {header: 'lack',dataIndex:'lack',width: 60,sortable: true}
              ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}
@@ -161,7 +240,7 @@
             ]}),  
             displayField:'name',
             valueField:'value', 
-            value:'全部', 
+            value:'', 
             editable:false, 
             queryMode:'local',
             triggerAction:'all',
@@ -172,31 +251,31 @@
             '-', 
           {
             xtype: 'combobox',
-            
             displayField: 'name',
             anchor: '-15',
+            id:"commoditySearchField",
             store: {
                 type: 'commoditiesStore'
             },
-
-            // We're forcing the query to run every time by setting minChars to 0
-            // (default is 4)
             minChars: 0,
             queryParam: 'q',
-            queryMode: 'remote',
+            queryMode: 'local',
             listConfig: {
                 itemTpl: [
                     '<div data-qtip="{name}">{name}</div>'
                 ]
+            },
+            listeners:{
+              select:'searchByCommodityKey',
+              change:'searchByCommodityKey'
             }
           },
               
             {
               text:'Search', 
               iconCls:'fa fa-search', 
-              handler:'quickSearch'
-            }, 
-            
+              handler:'resetSearchCommodityList', 
+            }
               
         ],
         },
@@ -208,10 +287,7 @@
           height:300,
           iconCls: 'x-fa fa-arrow-left',
           handler: 'displayorhideright'
-          
-          
-          
-        }
+         }
       ] 
     },{
       xtype     : 'textfield',
@@ -221,86 +297,6 @@
       editable  :false
       
     },
-    {
-      xtype: 'fieldcontainer',
-      fieldLabel: '进货点',
-      layout:"hbox" ,
-      //name:'',
-      //id:'',
-        items:[{
-              xtype:'displayfield',
-              value:'类型:',
-              width:40
-            },
-            {
-                xtype     : 'combobox',
-                name      : 'placeType',
-                id:'placeType',
-                width: 100,
-                store:Ext.create('Ext.data.Store', {
-                      fields:['name', 'value'], 
-                      data:[
-                       {name:'门店', value:'SHOP'},
-                        {name:'仓库',value:'WARE'}
-                        
-                 ]}),
-                displayField:'name',
-                valueField:'value', 
-                value:'SHOP', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                      select:'displaySelectedPlaceList'
-                  
-                }
-            },
-            {
-                xtype:'displayfield',
-                value:'地点:',
-                width:40,
-            },{
-                xtype     : 'combobox',
-                name      : 'toshopId',
-                id:'toshopId',
-                width: 100,
-                store:{type:'shopStore'},
-                displayField:'name',
-                valueField:'index', 
-                value:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            },
-            {
-                xtype     : 'combobox',
-                name      : 'toWarehouseId',
-                id:'toWarehouseId',
-                width: 100,
-                hidden:true,
-                store:{type:'wareStore'},
-                displayField:'name',
-                valueField:'index', 
-                value:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  afterRender:function(){
-                      Ext.getCmp('toWarehouseId').store.load();
-                  },
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            }
-           
-
-
-
-
-        ]
-  },
     
     
     {
@@ -308,7 +304,6 @@
       grow      : true,
       name      : 'note',
       fieldLabel: '备注',
-      anchor    : '100%'
     }]
     }],
   buttons: ['->',{

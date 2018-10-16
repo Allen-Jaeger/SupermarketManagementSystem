@@ -148,6 +148,7 @@ public class IndentController {
     		//修改前先取出
     		String oldCommoditiesJSON = indent.getCommoditiesJSON();
     		
+    		if(!StringUtil.isEmpty(indentDTO.getPlaceType())) {
     		if(indentDTO.getPlaceType().equals("SHOP"))
     			{
     				indent.setToWarehouse(null);
@@ -157,6 +158,7 @@ public class IndentController {
     				indent.setToShop(null);
     				indent.setToWarehouse(warehouseService.findById(Long.parseLong(indentDTO.getToWarehouseId())));
     			}
+    		}
         	if(indentDTO.getNote() != null)		indent.setNote(indentDTO.getNote());
         	if(indentDTO.getCost() != null) 	indent.setCost(indentDTO.getCost());
         	

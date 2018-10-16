@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.repository.ICommodityRepository;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 
 /**
@@ -74,6 +75,8 @@ public class CommodityService implements ICommodityService {
 		commodityRepository.deleteAll(commodities);
 		
 	}
+
+	
 
 	
 	

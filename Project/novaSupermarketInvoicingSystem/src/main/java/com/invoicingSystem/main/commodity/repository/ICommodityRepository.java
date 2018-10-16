@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 
 
 /**
@@ -32,5 +33,4 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 	 @Query("from Commodity commodity where commodity.indent.id =?1 and commodity.name = ?2") 
 	    public Commodity findByIndentIdAndCommodityName(Long indentId,String commodityName); 
 
-	
 }

@@ -50,6 +50,82 @@
       id:'creatorId',
       editable:false,
      },
+    {
+      xtype: 'fieldcontainer',
+      fieldLabel: '进货点',
+      layout:"hbox" ,
+      //name:'',
+      //id:'',
+        items:[{
+              xtype:'displayfield',
+              value:'类型:',
+              width:40
+            },
+            {
+                xtype     : 'combobox',
+                name      : 'placeType',
+                id:'placeType',
+                width: 100,
+                store:Ext.create('Ext.data.Store', {
+                      fields:['name', 'value'], 
+                      data:[
+                       {name:'门店', value:'SHOP'},
+                        {name:'仓库',value:'WARE'}
+                        
+                 ]}),
+                displayField:'name',
+                valueField:'value', 
+                value:'SHOP', 
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                      select:'displaySelectedPlaceList',
+
+                  
+                }
+            },
+            {
+                xtype:'displayfield',
+                value:'地点:',
+                width:40,
+            },{
+                xtype     : 'combobox',
+                name      : 'toShopId',
+                id:'toShopId',
+                width: 100,
+                store:{type:'shopStore'},
+                displayField:'name',
+                valueField:'index', 
+                emptyText:'请选择', 
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
+            },
+            {
+                xtype     : 'combobox',
+                name      : 'toWarehouseId',
+                id:'toWarehouseId',
+                width: 100,
+                hidden:true,
+                store:{type:'wareStore'},
+                displayField:'name',
+                valueField:'index', 
+                emptyText:'请选择',
+                editable:false, 
+                queryMode:'local',
+                listeners:{
+                  afterRender:function(){
+                      Ext.getCmp('toWarehouseId').store.load();
+                  },
+                  select:'displayShopOrWareCommoditiesInfo',
+                  show:'displayShopOrWareCommoditiesInfo'
+                }
+            }
+         ]
+     },
      {
           xtype:'textfield',
           hidden:'true',
@@ -162,7 +238,7 @@
             ]}),  
             displayField:'name',
             valueField:'value', 
-            value:'全部', 
+            value:'', 
             editable:false, 
             queryMode:'local',
             triggerAction:'all',
@@ -173,13 +249,13 @@
             '-', 
           {
             xtype: 'combobox',
-            
+            id:'commoditySearchField',
             displayField: 'name',
             anchor: '-15',
             store: {
                 type: 'commoditiesStore'
             },
-
+            valueField:'name', 
             // We're forcing the query to run every time by setting minChars to 0
             // (default is 4)
             minChars: 0,
@@ -189,13 +265,17 @@
                 itemTpl: [
                     '<div data-qtip="{name}">{name}</div>'
                 ]
+            },
+            listeners:{
+              select:'searchByCommodityKey',
+              change:'searchByCommodityKey'
             }
           },
               
             {
               text:'Search', 
               iconCls:'fa fa-search', 
-              handler:'quickSearch'
+              handler:'resetSearchCommodityList'
             }, 
             
               
@@ -222,87 +302,8 @@
       editable  :false
       
     },
-    {
-      xtype: 'fieldcontainer',
-      fieldLabel: '进货点',
-      layout:"hbox" ,
-      //name:'',
-      //id:'',
-        items:[{
-              xtype:'displayfield',
-              value:'类型:',
-              width:40
-            },
-            {
-                xtype     : 'combobox',
-                name      : 'placeType',
-                id:'placeType',
-                width: 100,
-                store:Ext.create('Ext.data.Store', {
-                      fields:['name', 'value'], 
-                      data:[
-                       {name:'门店', value:'SHOP'},
-                        {name:'仓库',value:'WARE'}
-                        
-                 ]}),
-                displayField:'name',
-                valueField:'value', 
-                value:'SHOP', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                      select:'displaySelectedPlaceList'
-                  
-                }
-            },
-            {
-                xtype:'displayfield',
-                value:'地点:',
-                width:40,
-            },{
-                xtype     : 'combobox',
-                name      : 'toShopId',
-                id:'toShopId',
-                width: 100,
-                store:{type:'shopStore'},
-                displayField:'name',
-                valueField:'index', 
-                value:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            },
-            {
-                xtype     : 'combobox',
-                name      : 'toWarehouseId',
-                id:'toWarehouseId',
-                width: 100,
-                hidden:true,
-                store:{type:'wareStore'},
-                displayField:'name',
-                valueField:'index', 
-                value:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  afterRender:function(){
-                      Ext.getCmp('toWarehouseId').store.load();
-                  },
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            }
-           
-
-
-        ]
-  },
     
-    
-    {
+     {
       xtype     : 'textareafield',
       grow      : true,
       name      : 'note',
