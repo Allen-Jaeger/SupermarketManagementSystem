@@ -2,6 +2,10 @@ package com.invoicingSystem.main.commodity.domain;
 
 import java.util.Date;
 
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
+import com.invoicingSystem.main.common.enum_tools.EnumTool;
+
 /**
  * @author LiJuncong
  * at 2018年9月29日
@@ -47,6 +51,20 @@ public class CommodityDTO {
 			this.indentNum = commodity.getIndent().getIndentNum();
 		}
 	}
+	public Commodity asModel() {
+		Commodity model = new Commodity();
+		EnumTool et = new EnumTool(CommodityType.class);
+		model.setCommodityType((CommodityType) et.transToEnum(commodityType));
+		et = new EnumTool(CommodityStatus.class);
+		model.setCommodityStatus((CommodityStatus) et.transToEnum(commodityStatus));
+		model.setBarCode(barCode);
+		model.setName(name);
+		model.setSaveStock(saveStock);
+		model.setNote(note);
+		model.setPrice(price);
+		return model;
+	}
+	
 	
 	//Getter and Setter
 	public Long getId() {

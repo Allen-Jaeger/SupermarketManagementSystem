@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -40,6 +41,8 @@ public class UserService implements IUserService {
 	IWarehouseRepository warehouseRepository;
 	@Autowired
 	IShopRepository shopRepository;
+	@Value("#{userDefaultBean.defIconUrl}")
+	private String defIconUrl; // 头像
 	
 	@Override
 	public void save(User user) {
@@ -121,7 +124,7 @@ public class UserService implements IUserService {
 			
 		}
 		//头像不为默认时，删除旧头像
-		if(!user.getIconUrl().equals("defaultUser.jpg")) {
+		if(!user.getIconUrl().equals(defIconUrl)) {
 			File oldIcon = new File(path + "/" + user.getIconUrl());
 			File oldIcon2 = new File(path2 + "/" + user.getIconUrl());
 			if(oldIcon.exists()) {
@@ -208,7 +211,7 @@ public class UserService implements IUserService {
 			//判断是否userType在list中已经存在
 			for (int j = 0; j < list.size(); j++) {
 				Map<String,String> map2 = list.get(j);
-				String existUserTypeValue = map2.get("userType");
+//				String existUserTypeValue = map2.get("userType");
 				if (map.get("userType").equals(map2.get("userType"))) {
 					if (gender.equals(Gender.MALE)) {
 						map2.put("男",String.valueOf(Long.parseLong(map2.get("男"))+(long)obj[2]));
