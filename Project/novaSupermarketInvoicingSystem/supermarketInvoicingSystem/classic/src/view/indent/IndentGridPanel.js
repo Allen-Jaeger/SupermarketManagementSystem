@@ -1,4 +1,4 @@
-﻿Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
+Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
   extend: Ext.panel.Panel,
   xtype: 'indentGridPanel',
   layout: 'fit',
@@ -129,19 +129,23 @@
         rowexpander: {
             rowBodyTpl: new Ext.XTemplate(
                  '<p>订单编号：{indentNum}</p>',
-                 '<p>最后修改日期：{createDate}</p>',
+                 '<p>最后修改日期：{createDate:this.formatChange}</p>',
                  '<p>创建人:{creator.name}</p>',
                  '<p>状态：{indentStatus}</p>',
                  '<p>备注：{note}</p>',
                  '<p>总成本：{cost}</p>',
-                 '<p>进货点：{toShop.location.address}  {toShop.name}</p>',
-                 '<p>进货点：{afterRender:this.toWhere}</p>',
-                 {
-                    toWhere: function (v) {
-                       
-                        return Ext.util.get
-                           
-                    }
+                 '<p>进货点：{toWarehouse.location.address}  {toWarehouse.name}</p>',
+                 {                
+                      formatChange:function(v) { 
+                      var year = v.getFullYear(); 
+                      var month = v.getMonth() + 1; 
+                      var day = v.getDate(); 
+                      var hour = v.getHours(); 
+                      var minute = v.getMinutes(); 
+                      var second = v.getSeconds(); 
+                      return year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second ; 
+                    
+                      } 
                 }
                 )
         }

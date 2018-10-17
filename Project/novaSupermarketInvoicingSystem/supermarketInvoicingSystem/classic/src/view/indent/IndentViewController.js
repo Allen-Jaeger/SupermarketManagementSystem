@@ -19,6 +19,7 @@
     for (var i = 0; i < rightgridrecord.length; i++) {
       var rowLength = leftgrid.getStore().data.length + 1;
       var addingRowCommoditiesName = rightgridrecord[i].data.name;
+      rightgridrecord[i].data.num = 0;
       rightgridrecord[i].data.price = 0;
       rightgridrecord[i].data.amount = '';
       var flag = 0;
@@ -31,6 +32,7 @@
         leftgrid.store.insert(rowLength, rightgridrecord[i].data);
       }
     }
+
   },
   addOneIntoselectcommoditiesList: function (grid, rowIndex) {
     var rightgridrecord = grid.getStore().getAt(rowIndex);
@@ -52,6 +54,8 @@
     }
   },
   updateSingleCost: function (val) {
+    var val2 = (val.value.replace(/[^0-9]/ig,"") ).replace(/\b(0+)/gi,"");
+    val.setValue( val2 == '' ? 0 : val2 );
     var grid = Ext.getCmp('leftList');
     var record = grid.getSelectionModel().getSelection();
     var num = record[0].get('num');
@@ -64,6 +68,7 @@
       sum += grid.getStore().getAt(i).get('price');
     }
     Ext.getCmp('cost').setValue(sum);
+
   },
   cancelselectcommoditiesList: function (grid, rowIndex, colIndex) {
     var leftgridrecord = Ext.getCmp('leftList').getSelection();
@@ -73,29 +78,34 @@
       var rowLength = rightgrid.getStore().data.length + 1;
       leftgrid.store.remove(leftgridrecord);
     }
+     var sum = 0;
+    var gridLength = leftgrid.getStore().getCount();
+    for (var i = 0; i < gridLength; i++) {
+      sum += leftgrid.getStore().getAt(i).get('price');
+    }
+    Ext.getCmp('cost').setValue(sum);
   },
   deleteOneSelectedIndent: function (grid, rowIndex) {
     var leftgridDeleteRow = grid.getStore().getAt(rowIndex);
     grid.store.remove(leftgridDeleteRow);
+    var sum = 0;
+    var gridLength = grid.getStore().getCount();
+    for (var i = 0; i < gridLength; i++) {
+      sum += grid.getStore().getAt(i).get('price');
+    }
+    Ext.getCmp('cost').setValue(sum);
   },
-  displayorhideright: function () {
-    var theWindow = Ext.getCmp(btn.id);
+  displayorhideright: function (btn) {
+    var theWindow = btn.up('container').up('window');
+    var flexWidth = Ext.getCmp(theWindow.id).width -160;
     if (!Ext.getCmp('rightList').hidden) {
-      Ext.getCmp('middleButton').hide();
-      Ext.getCmp('rightList').hide();
-      if (!theWindow.maximized) {
-        Ext.getCmp('leftList').setWidth(820 * 0.8);
-      } else {
-        Ext.getCmp('leftList').setWidth(theWindow.width * 0.87);
-      }
+        Ext.getCmp('middleButton').hide();
+        Ext.getCmp('rightList').hide();
+       Ext.getCmp('leftList').setWidth(flexWidth*1);
     } else {
-      if (!theWindow.maximized) {
-        Ext.getCmp('leftList').setWidth(820 * 0.25);
-        Ext.getCmp('rightList').setWidth(820 * 0.5);
-      } else {
-        Ext.getCmp('leftList').setWidth(theWindow.width * 0.34);
-        Ext.getCmp('rightList').setWidth(theWindow.width * 0.5);
-      }
+      Ext.getCmp('leftList').setWidth(flexWidth*0.4);
+      Ext.getCmp('middleButton').setWidth(flexWidth*0.1);
+     Ext.getCmp('rightList').setWidth(flexWidth*0.5);
       Ext.getCmp('middleButton').show();
       Ext.getCmp('rightList').show();
     }
@@ -145,63 +155,14 @@
     });
     toolbar.up('panel').up('container').add(Ext.widget('transferAddWindow')).show();
   },
-  displaySelectedPlaceList: function (val) {
-    if (val.value == 'WARE') {
-      Ext.getCmp('toWarehouseId').show();
-      Ext.getCmp('toShopId').hide();
-    } else {
-      Ext.getCmp('toWarehouseId').hide();
-      Ext.getCmp('toShopId').show();
-    }
-  },
-  displayShopOrWareCommoditiesInfo: function (val) {
-    if (val.value != null && val.value!='') {
-      if (Ext.getCmp('placeType').value == 'WARE') {
-        Ext.Ajax.request({
-          url: 'warehouse/findCommodityById',
-          method: 'post',
-          params: {
-            warehouseId: val.value
-          },
-          success: function (response, options) {
-            var maps = Ext.util.JSON.decode(response.responseText);
-            for (var i = 0; i < maps.length; i++) {
-              if (maps[i].amount < 50) {
-                for (var j = 0; j < Ext.getCmp("rightList").getStore().getCount(); j++) {
-                  if (Ext.getCmp("rightList").getStore().getAt(j).get('name') == maps[i].name) {
-                    Ext.getCmp("rightList").getStore().getAt(j).set("lack", "缺货");
-                  }
-                }
-              }
-            }
-          }
-        });
-      } else {
-
-      }
-    }
-
-
-  },
-  adaptMax: function (btn) {
-    var theWindow = Ext.getCmp(btn.id);
-    if (theWindow.maximized) {
-      if (Ext.getCmp('rightList').hidden) {
-        Ext.getCmp('leftList').setWidth(theWindow.width * 0.8);
-      } else {
-        Ext.getCmp('leftList').setWidth(theWindow.width * 0.25);
-        Ext.getCmp('rightList').setWidth(theWindow.width * 0.5);
-      }
-    } else {
-      if (theWindow.width != 820) {
-        if (Ext.getCmp('rightList').hidden) {
-          Ext.getCmp('leftList').setWidth(theWindow.width * 0.87);
-        } else {
-          Ext.getCmp('leftList').setWidth(theWindow.width * 0.34);
-          Ext.getCmp('rightList').setWidth(theWindow.width * 0.5);
-        }
-      }
-    }
+  
+  
+  autoAdapting: function (node) {
+    var theWindow = node.id;
+    var flexWidth = Ext.getCmp(theWindow).width -160;
+    Ext.getCmp('leftList').setWidth(flexWidth*0.4);
+    Ext.getCmp('middleButton').setWidth(flexWidth*0.1);
+    Ext.getCmp('rightList').setWidth(flexWidth*0.5);
   },
   openEditWindow: function (grid, rowIndex, colIndex) {
    Ext.Ajax.request({url:'indent/fillUser', method:'post', success:function(response, options) {
@@ -220,19 +181,9 @@
     if (record.data.indentStatus == 'INIT') {
       var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
       win.show();
-      if(record.data.toShop != null)
-      { 
-        record.data.placeType = "SHOP";
-        record.data.toShopId= record.data.toShop.id;
-      }
-      if(record.data.toWarehouse != null)
-      {
-        Ext.getCmp('toShopId').hide();
-        Ext.getCmp('toWarehouseId').show();
-        record.data.placeType = "WARE";
-        record.data.toWarehouseId= record.data.toWarehouse.id;
-      }
-
+      
+       record.data.toWarehouseId= record.data.toWarehouse.id;
+      
       win.down('form').getForm().loadRecord(record);
     } else {
       Ext.Msg.alert('提示', "只可以修改'初始化'状态的信息！");

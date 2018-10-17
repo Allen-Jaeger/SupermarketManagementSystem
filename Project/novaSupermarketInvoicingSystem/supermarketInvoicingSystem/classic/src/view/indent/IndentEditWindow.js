@@ -8,7 +8,7 @@
     minWidth: 300,
     width: 820,
     scrollable: true,
-    resizable:false,
+    resizable:true,
     title: 'Edit Indent Window',
     closable: true,
     constrain: true,
@@ -16,7 +16,9 @@
     modal:true,
     layout: 'fit',
     maximizable:true,
-    listeners:{resize:'adaptMax',
+    listeners:{
+                resize:'autoAdapting',
+          
                hide:function(btn) {
                             Ext.getCmp('leftList').getStore().removeAll();
                         }
@@ -40,8 +42,7 @@
     //订单类型:默认为订货单，枚举类型
     //{xtype: 'textfield',fieldLabel: 'indentType',name:'indentType',hidden: true,value:'1'}
     //订单编号：自动生成 随机
-    //
-    //
+   
     ,{xtype: 'displayfield',fieldLabel: '订单编号',name:'indentNum',editable:false}
     //生成日期
     ,{xtype: 'displayfield',fieldLabel: '创建时间',name:'createDate',editable:false,renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')}
@@ -55,64 +56,17 @@
      },
     {
       xtype: 'fieldcontainer',
-      fieldLabel: '进货点',
+      fieldLabel: '进货仓库',
       layout:"hbox" ,
       //name:'',
       //id:'',
-        items:[{
-              xtype:'displayfield',
-              value:'类型:',
-              width:40
-            },
-            {
-                xtype     : 'combobox',
-                name      : 'placeType',
-                id:'placeType',
-                width: 100,
-                store:Ext.create('Ext.data.Store', {
-                      fields:['name', 'value'], 
-                      data:[
-                       {name:'门店', value:'SHOP'},
-                        {name:'仓库',value:'WARE'}
-                        
-                 ]}),
-                displayField:'name',
-                valueField:'value', 
-                value:'SHOP', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                      select:'displaySelectedPlaceList',
-
-                  
-                }
-            },
-            {
-                xtype:'displayfield',
-                value:'地点:',
-                width:40,
-            },{
-                xtype     : 'combobox',
-                name      : 'toShopId',
-                id:'toShopId',
-                width: 100,
-                store:{type:'shopStore'},
-                displayField:'name',
-                valueField:'index', 
-                emptyText:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            },
+        items:[
             {
                 xtype     : 'combobox',
                 name      : 'toWarehouseId',
                 id:'toWarehouseId',
-                width: 100,
-                hidden:true,
+                width: 150,
+                //hidden:true,
                 store:{type:'wareStore'},
                 displayField:'name',
                 valueField:'index', 
@@ -123,8 +77,7 @@
                   afterRender:function(){
                       Ext.getCmp('toWarehouseId').store.load();
                   },
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
+                  
                 }
             }
          ]
@@ -148,29 +101,40 @@
           id:'leftList',
           name:'leftList',
           bind: '{leftList}',
-          width:820*0.25,
+          border:1,
           height:300,
+          width:123456789,
           scrollable:true,
           selModel: {type: 'checkboxmodel'},
           resizable:true,
-           plugins: {
+          listeners:{resize:function(){
+                var flexWidth = Ext.getCmp('indentEditWindow').width -160;
+                var middleButtonWidth = flexWidth*0.1;
+                var leftListWidth = Ext.getCmp('leftList').width;
+                var rightListWidth = flexWidth - middleButtonWidth - leftListWidth;
+                
+                Ext.getCmp('rightList').setWidth(rightListWidth);
+                 }
+          },
+          plugins: {
               ptype: 'cellediting',
               clicksToEdit: 1,
               
           },
+          
           columns:[
              {header: 'id' ,dataIndex:'id',width: 60,sortable: true,hidden:true}
-            ,{header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:1}
-            ,{header: 'num',dataIndex:'amount',width: 60,sortable: true,
+            ,{header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:4}
+            ,{header: 'num',dataIndex:'amount',width: 60,sortable: true,flex:1.5,
                editor: {xtype:'textfield',
                           listeners:{change:'updateSingleCost'},
                            
                         }
               
             }
-            ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true}
-            ,{header: 'price',dataIndex:'price',width: 60,sortable: true }
-            ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
+            ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true,flex:1.5}
+            ,{header: 'price',dataIndex:'price',width: 60,sortable: true,flex:1.5}
+            ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:1.5,
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-minus',handler: 'deleteOneSelectedIndent'}
               ]
@@ -182,8 +146,7 @@
           xtype:'panel',
           name:'middleButton',
           id:'middleButton',
-          width:820*0.05,
-         // hidden:true,
+          //hidden:true,
           height:300,
           layout: {align: 'middle',pack: 'center',type: 'vbox'},        
           items:[
@@ -198,21 +161,21 @@
           xtype:'gridpanel',
           marginLeft:20,
           bind: '{commodityList}',
-          width:820*0.5,
           height:300,
+          width:123456789,
           paddingLeft:20,
           scrollable:true,
+          border:1,
           selModel: {type: 'checkboxmodel'},
-         // hidden:true,
+          //hidden:true,
           name:'rightList',
           id:'rightList',
           columns: [
-             {header: 'id',dataIndex:'id',width: 60,sortable: true}
+             {header: 'id',dataIndex:'id',width: 60,sortable: true,hidden:true}
              , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:1
                   
            }
              , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
-             , {header: 'lack',dataIndex:'lack',width: 60,sortable: true}
              ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}
@@ -295,7 +258,7 @@
       id        : 'cost',
       fieldLabel: '总成本',
       editable  :false
-      
+        
     },
     
     

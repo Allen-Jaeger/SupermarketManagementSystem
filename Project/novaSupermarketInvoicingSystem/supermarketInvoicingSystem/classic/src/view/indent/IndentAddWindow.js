@@ -8,7 +8,7 @@
     minWidth: 300,
     width: 820,
     scrollable: true,
-    resizable:false,
+    resizable:true,
     title: 'Add Indent Window',
     closable: true,
     constrain: true,
@@ -16,7 +16,7 @@
     modal:true,
     layout: 'fit',
     maximizable:true,
-    listeners:{resize:'adaptMax',
+    listeners:{resize:'autoAdapting',
               close:function(btn) {
                 Ext.getCmp('leftList').getStore().removeAll();
             }
@@ -31,7 +31,6 @@
         layout: 'form',
         padding: '10px',
         ariaLabel: 'Enter your name',
-    
     items: [
     //id
     {xtype: 'textfield',fieldLabel: 'id',name:'id',hidden: true}
@@ -44,7 +43,7 @@
     //生成日期
     //,{xtype: 'datefield',fieldLabel: 'createDate',name:'createDate',hidden: true}
     ,{
-      xtype: 'textfield',
+      xtype: 'displayfield',
       name: 'creatorId',
       fieldLabel: '订单创建者',
       id:'creatorId',
@@ -52,16 +51,12 @@
      },
     {
       xtype: 'fieldcontainer',
-      fieldLabel: '进货点',
+      fieldLabel: '进货仓库',
       layout:"hbox" ,
       //name:'',
       //id:'',
-        items:[{
-              xtype:'displayfield',
-              value:'类型:',
-              width:40
-            },
-            {
+        items:[
+            /*{
                 xtype     : 'combobox',
                 name      : 'placeType',
                 id:'placeType',
@@ -69,13 +64,12 @@
                 store:Ext.create('Ext.data.Store', {
                       fields:['name', 'value'], 
                       data:[
-                       {name:'门店', value:'SHOP'},
-                        {name:'仓库',value:'WARE'}
+                       {name:'仓库',value:'WARE'}
                         
                  ]}),
                 displayField:'name',
                 valueField:'value', 
-                value:'SHOP', 
+                value:'WARE', 
                 editable:false, 
                 queryMode:'local',
                 listeners:{
@@ -83,33 +77,13 @@
 
                   
                 }
-            },
-            {
-                xtype:'displayfield',
-                value:'地点:',
-                width:40,
-            },{
-                xtype     : 'combobox',
-                name      : 'toShopId',
-                id:'toShopId',
-                width: 100,
-                store:{type:'shopStore'},
-                displayField:'name',
-                valueField:'index', 
-                emptyText:'请选择', 
-                editable:false, 
-                queryMode:'local',
-                listeners:{
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
-                }
-            },
+            },*/
             {
                 xtype     : 'combobox',
                 name      : 'toWarehouseId',
                 id:'toWarehouseId',
-                width: 100,
-                hidden:true,
+                width: 150,
+                //hidden:true,
                 store:{type:'wareStore'},
                 displayField:'name',
                 valueField:'index', 
@@ -120,8 +94,7 @@
                   afterRender:function(){
                       Ext.getCmp('toWarehouseId').store.load();
                   },
-                  select:'displayShopOrWareCommoditiesInfo',
-                  show:'displayShopOrWareCommoditiesInfo'
+                  //select:'displayShopOrWareCommoditiesInfo',
                 }
             }
          ]
@@ -137,41 +110,52 @@
       xtype: 'fieldcontainer',
       fieldLabel: '添加商品',
       layout:"hbox" ,
+      height:300,
       name:'commoditiesList',
       id:'commoditiesList',
         items:[
-       
-
-
-
-
-        {
+          {
           xtype:'gridpanel',
           id:'leftList',
           name:'leftList',
           bind: '{leftList}',
-          width:820*0.25,
+          width:123456789,
+          border:1,
           height:300,
           scrollable:true,
+          resizable:true,
+          enableKeyEvents:true,
           selModel: {type: 'checkboxmodel'},
-          flex:1,
+          listeners:{resize:function(){
+                var flexWidth = Ext.getCmp('indentAddWindow').width -160;
+                var middleButtonWidth = flexWidth*0.1;
+                var leftListWidth = Ext.getCmp('leftList').width;
+                var rightListWidth = flexWidth - middleButtonWidth - leftListWidth;
+                
+                Ext.getCmp('rightList').setWidth(rightListWidth);
+                 }
+          },
            plugins: {
               ptype: 'cellediting',
               clicksToEdit: 1,
               
           },
           columns:[
-            {header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:1}
-            ,{header: 'num',dataIndex:'num',width: 60,sortable: true
+            {header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:4}
+            ,{header: 'num',dataIndex:'num',width: 60,sortable: true,flex:1.5
               , editor: {xtype:'textfield',
-                          listeners:{change:'updateSingleCost'},
+                         selectOnEdit :true,
+                          listeners:{change:'updateSingleCost',
+                                      
+
+                                 },
                            
                         }
               
             }
             ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true}
-            ,{header: 'price',dataIndex:'price',width: 60,sortable: true},
-            {xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
+            ,{header: 'price',dataIndex:'price',width: 60,sortable: true,flex:1.5},
+            {xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:1.5,
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-minus',handler: 'deleteOneSelectedIndent'}
               ]
@@ -183,7 +167,6 @@
           xtype:'panel',
           name:'middleButton',
           id:'middleButton',
-          width:820*0.05,
           height:300,
           layout: {align: 'middle',pack: 'center',type: 'vbox'},        
           items:[
@@ -197,21 +180,22 @@
           xtype:'gridpanel',
           marginLeft:20,
           bind: '{commodityList}',
-          width:820*0.5,
           height:300,
+          width:123456789,
           paddingLeft:20,
           scrollable:true,
           selModel: {type: 'checkboxmodel'},
           name:'rightList',
           id:'rightList',
+          border:1,
           columns: [
-             {header: 'id',dataIndex:'id',width: 60,sortable: true}
-             , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:1
+             {header: 'id',dataIndex:'id',width: 60,sortable: true,hidden:true}
+             , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:6
                   
            }
-             , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
-             , {header: 'lack',dataIndex:'lack',width: 60,sortable: true}
-             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
+             , {header: 'cost',dataIndex:'cost',width: 60,sortable: true,flex:2}
+            
+             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:2,
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}
               ]

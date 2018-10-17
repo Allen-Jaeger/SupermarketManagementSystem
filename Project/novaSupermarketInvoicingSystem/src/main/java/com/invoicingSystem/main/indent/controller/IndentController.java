@@ -94,10 +94,9 @@ public class IndentController {
         	
         	
         	//判断进货点是门店还是仓库
-        	if(indentDTO.getPlaceType().equals("SHOP"))
-        		indent.setToShop(shopService.findById(Long.parseLong(indentDTO.getToShopId())));
-        	else 
+        	if(indentDTO.getToWarehouseId() != null)
         		indent.setToWarehouse(warehouseService.findById(Long.parseLong(indentDTO.getToWarehouseId())));
+        	else indent.setToWarehouse(null);
         	JSONArray commoditiesJSONObject = JSONArray.fromObject(indentDTO.getCommoditiesJSON());
     		
     		if(commoditiesJSONObject.size()>0){
