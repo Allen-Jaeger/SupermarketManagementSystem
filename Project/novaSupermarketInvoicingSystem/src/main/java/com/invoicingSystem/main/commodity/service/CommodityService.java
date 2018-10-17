@@ -29,7 +29,7 @@ public class CommodityService implements ICommodityService {
 	@Autowired
 	ICommodityRepository commodityRepository;
 	@Value("#{commodityDefaultBean.defComModelPic}")
-	private String defPicUrl; // 默认图片
+	private String defComUrl; // 默认图片
 	
 	@Override
 	public void save(Commodity commodity) {
@@ -114,7 +114,7 @@ public class CommodityService implements ICommodityService {
 			
 		}
 		//图片不为默认时，删除旧文件
-		if(!commodity.getPicUrl().equals("defIconUrl")) {
+		if(!commodity.getPicUrl().equals(defComUrl)) {
 			File oldIcon = new File(path + "/" + commodity.getPicUrl());
 			File oldIcon2 = new File(path2 + "/" + commodity.getPicUrl());
 			if(oldIcon.exists()) {
@@ -158,6 +158,14 @@ public class CommodityService implements ICommodityService {
 		}
 		commodityRepository.delete(coms.get(0));
 		return res;
+	}
+
+	/* (non-Javadoc)
+	 * 获取库存信息
+	 */
+	@Override
+	public Page<Commodity> findAllStock(Pageable pageable) {
+		return commodityRepository.findAllStock(CommodityStatus.ALLOW, CommodityStatus.UNALLOWED, pageable);
 	}
 	
 	

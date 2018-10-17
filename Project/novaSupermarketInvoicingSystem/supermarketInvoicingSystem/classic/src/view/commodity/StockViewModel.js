@@ -1,6 +1,6 @@
-Ext.define('SupermarketInvoicingSystem.view.commodity.ComModelViewModel', {
+Ext.define('SupermarketInvoicingSystem.view.commodity.StockViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.comModelViewModel',
+    alias: 'viewmodel.stockViewModel',
     requires: [
         'Ext.data.Store',
         'Ext.data.proxy.Memory',
@@ -12,8 +12,8 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.ComModelViewModel', {
     ],
 
     stores: {
-		comModelList: {
-            type: 'comModelStore'
+		stockTree: {
+            type: 'stockStore'
         }
     }
 });

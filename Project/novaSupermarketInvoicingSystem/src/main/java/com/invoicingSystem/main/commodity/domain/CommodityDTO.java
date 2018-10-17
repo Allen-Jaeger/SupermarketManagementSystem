@@ -25,6 +25,7 @@ public class CommodityDTO {
 	private String note;
 	private String commodityStatus;
 	private String indentNum;
+	private String depName = "";
 
 	public CommodityDTO() {
 		super();
@@ -49,6 +50,14 @@ public class CommodityDTO {
 		this.commodityStatus = commodity.getCommodityStatus().getChineseName();
 		if(null != commodity.getIndent()) {
 			this.indentNum = commodity.getIndent().getIndentNum();
+		}
+		if(null != commodity.getShop()) {
+			this.depName = commodity.getShop().getName();
+			return;
+		}
+		if(null != commodity.getWarehouse()) {
+			this.depName = commodity.getWarehouse().getName();
+			return;
 		}
 	}
 	public Commodity asModel() {
@@ -106,6 +115,10 @@ public class CommodityDTO {
 	public String getIndentNum() {
 		return indentNum;
 	}
+	public String getDepName() {
+		return depName;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -145,6 +158,8 @@ public class CommodityDTO {
 	public void setIndentNum(String indentNum) {
 		this.indentNum = indentNum;
 	}
-	
+	public void setDepName(String depName) {
+		this.depName = depName;
+	}
 	
 }

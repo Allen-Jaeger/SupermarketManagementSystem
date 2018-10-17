@@ -29,4 +29,5 @@ public interface ICommodityService {
 	public Commodity findComModelByBarcode(Long barCode);
 	public String deleteComModel(Long barcode);
 	public void deleteAll(List<Commodity> commodities);
+	public Page<Commodity> findAllStock(Pageable pageable);
 }

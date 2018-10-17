@@ -202,7 +202,11 @@ public class CommodityController {
 			return "{\"success\":\"true\",\"info\":\"条形码新增或被修改，已创建新的商品模板\",\"type\":\"add\"}";
 		}
 	}
-
+	/**
+	 * 删除模板
+	 * @param barCode
+	 * @return
+	 */
 	@GetMapping(value = "/deleteComModel")
 	public String deleteModel(String barCode) {
 		if(barCode.equals("")
@@ -210,6 +214,24 @@ public class CommodityController {
 			return "{\"success\":\"true\",\"info\":\"此条形码下的商品模板不存在\"}";
 		}
 		String res = commodityService.deleteComModel(Long.parseLong(barCode));
+		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
+	}
+	@GetMapping(value="/getAllStock")
+	public Page<CommodityDTO> getAllStock(ExtjsPageRequest pageable) {
+		List<CommodityDTO> dtoList = new ArrayList<>();
+		Page<Commodity> entityPage = commodityService.findAllStock(pageable.getPageable());
+		for(Commodity com:entityPage) {
+			dtoList.add(new CommodityDTO(com));
+		}
+		return new PageImpl<CommodityDTO>(dtoList,entityPage.getPageable(),entityPage.getTotalElements());
+	}
+	@PostMapping(value="/stockPic")
+	public String updateStockPic(Long stockId, MultipartFile picFile) {
+		Commodity com = commodityService.findById(stockId);
+		if(null == com) {
+			return "{\"success\":\"true\",\"info\":\"更新库存特例图片出错！\"}";
+		}
+		String res = commodityService.writePic(com, picFile);
 		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
 	}
 }
