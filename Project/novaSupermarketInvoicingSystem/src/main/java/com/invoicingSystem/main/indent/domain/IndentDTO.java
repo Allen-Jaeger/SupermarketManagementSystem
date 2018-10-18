@@ -34,13 +34,14 @@ public class IndentDTO {
     private Long creator;
     private Long keeper; 
     private Long manager;//采购(超级管理员)
-    private Long fromWarehouse; 
+    private String fromWarehouseId; 
     private String toWarehouseId;
-    private Long fromShop; 
+    private String fromShopId; 
     private String toShopId;
     private String note;
     private IndentType indentType;
     private String  commoditiesJSON;
+    private String toPlaceId;
     private String placeType;
     
 
@@ -77,12 +78,12 @@ public class IndentDTO {
 	public Long getManager() {
 		return manager;
 	}
-	public Long getFromWarehouse() {
-		return fromWarehouse;
+	public String getFromWarehouseId() {
+		return fromWarehouseId;
 	}
 	
-	public Long getFromShop() {
-		return fromShop;
+	public String getFromShopId() {
+		return fromShopId;
 	}
 	
 	public String getNote() {
@@ -127,12 +128,12 @@ public class IndentDTO {
 	public void setManager(Long manager) {
 		this.manager = manager;
 	}
-	public void setFromWarehouse(Long fromWarehouse) {
-		this.fromWarehouse = fromWarehouse;
+	public void setFromWarehouseId(String fromWarehouse) {
+		this.fromWarehouseId = fromWarehouse;
 	}
 	
-	public void setFromShop(Long fromShop) {
-		this.fromShop = fromShop;
+	public void setFromShopId(String fromShop) {
+		this.fromShopId = fromShop;
 	}
 	
 	public void setNote(String note) {
@@ -179,11 +180,17 @@ public class IndentDTO {
 	public String toString() {
 		return "\n\n\n IndentDTO [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
 				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
-				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouseId
-				+ ", fromShop=" + fromShop + ", toShop=" + toShopId + ", note=" + note + ", indentType=" + indentType
+				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouseId + ", toWarehouse=" + toWarehouseId
+				+ ", fromShop=" + fromShopId + ", toShop=" + toShopId + ", note=" + note + ", indentType=" + indentType
 				+ ", commoditiesJSON=" + commoditiesJSON + ", userId=" + userId + ", processInstanceId="
 				+ processInstanceId + "]\n\n\n";
 	}
+    public String getToPlaceId() {
+        return toPlaceId;
+    }
+    public void setToPlaceId(String toPlaceId) {
+        this.toPlaceId = toPlaceId;
+    }
     
     
     
