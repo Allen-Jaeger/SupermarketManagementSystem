@@ -1,5 +1,6 @@
 package com.invoicingSystem.main.commodity.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -217,6 +218,11 @@ public class CommodityController {
 		String res = commodityService.deleteComModel(Long.parseLong(barCode));
 		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
 	}
+	/**
+	 * 	1.所有获取库存
+	 * @param pageable
+	 * @return
+	 */
 	@GetMapping(value="/getAllStock")
 	public Page<CommodityDTO> getAllStock(ExtjsPageRequest pageable) {
 		List<CommodityDTO> dtoList = new ArrayList<>();
@@ -226,6 +232,12 @@ public class CommodityController {
 		}
 		return new PageImpl<CommodityDTO>(dtoList,entityPage.getPageable(),entityPage.getTotalElements());
 	}
+	/**
+	 * 1.更新库存特例图片
+	 * @param stockId
+	 * @param picFile
+	 * @return
+	 */
 	@PostMapping(value="/stockPic")
 	public String updateStockPic(Long stockId, MultipartFile picFile) {
 		Commodity com = commodityService.findById(stockId);
@@ -234,5 +246,48 @@ public class CommodityController {
 		}
 		String res = commodityService.writePic(com, picFile);
 		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
+	}
+	/**
+	 * @return 返回非模板使用的状态
+	 */
+	@GetMapping(value="/getStockStore")
+	public List<Map<String,String>> getStockStore() {
+		List<Map<String,String>> res = new ArrayList<>();
+		EnumTool et = new EnumTool(CommodityStatus.class);
+		List<Enum<?>> listE = et.getAllEnum();
+		for(Enum<?> e:listE) {
+			if(e.equals(CommodityStatus.ALLOW) || e.equals(CommodityStatus.UNALLOWED)) {
+				listE.remove(e);
+			}else {
+				res.add(et.getMap(e));
+			}
+		}
+		return res;
+	}
+	/**
+	 *  1.更新库存  部分字段不允许更新
+	 * @param stockId
+	 * @param comDto
+	 * @param periodEx
+	 * @return
+	 */
+	@PostMapping(value="/editStock")
+	public String editStock(Long stockId,CommodityDTO comDto, String periodEx) {
+		Commodity com = commodityService.findById(stockId);
+		if(null == com) {
+			return "{\"success\":\"true\",\"info\":\"" +"更新出错"+ "\"}";
+		}
+		EnumTool et = new EnumTool(CommodityStatus.class);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			com.setPeriod(sdf.parse(periodEx));
+		}catch(Exception e) {}
+		com.setName(comDto.getName());
+		com.setPrice(comDto.getPrice());
+		com.setAmount(comDto.getAmount());
+		com.setCommodityStatus((CommodityStatus) et.transToEnum(comDto.getCommodityStatus()));
+		com.setNote(comDto.getNote());
+		commodityService.save(com);
+		return "{\"success\":\"true\",\"info\":\"" +"更新成功"+ "\"}";
 	}
 }

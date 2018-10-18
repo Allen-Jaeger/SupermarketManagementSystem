@@ -16,16 +16,18 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	    bind:'{stockTree}',
 	    scrollable:true,
 	    columns: [{
-	    	flex:3,
+	    	flex:4,
 	    	text:'商品',
 	    	columns:[{
 		    	xtype: 'gridcolumn',
 		        text: '名称',
 		        dataIndex: 'name',
+	    		flex:2,
 		    },{
 		    	xtype: 'gridcolumn',
 		        text: '类型',
 		        dataIndex: 'commodityType',
+	    		flex:1,
 		    },{
 		    	xtype: 'actioncolumn',
 		    	text:'样图',
@@ -35,6 +37,7 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 		    		xtype:'button',iconCls:'x-fa fa-picture-o',
 		    		tooltip:'点击显示样图',handler:'showPic',
 		    	}],
+	    		flex:1,
 		    }]
 	    },{
 	    	flex:5,
@@ -97,7 +100,7 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	        xtype: 'actioncolumn',
 	        text: '操作',
 	        align: 'center',
-	        items:[{xtype: 'button', iconCls: 'x-fa fa-pencil',tooltip: '编辑'}],
+	        items:[{xtype: 'button', iconCls: 'x-fa fa-pencil',tooltip: '编辑',handler:'editStock'}],
 	    }],
 	    dockedItems: [{
             xtype: 'pagingtoolbar',

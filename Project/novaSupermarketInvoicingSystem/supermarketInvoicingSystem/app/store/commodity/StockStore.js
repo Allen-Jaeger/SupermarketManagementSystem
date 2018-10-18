@@ -35,11 +35,11 @@ Ext.define('SupermarketInvoicingSystem.store.commodity.StockStore', {
     grouper: {
       property: 'barCode'
     },
-    listeners: {
-      afterload:function(){
-        console.log(this);
-      }
-    }
+    // listeners: {
+    //   afterload:function(){
+    //     console.log(this);
+    //   }
+    // }
 });
 // ,{type: 'string' ,name: 'id'}
 //   ,{type: 'string' ,name: 'barCode'}

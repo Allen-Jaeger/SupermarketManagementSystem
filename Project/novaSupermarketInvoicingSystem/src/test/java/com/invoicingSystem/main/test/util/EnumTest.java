@@ -23,5 +23,10 @@ public class EnumTest{
 	public void test2() {
 		EnumTool et = new EnumTool(UserStatus.class);
 		System.out.println(et.transToEnum("冻结的").toString());
+	}	
+	@Test
+	public void test3() {
+		EnumTool et = new EnumTool(UserStatus.class);
+		System.out.println(et.transToEnum("冻结的").equals(UserStatus.FROZEN));
 	}
 }

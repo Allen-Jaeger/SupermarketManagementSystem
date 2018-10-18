@@ -124,16 +124,7 @@ public class UserService implements IUserService {
 			
 		}
 		//头像不为默认时，删除旧头像
-		if(!user.getIconUrl().equals(defIconUrl)) {
-			File oldIcon = new File(path + "/" + user.getIconUrl());
-			File oldIcon2 = new File(path2 + "/" + user.getIconUrl());
-			if(oldIcon.exists()) {
-				oldIcon.delete();
-			}
-			if(oldIcon2.exists()) {
-				oldIcon2.delete();
-			}
-		}
+		user = this.deleteIcon(user);
 		//更新用户信息
 		user.setIconUrl(filename);
 		userRepository.save(user);
@@ -239,4 +230,21 @@ public class UserService implements IUserService {
 		return list;
 	}
 	
+	public User deleteIcon(User user) {
+		//头像不为默认时，删除旧头像
+		if(null != user.getIconUrl() && !user.getIconUrl().equals(defIconUrl)) {
+			String path = System.getProperty("user.dir")+ "\\supermarketInvoicingSystem\\resources\\usersIcon";
+			String path2 = System.getProperty("user.dir")+ "\\src\\main\\webapp\\resources\\usersIcon";
+			File oldIcon = new File(path + "/" + user.getIconUrl());
+			File oldIcon2 = new File(path2 + "/" + user.getIconUrl());
+			if(oldIcon.exists()) {
+				oldIcon.delete();
+			}
+			if(oldIcon2.exists()) {
+				oldIcon2.delete();
+			}
+		}
+		user.setIconUrl(defIconUrl);
+		return user;
+	}
 }
