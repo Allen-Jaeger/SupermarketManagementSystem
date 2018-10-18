@@ -193,7 +193,7 @@
       }
     });
     if (record) {
-      if (record.data.indentStatus == 'INIT') {
+      if (record.data.indentStatus == 'INIT'&& record.data.indentType == 'PURCHASE' ) {
         var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
         win.show();
 
@@ -201,7 +201,7 @@
 
         win.down('form').getForm().loadRecord(record);
       } else {
-        Ext.Msg.alert('提示', "只可以修改'初始化'状态的信息！");
+        Ext.Msg.alert('提示', "仅可修改'初始化'状态的<b>采购单</b>信息!<br>如要修改<b>调货单</b>请删除后重建...");
       }
     }
   },
