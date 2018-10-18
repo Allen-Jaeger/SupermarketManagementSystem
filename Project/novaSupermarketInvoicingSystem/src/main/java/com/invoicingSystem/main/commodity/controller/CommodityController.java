@@ -83,13 +83,14 @@ public class CommodityController {
 				System.out.println("Left:" + commodityQueryDTO.getPlaceType() + ":" + commodityQueryDTO.getPlaceId());
 				commodityQueryDTO.setWarehouse(warehouseService.findById(commodityQueryDTO.getPlaceId()));
 				commodityQueryDTO.setShop(null);
-			} else if ("SHOP" == commodityQueryDTO.getPlaceType()) {// 查询的是超市
+			} else if (commodityQueryDTO.getPlaceType().equals("SHOP")) {// 查询的是超市
 				System.out.println("Left:" + commodityQueryDTO.getPlaceType() + ":" + commodityQueryDTO.getPlaceId());
 				commodityQueryDTO.setShop(shopService.findById(commodityQueryDTO.getPlaceId()));
 				commodityQueryDTO.setWarehouse(null);
 			} else {
-
+			    System.out.println("Left:id null");
 			}
+			
 			commodityQueryDTO.setCommodityType(null);
 			commodityQueryDTO.setName(null);
 

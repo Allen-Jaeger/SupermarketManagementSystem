@@ -404,36 +404,38 @@
   },
   calculateTransferCost: function (btn) {
     //以后要设置判断RetreatCheck是否为true,来确定调货单是否是残缺品处理单.
-    var leftGrid = Ext.data.StoreManager.lookup('transferLeftStore');
-    var fromPlaceId = Ext.getCmp('fromPlace').getValue();
-    var toPlaceId = Ext.getCmp('toPlaceId').getValue();
-    var toPlaceType = Ext.getCmp('toPlaceType').getValue();
-    var leftGridData = leftGrid.getRange();
-    var leftGridLength = leftGrid.getCount();
-    var leftGridOriginsLength;
+    //上面的想法不需要了 直接由indentType得知
+    var Grid;
+    if(Ext.getCmp('indentType').getValue()!='RETREAT')
+      Grid = Ext.data.StoreManager.lookup('transferLeftStore');
+    else
+      Grid = Ext.data.StoreManager.lookup('wareCommoditiesStore');
+    var GridData = Grid.getRange();
+    var GridLength = Grid.getCount();
+    var GridOriginsLength;
     //var leftGridDataJson = [];
     var commodityCost = 0;
 
-    leftGrid.load({
+    Grid.load({
       scope: this,
       callback: function (records, operation, success) {
-        leftGridOriginsLength = leftGrid.getCount();
-        var i = leftGridOriginsLength;
-        var j = leftGridLength;
+        GridOriginsLength = Grid.getCount();
+        var i = GridOriginsLength;
+        var j = GridLength;
         if (i == j) {
           Ext.MessageBox.alert("提示框", "未选择商品!");
         } else {
           for (i, j; i < j; i++) {
-            commodityCost += leftGridData[i].get('cost') * leftGridData[i].get('amount');
+            commodityCost += GridData[i].get('cost') * GridData[i].get('amount');
           }
           Ext.Ajax.request({
             url: '/indent/calculateCost',
             method: 'post',
             params: {
               cCost: commodityCost,
-              fromPlace: fromPlaceId,
-              toPlace: toPlaceId,
-              toPlaceType: toPlaceType
+              fromPlace: Ext.getCmp('fromPlace').getValue(),
+              toPlace: Ext.getCmp('toPlaceId').getValue(),
+              toPlaceType: Ext.getCmp('toPlaceType').getValue()
             },
             success: function (response, options) {
               var json = Ext.util.JSON.decode(response.responseText);
@@ -446,37 +448,41 @@
               }
             }
           });
-          leftGrid.setData(leftGridData); //让grid回到原样.
+          Grid.setData(GridData); //让grid回到原样.
         }
       }
     });
   },
   submitTransferForm: function (btn) {
     //以后要设置判断RetreatCheck是否为true,来确定调货单是否是残缺品处理单.
-    //上面的想法不需要了 直接由indentType得知 后台处理即可
-    var leftGrid = Ext.data.StoreManager.lookup('transferLeftStore');
-    var leftGridData = leftGrid.getRange();
-    var leftGridLength = leftGrid.getCount();
-    var leftGridOriginsLength;
-    var leftGridDataJson = [];
+    //上面的想法不需要了 直接由indentType得知
+    var Grid;
+    if(Ext.getCmp('indentType').getValue()!='RETREAT')
+      Grid = Ext.data.StoreManager.lookup('transferLeftStore');
+    else
+      Grid = Ext.data.StoreManager.lookup('wareCommoditiesStore');
+    var GridData = Grid.getRange();
+    var GridLength = Grid.getCount();
+    var GridOriginsLength;
+    var GridDataJson = [];
 
-    leftGrid.load({
+    Grid.load({
       scope: this,
       callback: function (records, operation, success) {
-        leftGridOriginsLength = leftGrid.getCount();
+        GridOriginsLength = Grid.getCount();
 
-        var i = leftGridOriginsLength;
-        var j = leftGridLength;
+        var i = GridOriginsLength;
+        var j = GridLength;
         if (i == j) {
           Ext.MessageBox.alert("提示框", "未选择商品!");
         } else {
           for (i, j; i < j; i++) {
-            leftGridDataJson.push({
-              'id': leftGridData[i].get('id'),
-              'amount': leftGridData[i].get('amount')
+            GridDataJson.push({
+              'id': GridData[i].get('id'),
+              'amount': GridData[i].get('amount')
             });
           }
-          var removecharacter = Ext.encode(leftGridDataJson);
+          var removecharacter = Ext.encode(GridDataJson);
           Ext.getCmp('commoditiesJSON').setValue(removecharacter);
           console.log(Ext.getCmp('commoditiesJSON').getValue());
 
@@ -506,7 +512,7 @@
         }
       }
     });
-    //console.log(leftGridData); //这句在leftGrid.load()前执行....
+    //console.log(GridData); //这句在leftGrid.load()前执行....
   },
 
   searchIndentByDateorNum: function (combo, record, index) {

@@ -325,8 +325,8 @@ public class IndentController {
                 indent.setToShop(shopService.findById(toId));
             } else {
                 indent.setIndentType(IndentType.RETREAT);// 为残缺品处理货单
-                indent.setToWarehouse(warehouseService.findById(toId));
-                indent.setFromShop(shopService.findById(fromId));
+                indent.setToWarehouse(warehouseService.findById(fromId));
+                indent.setFromShop(shopService.findById(toId));
             }
 
             Commodity getCmd;
@@ -346,6 +346,7 @@ public class IndentController {
                     cmd.setAmount(amount);
                     cmd.setId(null);
                     cmd.setWarehouse(null);
+                    cmd.setShop(null);
                     cmd.setIndent(indent);
                     commodityService.save(cmd);
                     indent.getCommodities().add(cmd);
