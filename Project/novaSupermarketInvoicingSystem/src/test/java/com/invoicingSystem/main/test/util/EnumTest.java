@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.invoicingSystem.main.common.enum_tools.EnumTool;
 import com.invoicingSystem.main.user.util.UserStatus;
+import com.invoicingSystem.main.user.util.UserType;
 
 /**
  * @author LiJuncong
@@ -15,8 +16,8 @@ public class EnumTest{
 	@Test
 	public void test() {
 //		EnumTool<UserType> et = new EnumTool(UserType.KEEPER);
-		EnumTool et = new EnumTool(UserStatus.class);
-		System.out.println(et.allToMap().toString());
+//		EnumTool et = new EnumTool(UserStatus.class);
+		System.out.println(UserType.KEEPER.toString());
 	}
 	
 	@Test
