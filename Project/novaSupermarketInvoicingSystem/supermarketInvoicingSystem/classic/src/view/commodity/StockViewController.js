@@ -195,6 +195,98 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockViewController', {
     		}],
     	}).show();
 		win.down('form').loadRecord(record);
-		
+    },
+    filter:function(){
+    	//获取关键字
+    	var key = Ext.getCmp('stockFilterText').getValue();
+    	var stockStore = Ext.data.StoreManager.lookup('StockStoreId');
+    	stockStore.filterBy(
+    		function(record) {   
+				return record.get('barCode').indexOf(key) >= 0 
+					|| record.get('depName').indexOf(key) >= 0
+					|| record.get('commodityType').indexOf(key) >= 0
+					|| record.get('commodityStatus').indexOf(key) >= 0
+					|| record.get('name').indexOf(key) >= 0;
+			}
+		);  
+    },
+    cancelFilter:function(){
+    	Ext.data.StoreManager.lookup('StockStoreId').clearFilter();
+    	Ext.getCmp('stockFilterText').setValue(null);
+    },
+    filterWarn:function(newValue, oldValue, eOpts ){
+		var sto = Ext.data.StoreManager.lookup('StockStoreId');
+    	if(newValue.value == true){
+	    	var now = new Date();
+	    	sto.filterBy(
+	    		function(record) { 
+	    			var times = record.get('period').getTime() - now.getTime();  
+					return Math.round(times/(1000*60*60*24)) < alarmDays;
+				}
+			);  
+    	}else{
+	    	sto.clearFilter();
+	    	Ext.getCmp('stockFilterText').setValue(null);
+    	}
+    },
+    alarmDays:function(){
+    	alarmDays = parseInt(Ext.getCmp('alarmDaysId').getValue());
+    	var now = new Date();
+    	var sto = Ext.data.StoreManager.lookup('StockStoreId');
+    	sto.filterBy(
+    		function(record) { 
+    			var times = record.get('period').getTime() - now.getTime();  
+				return Math.round(times/(1000*60*60*24)) < alarmDays;
+			}
+		);
+		sto.clearFilter();
+    },
+    delStock:function(view,rowIndex,colIndex,item,e,record,row){
+    	var date = record.data.period;
+    	var dateFm = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    	var win = Ext.create('Ext.window.Window',{
+    		title:'<i class="fa fa-warning" style="color:orange"></i> 警告',
+    		closable:false,
+    		padding:20,
+    		modal:true,
+    		defaults:{margin:'10'},
+    		items:[{
+    			// xtype:'box',
+    			html:'<strong>危险操作</strong><br />您确定要删除这条库存记录吗？'
+    				+'<br />条形码：'+record.data.barCode
+    				+'<br />商品名：'+record.data.name
+    				+'<br />到期日：'+dateFm,
+    		},{
+    			xtype:'button',
+    			text:'删除',
+				ui:'soft-red',
+    			iconCls:'x-fa fa-circle-o',
+    			handler:function(){
+    				Ext.Ajax.request( {
+						url : '/commodity/delStock',
+						method : 'GET',
+						params : {
+							stockId: record.data.id,
+						},
+						success:function(response, options) {	
+							var res = Ext.decode(response.responseText);
+							Ext.Msg.alert('<i class= "fa fa-warning"></i>', res.info);
+							Ext.data.StoreManager.lookup('StockStoreId').load();
+						},
+						failure:function() {
+							Ext.Msg.alert('<i class= "fa fa-warning"></i>', "服务出错");
+						}
+					});
+					this.up('window').destroy();
+    			}
+    		},{
+				xtype:'button',
+    			text:'取消',
+    			iconCls:'x-fa fa-close',
+    			handler:function(){
+    				this.up('window').destroy();
+    			}
+    		}],
+    	}).show();
     }
 });

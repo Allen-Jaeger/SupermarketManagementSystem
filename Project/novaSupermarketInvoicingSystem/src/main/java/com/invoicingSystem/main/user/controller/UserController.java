@@ -74,7 +74,7 @@ public class UserController {
 	
 	/**
 	 * 
-	 * 	请求登陆页面
+	 * 	自动跳转
 	 * @param request
 	 * @param response
 	 */

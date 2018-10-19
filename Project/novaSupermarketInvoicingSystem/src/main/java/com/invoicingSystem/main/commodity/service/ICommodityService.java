@@ -30,4 +30,5 @@ public interface ICommodityService {
 	public String deleteComModel(Long barcode);
 	public void deleteAll(List<Commodity> commodities);
 	public Page<Commodity> findAllStock(Pageable pageable);
+	public String deleteById(Long id);
 }

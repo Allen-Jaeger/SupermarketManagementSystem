@@ -250,7 +250,7 @@ public class CommodityController {
 	/**
 	 * @return 返回非模板使用的状态
 	 */
-	@GetMapping(value="/getStockStore")
+	@GetMapping(value="/getStockStatus")
 	public List<Map<String,String>> getStockStore() {
 		List<Map<String,String>> res = new ArrayList<>();
 		EnumTool et = new EnumTool(CommodityStatus.class);
@@ -289,5 +289,15 @@ public class CommodityController {
 		com.setNote(comDto.getNote());
 		commodityService.save(com);
 		return "{\"success\":\"true\",\"info\":\"" +"更新成功"+ "\"}";
+	}
+	/**
+	 * 按id删除库存
+	 * @param stockId
+	 * @return
+	 */
+	@GetMapping(value="/delStock")
+	public String delStock(Long stockId) {
+		String res = commodityService.deleteById(stockId);
+		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
 	}
 }

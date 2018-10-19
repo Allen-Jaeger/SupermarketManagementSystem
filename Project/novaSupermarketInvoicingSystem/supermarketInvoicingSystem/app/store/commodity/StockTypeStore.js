@@ -1,17 +1,17 @@
-Ext.define('SupermarketInvoicingSystem.store.commodity.StockStatusStore', {
+Ext.define('SupermarketInvoicingSystem.store.commodity.StockTypeStore', {
     extend: 'Ext.data.Store',
-    alias: 'store.stockStatusStore',
-    storeId: 'StockStatusStoreId',
+    alias: 'store.stockTypeStore',
+    storeId: 'StockTypeStoreId',
 	fields:[{type:'auto',name:'index'},{type:'auto',name:'name'},],
 	data:[
-    {name:'status1',index:'1'},
-    {name:'status2',index:'2'},
-    {name:'status3',index:'3'},
+        {name:'Type1',index:'1'},
+        {name:'Type2',index:'2'},
+        {name:'Type3',index:'3'},
 	],
 
     proxy: {
         type: 'ajax',
-        url: '/commodity/getStockStatus',
+        url: '/commodity/getStockType',
         reader : {  
             type : 'json',
             rootProperty  : 'content',

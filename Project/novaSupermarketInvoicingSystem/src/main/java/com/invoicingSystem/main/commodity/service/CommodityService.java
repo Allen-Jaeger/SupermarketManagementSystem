@@ -180,4 +180,18 @@ public class CommodityService implements ICommodityService {
 		commodity.setPicUrl(defComUrl);
 		return commodity;
 	}
+
+	/* (non-Javadoc)
+	 * 1.删除一个库存记录
+	 */
+	@Override
+	public String deleteById(Long id) {
+		Commodity com = commodityRepository.findById(id).get();
+		if(null == com) {
+			return "删除出错";
+		}
+		com = this.deletePic(com);
+		commodityRepository.delete(com);
+		return "删除成功";
+	}
 }

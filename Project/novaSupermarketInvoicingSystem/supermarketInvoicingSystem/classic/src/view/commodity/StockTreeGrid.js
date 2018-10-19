@@ -1,3 +1,4 @@
+var alarmDays = 30;
 Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	extend: 'Ext.panel.Panel',
 	layout:'fit',
@@ -10,11 +11,55 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	},
 	items:[{
 		xtype:'gridpanel',
-		reserveScrollbar: true,
+		// reserveScrollbar: true,
 		loadMask: true,
-	    frame: true,
 	    bind:'{stockTree}',
 	    scrollable:true,
+	    tbar: [{
+	        xtype:'textfield',
+	        emptyText:'关键字',
+	        id:'stockFilterText',
+	    },{
+            text: '过滤',
+            iconCls: 'fa fa-filter',
+            handler: 'filter'
+        },{
+            text: '取消过滤',
+            iconCls: 'fa fa-reply',
+            handler: 'cancelFilter'
+        },'-',{
+        	xtype:'checkboxfield',
+        	fieldLabel:'仅看库存警告',
+        	labelAlign:'right',
+        	labelWidth:90,
+        	margin:'0',
+        	listeners:{
+        		change:'filterWarn',
+        	}
+        },'->',{
+        	xtype:'textfield',
+	        emptyText:'默认30天',
+	        id:'alarmDaysId',
+	        regex:/(^[0-9]*$)/,
+			regexText:'请输入一个正整数',
+			width:80,
+			listeners:{
+				change:function( newValue, oldValue, eOpts){
+					var reg = /(^[0-9]*$)/;
+					if(reg.test(newValue.value)){
+						Ext.getCmp('alarmBtnId').setDisabled(false);
+					}else{
+						Ext.getCmp('alarmBtnId').setDisabled(true);
+					}
+				}
+			}
+        },{
+        	id:'alarmBtnId',
+        	text: '设置预警',
+            iconCls: 'fa fa-cog',
+            handler: 'alarmDays',
+            disabled:true,
+        }],
 	    columns: [{
 	    	flex:4,
 	    	text:'商品',
@@ -37,7 +82,6 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 		    		xtype:'button',iconCls:'x-fa fa-picture-o',
 		    		tooltip:'点击显示样图',handler:'showPic',
 		    	}],
-	    		flex:1,
 		    }]
 	    },{
 	    	flex:5,
@@ -79,8 +123,17 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	        	}
 		    }],
 	    },{
-	    	flex:1,
-	    	renderer:Ext.util.Format.dateRenderer('Y/m/d'),
+	    	flex:2,
+	    	renderer:function(value){
+	    		var now = new Date();
+	    		var times = value.getTime() - now.getTime();
+	    		var fm = value.getFullYear() + '-' + (value.getMonth() + 1) + '-' + value.getDate();
+	    		if (Math.round(times/(1000*60*60*24)) < alarmDays) {
+	    			return "<strong style='color:red'>警告:"+fm+"</strong>";
+	    		}else{
+	    			return fm;
+	    		}
+	    	},
 	        text: '到期日',
 	        dataIndex: 'period',
 	    },{
@@ -100,7 +153,9 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	        xtype: 'actioncolumn',
 	        text: '操作',
 	        align: 'center',
-	        items:[{xtype: 'button', iconCls: 'x-fa fa-pencil',tooltip: '编辑',handler:'editStock'}],
+	        items:[{xtype: 'button', iconCls: 'x-fa fa-pencil',tooltip: '编辑',handler:'editStock'}
+        		,{xtype: 'button', iconCls: 'x-fa fa-close',tooltip: '删除记录',handler:'delStock'}
+	        ],
 	    }],
 	    dockedItems: [{
             xtype: 'pagingtoolbar',
@@ -112,7 +167,10 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockTreeGrid',{
 	        ftype : 'groupingsummary',
 	        groupHeaderTpl : '<i class = "fa fa-barcode"></i> 条形码:{name}',
 	        hideGroupedHeader : false,
-	        enableGroupingMenu : false
+	        enableGroupingMenu : false,
+	        expandTip:'点击展开',
+	        collapseTip:'点击收起',
+	        startCollapsed:true,
 	    }],
 		listeners:{
 			// itemmouseenter:function(record, item, index, e, eOpts){

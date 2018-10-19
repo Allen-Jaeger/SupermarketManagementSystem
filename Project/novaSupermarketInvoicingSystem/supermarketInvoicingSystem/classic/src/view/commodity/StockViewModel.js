@@ -17,6 +17,9 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockViewModel', {
         },
         stockStatus:{
             type:'stockStatusStore'
+        },
+        stockType:{
+            type:'stockTypeStore'
         }
     }
 });

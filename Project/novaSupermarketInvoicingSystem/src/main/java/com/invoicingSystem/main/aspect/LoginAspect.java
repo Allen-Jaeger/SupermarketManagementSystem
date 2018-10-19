@@ -1,7 +1,5 @@
 package com.invoicingSystem.main.aspect;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,43 +33,44 @@ public class LoginAspect {
 	public void inUserController() {}
 	
 	/**
-	 * 开放登录功能
+	 * 开放登录、注销功能logout
 	 */
-	@Pointcut("!execution(public String login(..))")
-	public void openLogin() {}
+	@Pointcut("!execution(public String login(..)) "
+			+ "&& !execution(public void logout(..)) ")
+	public void openLoginAndLogout() {}
 	
 	/**
 	 * 过滤请求  将未有登录的请求 重定向到login
 	 * @param pjp 增强型 环绕切面 控制切入点函数是否可以执行
 	 * @return
 	 */
-//	@Around("inUserController() && openLogin()")
-//	public Object findLoginedUser(ProceedingJoinPoint pjp) {
-//		//获取request
-//		HttpServletRequest request = 
-//				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//		//获取response
-//		HttpServletResponse response = 
-//				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-//		
-//		//判断是否已经登录
-//		if(null != request.getSession().getAttribute("userId") 
-//				&& !request.getSession().getAttribute("userId").toString().equals("")) {
-//			//已经登录，执行切入点函数
-//			try {
-//				return pjp.proceed();
-//			} catch (Throwable e) {
-//				e.printStackTrace();
-//			}
-//		}else {
-//			//未登录，执行重定向
-//			log.warn("no user had logined!");
-//			try {
-//				response.sendRedirect("login.html");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return null;
-//	}
+	@Around("inUserController() && openLoginAndLogout()")
+	public Object findLoginedUser(ProceedingJoinPoint pjp) {
+		//获取request
+		HttpServletRequest request = 
+				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		//获取response
+		HttpServletResponse response = 
+				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+		
+		//判断是否已经登录
+		if(null != request.getSession().getAttribute("userId") 
+				&& !request.getSession().getAttribute("userId").toString().equals("")) {
+			//已经登录，执行切入点函数
+			try {
+				return pjp.proceed();
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}
+		}else {
+			//未登录，执行重定向
+			log.warn("no user had logined!");
+			try {
+				response.sendRedirect("login.html");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 }
