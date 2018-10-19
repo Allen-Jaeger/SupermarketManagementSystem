@@ -134,7 +134,7 @@ public class UserController {
 	public void logout(HttpServletRequest request,HttpServletResponse response) {
 		request.getSession().removeAttribute("userId");
 		try {
-			response.sendRedirect("login.html");
+			response.sendRedirect("/login.html");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
