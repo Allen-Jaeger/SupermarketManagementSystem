@@ -153,7 +153,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
                  '<p>最后修改日期：{createDate:this.formatChange}</p>',
                  '<p>创建人:{creator.name}</p>',
                  '<p>状态：{indentStatus}</p>',
-                 '<p>状态：{indentType}</p>',
+                 '<p>货单类型：{indentType}</p>',
                  '<p>备注：{note}</p>',
                  '<p>总成本：{cost}</p>',
                  '<tpl if="toWarehouse!=null"><p>进货点(仓库)：{toWarehouse.location.address}  {toWarehouse.name}</p></tpl>',

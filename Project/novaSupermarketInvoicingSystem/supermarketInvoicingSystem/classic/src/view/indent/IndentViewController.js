@@ -630,27 +630,27 @@
   deleteOneIndentRow: function (grid, rowIndex, colIndex) {
     var store = grid.getStore();
     var record = store.getAt(rowIndex);
-    if (record.data.indentStatus == 'INIT') {
+    if (record.data.indentStatus == 'INIT' || record.data.indentStatus == 'ERROR') {
       Ext.MessageBox.confirm('提示', '确定要进行删除操作吗？数据将无法还原！', function (btn, text) {
         if (btn == 'yes') {
           store.remove(record);
         }
       }, this);
     } else {
-      Ext.Msg.alert('提示', "只可以删除'初始化'状态的信息！");
+      Ext.Msg.alert('提示', "只可以删除'初始化'以及'订单异常'状态的信息！");
     }
   },
   deleteOneRow: function (grid, rowIndex, colIndex) {
     var store = grid.getStore();
     var record = store.getAt(rowIndex);
-    if (record.data.indentStatus == 'INIT') {
+    if (record.data.indentStatus == 'INIT'|| record.data.indentStatus == 'ERROR') {
       Ext.MessageBox.confirm('提示', '确定要进行删除操作吗？数据将无法还原！', function (btn, text) {
         if (btn == 'yes') {
           store.remove(record);
         }
       }, this);
     } else {
-      Ext.Msg.alert('提示', "只可以删除'初始化'状态的信息！");
+      Ext.Msg.alert('提示', "只可以删除'初始化'以及'订单异常'状态的信息！");
     }
   },
   deleteMoreRows: function (btn, rowIndex, colIndex) {
@@ -662,7 +662,7 @@
           var rows = selModel.getSelection();
           var selectIds = [];
           Ext.each(rows, function (row) {
-            if (row.data.indentStatus == 'INIT') {
+            if (row.data.indentStatus == 'INIT'|| record.data.indentStatus == 'ERROR') {
               selectIds.push(row.data.id);
             }
           });
