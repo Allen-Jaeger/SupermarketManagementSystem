@@ -150,7 +150,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value="/findAll")
-	public Page<UserDTO> findAllUsers(ExtjsPageRequest pageRequest) {
+	public Page<UserDTO> findAllUsers_EDIT_USER(ExtjsPageRequest pageRequest) {
 		//	分页的User
 		Page<User> userPage = userService.findAll(pageRequest.getPageable());
 		//  将User转化成DTO类
@@ -304,7 +304,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value="/addUser")
-	public String addUser(UserDTO userDTO, String hireDateEx) {
+	public String addUser_EDIT_USER(UserDTO userDTO, String hireDateEx) {
 		//权限控制 使用Aspect
 //		String userId = request.getSession().getAttribute("userId").toString();
 //		User opUser = userService.findById(Long.parseLong(userId));
@@ -335,7 +335,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value="/findDepAll")
-	public Page<UserDTO> findUsersByDep(ExtjsPageRequest pageRequest, String indexStr) {
+	public Page<UserDTO> findUsersByDep_EDIT_USER(ExtjsPageRequest pageRequest, String indexStr) {
 		//拆分 0:部门类型,1:id
 		UserQueryDTO userQ = new UserQueryDTO();
 		String[] strs = indexStr.split(",");
@@ -362,14 +362,14 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value="/resetPassword")
-	public String resetPassword(String workNum) {
+	public String resetPassword_EDIT_USER(String workNum) {
 		User user = userService.findByWorkNum(workNum);
 		user.setPassword(MD5Tool.ToMd5String(defPass));
 		userService.save(user);
 		return " {\"success\":\"true\",\"info\":\"初始密码为:"+defPass+"\" }";
 	}
 	@GetMapping(value="/changeStatus")
-	public String changeStatus(String workNum, String toStatus) {
+	public String changeStatus_EDIT_USER(String workNum, String toStatus) {
 		User user = userService.findByWorkNum(workNum);
 		if(toStatus.equals("FROZEN") && user.getUserStatus().equals(UserStatus.LAIDOFF)) {
 			return " {\"success\":\"false\" }";
@@ -379,7 +379,7 @@ public class UserController {
 		return " {\"success\":\"true\" }";
 	}
 	@PostMapping(value="/updateUser")
-	public String updateUser(UserDTO userDto, String hireDateEx) {
+	public String updateUser_EDIT_USER(UserDTO userDto, String hireDateEx) {
 		User user = userService.findById(userDto.getId());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -416,7 +416,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value = "/getGroupGenderCount")
-	public List<Map<String,String>> getGroupGenderCount(){
+	public List<Map<String,String>> getGroupGenderCount_EDIT_USER(){
 		return userService.getGroupGenderCount();
 	}
 	
