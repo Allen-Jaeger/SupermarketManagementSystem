@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,7 @@ public class OrderController {
 	@Autowired
 	IOrderDetailService orderDetailService ;
 	
+	
 	@PostMapping(value="/save")
 	public Object saveOrder(@RequestParam(value="orderInfo")OrderInfoDTO orderInfoDTO ,
 			@RequestParam(value="orderDetailList") List<OrderDetail> orderDetailList )
@@ -46,16 +49,16 @@ public class OrderController {
 
 	}
 	
+	//分页查询订单列表
 	@GetMapping(value="/getOrderList")
-	public List<OrderInfo> getOrderList() {
-		return null ;
+	public Page<OrderInfo> getOrderList(Pageable pageable) {
+		return orderInfoService.list(pageable) ;
 	}
 	
+	//分页查询订单详情
 	@GetMapping(value="/getOrderDetail") 
 	public List<OrderDetail> getOrderDetail(@RequestParam(value="orderId")String orderId) {
-		return null ;
+		return orderDetailService.findByOrderId(orderId) ;
 	}
-	
-	
 
 }
