@@ -63,21 +63,23 @@
 		                    return 'x-fa fa-cog';
 		                },
 		                handler: 'onClickProcessDefinitionActiveButton'
-		            },{
-		                xtype: 'button',iconCls: 'x-fa fa-ban',tooltip: '挂起',
-		                getClass: function(v, meta, rec) {
-		                    if (rec.get('suspended')!=false) {
-		                        return 'x-hidden';
-		                    }
-		                    return 'x-fa fa-ban';
-		                },
-		                handler: 'onClickProcessDefinitionSuspendButton'
-		            },{
-						xtype : 'button',
-						iconCls : 'x-fa fa-exchange',
-						tooltip: '转换为Model',
-						handler : 'onClickProcessDefinitionGridConvertModelButton'
-					}]
+					}
+					//,{
+		            //     xtype: 'button',iconCls: 'x-fa fa-ban',tooltip: '挂起',
+		            //     getClass: function(v, meta, rec) {
+		            //         if (rec.get('suspended')!=false) {
+		            //             return 'x-hidden';
+		            //         }
+		            //         return 'x-fa fa-ban';
+		            //     },
+		            //     handler: 'onClickProcessDefinitionSuspendButton'
+		            // },{
+					// 	xtype : 'button',
+					// 	iconCls : 'x-fa fa-exchange',
+					// 	tooltip: '转换为Model',
+					// 	handler : 'onClickProcessDefinitionGridConvertModelButton'
+					// }
+				]
 				}
 			],
 			tbar: [{

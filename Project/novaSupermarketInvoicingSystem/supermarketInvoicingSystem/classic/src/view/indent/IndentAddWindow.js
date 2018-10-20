@@ -36,6 +36,7 @@
     {xtype: 'textfield',fieldLabel: 'id',name:'id',hidden: true}
     //订单状态:默认为创建
     ,{xtype: 'textfield',fieldLabel: 'indentStatus', name:'indentStatus',value:'INIT',hidden: true,readOnly: true}
+    ,{xtype: 'textfield',fieldLabel: 'indentType', name:'indentType',value:'PURCHASE',hidden: true,readOnly: true}
     //订单类型:默认为订货单，枚举类型
     //{xtype: 'textfield',fieldLabel: 'indentType',name:'indentType',hidden: true,value:'1'}
     //订单编号：自动生成 随机

@@ -22,12 +22,7 @@
                 viewType: 'processDefinitionCenterPanel',
                 leaf: true
             },{
-                text: '货单申请模块',
-                iconCls: 'x-fa fa-file-o',
-                viewType: 'indentCenterPanel',
-                leaf: true
-            }, {
-                text: '货单工作流模块',
+                text: '货单模块',
                 iconCls: 'x-fa fa-leanpub',
                 expanded: false,
                 selectable: false,
@@ -35,14 +30,14 @@
                 //id: 'pages-parent',
                 children: [
                     {
-                        text: '采购工作流模块',
-                        iconCls: 'x-fa fa-shopping-cart',
-                        viewType: '',
+                        text: '货单申请模块',
+                        iconCls: 'x-fa fa-file-o',
+                        viewType: 'indentCenterPanel',
                         leaf: true
                     },{
-                        text: '调货工作流模块',
-                        iconCls: 'x-fa fa-exchange',
-                        viewType: 'transferCenterPanel',
+                        text: '货单工作流模块',
+                        iconCls: 'x-fa fa-shopping-cart',
+                        viewType: 'indentProcessCenterPanel',
                         leaf: true
                     }
                 ]

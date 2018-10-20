@@ -1,6 +1,6 @@
-Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
+Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPanel', {
   extend: Ext.panel.Panel,
-  xtype: 'indentGridPanel',
+  xtype: 'indentProcessGridPanel',
   layout: 'fit',
   requires: [
     'Ext.grid.Panel',
@@ -15,7 +15,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
   items: [{
     xtype: 'gridpanel',
     title: 'IndentGrid Results',
-    bind: '{indentLists}',
+    bind: '{indentProcessLists}',
     scrollable: false,
     selModel: {
       type: 'checkboxmodel'
@@ -31,7 +31,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         header: 'indentNum',
         dataIndex: 'indentNum',
         width: 180,
-         align:'center',
+        align:'center',
       },
       {
         header: 'createDate',
@@ -79,10 +79,8 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         width: 120,
         sortable: true,
         renderer: function (val) {
-          if (val == 'INIT') {
-            return '<span style="color:green;">初始化</span>';
-          } else if (val == 'CHECKING') {
-            return '<span style="color:blue;">审核中</span>';
+            if (val == 'CHECKING') {
+            return '<span style="color:green;">待审核</span>';
           } else if (val == 'APPROVED') {
             return '<span style="color:orange;">审核通过/提货中</span>';
           } else if (val == 'EXTRACTING') {
@@ -108,17 +106,18 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         cls: 'content-column',
         width: 120,
         text: 'Actions',
-        tooltip: '修改订单 ',
+        
         items: [{
             xtype: 'button',
-            iconCls: 'x-fa fa-pencil',
-            handler: 'openEditWindow'//需要修改读取indentType来选择窗口.
+            tooltip: '查看订单 ',
+            iconCls: 'x-fa fa-object-group',
+            handler: 'openIndentProcessLookupWindow'//需要修改读取indentType来选择窗口.
           },
           {
             xtype: 'button',
             iconCls: 'x-fa fa-close',
-            tooltip: '删除订单',
-            handler: 'deleteOneIndentRow'
+            tooltip: '审核订单',
+            handler: 'checkIndent'
           },
           {
             xtype: 'button',
@@ -153,13 +152,9 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
                  '<p>最后修改日期：{createDate:this.formatChange}</p>',
                  '<p>创建人:{creator.name}</p>',
                  '<p>状态：{indentStatus}</p>',
-                 '<p>货单类型：{indentType}</p>',
                  '<p>备注：{note}</p>',
                  '<p>总成本：{cost}</p>',
-                 '<tpl if="fromWarehouse!=null"><p>出货点(仓库)：{fromWarehouse.location.address}  {fromWarehouse.name}</p></tpl>',
-                 '<tpl if="fromShop!=null"><p>出货点(超市)：{fromShop.location.address}  {fromShop.name}</p></tpl>',
-                 '<tpl if="toWarehouse!=null"><p>进货点(仓库)：{toWarehouse.location.address}  {toWarehouse.name}</p></tpl>',
-                 '<tpl if="toShop!=null"><p>进货点(超市)：{toShop.location.address}  {toShop.name}</p></tpl>',
+                 '<p>进货点：{toWarehouse.location.address}  {toWarehouse.name}</p>',
                  {                
                       formatChange:function(v) { 
                       var year = v.getFullYear(); 
@@ -227,11 +222,11 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         text: 'Search More',
         iconCls: 'fa fa-search-plus',
         handler: 'openSearchWindow'
-      },*/ '-\x3e', {
+      },*//* '-\x3e', {
         text: 'Add-P',
-        tooltip: 'Add a new purchase row',
+        tooltip: 'Add a new indent row',
         iconCls: 'fa fa-cart-plus',
-        handler: 'openAddPurchaseWindow'
+        handler: 'openAddIndentWindow'
       }, '-', {
         text: 'Add-T',
         tooltip: 'Add a new transfer row',
@@ -244,13 +239,13 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         itemId: 'indentGridPanelRemove',
         disabled: true,
         handler: 'deleteMoreRows'
-      }
+      }*/
     ],
     dockedItems: [{
       xtype: 'pagingtoolbar',
       dock: 'bottom',
       displayInfo: true,
-      bind: '{indentLists}'
+      bind: '{indentProcessLists}'
     }],
     listeners: {
       selectionchange: function (selModel, selections) {

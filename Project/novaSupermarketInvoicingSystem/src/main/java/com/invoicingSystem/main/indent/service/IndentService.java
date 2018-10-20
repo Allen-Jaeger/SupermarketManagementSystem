@@ -22,7 +22,9 @@ import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
+import com.invoicingSystem.main.indent.domain.IndentDTO2;
 import com.invoicingSystem.main.indent.repository.IIndentRepository;
+import com.invoicingSystem.main.indent.util.IndentStatus;
 
 /**
  * @author LiJuncong
@@ -70,6 +72,8 @@ public class IndentService implements IIndentService {
         return indentRepository.findLeave(userId, pageable);
     }
     
+    
+    /*----------------------------------------------流程业务--------------------------------------------*/
     /**
      * 开始货单申请流程
      * @param userId 用户ID
@@ -86,6 +90,7 @@ public class IndentService implements IIndentService {
         if(indent!=null){
             try {
                 processInstance = workflowService.startWorkflow(userId, processKey, indent.getId().toString(), variables);
+                indent.setIndentStatus(IndentStatus.CHECKING);
                 indent.setProcessInstanceId(processInstance.getId());
                 indent.setCreateDate(new Date());
                 //leaveRepository.save(leave);
@@ -103,27 +108,27 @@ public class IndentService implements IIndentService {
     */
 
     @Override
-    public Page<IndentDTO> findTodoTasks(String userId, Pageable pageable) {
-        List<IndentDTO> results = null;
+    public Page<IndentDTO2> findTodoTasks(String userId, Pageable pageable) {
+        List<IndentDTO2> results = null;
         List<WorkflowDTO> workflowLists = workflowService.findTodoTasks(userId);
         // 根据流程的业务ID查询实体并关联
         if(null!=workflowLists) {
-            results = new ArrayList<IndentDTO>();
+        	results = new ArrayList<IndentDTO2>();
             for (WorkflowDTO workflow : workflowLists) {
-                Long businessKey = new Long(workflow.getBusinessKey());
+            	Long businessKey = new Long(workflow.getBusinessKey());
                 if (workflow.getBusinessKey() == null) {
                     continue;
                 }
-                Indent indent = indentRepository.findById(businessKey).get();
+                 Indent indent = indentRepository.findById(businessKey).get();
                 if(indent!=null){
-                    IndentDTO indentDTO = new IndentDTO();
-                    BeanUtils.copyProperties(indent, indentDTO);
-                    BeanUtils.copyProperties(workflow, indentDTO);
-                    results.add(indentDTO);
+                	IndentDTO2 indentDTO2 = new IndentDTO2();
+                    BeanUtils.copyProperties(indent, indentDTO2);
+                     BeanUtils.copyProperties(workflow, indentDTO2);
+                    results.add(indentDTO2);
                 }
             }
         }
-        return new PageImpl<IndentDTO> (results, pageable, null!=results?results.size():0);
+        return new PageImpl<IndentDTO2> (results, pageable, null!=results?results.size():0);
     }
 
     /**
