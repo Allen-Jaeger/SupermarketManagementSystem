@@ -8,7 +8,7 @@
     <sequenceFlow id="flow2" sourceRef="principalAudit" targetRef="exclusivegateway1"></sequenceFlow>
     <userTask id="confirmReceipt" name="确认收货" activiti:assignee="${applyId}">
       <extensionElements>
-        <activiti:taskListener event="complete" delegateExpression="${successEndProcessor}"></activiti:taskListener>
+        <activiti:taskListener event="complete" delegateExpression="${transferSuccessEnd}"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow3" name="通过" sourceRef="exclusivegateway1" targetRef="confirmReceipt">
@@ -18,7 +18,7 @@
     <sequenceFlow id="flow4" sourceRef="confirmReceipt" targetRef="endevent1"></sequenceFlow>
     <userTask id="modifyApply" name="申请退回" activiti:assignee="${applicantId}">
       <extensionElements>
-        <activiti:taskListener event="complete" delegateExpression="${falseEndProcessor}"></activiti:taskListener>
+        <activiti:taskListener event="complete" delegateExpression="${transferFalseEnd}"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow5" name="未通过" sourceRef="exclusivegateway1" targetRef="modifyApply">
