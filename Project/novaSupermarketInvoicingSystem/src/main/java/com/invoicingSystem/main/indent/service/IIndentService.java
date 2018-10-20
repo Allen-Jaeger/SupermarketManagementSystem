@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
+import com.invoicingSystem.main.indent.domain.IndentDTO2;
 
 /**
  * @author LiJuncong
@@ -32,7 +33,7 @@ public interface IIndentService {
     //1.启动流程
     public void startWorkflow(String userId,String processKey,Long indentId, Map<String, Object> variables);
     //2.查询流程任务
-    public Page<IndentDTO> findTodoTasks(String userId, Pageable pageable);
+    public Page<IndentDTO2> findTodoTasks(String userId, Pageable pageable);
     //3.签收流程任务
     public void claim(String taskId,String userId);
     //4.完成流程任务

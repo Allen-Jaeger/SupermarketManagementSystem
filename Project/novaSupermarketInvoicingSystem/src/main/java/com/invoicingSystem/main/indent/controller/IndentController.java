@@ -32,6 +32,7 @@ import com.invoicingSystem.main.common.web.ExtjsPageRequest;
 import com.invoicingSystem.main.common.web.SessionUtil;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
+import com.invoicingSystem.main.indent.domain.IndentDTO2;
 import com.invoicingSystem.main.indent.domain.IndentQueryDTO;
 import com.invoicingSystem.main.indent.service.IIndentService;
 import com.invoicingSystem.main.indent.util.GenerateRandIndentNum;
@@ -455,17 +456,20 @@ public class IndentController {
     @RequestMapping(value = "/start")
     public @ResponseBody ExtAjaxResponse start(@RequestParam(name = "id") Long indentId, HttpSession session) {
         try {
+        	
             Indent indent = indentService.findById(indentId);
             String userId = SessionUtil.getUserName(session);
+           
             Map<String, Object> variables = new HashMap<String, Object>();
             // 此处编写流程图需要的variables
-            variables.put("receiverId", indent.getKeeper().getId()); // 请求接受方
+            //variables.put("receiverId", indent.getKeeper().getId()); // 请求接受方
             variables.put("applicantId", userId); // 请求申请方
-
+            
             if (indent.getIndentType() == IndentType.PURCHASE) {// 判断货单是否为采购订单
 
-                // variables.put("applyId", userId);//调货工作流的变量 可删
-                // indentService.startWorkflow(userId,"采购流程key",indentId, variables);
+            	variables.put("manager", "SUPER_MANAGER");
+                variables.put("applyId", userId);
+                indentService.startWorkflow(userId,"purchase",indentId, variables);
 
             } else {// 否则跑调货流程
                 if (indent.getIndentType() == IndentType.RETREAT) {// 判断调货单是否为处理残旧品
@@ -490,10 +494,11 @@ public class IndentController {
      * @return
      */
     @RequestMapping(value = "/tasks")
-    public @ResponseBody Page<IndentDTO> findTodoTasks(HttpSession session, ExtjsPageRequest pageable) {
-        Page<IndentDTO> page = new PageImpl<IndentDTO>(new ArrayList<IndentDTO>(), pageable.getPageable(), 0);
+    public @ResponseBody Page<IndentDTO2> findTodoTasks(HttpServletRequest request, ExtjsPageRequest pageable) {
+        Page<IndentDTO2> page = new PageImpl<IndentDTO2>(new ArrayList<IndentDTO2>(), pageable.getPageable(), 0);
         try {
-            page = indentService.findTodoTasks(SessionUtil.getUserName(session), pageable.getPageable());
+        	User user = userService.findById((Long)request.getSession().getAttribute("userId"));
+            page = indentService.findTodoTasks(user.getName(), pageable.getPageable());
         } catch (Exception e) {
             e.printStackTrace();
         }
