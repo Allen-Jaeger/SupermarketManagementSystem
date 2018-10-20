@@ -1,4 +1,4 @@
-﻿Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
+Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
   extend: Ext.panel.Panel,
   xtype: 'indentGridPanel',
   layout: 'fit',
@@ -9,7 +9,7 @@
     'Ext.selection.CheckboxModel',
     'Ext.form.field.Date',
     'Ext.grid.column.Date',
-    'Ext.grid.plugin.RowExpander'
+    'Ext.grid.plugin.*'
   ],
 
   items: [{
@@ -20,7 +20,6 @@
     selModel: {
       type: 'checkboxmodel'
     },
-   
     columns: [{
         header: 'id',
         dataIndex: 'id',
@@ -42,7 +41,7 @@
         sortable: true,
         renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')
       },
-
+      
       {
         header: 'creatorName',
         dataIndex: 'creator',
@@ -50,6 +49,27 @@
         align:'center',
         renderer: function (val) {
           return val.name;
+        }
+      },
+      {
+        header: 'indentType',
+        dataIndex: 'indentType',
+        align:'center',
+        width: 100,
+        sortable: true,
+        renderer: function (val) {
+          //console.log(val);
+          if (val == 'PURCHASE') {
+            return '<span style="color:green;">采购单</span>';
+          } else if (val == 'TRANSPORT') {
+            return '<span style="color:orange;">内部调货单</span>';
+          } else if (val == 'TO_SHOP') {
+            return '<span style="color:blue;">超市调货单</span>';
+          } else if (val == 'RETREAT') {
+            return '<span style="color:red;">残品处理单</span>';
+          } else {
+            return val;
+          }
         }
       },
       {
@@ -92,7 +112,7 @@
         items: [{
             xtype: 'button',
             iconCls: 'x-fa fa-pencil',
-            handler: 'openEditWindow'
+            handler: 'openEditWindow'//需要修改读取indentType来选择窗口.
           },
           {
             xtype: 'button',
@@ -126,7 +146,33 @@
         ]
       }
     ],
-     
+      plugins: {
+        rowexpander: {
+            rowBodyTpl: new Ext.XTemplate(
+                 '<p>订单编号：{indentNum}</p>',
+                 '<p>最后修改日期：{createDate:this.formatChange}</p>',
+                 '<p>创建人:{creator.name}</p>',
+                 '<p>状态：{indentStatus}</p>',
+                 '<p>货单类型：{indentType}</p>',
+                 '<p>备注：{note}</p>',
+                 '<p>总成本：{cost}</p>',
+                 '<tpl if="toWarehouse!=null"><p>进货点(仓库)：{toWarehouse.location.address}  {toWarehouse.name}</p></tpl>',
+                 '<tpl if="toShop!=null"><p>进货点(超市)：{toShop.location.address}  {toShop.name}</p></tpl>',
+                 {                
+                      formatChange:function(v) { 
+                      var year = v.getFullYear(); 
+                      var month = v.getMonth() + 1; 
+                      var day = v.getDate(); 
+                      var hour = v.getHours(); 
+                      var minute = v.getMinutes(); 
+                      var second = v.getSeconds(); 
+                      return year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second ; 
+                    
+                      } 
+                }
+                )
+        }
+    },
     
     tbar: [{
         xtype: 'combobox',

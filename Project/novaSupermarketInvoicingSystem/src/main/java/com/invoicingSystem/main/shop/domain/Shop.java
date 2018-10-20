@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.user.domain.User;
 import com.invoicingSystem.main.util.Department;
@@ -58,6 +59,7 @@ public class Shop extends Department{
 		return location;
 	}
 
+	@JsonIgnore
 	public List<User> getShopManager() {
 		return shopManager;
 	}

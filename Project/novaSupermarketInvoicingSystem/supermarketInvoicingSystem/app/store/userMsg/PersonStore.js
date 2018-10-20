@@ -40,19 +40,4 @@ Ext.define('SupermarketInvoicingSystem.store.userMsg.PersonStore', {
         // console.log(this.data.map['try']);
       }
     }
-   // proxy: {
-   //      type: 'memory',
-   //      //url: '/findMe',
-   //      reader : {  
-   //          type : 'json'
-
-   //          //rootProperty  : 'content',
-   //          //totalProperty : 'totalElements'
-   //      }
-   //      ,simpleSortMode: true
-   //  },
-
-
-
-
 });

@@ -2,6 +2,10 @@ package com.invoicingSystem.main.commodity.domain;
 
 import java.util.Date;
 
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
+import com.invoicingSystem.main.common.enum_tools.EnumTool;
+
 /**
  * @author LiJuncong
  * at 2018年9月29日
@@ -21,6 +25,7 @@ public class CommodityDTO {
 	private String note;
 	private String commodityStatus;
 	private String indentNum;
+	private String depName = "";
 
 	public CommodityDTO() {
 		super();
@@ -46,7 +51,29 @@ public class CommodityDTO {
 		if(null != commodity.getIndent()) {
 			this.indentNum = commodity.getIndent().getIndentNum();
 		}
+		if(null != commodity.getShop()) {
+			this.depName = commodity.getShop().getName();
+			return;
+		}
+		if(null != commodity.getWarehouse()) {
+			this.depName = commodity.getWarehouse().getName();
+			return;
+		}
 	}
+	public Commodity asModel() {
+		Commodity model = new Commodity();
+		EnumTool et = new EnumTool(CommodityType.class);
+		model.setCommodityType((CommodityType) et.transToEnum(commodityType));
+		et = new EnumTool(CommodityStatus.class);
+		model.setCommodityStatus((CommodityStatus) et.transToEnum(commodityStatus));
+		model.setBarCode(barCode);
+		model.setName(name);
+		model.setSaveStock(saveStock);
+		model.setNote(note);
+		model.setPrice(price);
+		return model;
+	}
+	
 	
 	//Getter and Setter
 	public Long getId() {
@@ -88,6 +115,10 @@ public class CommodityDTO {
 	public String getIndentNum() {
 		return indentNum;
 	}
+	public String getDepName() {
+		return depName;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -127,6 +158,8 @@ public class CommodityDTO {
 	public void setIndentNum(String indentNum) {
 		this.indentNum = indentNum;
 	}
-	
+	public void setDepName(String depName) {
+		this.depName = depName;
+	}
 	
 }

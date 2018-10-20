@@ -1,4 +1,4 @@
-Ext.define('SupermarketInvoicingSystem.view.users.ComModelViewModel', {
+Ext.define('SupermarketInvoicingSystem.view.commodity.ComModelViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.comModelViewModel',
     requires: [

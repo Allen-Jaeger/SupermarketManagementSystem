@@ -16,7 +16,7 @@
 		,{type:'string',name:'indentStatus'}  //订单状态
 		,{type:'number',name:'cost'}
 		,{type:'string',name:'note'}          //备注
-		,{type:'int',name:'indentType'}  //1
+		,{type:'string',name:'indentType'}  //1
 		,{type:'string',name:'processInstanceId'} //流程实例id
 	],
 	proxy: {

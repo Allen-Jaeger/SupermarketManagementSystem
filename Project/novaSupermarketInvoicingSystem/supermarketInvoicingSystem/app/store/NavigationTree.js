@@ -56,13 +56,13 @@
                 children: [
                     {
                         text: '管理商品模板',
-                        iconCls: 'x-fa fa-anchor',
+                        iconCls: 'x-fa fa-cube',
                         viewType: 'comModel',
                         leaf: true
                     },{
                         text: '校准库存',
-                        iconCls: 'x-fa fa-cube',
-                        //viewType: 'transferCenterPanel',
+                        iconCls: 'x-fa fa-inbox',
+                        viewType: 'stock',
                         leaf: true
                     }
                 ],

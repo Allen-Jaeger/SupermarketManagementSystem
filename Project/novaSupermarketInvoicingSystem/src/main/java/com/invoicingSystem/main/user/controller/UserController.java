@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -53,6 +54,10 @@ public class UserController {
 	private String defPass; // 初始密码	
 	@Value("#{userDefaultBean.defIconUrl}")
 	private String defIconUrl; // 头像
+	@Autowired
+	IdentityService identityService;
+	
+	
 	/**
 	 * 	执行登陆
 	 * @param userDTO
@@ -74,7 +79,7 @@ public class UserController {
 	
 	/**
 	 * 
-	 * 	请求登陆页面
+	 * 	自动跳转
 	 * @param request
 	 * @param response
 	 */
@@ -134,7 +139,7 @@ public class UserController {
 	public void logout(HttpServletRequest request,HttpServletResponse response) {
 		request.getSession().removeAttribute("userId");
 		try {
-			response.sendRedirect("login.html");
+			response.sendRedirect("/login.html");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -293,7 +298,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 		日期需要特别处理
+	 * 	添加用户，	日期需要特别处理
 	 * @param userDTO
 	 * @param hireDateEx
 	 * @return
@@ -319,6 +324,10 @@ public class UserController {
 		User user = userDTO.toUserObject();
 		userService.buildDepartment(user, Long.parseLong(userDTO.getDepName()));
 		userService.save(user);
+		org.activiti.engine.identity.User userForWS = identityService.newUser(user.getName());
+		identityService.saveUser(userForWS);
+		identityService.createMembership(user.getName(), user.getUserType().toString());
+		
 		return "{\"success\":\"true\",\"info\":\"添加成功，初始密码为" +defPass+ "\"}";
 	}
 	/**

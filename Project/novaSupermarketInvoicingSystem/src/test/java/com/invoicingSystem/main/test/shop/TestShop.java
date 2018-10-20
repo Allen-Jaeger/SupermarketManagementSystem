@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.indent.service.IIndentService;
 import com.invoicingSystem.main.shop.domain.Shop;
@@ -33,7 +34,7 @@ public class TestShop {
 	@Autowired
 	IShopService shopService;
 	
-	@Test
+	//@Test
 	public void addShop() {
 		Shop shop = new Shop();
 		shop.setName("第4门店");
@@ -41,5 +42,21 @@ public class TestShop {
 		//shop.getCommodities().add(commodityService.findById(1L));
 		shopService.save(shop);
 	}
+	
+	@Test
+	public void addShop2() {
+		Shop shop = new Shop();
+		shop.setName("第5门店");
+		shop.setLocation(new Location(5.0,5.0,"玉兰路1号"));
+		shopService.save(shop);
+		Commodity commodity = new Commodity();
+		commodity= commodityService.findById(1L);
+		commodity.setId(null);
+		commodity.setShop(shop);
+		commodityService.save(commodity);
+		shop.getCommodities().add(commodity);
+		shopService.save(shop);
+	}
+	
 	
 }

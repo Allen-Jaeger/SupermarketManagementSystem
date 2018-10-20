@@ -23,6 +23,7 @@ $color-soft-red: dynamic(#e44959);
 $color-soft-purple: dynamic(#925e8b);
 $color-gray: dynamic(#949495);
 $color-green: dynamic(#16b603);
+$color-hard-red: dynamic(#E90000);
 
 $chart-icon-background-color: dynamic(#f1f1f1);
 
@@ -36,6 +37,11 @@ $grid-item-ffa-file-picture-o-btn-color: dynamic(#925e8b);
 $grid-item-fa-cog-btn-color: dynamic(#03b4d5);
 $grid-item-fa-ban-btn-color: dynamic(#ffc000);
 $grid-item-fa-exchange-btn-color: dynamic(#2eadf5);
+
+//grouping-grid
+$grid-grouped-header-border-color:dynamic(#49DF4C);
+$grid-grouped-title-glyph-color:dynamic(#1F9421);
+$grid-grouped-header-border-width:dynamic(2px 0 0 0);
 
 
 $legend-research: dynamic(#6aa5db);
