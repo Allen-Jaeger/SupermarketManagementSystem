@@ -22,7 +22,7 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
   	  
 
     /*Search*/    
-  search:function(btn) {
+ search:function(btn) {
         
         var searchShopFieldValue = this.lookupReference('searchShopField').getValue();
         
@@ -32,7 +32,7 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         var polarStore = btn.up('salesStatisticsChartPanel').down('polar').getStore();//季度销售饼图store
         var currentYear = Ext.util.Format.date(new Date(), 'Y');
         var regex=/^(\d{4})$/;//正则表达式，校验输入的年份格式是否正确
-        if (typeof(searchYearFieldValue)==="object") {
+        /*if (typeof(searchYearFieldValue)==="object") {
             if (Ext.util.Format.date(searchYearFieldValue, 'Y')<1000&&console.log("ssss");> {
                 console.log("ssss");
             }
@@ -40,13 +40,13 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         }
         console.log(typeof(searchYearFieldValue));
         console.log(searchYearFieldValue);
-        var reg = searchYearFieldValue.match(/^(\d{4})$/);
-        if(reg==null){
+        var reg = searchYearFieldValue.match(/^(\d{4})$/);*/
+        /*if(reg==null){
             Ext.Msg.alert("警告!","年份格式错误, 请重新输入/选择(以1/2开头)年份! 例:2018");
             // alert("匹配失败");
         }else{
             alert("匹配成功");
-        }
+        }*/
 
         
         // alert(store);
