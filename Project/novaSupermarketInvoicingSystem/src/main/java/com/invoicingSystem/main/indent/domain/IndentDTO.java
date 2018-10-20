@@ -51,7 +51,21 @@ public class IndentDTO {
     //流程实例Id：用于关联流程引擎相关数据没有启动流程之前为""
     private String processInstanceId;
     
-	public Long getId() {
+    
+    /**------------流程数据--------------**/
+    /*任务*/
+    /*private String taskId;
+    private String taskName;
+    private Date   taskCreateTime;
+    private String assignee;
+    private String taskDefinitionKey;*/
+    
+    /*流程图定义*/
+   /* private String processDefinitionId;
+    private boolean suspended;
+    private int version;
+    */
+    public Long getId() {
 		return id;
 	}
 	public String getIndentNum() {

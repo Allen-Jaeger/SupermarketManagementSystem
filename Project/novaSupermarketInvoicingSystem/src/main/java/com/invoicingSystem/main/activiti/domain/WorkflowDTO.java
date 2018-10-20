@@ -80,4 +80,14 @@ public class WorkflowDTO
 	public void setVersion(int version) {
 		this.version = version;
 	}
+	@Override
+	public String toString() {
+		return "WorkflowDTO [taskId=" + taskId + ", \n taskName=" + taskName + ", \n taskCreateTime=" + taskCreateTime
+				+ ", \n assignee=" + assignee + ", \n taskDefinitionKey=" + taskDefinitionKey + ", \n processInstanceId="
+				+ processInstanceId + ", \n processDefinitionId=" + processDefinitionId + ", \n suspended=" + suspended
+				+ ", \n version=" + version + ", \n businessKey=" + businessKey + "]";
+	}
+	
+	
+	
 }

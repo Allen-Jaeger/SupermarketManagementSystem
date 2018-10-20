@@ -6,9 +6,9 @@ package com.invoicingSystem.main.activiti.config;
 */
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
+import org.activiti.engine.identity.User;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class InitGroupsDB {
@@ -16,7 +16,7 @@ public class InitGroupsDB {
     InitializingBean groupsInitializer(final IdentityService identityService) {
         return new InitializingBean() {
             public void afterPropertiesSet() throws Exception {
-                Group group =identityService.newGroup("SUPER_MANAGER"); 
+                /*Group group =identityService.newGroup("SUPER_MANAGER"); 
                 group.setType("security-role");
                 group.setName("超级管理员");
                 Group group2 =identityService.newGroup("PURCHASER"); 
@@ -34,6 +34,15 @@ public class InitGroupsDB {
                 identityService.saveGroup(group3);
                 identityService.saveGroup(group4);
                 identityService.saveGroup(group5);
+            */
+               
+	        	 User user = identityService.newUser("温俊超");
+	     		 user.setPassword("123456");
+	             identityService.saveUser(user);
+        		
+	             identityService.createMembership("温俊超", "SUPER_MANAGER");
+            
+            
             }
         };
     }

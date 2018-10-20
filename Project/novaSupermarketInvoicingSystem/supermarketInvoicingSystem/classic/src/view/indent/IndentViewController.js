@@ -507,8 +507,8 @@
               }
             }
           });
-          Ext.data.StoreManager.lookup('indentStore').load();
           btn.up('window').close();
+          Ext.data.StoreManager.lookup('indentStore').load();
         }
       }
     });
