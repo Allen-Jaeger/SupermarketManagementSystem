@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +45,17 @@ public class OrderController {
 		return true;
 
 	}
+	
+	@GetMapping(value="/getOrderList")
+	public List<OrderInfo> getOrderList() {
+		return null ;
+	}
+	
+	@GetMapping(value="/getOrderDetail") 
+	public List<OrderDetail> getOrderDetail(@RequestParam(value="orderId")String orderId) {
+		return null ;
+	}
+	
+	
 
 }

@@ -26,7 +26,8 @@ public class OrderInfoService implements IOrderInfoService {
 	}
 	
 	//根据order领域属性查询列表
-	public Page<OrderInfo> list(Specification<OrderInfo> spec, Pageable pagebale) {
+	public Page<OrderInfo> list(Pageable pageable) {
+		orderRepository.findAll(pageable);
 		return null ;
 	}
 

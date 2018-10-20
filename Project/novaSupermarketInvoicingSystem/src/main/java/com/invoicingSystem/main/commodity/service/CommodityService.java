@@ -119,16 +119,7 @@ public class CommodityService implements ICommodityService {
 			
 		}
 		//图片不为默认时，删除旧文件
-		if(!commodity.getPicUrl().equals(defComUrl)) {
-			File oldIcon = new File(path + "/" + commodity.getPicUrl());
-			File oldIcon2 = new File(path2 + "/" + commodity.getPicUrl());
-			if(oldIcon.exists()) {
-				oldIcon.delete();
-			}
-			if(oldIcon2.exists()) {
-				oldIcon2.delete();
-			}
-		}
+		commodity = this.deletePic(commodity);
 		//更新用户信息
 		commodity.setPicUrl(filename);
 		commodityRepository.save(commodity);
@@ -161,6 +152,7 @@ public class CommodityService implements ICommodityService {
 		if(coms.size() > 1) {
 			return "删除失败，此商品模板下仍存在库存";
 		}
+		this.deletePic(coms.get(0));
 		commodityRepository.delete(coms.get(0));
 		return res;
 	}
@@ -173,5 +165,38 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findAllStock(CommodityStatus.ALLOW, CommodityStatus.UNALLOWED, pageable);
 	}
 	
-	
+	/**
+	 * 图片不为默认时，删除旧文件
+	 * @param commodity
+	 */
+	public Commodity deletePic(Commodity commodity) {
+		if(null !=commodity.getPicUrl() && !commodity.getPicUrl().equals(defComUrl)) {
+			String path = System.getProperty("user.dir")+ "\\supermarketInvoicingSystem\\resources\\commodityPic";
+			String path2 = System.getProperty("user.dir")+ "\\src\\main\\webapp\\resources\\commodityPic";
+			File oldIcon = new File(path + "/" + commodity.getPicUrl());
+			File oldIcon2 = new File(path2 + "/" + commodity.getPicUrl());
+			if(oldIcon.exists()) {
+				oldIcon.delete();
+			}
+			if(oldIcon2.exists()) {
+				oldIcon2.delete();
+			}
+		}
+		commodity.setPicUrl(defComUrl);
+		return commodity;
+	}
+
+	/* (non-Javadoc)
+	 * 1.删除一个库存记录
+	 */
+	@Override
+	public String deleteById(Long id) {
+		Commodity com = commodityRepository.findById(id).get();
+		if(null == com) {
+			return "删除出错";
+		}
+		com = this.deletePic(com);
+		commodityRepository.delete(com);
+		return "删除成功";
+	}
 }

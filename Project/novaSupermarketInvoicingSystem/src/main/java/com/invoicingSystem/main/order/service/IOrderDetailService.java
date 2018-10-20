@@ -8,6 +8,6 @@ public interface IOrderDetailService {
 	
 	public Boolean saveAll(List<OrderDetail> orderDetailList) ;
 	
-	public List<OrderDetail> get(String orderId) ;
+	public List<OrderDetail> findByOrderId(String orderId) ;
 
 }
