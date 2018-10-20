@@ -8,7 +8,6 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class InitGroupsDB {

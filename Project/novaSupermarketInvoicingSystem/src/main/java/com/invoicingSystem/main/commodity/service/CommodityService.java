@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.repository.ICommodityRepository;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 
 /**
  * @author LiJuncong
@@ -40,7 +41,11 @@ public class CommodityService implements ICommodityService {
 	public Commodity findById(Long id) {
 		return commodityRepository.findById(id).get();
 	}
-
+	@Override
+	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable){
+		
+		return commodityRepository.findByCommodityType(commodityType,pageable) ;
+	}
 	@Override
 	public Page<Commodity> findAll(Pageable pageable) {
 		return commodityRepository.findAll(pageable);

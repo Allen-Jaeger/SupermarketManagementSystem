@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 
 /**
  * @author LiJuncong
@@ -30,4 +31,5 @@ public interface ICommodityService {
 	public String deleteComModel(Long barcode);
 	public void deleteAll(List<Commodity> commodities);
 	public Page<Commodity> findAllStock(Pageable pageable);
+	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
 }
