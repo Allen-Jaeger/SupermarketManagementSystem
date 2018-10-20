@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.domain.CommodityDTO;
 import com.invoicingSystem.main.commodity.domain.CommodityQueryDTO;
+import com.invoicingSystem.main.commodity.service.CommodityService;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
@@ -55,6 +57,13 @@ public class CommodityController {
 		page = commodityService.findAll(CommodityQueryDTO.getWhereClause(commodityQueryDTO), pageable.getPageable());
 
 		return page;
+	}
+	
+	@GetMapping(value="/listByType" )
+	public Page<Commodity> getListByType(CommodityType commodityType,Pageable pageable){
+		
+		return commodityService.findByCommodityType(commodityType, pageable) ;
+		
 	}
 
 	@RequestMapping(value = "/findAll1")

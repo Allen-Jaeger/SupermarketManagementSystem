@@ -15,7 +15,7 @@
     ],
     layout: 'fit',
     //width: 650,
-    
+    title:'采购统计分析',
 	tbar: ['->',{
             xtype: 'combobox',
             reference:'searchCommodityFieldName',
@@ -77,7 +77,6 @@
             hideLabel: true,
             store:Ext.create("Ext.data.Store", {
 			    fields: ["name", "value"],
-			    url: 'data/PurchaseStatisticsdata.json',
 			    data: [
 			      	{ name: '本年', value: 'thisYear' },
 					{ name: '时间段', value: 'inputDate' }
@@ -90,7 +89,7 @@
             editable: false,
             allowBlank:false,
             blankText:'不能为空！',
-            queryMode: 'remote',
+            queryMode: 'local',
             triggerAction: 'all',
             emptyText: '请选择时间',
             width: 135,
@@ -105,6 +104,7 @@
 			editable:false,
 			hidden:true,
 			format: 'Y/m/d',
+            formatText:'',
 			reference:'searchDataFieldValueFrom',
 			fieldLabel: 'From',
 			name: 'from_date',
@@ -122,6 +122,7 @@
 			editable:false,
 			hidden:true,
 			format: 'Y/m/d',
+            formatText:'',
 			reference:'searchDataFieldValueTo',
 			fieldLabel: 'To',
 			name: 'to_date',

@@ -10,6 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 
 
 /**
@@ -43,4 +44,6 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 
 	@Query("from Commodity commodity where commodity.commodityStatus IS NOT ?2 AND commodity.commodityStatus IS NOT ?1")
 	public Page<Commodity> findAllStock(CommodityStatus s1,CommodityStatus s2,Pageable pageable);
+	
+	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
 }

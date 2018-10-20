@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="transfer" name="goodsTransfer" isExecutable="true">
+  <process id="transfer" name="调货流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="principalAudit" name="负责人审批" activiti:assignee="${receiverId}"></userTask>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="principalAudit"></sequenceFlow>
@@ -8,7 +8,7 @@
     <sequenceFlow id="flow2" sourceRef="principalAudit" targetRef="exclusivegateway1"></sequenceFlow>
     <userTask id="confirmReceipt" name="确认收货" activiti:assignee="${applyId}">
       <extensionElements>
-        <activiti:taskListener event="complete" delegateExpression="${reportBackEndProcessor}"></activiti:taskListener>
+        <activiti:taskListener event="complete" delegateExpression="${transferSuccessEnd}"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow3" name="通过" sourceRef="exclusivegateway1" targetRef="confirmReceipt">
@@ -18,7 +18,7 @@
     <sequenceFlow id="flow4" sourceRef="confirmReceipt" targetRef="endevent1"></sequenceFlow>
     <userTask id="modifyApply" name="申请退回" activiti:assignee="${applicantId}">
       <extensionElements>
-        <activiti:taskListener event="complete" delegateExpression="${reportBackEndProcessor}"></activiti:taskListener>
+        <activiti:taskListener event="complete" delegateExpression="${transferFalseEnd}"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow5" name="未通过" sourceRef="exclusivegateway1" targetRef="modifyApply">
@@ -59,7 +59,7 @@
         <omgdi:waypoint x="382.0" y="99.0"></omgdi:waypoint>
         <omgdi:waypoint x="512.0" y="99.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="420.0" y="81.0"></omgdc:Bounds>
+          <omgdc:Bounds height="16.0" width="32.0" x="420.0" y="81.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
@@ -72,7 +72,7 @@
         <omgdi:waypoint x="382.0" y="224.0"></omgdi:waypoint>
         <omgdi:waypoint x="512.0" y="224.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="16.0" width="100.0" x="420.0" y="229.0"></omgdc:Bounds>
+          <omgdc:Bounds height="16.0" width="48.0" x="420.0" y="229.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">

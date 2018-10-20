@@ -245,22 +245,13 @@ public class Indent {
 
 	@Override
 	public String toString() {
-		return "Indent [id=" + id + ", indentNum=" + indentNum + ", commodities=" + commodities + ", cost=" + cost
-				+ ", indentStatus=" + indentStatus + ", createDate=" + createDate + ", creator=" + creator + ", keeper="
-				+ keeper + ", manager=" + manager + ", fromWarehouse=" + fromWarehouse + ", toWarehouse=" + toWarehouse
-				+ ", fromShop=" + fromShop + ", toShop=" + toShop + ", note=" + note + ", supplier=" + supplier
-				+ ", commoditiesJSON=" + commoditiesJSON + ", indentType=" + indentType + ", userId=" + userId
-				+ ", processInstanceId=" + processInstanceId + ", getId()=" + getId() + ", getIndentNum()="
-				+ getIndentNum() + ", getCommodities()=" + getCommodities() + ", getCost()=" + getCost()
-				+ ", getIndentStatus()=" + getIndentStatus() + ", getCreateDate()=" + getCreateDate()
-				+ ", getCreator()=" + getCreator() + ", getKeeper()=" + getKeeper() + ", getManager()=" + getManager()
-				+ ", getFromWarehouse()=" + getFromWarehouse() + ", getToWarehouse()=" + getToWarehouse()
-				+ ", getFromShop()=" + getFromShop() + ", getToShop()=" + getToShop() + ", getNote()=" + getNote()
-				+ ", getIndentType()=" + getIndentType() + ", getSupplier()=" + getSupplier() + ", getUserId()="
-				+ getUserId() + ", getProcessInstanceId()=" + getProcessInstanceId() + ", getCommoditiesJSON()="
-				+ getCommoditiesJSON() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "Indent [id=" + id + ", \n indentNum=" + indentNum + ", \n cost=" + cost + ", \n indentStatus=" + indentStatus
+				+ ", \n createDate=" + createDate + ", \n creator=" + creator + ", \n keeper=" + keeper + ", \n manager=" + manager
+				+ ", \n fromWarehouse=" + fromWarehouse + ", \n toWarehouse=" + toWarehouse + ", \n fromShop=" + fromShop
+				+ ", \n toShop=" + toShop + ", \n note=" + note + ", \n supplier=" + supplier + ", \n indentType=" + indentType
+				+ ", \n userId=" + userId + ", \n processInstanceId=" + processInstanceId + "]";
 	}
+
 
 	
 	

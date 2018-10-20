@@ -79,7 +79,7 @@
         , this);
     },
     onClickProcessDefinitionActiveButton: function(view, recIndex, cellIndex, item, e, record) {
-    	Ext.Msg.alert("Title","Click Active Button");
+    	Ext.Msg.alert("提示","已激活!");
     },	
     onClickProcessDefinitionSuspendButton: function(view, recIndex, cellIndex, item, e, record) {
       	Ext.Msg.alert("Title","Click Suspend Button");

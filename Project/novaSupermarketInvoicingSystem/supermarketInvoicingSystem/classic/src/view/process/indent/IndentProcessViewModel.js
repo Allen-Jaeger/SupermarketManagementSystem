@@ -1,0 +1,10 @@
+﻿Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessViewModel', 
+	{extend:Ext.app.ViewModel, 
+	alias:'viewmodel.indentProcessViewModel', 
+	stores:{
+		indentProcessLists:{type:'indentProcessStore'}, 
+		commodityList:{type:'commoditiesStore'}, 
+		leftList:{type:'leftStore'}
+	}
+	}
+);
