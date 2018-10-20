@@ -167,15 +167,6 @@
 		}*/
     }
 	,logoutButton: function(){
-                
-		var me = this;
-        Ext.Ajax.request({
-            url: '/logout',
-            method: 'GET',
-            success: function(response, options) {
-                console.log('注销成功');
-                location.replace("http://localhost:8080/login");
-            }
-        });
+        location.replace("http://localhost:8080/logout");
     }
 });

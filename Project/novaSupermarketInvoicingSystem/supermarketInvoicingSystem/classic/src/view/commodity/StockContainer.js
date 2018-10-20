@@ -9,7 +9,7 @@ Ext.define('SupermarketInvoicingSystem.view.commodity.StockContainer', {
         'Ext.selection.TreeModel',
         'Ext.grid.*',
         'Ext.data.*',
-        // 'Ext.grid.plugin.BaseExporter',
+        'Ext.grid.feature.GroupStore'
     ],
     layout: {
         

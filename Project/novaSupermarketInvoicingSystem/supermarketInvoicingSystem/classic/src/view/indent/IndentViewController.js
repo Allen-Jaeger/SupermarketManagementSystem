@@ -193,7 +193,7 @@
       }
     });
     if (record) {
-      if (record.data.indentStatus == 'INIT') {
+      if (record.data.indentStatus == 'INIT'&& record.data.indentType == 'PURCHASE' ) {
         var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
         win.show();
 
@@ -201,7 +201,7 @@
 
         win.down('form').getForm().loadRecord(record);
       } else {
-        Ext.Msg.alert('提示', "只可以修改'初始化'状态的信息！");
+        Ext.Msg.alert('提示', "仅可修改'初始化'状态的<b>采购单</b>信息!<br>如要修改<b>调货单</b>请删除后重建...");
       }
     }
   },
@@ -404,36 +404,38 @@
   },
   calculateTransferCost: function (btn) {
     //以后要设置判断RetreatCheck是否为true,来确定调货单是否是残缺品处理单.
-    var leftGrid = Ext.data.StoreManager.lookup('transferLeftStore');
-    var fromPlaceId = Ext.getCmp('fromPlace').getValue();
-    var toPlaceId = Ext.getCmp('toPlaceId').getValue();
-    var toPlaceType = Ext.getCmp('toPlaceType').getValue();
-    var leftGridData = leftGrid.getRange();
-    var leftGridLength = leftGrid.getCount();
-    var leftGridOriginsLength;
+    //上面的想法不需要了 直接由indentType得知
+    var Grid;
+    if(Ext.getCmp('indentType').getValue()!='RETREAT')
+      Grid = Ext.data.StoreManager.lookup('transferLeftStore');
+    else
+      Grid = Ext.data.StoreManager.lookup('wareCommoditiesStore');
+    var GridData = Grid.getRange();
+    var GridLength = Grid.getCount();
+    var GridOriginsLength;
     //var leftGridDataJson = [];
     var commodityCost = 0;
 
-    leftGrid.load({
+    Grid.load({
       scope: this,
       callback: function (records, operation, success) {
-        leftGridOriginsLength = leftGrid.getCount();
-        var i = leftGridOriginsLength;
-        var j = leftGridLength;
+        GridOriginsLength = Grid.getCount();
+        var i = GridOriginsLength;
+        var j = GridLength;
         if (i == j) {
           Ext.MessageBox.alert("提示框", "未选择商品!");
         } else {
           for (i, j; i < j; i++) {
-            commodityCost += leftGridData[i].get('cost') * leftGridData[i].get('amount');
+            commodityCost += GridData[i].get('cost') * GridData[i].get('amount');
           }
           Ext.Ajax.request({
             url: '/indent/calculateCost',
             method: 'post',
             params: {
               cCost: commodityCost,
-              fromPlace: fromPlaceId,
-              toPlace: toPlaceId,
-              toPlaceType: toPlaceType
+              fromPlace: Ext.getCmp('fromPlace').getValue(),
+              toPlace: Ext.getCmp('toPlaceId').getValue(),
+              toPlaceType: Ext.getCmp('toPlaceType').getValue()
             },
             success: function (response, options) {
               var json = Ext.util.JSON.decode(response.responseText);
@@ -446,37 +448,41 @@
               }
             }
           });
-          leftGrid.setData(leftGridData); //让grid回到原样.
+          Grid.setData(GridData); //让grid回到原样.
         }
       }
     });
   },
   submitTransferForm: function (btn) {
     //以后要设置判断RetreatCheck是否为true,来确定调货单是否是残缺品处理单.
-    //上面的想法不需要了 直接由indentType得知 后台处理即可
-    var leftGrid = Ext.data.StoreManager.lookup('transferLeftStore');
-    var leftGridData = leftGrid.getRange();
-    var leftGridLength = leftGrid.getCount();
-    var leftGridOriginsLength;
-    var leftGridDataJson = [];
+    //上面的想法不需要了 直接由indentType得知
+    var Grid;
+    if(Ext.getCmp('indentType').getValue()!='RETREAT')
+      Grid = Ext.data.StoreManager.lookup('transferLeftStore');
+    else
+      Grid = Ext.data.StoreManager.lookup('wareCommoditiesStore');
+    var GridData = Grid.getRange();
+    var GridLength = Grid.getCount();
+    var GridOriginsLength;
+    var GridDataJson = [];
 
-    leftGrid.load({
+    Grid.load({
       scope: this,
       callback: function (records, operation, success) {
-        leftGridOriginsLength = leftGrid.getCount();
+        GridOriginsLength = Grid.getCount();
 
-        var i = leftGridOriginsLength;
-        var j = leftGridLength;
+        var i = GridOriginsLength;
+        var j = GridLength;
         if (i == j) {
           Ext.MessageBox.alert("提示框", "未选择商品!");
         } else {
           for (i, j; i < j; i++) {
-            leftGridDataJson.push({
-              'id': leftGridData[i].get('id'),
-              'amount': leftGridData[i].get('amount')
+            GridDataJson.push({
+              'id': GridData[i].get('id'),
+              'amount': GridData[i].get('amount')
             });
           }
-          var removecharacter = Ext.encode(leftGridDataJson);
+          var removecharacter = Ext.encode(GridDataJson);
           Ext.getCmp('commoditiesJSON').setValue(removecharacter);
           console.log(Ext.getCmp('commoditiesJSON').getValue());
 
@@ -501,12 +507,12 @@
               }
             }
           });
-          Ext.data.StoreManager.lookup('indentStore').load();
           btn.up('window').close();
+          Ext.data.StoreManager.lookup('indentStore').load();
         }
       }
     });
-    //console.log(leftGridData); //这句在leftGrid.load()前执行....
+    //console.log(GridData); //这句在leftGrid.load()前执行....
   },
 
   searchIndentByDateorNum: function (combo, record, index) {
@@ -624,27 +630,27 @@
   deleteOneIndentRow: function (grid, rowIndex, colIndex) {
     var store = grid.getStore();
     var record = store.getAt(rowIndex);
-    if (record.data.indentStatus == 'INIT') {
+    if (record.data.indentStatus == 'INIT' || record.data.indentStatus == 'ERROR') {
       Ext.MessageBox.confirm('提示', '确定要进行删除操作吗？数据将无法还原！', function (btn, text) {
         if (btn == 'yes') {
           store.remove(record);
         }
       }, this);
     } else {
-      Ext.Msg.alert('提示', "只可以删除'初始化'状态的信息！");
+      Ext.Msg.alert('提示', "只可以删除'初始化'以及'订单异常'状态的信息！");
     }
   },
   deleteOneRow: function (grid, rowIndex, colIndex) {
     var store = grid.getStore();
     var record = store.getAt(rowIndex);
-    if (record.data.indentStatus == 'INIT') {
+    if (record.data.indentStatus == 'INIT'|| record.data.indentStatus == 'ERROR') {
       Ext.MessageBox.confirm('提示', '确定要进行删除操作吗？数据将无法还原！', function (btn, text) {
         if (btn == 'yes') {
           store.remove(record);
         }
       }, this);
     } else {
-      Ext.Msg.alert('提示', "只可以删除'初始化'状态的信息！");
+      Ext.Msg.alert('提示', "只可以删除'初始化'以及'订单异常'状态的信息！");
     }
   },
   deleteMoreRows: function (btn, rowIndex, colIndex) {
@@ -656,7 +662,7 @@
           var rows = selModel.getSelection();
           var selectIds = [];
           Ext.each(rows, function (row) {
-            if (row.data.indentStatus == 'INIT') {
+            if (row.data.indentStatus == 'INIT'|| record.data.indentStatus == 'ERROR') {
               selectIds.push(row.data.id);
             }
           });

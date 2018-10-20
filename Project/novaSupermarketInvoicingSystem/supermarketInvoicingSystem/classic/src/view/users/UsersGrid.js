@@ -23,6 +23,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UsersGrid', {
     items: [{
         margin:'20',
         xtype: 'gridpanel',
+        frame: true,
         title: '管理用户信息',
         iconCls: 'fa fa-street-view',
         bind: '{allUsers}',

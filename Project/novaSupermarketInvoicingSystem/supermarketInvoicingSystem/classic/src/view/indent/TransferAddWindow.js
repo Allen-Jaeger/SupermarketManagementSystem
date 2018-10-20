@@ -354,7 +354,7 @@
             x: 390,
             y: 310,
             width: 200,
-            fieldLabel: '成本',
+            fieldLabel: '成本(RMB:元)',
             editable: false
         },
         {

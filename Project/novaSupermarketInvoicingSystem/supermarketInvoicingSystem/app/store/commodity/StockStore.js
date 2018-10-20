@@ -5,15 +5,15 @@ Ext.define('SupermarketInvoicingSystem.store.commodity.StockStore', {
 	 model:'SupermarketInvoicingSystem.model.commodity.StockModel',
 	data:[
 			{id:'scc3',barCode:'scc4',commodityType:'TTT',cost:'8',
-			period:new Date(),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'52',
+			period:new Date(8888888888888),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'52',
 			price:'18',note:'scc000',commodityStatus:'scc0000',depName:'scc8',},
 
       {id:'s3',barCode:'scc4',commodityType:'TTT',cost:'8',
-      period:new Date(),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'29',
+      period:new Date(867867676),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'29',
       price:'18',note:'scc000',commodityStatus:'scc0000',depName:'scc8',},
 
       {id:'4843',barCode:'s46486464',commodityType:'TTT',cost:'8',
-      period:new Date(),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'29',
+      period:new Date(245646),picUrl:'empty.jpg',name:'scc8',amount:'8',saveStock:'29',
       price:'18',note:'scc000',commodityStatus:'scc0000',depName:'scc8',},
 
 	],
@@ -35,11 +35,11 @@ Ext.define('SupermarketInvoicingSystem.store.commodity.StockStore', {
     grouper: {
       property: 'barCode'
     },
-    listeners: {
-      afterload:function(){
-        console.log(this);
-      }
-    }
+    // listeners: {
+    //   afterload:function(){
+    //     console.log(this);
+    //   }
+    // }
 });
 // ,{type: 'string' ,name: 'id'}
 //   ,{type: 'string' ,name: 'barCode'}

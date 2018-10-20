@@ -79,7 +79,7 @@ $(document).ready(function(){
 				success:function(result){
 					document.getElementById('eMsg').innerHTML = result;
 					if(result == '登陆成功'){
-						location.replace("http://localhost:8080/");
+						location.replace("http://localhost:8080/login");
 					}else{
 						$(".verSpan").css({'left': (Math.random()*140+50)});
 						$('#moveBar').css({'left': 0});
