@@ -182,4 +182,13 @@ public class User {
 		//str.deleteCharAt(str.lastIndexOf(","));
 		return str.toString();
 	}
+	
+	public boolean hasPrivilege(Privilege p) {
+		for(Privilege has :this.privileges) {
+			if(has.equals(Privilege.ALL) || has.equals(p)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
