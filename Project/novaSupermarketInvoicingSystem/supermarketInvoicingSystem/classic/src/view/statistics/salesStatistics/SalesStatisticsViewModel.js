@@ -10,7 +10,6 @@
         'Ext.data.reader.Json'
     ],
     stores:{
-		salesStatisticsLists:{type:'salesStatisticsStore'},
-		salesStatisticsPieLists: {type:'salesStatisticsPie3DStore'}
+		salesStatisticsLists:{type:'salesStatisticsStore'}
 	}
 });

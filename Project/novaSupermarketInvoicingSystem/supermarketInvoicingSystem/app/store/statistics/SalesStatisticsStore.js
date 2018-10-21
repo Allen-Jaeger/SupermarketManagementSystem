@@ -11,11 +11,12 @@
         url: 'data/SalesStatisticsdata.json',	//mvc url  xxx.json //data文件夹要放到webapp下
 	    reader:{
 	    	type:'json',
-	    	rootProperty:'salesStatisticsLists'
+	    	rootProperty:'salesStatisticsData'
 	    }
-    },
+    }
+    // ,
     	
-    autoLoad: 'true'
+    // autoLoad: 'true'
 //listeners: {}
 
 

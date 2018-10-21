@@ -27,61 +27,38 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         var searchShopFieldValue = this.lookupReference('searchShopField').getValue();
         
         var searchYearFieldValue = this.lookupReference('searchYearField').getValue();
-        
+        // var store = btn.up('salesStatisticsChartPanel').getStore();
         var cartesianStore = btn.up('salesStatisticsChartPanel').down('cartesian').getStore();//月份销售柱状图store
         var polarStore = btn.up('salesStatisticsChartPanel').down('polar').getStore();//季度销售饼图store
-        var currentYear = Ext.util.Format.date(new Date(), 'Y');
-        var regex=/^(\d{4})$/;//正则表达式，校验输入的年份格式是否正确
-        /*if (typeof(searchYearFieldValue)==="object") {
-            if (Ext.util.Format.date(searchYearFieldValue, 'Y')<1000&&console.log("ssss");> {
-                console.log("ssss");
-            }
-            
-        }
-        console.log(typeof(searchYearFieldValue));
-        console.log(searchYearFieldValue);
-        var reg = searchYearFieldValue.match(/^(\d{4})$/);*/
-        /*if(reg==null){
-            Ext.Msg.alert("警告!","年份格式错误, 请重新输入/选择(以1/2开头)年份! 例:2018");
-            // alert("匹配失败");
-        }else{
-            alert("匹配成功");
-        }*/
-
         
-        // alert(store);
-        // console.log(cartesianStore);
-        // console.log(Ext.util.Format.date(searchYearFieldValue, 'Y'));
+        var currentYear =new Date();
+
+        var regex=/^(1|2)(\d{3})$/;//正则表达式，校验输入的年份格式是否正确
+            
+        if (typeof(searchYearFieldValue)==="object"&&(searchYearFieldValue.getFullYear()<1000||searchYearFieldValue.getFullYear()>currentYear.getFullYear())) {
+            Ext.Msg.alert("提示","年份错误, 请重新输入/选择(以1/2开<br/>头且不大于今年)年份, 例:2018");
+            return;
+        }
+        if (typeof(searchYearFieldValue)==="string"){
+            var matchResult = searchYearFieldValue.match(regex);
+            if(matchResult===null){// 匹配失败
+                Ext.Msg.alert("提示","年份错误, 请重新输入/选择(以1/2开<br/>头且不大于今年)年份, 例:2018");
+                return;
+            }
+        }
+
         //var store = Ext.getCmp('userGridPanel').getStore();// Ext.getCmp(）需要在OrderPanel设置id属性
-        /*if(searchShopFieldValue===null||searchYearFieldValue===null){
+        if(searchShopFieldValue===null||searchYearFieldValue===null){
             Ext.Msg.alert("提示","请输入完整信息！");
             return;
         }
-        Ext.apply(store.proxy.extraParams, {shopId:"",year:""});
 
-        Ext.apply(store.proxy.extraParams, {shopId:searchShopFieldValue});
-        Ext.apply(store.proxy.extraParams,{
-                year:Ext.util.Format.date(searchYearFieldValue, 'Y')
-            });
-        if(searchDateField==='inputDate'){//输入时间段
-            if(searchDataFieldValueFrom===null||searchDataFieldValueTo===null){
-                    Ext.Msg.alert("提示","请输入完整信息！");
-                    return;
-            }
-            Ext.apply(store.proxy.extraParams,{
-                createTimeStart:Ext.util.Format.date(searchDataFieldValueFrom, 'Y/m/d H:i:s'),
-                createTimeEnd:Ext.util.Format.date(new Date(searchDataFieldValueTo.getTime()+24*60*60*1000), 'Y/m/d H:i:s')
-            });
-        }else{//时间段为本年
-            var nowDate=new Date();//当前日期
-            var thisYearFirstDay=nowDate.getFullYear() +"/01" + "/01";//本年一月一日
-            Ext.apply(store.proxy.extraParams,{
-                createTimeStart:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
-                createTimeEnd:Ext.util.Format.date(nowDate, 'Y/m/d H:i:s')
-            });
-        }
+        Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",year:""});
+        Ext.apply(cartesianStore.proxy.extraParams, {shopId:searchShopFieldValue});
+        Ext.apply(cartesianStore.proxy.extraParams, {year:Ext.util.Format.date(searchYearFieldValue, 'Y')});
         
-        store.load();*/
+        
+        cartesianStore.load();
         //console.log(store);
     }, 
 
