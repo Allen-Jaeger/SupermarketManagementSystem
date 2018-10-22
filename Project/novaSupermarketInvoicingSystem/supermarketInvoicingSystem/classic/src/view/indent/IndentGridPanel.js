@@ -79,17 +79,19 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         width: 120,
         sortable: true,
         renderer: function (val) {
-          if (val == 'INIT') {
+           if (val == 'INIT') {
             return '<span style="color:green;">初始化</span>';
           } else if (val == 'CHECKING') {
-            return '<span style="color:blue;">审核中</span>';
+            return '<span style="color:green;">待审核</span>';
           } else if (val == 'APPROVED') {
             return '<span style="color:orange;">审核通过/提货中</span>';
           } else if (val == 'EXTRACTING') {
-            return '<span style="color:orange;">入库清点中</span>';
+            return '<span style="color:blue;">入库清点中</span>';
           } else if (val == 'FINISHED') {
-            return '<span style="color:orange;">订单完成</span>';
-          } else {
+            return '<span style="color:grey;">订单完成</span>';
+          } else if (val == 'DISAPPROVED') {
+            return '<span style="color:red;">审核不通过/待修改</span>';
+          }  else {
             return '<span style="color:red;">订单异常</span>';
           }
           return val;
@@ -108,17 +110,28 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
         cls: 'content-column',
         width: 120,
         text: 'Actions',
-        tooltip: '修改订单 ',
+        tooltip: '订单操作 ',
         items: [{
             xtype: 'button',
-            iconCls: 'x-fa fa-pencil',
-            handler: 'openEditWindow'//需要修改读取indentType来选择窗口.
+            tooltip: '修改订单',
+            handler: 'openEditWindow',//需要修改读取indentType来选择窗口.
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') != 'INIT'&&rec.get('indentStatus') != 'DISAPPROVED') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-pencil';
+            },
           },
           {
             xtype: 'button',
-            iconCls: 'x-fa fa-close',
             tooltip: '删除订单',
-            handler: 'deleteOneIndentRow'
+            handler: 'deleteOneIndentRow',
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') != 'INIT') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-close';
+            },
           },
           {
             xtype: 'button',
@@ -143,6 +156,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
             },
             handler: 'cancelIndentProcess'
           }
+
         ]
       }
     ],
