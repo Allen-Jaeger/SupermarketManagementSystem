@@ -73,7 +73,7 @@ public class UserAspect extends BaseAspect{
 		log.warn("************"+user.getName()+" has not 'EDIT_USER' or 'ALL' Privilege**************");
 		try {
 //			request.getRequestDispatcher("login.html").forward(request, response);
-			response.sendError(403);
+			response.sendError(501);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

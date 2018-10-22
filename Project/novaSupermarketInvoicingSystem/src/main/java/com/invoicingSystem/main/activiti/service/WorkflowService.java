@@ -77,6 +77,7 @@ public class WorkflowService implements IWorkflowService {
             	dto.setTaskId(task.getId());
             	dto.setTaskName(task.getName());
             	dto.setTaskCreateTime(task.getCreateTime());
+            	dto.setTaskClaimTime(task.getClaimTime());
             	dto.setAssignee(task.getAssignee());
             	dto.setTaskDefinitionKey(task.getTaskDefinitionKey());
             	dto.setSuspended(processInstance.isSuspended());

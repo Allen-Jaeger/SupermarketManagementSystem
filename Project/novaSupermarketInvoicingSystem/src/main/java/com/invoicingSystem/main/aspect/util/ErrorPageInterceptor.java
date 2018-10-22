@@ -16,7 +16,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
 public class ErrorPageInterceptor extends HandlerInterceptorAdapter {
-    private List<Integer> errorCodeList = Arrays.asList(404, 403, 500, 501);
+    private List<Integer> errorCodeList = Arrays.asList(404, 403, 500, 501, 999);
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws
         Exception {

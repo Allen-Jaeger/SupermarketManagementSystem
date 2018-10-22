@@ -155,6 +155,9 @@ public class IndentService implements IIndentService {
     @Override
     public void complete(String taskId, Map<String, Object> variables) {
         workflowService.complete(taskId, variables);
+        if(variables.get("nextTaskName") != null) {
+        //indent.setIndentStatus(IndentStatus.CHECKING);
+        }
     }
 
 	@Override

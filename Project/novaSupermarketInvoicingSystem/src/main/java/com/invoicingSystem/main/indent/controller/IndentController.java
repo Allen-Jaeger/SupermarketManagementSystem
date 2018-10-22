@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.invoicingSystem.main.activiti.util.WorkflowVariable;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
@@ -348,6 +349,7 @@ public class IndentController {
                     cmd.setId(null);
                     cmd.setWarehouse(null);
                     cmd.setShop(null);
+                    cmd.setCommodityStatus(CommodityStatus.UNSALEABLE);
                     cmd.setIndent(indent);
                     commodityService.save(cmd);
                     indent.getCommodities().add(cmd);
@@ -455,30 +457,36 @@ public class IndentController {
      * @return
      */
     @RequestMapping(value = "/start")
-    public @ResponseBody ExtAjaxResponse start(@RequestParam(name = "id") Long indentId, HttpSession session) {
+    public @ResponseBody ExtAjaxResponse start(@RequestParam(name = "id") Long indentId,  HttpServletRequest request) {
         try {
+        	User user = userService.findById((Long)request.getSession().getAttribute("userId"));
         	
             Indent indent = indentService.findById(indentId);
-            String userId = SessionUtil.getUserName(session);
+            Warehouse toWarehouse = indent.getToWarehouse();
+            User keeper = toWarehouse.getKeeper();
+            String userName = user.getName();
+            String keeperName = keeper.getName();
            
             Map<String, Object> variables = new HashMap<String, Object>();
             // 此处编写流程图需要的variables
             //variables.put("receiverId", indent.getKeeper().getId()); // 请求接受方
-            variables.put("applicantId", userId); // 请求申请方
+            variables.put("applicantId", userName); // 请求申请方
             
             if (indent.getIndentType() == IndentType.PURCHASE) {// 判断货单是否为采购订单
 
             	variables.put("manager", "SUPER_MANAGER");
-                variables.put("applyId", userId);
-                indentService.startWorkflow(userId,"purchase",indentId, variables);
+                variables.put("applyId", userName);
+                variables.put("purchaser", userName);
+                variables.put("KEEPER", keeperName);
+                indentService.startWorkflow(userName,"purchase",indentId, variables);
 
             } else {// 否则跑调货流程
                 if (indent.getIndentType() == IndentType.RETREAT) {// 判断调货单是否为处理残旧品
                     variables.put("applyId", indent.getKeeper().getId());// 处理残旧品为接受端接收.
                 } else {
-                    variables.put("applyId", userId);// 处理其余调货为申请端接收.
+                    variables.put("applyId", userName);// 处理其余调货为申请端接收.
                 }
-                indentService.startWorkflow(userId, "transfer", indentId, variables);
+                indentService.startWorkflow(userName, "transfer", indentId, variables);
             }
             return new ExtAjaxResponse(true, "操作成功!");
         } catch (Exception e) {
@@ -511,9 +519,12 @@ public class IndentController {
      * 签收任务
      */
     @RequestMapping(value = "claim/{id}")
-    public @ResponseBody ExtAjaxResponse claim(@PathVariable("id") String taskId, HttpSession session) {
+    public @ResponseBody ExtAjaxResponse claim(@PathVariable("id") String taskId,@RequestParam(name = "indentId") Long indentId, HttpServletRequest request) {
         try {
-            indentService.claim(taskId, SessionUtil.getUserName(session));
+        	User user = userService.findById((Long)request.getSession().getAttribute("userId"));
+        	Indent indent = indentService.findById(indentId);
+        	indent.setManager(user);
+            indentService.claim(taskId,user.getName());
             return new ExtAjaxResponse(true, "任务签收成功!");
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,5 +1,7 @@
 package com.invoicingSystem.main.commodity.service;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -33,6 +35,9 @@ public interface ICommodityService {
 	public Page<Commodity> findAllStock(Pageable pageable);
 
 	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
+	
+	public Commodity findByBarCodeAndExpDateFromWareHouse(Long wareHouseId,Long barCode,Date ExpDate);
+	public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
 
 	public String deleteById(Long id);
 }
