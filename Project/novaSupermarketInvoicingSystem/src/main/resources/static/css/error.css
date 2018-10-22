@@ -5,7 +5,7 @@
 body{
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(to right, #2C9123, #DEFCDB);
+	background: linear-gradient(to right, #074C1C, #54FDA6);
 	text-align: center;
 	animation: bgc 1.5s;
 	overflow: hidden;
@@ -22,7 +22,7 @@ body{
 	letter-spacing: 6px;
 	font-weight: normal;
 	/*text-shadow: white 1px 1px 1px;*/
-	animation: Title 2s;
+	animation: Title 3s;
 }
 li{
 	color: white;
@@ -33,7 +33,7 @@ li{
 ul{
 	margin: 10px auto;
 	width: 70%;
-	animation: ulF 2s;
+	animation: ulF 3s;
 }
 .btn{
 	background: rgba(255,255,255,0.2);
@@ -46,32 +46,32 @@ ul{
 	float: right;
 	margin: 40px 80px;
 	font-weight: lighter;
-	animation: BTtoRight 2s;
+	animation: BTtoRight 3s;
 }
 @keyframes BTtoRight
 {
-	from {transform: rotateY(-90deg) translateX(150%);}
-	to {transform: rotateY(0deg) translateX(0%);}
+	from {transform: rotateY(-180deg) translateX(200%); opacity:0;}
+	to {transform: rotateY(0deg) translateX(0%); opacity:1;}
 }
 @keyframes Title
 {
-	from {transform: rotateX(-90deg) translateY(-300%);}
-	to {transform: rotateX(0deg) translateY(0%);}
+	from {transform: rotateX(-180deg) translateY(-100%); opacity:0;}
+	to {transform: rotateX(0deg) translateY(0%); opacity:1;}
 }
 @keyframes ulF
 {
-	from {transform: rotateY(-90deg) translateX(-150%);}
-	to {transform: rotateY(0deg) translateX(0%);}
+	from {transform: rotateY(-180deg) translateX(-50%); opacity:0;}
+	to {transform: rotateY(0deg) translateX(0%); opacity:1;}
 }
 @keyframes forCar
 {
-	from {left: -100px;}
-	to {left:100px;}
+	from {left: -100px; opacity:0;}
+	to {left:100px;opacity:1;}
 }
 @keyframes forBR
 {
-	from {left: 0px;}
-	to {left: -200px;}
+	from {left: 0px; opacity:0;}
+	to {left: -200px; opacity:1;}
 }
 .foot{
 	/*background: linear-gradient(to right, #0faf00, #DEFCDB);*/
@@ -89,7 +89,7 @@ ul{
 	height: 100px;
 	left:0;
 	background: linear-gradient(to right, #2c9123, #4ca545);
-	animation: forBR 2s;
+	animation: forBR 3s;
 	animation-fill-mode: forwards;
 	animation-delay: 3s;
 	z-index: 999;

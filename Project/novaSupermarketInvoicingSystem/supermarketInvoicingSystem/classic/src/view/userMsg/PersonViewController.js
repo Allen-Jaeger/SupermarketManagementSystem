@@ -58,5 +58,3 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonViewController', {
     }
 });
 
-
-
