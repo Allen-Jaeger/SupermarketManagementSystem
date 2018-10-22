@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.invoicingSystem.main.activiti.util.WorkflowVariable;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
@@ -348,6 +349,7 @@ public class IndentController {
                     cmd.setId(null);
                     cmd.setWarehouse(null);
                     cmd.setShop(null);
+                    cmd.setCommodityStatus(CommodityStatus.UNSALEABLE);
                     cmd.setIndent(indent);
                     commodityService.save(cmd);
                     indent.getCommodities().add(cmd);

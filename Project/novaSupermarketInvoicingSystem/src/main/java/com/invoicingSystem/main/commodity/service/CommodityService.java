@@ -3,6 +3,7 @@ package com.invoicingSystem.main.commodity.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -185,6 +186,19 @@ public class CommodityService implements ICommodityService {
 		commodity.setPicUrl(defComUrl);
 		return commodity;
 	}
+	
+	@Override
+	public Commodity findByBarCodeAndExpDateFromWareHouse(Long wareHouseId,Long barCode,Date ExpDate)
+	{
+	    return (Commodity) commodityRepository.findByBarCodeAndExpDateFromWareHouse(wareHouseId, barCode,ExpDate);
+	}
+	@Override
+    public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate)
+    {
+	    return (Commodity) commodityRepository.findByBarCodeAndExpDateFromShop(shopId, barCode,ExpDate);
+    }
+	
+	
 
 	/* (non-Javadoc)
 	 * 1.删除一个库存记录
