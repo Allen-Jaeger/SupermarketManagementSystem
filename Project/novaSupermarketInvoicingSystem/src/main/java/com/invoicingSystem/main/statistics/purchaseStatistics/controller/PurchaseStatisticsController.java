@@ -1,4 +1,4 @@
-package com.invoicingSystem.main.statistics.controller;
+package com.invoicingSystem.main.statistics.purchaseStatistics.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.invoicingSystem.main.indent.domain.Indent;
-import com.invoicingSystem.main.statistics.domain.PurchaseStatisticsQueryDTO;
-import com.invoicingSystem.main.statistics.service.IPurchaseStatisticsService;
+import com.invoicingSystem.main.statistics.purchaseStatistics.domain.PurchaseStatisticsQueryDTO;
+import com.invoicingSystem.main.statistics.purchaseStatistics.service.IPurchaseStatisticsService;
+
 
 /**
  * @author Suxj
@@ -29,5 +29,18 @@ public class PurchaseStatisticsController {
 //		System.out.println(indentList);
 		
 	}
+	
+//	@GetMapping(value = "/getAll")
+//	public void  getAll(){
+//		List<Object> resultList = indentRepository.findAllCounts();
+//		for (int i = 0; i < resultList.size(); i++) {
+//			Object[] obj = (Object[]) resultList.get(i);
+//			System.out.println(obj[0]+"----"+obj[1]);
+//			
+//		}
+//		 
+////		System.out.println(indentList);
+//		
+//	}
 
 }

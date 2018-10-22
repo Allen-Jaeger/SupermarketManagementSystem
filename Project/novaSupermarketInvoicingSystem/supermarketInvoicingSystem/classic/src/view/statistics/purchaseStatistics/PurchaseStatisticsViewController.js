@@ -37,8 +37,6 @@ searchCommodityComboboxSelectChuang:function(combo,record,index){
 
   /*Quick Search*/  
   quickSearch:function(btn) {
-    var searchCommodityField = this.lookupReference('searchCommodityFieldName').getValue();
-    var searchCommodityFieldValue = this.lookupReference('searchCommodityFieldValue').getValue();
     
     var searchWarehouseFieldValue = this.lookupReference('searchWarehouseFieldName').getValue();
     
@@ -50,25 +48,14 @@ searchCommodityComboboxSelectChuang:function(combo,record,index){
     //alert(store);
     //console.log(store);
     //var store = Ext.getCmp('userGridPanel').getStore();// Ext.getCmp(）需要在OrderPanel设置id属性
-    if(searchCommodityField===null||searchWarehouseFieldValue===null||searchDateField===null){
+    if(searchWarehouseFieldValue===null||searchDateField===null){
       Ext.Msg.alert("提示","请输入完整信息！");
       return;
     }
-    Ext.apply(store.proxy.extraParams, {barCode:"",commodityName:"",warehouseId:"",createTimeStart:"",createTimeEnd:""});
+    Ext.apply(store.proxy.extraParams, {warehouseId:"",createTimeStart:"",createTimeEnd:""});
 
     Ext.apply(store.proxy.extraParams, {warehouseId:searchWarehouseFieldValue});
-    if(searchCommodityField!=='all'){
-      if(searchCommodityFieldValue===""){
-        Ext.Msg.alert("提示","请输入完整信息！");
-        return;
-      }
     
-      if(searchCommodityField==='barCode'){
-        Ext.apply(store.proxy.extraParams, {barCode:searchCommodityFieldValue});
-      }else{
-        Ext.apply(store.proxy.extraParams, {commodityName:searchCommodityFieldValue});
-      }
-    }
     if(searchDateField==='inputDate'){//输入时间段
       if(searchDataFieldValueFrom===null||searchDataFieldValueTo===null){
           Ext.Msg.alert("提示","请输入完整信息！");
@@ -81,9 +68,10 @@ searchCommodityComboboxSelectChuang:function(combo,record,index){
     }else{//时间段为本年
       var nowDate=new Date();//当前日期
       var thisYearFirstDay=nowDate.getFullYear() +"/01" + "/01";//本年一月一日
+      var nextYearFirstDay=(nowDate.getFullYear()+1) +"/01" + "/01";//下一年一月一日
       Ext.apply(store.proxy.extraParams,{
         createTimeStart:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
-        createTimeEnd:Ext.util.Format.date(nowDate, 'Y/m/d H:i:s')
+        createTimeEnd:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
       });
     }
     
@@ -102,7 +90,7 @@ searchCommodityComboboxSelectChuang:function(combo,record,index){
     },
 
     onSeriesTooltipRender: function (tooltip, record, item) {
-      var time = Ext.util.Format.date(record.get('time'),'Y/m/d');
+      var time = Ext.util.Format.date(record.get('time'),'Y/m/d H:i:s');
         tooltip.setHtml(time + '采购额: ' + record.get('purchaseAmount'));
     },
 

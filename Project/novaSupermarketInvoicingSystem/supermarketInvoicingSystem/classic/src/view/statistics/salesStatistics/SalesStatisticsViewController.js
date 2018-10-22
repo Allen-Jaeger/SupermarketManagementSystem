@@ -53,9 +53,17 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
             return;
         }
 
-        Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",year:""});
+        Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",startDate:"",endDate:""});
+        
+      	var thisYearFirstDay=searchYearFieldValue.getFullYear() +"/01" + "/01";//该年一月一日
+      	var nextYearFirstDay=searchYearFieldValue.getFullYear() +"/12" + "/31";//该年12月31日
+        
         Ext.apply(cartesianStore.proxy.extraParams, {shopId:searchShopFieldValue});
-        Ext.apply(cartesianStore.proxy.extraParams, {year:Ext.util.Format.date(searchYearFieldValue, 'Y')});
+        
+        Ext.apply(store.proxy.extraParams,{
+	        startDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
+	        endDate:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
+	    });
         
         
         cartesianStore.load();

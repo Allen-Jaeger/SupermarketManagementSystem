@@ -1,5 +1,5 @@
 Ext.define('SupermarketInvoicingSystem.model.statistics.SalesStatisticsModel', {
     extend: 'SupermarketInvoicingSystem.model.Base',
-    fields: ['quarter', '2013', '2014']
+    fields: ['month', 'monthSales', 'mothTotalCosts','monthProfits' ,'quarter', 'quarterSales','quarterTotalCosts','quarterProfits']
     	
 });

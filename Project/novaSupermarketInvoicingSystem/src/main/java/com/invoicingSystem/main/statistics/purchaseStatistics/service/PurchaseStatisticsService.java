@@ -1,4 +1,4 @@
-package com.invoicingSystem.main.statistics.service;
+package com.invoicingSystem.main.statistics.purchaseStatistics.service;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.repository.IIndentRepository;
+/**
+ * @author Suxj
+ * 采购统计 Service
+ */
 @Transactional
 @Service
 public class PurchaseStatisticsService implements IPurchaseStatisticsService {
@@ -22,9 +26,8 @@ public class PurchaseStatisticsService implements IPurchaseStatisticsService {
 	@Override
 	public List<Map<String, String>> findAll(Specification<Indent> spec) {
 		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
-		System.out.println("456");
 		List<Indent> indentList = indentRepository.findAll(spec);
-		System.out.println("123");
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
 		Indent indent =null;
@@ -35,11 +38,11 @@ public class PurchaseStatisticsService implements IPurchaseStatisticsService {
 			if(indent.getCost()!=null) {
 				map.put("purchaseAmount", decimalFormat.format(indent.getCost()));
 			}else {
-				map.put("purchaseAmount", "");
+				map.put("purchaseAmount", "0");
 			}
 			list.add(map);
 		}
-		System.out.println(decimalFormat.format(1.566666));
+//		System.out.println(decimalFormat.format(null));
 		return list;
 	}
 

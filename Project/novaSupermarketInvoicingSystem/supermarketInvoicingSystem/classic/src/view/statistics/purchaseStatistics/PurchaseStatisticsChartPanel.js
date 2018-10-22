@@ -19,51 +19,19 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
     title:'采购统计分析',
   tbar: ['->',{
             xtype: 'combobox',
-            reference:'searchCommodityFieldName',
-            hideLabel: true,
-            store:Ext.create("Ext.data.Store", {
-          fields: ["name", "value"],
-          data: [
-              { name: '全部商品', value: 'all' },
-              { name: '商品条形码', value: 'barCode' },
-              { name: '商品名称', value: 'commodityName' }
-          ]
-      }),
-            displayField: 'name',
-            valueField:'value',
-            //value:'barCode',
-            editable: false,
-            allowBlank:false,
-            blankText:'不能为空！',
-            queryMode: 'local',
-            triggerAction: 'all',
-            emptyText: '请选择商品信息',
-            width: 150,
-            listeners:{
-              select: 'searchCommodityComboboxSelectChuang'
-            }
-        }, '-',{
-          xtype:'textfield',
-          hidden:true,
-          // allowBlank:false,
-          // blankText:'不能为空！',
-          reference:'searchCommodityFieldValue',
-          name:'purchaseStatisticsCommoditySearchField'
-    }, '|',{
-            xtype: 'combobox',
             reference:'searchWarehouseFieldName',
             hideLabel: true,
             store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有仓库
-          fields: ["name", "index"],
+          	fields: ["name", "index"],
                  proxy: {
               //type: 'memory',
               type: 'ajax',
               method:'post',
               url: '/warehouse/findAll',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
-            reader:{
-              type:'json'
-              // rootProperty:'warehouseLists'
-            }
+              reader:{
+	              type:'json'
+	              // rootProperty:'warehouseLists'
+	          }
           },
           autoLoad: 'true'
       }),
@@ -174,7 +142,7 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
             //fields: ['value'],
             //grid: true,
             minimum: 0,
-            maximum: 150,
+            //maximum: 150,
             renderer: 'onAxisLabelRender',
             title: {
                 text: '采购额（元）'

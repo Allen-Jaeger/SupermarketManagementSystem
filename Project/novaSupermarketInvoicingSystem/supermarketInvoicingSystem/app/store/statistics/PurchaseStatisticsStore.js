@@ -8,10 +8,10 @@
         //type: 'memory',
         type: 'ajax',
         method:'get',
-        url: 'data/PurchaseStatisticsdata.json',	//mvc url  xxx.json //data文件夹要放到webapp下
+        url: '/purchaseStatistic/getAllPurchase',	//mvc url  xxx.json //data文件夹要放到webapp下
 	    reader:{
-	    	type:'json',
-	    	rootProperty:'purchaseStatisticsLists'
+	    	type:'json'
+	    //	rootProperty:'purchaseStatisticsLists'
 	    }
     }
     	

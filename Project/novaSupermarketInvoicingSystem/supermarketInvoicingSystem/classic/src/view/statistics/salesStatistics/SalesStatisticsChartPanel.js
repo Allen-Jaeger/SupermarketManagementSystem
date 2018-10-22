@@ -28,14 +28,14 @@
           reference:'searchShopField',
           hideLabel: true,
           store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有超市
-          fields: ["name", "id"],
-          data:[{name:'Shop01',id:1},{name:'Shop02',id:2},{name:'Shop03',id:3}],
+          fields: ["name", "index"],
+          //data:[{name:'Shop01',index:1},{name:'Shop02',index:2},{name:'Shop03',index:3}],
                proxy: {
-              type: 'memory',
-              /*type: 'ajax',
-              method:'get',
-              url: 'data/ck.json',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
-            */
+              //type: 'memory',
+              type: 'ajax',
+              method:'post',
+              url: '/shop/findAll',  
+            
             reader:{
               type:'json',
               //rootProperty:'warehouseLists'//改
@@ -44,7 +44,7 @@
         autoLoad: 'true'
       }),
           displayField: 'name',
-          valueField:'id',
+          valueField:'index',
           //value:'2',
           editable: false,//是否可编辑
           allowBlank:false,//是否为空
@@ -135,7 +135,6 @@
           series: {
               type: 'bar3d',
               stacked: false,
-              //title: ['当前年份'],
               xField: 'month',
               yField: ['monthSales'],
               label: {

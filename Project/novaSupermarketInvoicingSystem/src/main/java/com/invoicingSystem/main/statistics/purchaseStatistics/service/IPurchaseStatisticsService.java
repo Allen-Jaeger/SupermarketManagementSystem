@@ -1,4 +1,4 @@
-package com.invoicingSystem.main.statistics.service;
+package com.invoicingSystem.main.statistics.purchaseStatistics.service;
 
 import java.util.List;
 import java.util.Map;
