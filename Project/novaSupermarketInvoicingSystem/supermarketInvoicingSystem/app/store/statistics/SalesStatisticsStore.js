@@ -7,11 +7,11 @@
     proxy: {
         //type: 'memory',
         type: 'ajax',
-        method:'post',
-        url: 'data/SalesStatisticsdata.json',	//mvc url  xxx.json //data文件夹要放到webapp下
+        method:'get',
+        url: '/salesStatistics/getAllSales',	//mvc url  xxx.json //data文件夹要放到webapp下
 	    reader:{
-	    	type:'json',
-	    	rootProperty:'salesStatisticsData'
+	    	type:'json'
+	    	// rootProperty:'salesStatisticsData'
 	    }
     }
     // ,

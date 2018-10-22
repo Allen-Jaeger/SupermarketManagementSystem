@@ -26,12 +26,13 @@ import com.invoicingSystem.main.statistics.salesStatistics.domain.SalesStatistic
 public class SalesStatisticsService implements ISalesStatisticsService {
 	@Autowired
 	OrderInfoRepository orderInfoRepository;
-	//季度销售统计
+	//销售统计
 	@Override
 	public List<Map<String, String>> findAllSalesByQuarterAndMonth(SalesStatisticsQueryDTO salesStatisticsQueryDTO) {
 		List<Map<String, String>> list= new ArrayList<Map<String, String>>();
 		List<Object> quarterResultList = orderInfoRepository.findAllSalesByQuarter(salesStatisticsQueryDTO.getShopId(), salesStatisticsQueryDTO.getStarDate(), salesStatisticsQueryDTO.getEndDate());
 		List<Object> monthResultList = orderInfoRepository.findAllSalesByMonth(salesStatisticsQueryDTO.getShopId(),salesStatisticsQueryDTO.getStarDate(),salesStatisticsQueryDTO.getEndDate());
+		
 		DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
 		for (int i = 0; i < quarterResultList.size(); i++) {
@@ -62,7 +63,7 @@ public class SalesStatisticsService implements ISalesStatisticsService {
 		
 		
 		
-		return null;
+		return list;
 	}
 
 

@@ -145,6 +145,10 @@
               highlight: true,
               style: {
                   color:'#00BFFF'
+              },
+              tooltip: {
+                      trackMouse: true,
+                      renderer: 'onBar3dSeriesTooltipRender'
               }
           }
       },{
@@ -193,7 +197,7 @@
                   },
                   tooltip: {
                       trackMouse: true,
-                      renderer: 'onSeriesTooltipRender'
+                      renderer: 'onPieSeriesTooltipRender'
                   }
               }]
       }]

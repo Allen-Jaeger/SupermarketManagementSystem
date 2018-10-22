@@ -56,11 +56,11 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",startDate:"",endDate:""});
         
       	var thisYearFirstDay=searchYearFieldValue.getFullYear() +"/01" + "/01";//该年一月一日
-      	var nextYearFirstDay=searchYearFieldValue.getFullYear() +"/12" + "/31";//该年12月31日
+      	var nextYearFirstDay=(searchYearFieldValue.getFullYear()+1) +"/01" + "/01";//下年一月一日
         
         Ext.apply(cartesianStore.proxy.extraParams, {shopId:searchShopFieldValue});
         
-        Ext.apply(store.proxy.extraParams,{
+        Ext.apply(cartesianStore.proxy.extraParams,{
 	        startDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
 	        endDate:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
 	    });
@@ -110,6 +110,10 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
             filename: 'monthSalesBar3dChart'
         });
     },
+
+    onBar3dSeriesTooltipRender: function (tooltip, record, item) {
+        tooltip.setHtml(record.get('month') + '月销售额: ' + record.get('monthSales')+'<br/>'+'月份总成本: '+record.get('mothTotalCosts')+'<br/>'+'月份利润: '+record.get('monthProfits'));
+    },
     
 
     /*Pie chart function*/
@@ -145,9 +149,9 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         });
     },
 
-    onSeriesTooltipRender: function (tooltip, record, item) {
-        tooltip.setHtml(record.get('quarter') + '销售额: ' + record.get('quarterSales'));
-    },
+    onPieSeriesTooltipRender: function (tooltip, record, item) {
+        tooltip.setHtml(record.get('quarter') + '季度销售额: ' + record.get('quarterSales')+'<br/>'+'季度总成本: '+record.get('quarterTotalCosts')+'<br/>'+'季度利润: '+record.get('quarterProfits'));
+    }
   
   
 });
