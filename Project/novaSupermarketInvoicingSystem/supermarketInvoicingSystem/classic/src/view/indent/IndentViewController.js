@@ -533,10 +533,14 @@
     var leftgridDataJson = [];
     for (var i in leftgridData) {
       leftgridDataJson.push({
-        'name': leftgridData[i].get('name'),
-        'num': leftgridData[i].get('num'),
-        'cost': leftgridData[i].get('cost'),
-        'price': leftgridData[i].get('price')
+        'name':leftgridData[i].get('name'), 
+      'num':leftgridData[i].get('num'), 
+      'cost':leftgridData[i].get('cost'), 
+      'price':leftgridData[i].get('price'),
+      'barCode':leftgridData[i].get('barCode'),
+      'picUrl':leftgridData[i].get('picUrl'),
+      'commodityType':leftgridData[i].get('commodityType'),
+      'note':leftgridData[i].get('note')
       });
     }
     var removecharacter = Ext.encode(leftgridDataJson);
@@ -559,10 +563,14 @@
     var leftgridDataJson = [];
     for (var i in leftgridData) {
       leftgridDataJson.push({
-        'name': leftgridData[i].get('name'),
-        'num': leftgridData[i].get('amount'),
-        'cost': leftgridData[i].get('cost'),
-        'price': leftgridData[i].get('price')
+        'name':leftgridData[i].get('name'), 
+      'num':leftgridData[i].get('num'), 
+      'cost':leftgridData[i].get('cost'), 
+      'price':leftgridData[i].get('price'),
+      'barCode':leftgridData[i].get('barCode'),
+      'picUrl':leftgridData[i].get('picUrl'),
+      'commodityType':leftgridData[i].get('commodityType'),
+      'note':leftgridData[i].get('note')
       });
     }
     var removecharacter = Ext.encode(leftgridDataJson);

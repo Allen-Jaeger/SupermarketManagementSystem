@@ -27,6 +27,7 @@ import com.invoicingSystem.main.activiti.util.WorkflowVariable;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
@@ -109,12 +110,21 @@ public class IndentController {
                     int amount = Integer.parseInt(job.get("num").toString());
                     double cost = Integer.parseInt(job.get("cost").toString());
                     double price = Integer.parseInt(job.get("price").toString());
-                    Commodity commodity = new Commodity();
+                    Long barCode = Long.parseLong(job.get("barCode").toString());
+                    CommodityType commodityType = CommodityType.valueOf(job.get("commodityType").toString());
+                    String note = job.get("note").toString();
+                    String picUrl = job.get("picUrl").toString();
+                    
+                     Commodity commodity = new Commodity();
                     commodity.setName(name);
                     commodity.setAmount(amount);
                     commodity.setCost(cost);
                     commodity.setPrice(price);
                     commodity.setIndent(indent);
+                    commodity.setBarCode(barCode);
+                    commodity.setCommodityType(commodityType);
+                    commodity.setPicUrl(picUrl);
+                    commodity.setNote(note);
                     commodityService.save(commodity);
                     indent.getCommodities().add(commodity);
                 }
@@ -475,8 +485,9 @@ public class IndentController {
                 User keeper = toWarehouse.getKeeper();
                 String keeperName = keeper.getName();
 
-            	variables.put("manager", "SUPER_MANAGER");
-                variables.put("applyId", userName);
+                variables.put("manager", "SUPER_MANAGER");
+            	variables.put("applyUser", userName);
+            	
                 variables.put("purchaser", userName);
                 variables.put("KEEPER", keeperName);
                 indentService.startWorkflow(userName,"purchase",indentId, variables);
@@ -554,4 +565,22 @@ public class IndentController {
         }
     }
 
+    /**
+     * 取消任务
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "delete/{id}")
+    public @ResponseBody ExtAjaxResponse delete(@PathVariable("id") String processInstanceId,@RequestParam(name = "indentId") Long indentId) {
+        try {
+            indentService.delete(processInstanceId,"???");
+            indentService.findById(indentId).setIndentStatus(IndentStatus.ERROR);
+            return new ExtAjaxResponse(true, "任务取消成功!");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ExtAjaxResponse(false, "任务取消失败!");
+        }
+    }
 }

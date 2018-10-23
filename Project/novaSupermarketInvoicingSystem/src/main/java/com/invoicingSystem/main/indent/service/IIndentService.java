@@ -25,7 +25,7 @@ public interface IIndentService {
 	public Indent findById(Long id);
 	public void delete(Long id);
 	public void deleteAll(Long[] ids);
-	public Page<Indent> findIndent(String userId,Pageable pageable);
+	
 	
 	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable);
 	//流程业务
@@ -38,5 +38,7 @@ public interface IIndentService {
     public void claim(String taskId,String userId);
     //4.完成流程任务
     public void complete(String taskId, Map<String, Object> variables);  
+    //5.取消流程任务
+    public void delete(String processInstanceId, String deleteReason);
 
 }

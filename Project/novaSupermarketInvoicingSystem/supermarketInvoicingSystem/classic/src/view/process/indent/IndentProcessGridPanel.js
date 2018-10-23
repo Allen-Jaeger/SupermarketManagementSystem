@@ -30,17 +30,27 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
         dataIndex: 'manager',
         width: 100,
         renderer:function(val, cellmeta, record, rowIndex, columnIndex, store){
-          if(record.data.taskClaimTime == null)
-            return '<button>签收</button>';
-          else if(record.data.taskName == '订单审批' ||record.data.taskName =='负责人审批') 
-            return'<button>审批</button>';
-          else if(record.data.taskName == '通知取货')
-            return'<button>通知取货</button>';
-          else if(record.data.taskName == '仓库管理员审查')
-            return'<button>完成审查</button>';
-          else if(record.data.taskName == '确认收货')
+        if(record.data.taskClaimTime == null){
+          if(record.data.taskName == '订单审批' &&document.getElementById('loginUserName').innerHTML != '温俊超')
+          return'<button id="claimButton" hidden=true>无效</button>';
+        else  return '<button id="claimButton">签收</button>';
+        }
+         if(record.data.taskName == '负责人审批') {
+          return'<button>审批</button>';
+        }
+         
+        if(record.data.taskName == '订单审批') {
+          if(document.getElementById('loginUserName').innerHTML != '温俊超')
+          return'<button id="checkingButton" hidden=true>无效</button>';
+          else return '<button id="checkingButton">审批</button>';
+        }
+         if(record.data.taskName == '通知取货')
+          return'<button>通知取货</button>';
+         if(record.data.taskName == '仓库管理员审查')
+          return'<button>完成审查</button>';
+         if(record.data.taskName == '确认收货')
             return'<button>确认收货</button>';
-          else if(record.data.taskName == '申请退回')
+         if(record.data.taskName == '申请退回')
             return'<button>申请退回</button>';
         },
         listeners:{
@@ -71,6 +81,12 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
       {
         header: 'taskClaimTime',
         dataIndex: 'taskClaimTime',
+        width: 180,
+        align:'center',
+        hidden:true,
+      },{
+        header: 'processInstanceId',
+        dataIndex: 'processInstanceId',
         width: 180,
         align:'center',
         hidden:true,
@@ -132,7 +148,9 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
             return '<span style="color:grey;">订单完成</span>';
           } else if (val == 'DISAPPROVED') {
             return '<span style="color:red;">审核不通过/待修改</span>';
-          }  else {
+          } else if (val == 'ROUND_GET') {
+            return '<span style="color:yellow;">入库不通过/待提货</span>';
+          } else {
             return '<span style="color:red;">订单异常</span>';
           }
           return val;
@@ -173,6 +191,16 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
               return 'x-fa fa-star';
             },
             handler: 'reSubmitIndentProcess'
+          }, {
+            xtype: 'button',
+            tooltip: '取消申请',
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') != 'DISAPPROVED' && rec.get('indentStatus') != 'CHECKING') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-ban';
+            },
+            handler: 'cancelIndentProcess'
           }
        ]
       }

@@ -75,7 +75,7 @@ public class Indent {
 	private String userId;//启动流程的用户ID
 	//流程实例Id：用于关联流程引擎相关数据没有启动流程之前为""
 	private String processInstanceId;
-
+	
 
 
 	public Long getId() {
@@ -235,8 +235,6 @@ public class Indent {
     }
 
     
-    
-    
 	public String getCommoditiesJSON() {
 		return commoditiesJSON;
 	}
@@ -262,7 +260,8 @@ public class Indent {
 	public void setGoodsCheckingReason(String goodsCheckingReason) {
 		this.goodsCheckingReason = goodsCheckingReason;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "Indent [id=" + id + ", \n indentNum=" + indentNum + ", \n cost=" + cost + ", \n indentStatus=" + indentStatus

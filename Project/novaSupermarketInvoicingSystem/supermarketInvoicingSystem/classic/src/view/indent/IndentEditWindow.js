@@ -132,6 +132,10 @@
                         }
               
             }
+            , {header: 'barCode',dataIndex:'barCode',width: 60,sortable: true,hidden:true}
+            , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
+            , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
+            , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true,hidden:true}
             ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true,flex:1.5}
             ,{header: 'price',dataIndex:'price',width: 60,sortable: true,flex:1.5}
             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:1.5,
@@ -176,6 +180,11 @@
                   
            }
              , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
+             , {header: 'barCode',dataIndex:'barCode',width: 60,sortable: true,hidden:true}
+             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
+             , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
+             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true}
+
              ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}

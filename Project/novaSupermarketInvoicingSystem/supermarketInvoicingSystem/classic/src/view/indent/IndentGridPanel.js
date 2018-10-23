@@ -91,6 +91,8 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
             return '<span style="color:grey;">订单完成</span>';
           } else if (val == 'DISAPPROVED') {
             return '<span style="color:red;">审核不通过/待修改</span>';
+          }else if (val == 'ROUND_GET') {
+            return '<span style="color:yellow;">入库不通过/提货中</span>';
           }  else {
             return '<span style="color:red;">订单异常</span>';
           }
@@ -144,17 +146,6 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
               return 'x-fa fa-star';
             },
             handler: 'starIndentProcess'
-          }, {
-            xtype: 'button',
-            iconCls: 'x-fa fa-ban',
-            tooltip: '取消申请',
-            getClass: function (v, meta, rec) {
-              if (rec.get('processInstanceId') == '') {
-                return 'x-hidden';
-              }
-              return 'x-fa fa-ban';
-            },
-            handler: 'cancelIndentProcess'
           }
 
         ]

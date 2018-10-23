@@ -66,11 +66,6 @@ public class IndentService implements IIndentService {
         
     }
 
-    @Override
-    public Page<Indent> findIndent(String userId, Pageable pageable) {
-        // TODO Auto-generated method stub
-        return indentRepository.findLeave(userId, pageable);
-    }
     
     
     /*----------------------------------------------流程业务--------------------------------------------*/
@@ -93,6 +88,7 @@ public class IndentService implements IIndentService {
                 indent.setIndentStatus(IndentStatus.CHECKING);
                 indent.setProcessInstanceId(processInstance.getId());
                 indent.setCreateDate(new Date());
+                
                 //leaveRepository.save(leave);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -159,6 +155,19 @@ public class IndentService implements IIndentService {
         //indent.setIndentStatus(IndentStatus.CHECKING);
         }
     }
+    
+    /**
+     * 取消流程任务
+     *
+     * @param taskId 任务ID
+     * @param variables 流程变量
+     * @return
+     */
+
+     @Override
+     public void delete(String processInstanceId, String deleteReason) {
+         workflowService.delete(processInstanceId, deleteReason);
+     }
 
 	@Override
 	public Page<Indent> findAll(Specification<Indent> spec, Pageable pageable) {
@@ -181,6 +190,5 @@ public class IndentService implements IIndentService {
 		}
 		
 	}
-
 
 }

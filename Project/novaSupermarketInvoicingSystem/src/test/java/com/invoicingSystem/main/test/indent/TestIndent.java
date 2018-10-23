@@ -1,7 +1,14 @@
 package com.invoicingSystem.main.test.indent;
 
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +40,8 @@ public class TestIndent {
 	@Autowired
 	IWarehouseService warehouseService;
 	
-	@Test
+	
+	//@Test
 	public void saveIndent() {
 		Indent indent = new Indent();
 		Commodity c1 = new Commodity();
@@ -57,9 +65,5 @@ public class TestIndent {
 		
 	}
 	
-	//@Test
-	public void getIndent() {
-		
-		
-	}
+	
 }
