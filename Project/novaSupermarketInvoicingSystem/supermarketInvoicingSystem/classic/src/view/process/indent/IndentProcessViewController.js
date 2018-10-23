@@ -43,7 +43,7 @@
         record.data.toPlaceName = record.data.toShop.name;
       record.data.creatorName = record.data.creator.name;
       win.down('form').getForm().loadRecord(record);
-    }else if(record.data.taskName == '通知取货'){
+    }else if(record.data.taskName == '通知取货'||record.data.taskName == '申请退回'){
       var url = 'indent/complete/' + record.data.taskId;
       var variables = [];
     this.complete(url,variables);
