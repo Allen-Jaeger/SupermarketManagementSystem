@@ -32,7 +32,7 @@ public interface ICommodityService {
 	public void deleteAll(List<Commodity> commodities);
 	public Page<Commodity> findAllStock(Pageable pageable);
 
-	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
+	public Page<Commodity> findByCommodityType(Integer commodityType,Pageable pageable);
 
 	public String deleteById(Long id);
 }
