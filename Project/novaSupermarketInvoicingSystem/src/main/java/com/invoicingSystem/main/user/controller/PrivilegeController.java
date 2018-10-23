@@ -19,22 +19,22 @@ public class PrivilegeController {
 		 * menuNode 构造函数
 		 * @param expanded iconCls text viewType routeId leaf select_able
 		 */
-		MenuNode root = new MenuNode(true, null, null, null, null, false, false);
-		MenuNode home = new MenuNode(true, "x-fa fa-desktop", "首页", "admindashboard", "dashboard", true, true);
-		MenuNode wkDef = new MenuNode(false, "x-fa fa-font-awesome", "流程定义模块", "processDefinitionCenterPanel", null, true, true);
-		MenuNode indent = new MenuNode(false, "x-fa fa-leanpub", "货单模块", null, null, false, false);
-		MenuNode indent1 = new MenuNode(false, "x-fa fa-file-o", "货单申请模块", "indentCenterPanel", null, true, true);
-		MenuNode indent2 = new MenuNode(false, "x-fa fa-shopping-cart", "货单工作流模块", "indentProcessCenterPanel", null, true, true);
-		MenuNode com = new MenuNode(false, "x-fa fa-cubes", "商品管理", null, null, false, false);
-		MenuNode com1 = new MenuNode(false, "x-fa fa-cube", "管理商品模板", "comModel", null, true, true);
-		MenuNode com2 = new MenuNode(false, "x-fa fa-inbox", "校准库存", "stock", null, true, true);
-		MenuNode summary = new MenuNode(false, "x-fa fa-area-chart", "统计分析", null, null, false, false);
-		MenuNode sum1 = new MenuNode(false, "x-fa fa-line-chart", "采购统计", "purchaseStatisticsPanel", null, true, true);
-		MenuNode sum2 = new MenuNode(false, "x-fa fa-bar-chart", "销售统计", "salesStatisticsPanel", null, true, true);
-		MenuNode personal = new MenuNode(false, "x-fa fa-user", "我的信息", "personMsg", "personMsg", true, true);
-		MenuNode users = new MenuNode(false, "x-fa fa-group", "用户管理", null, null, false, false);
-		MenuNode users1 = new MenuNode(false, "x-fa fa-street-view", "管理用户信息", "users", null, true, true);
-		MenuNode users2 = new MenuNode(false, "fa fa-bar-chart fa-rotate-90", "职员整体概况", "usersChart", null, true, true);
+		MenuNode root = new MenuNode(true, null, null, null, null, false, false,null);
+		MenuNode home = new MenuNode(true, "x-fa fa-desktop", "首页", "admindashboard", "dashboard", true, true,null);
+		MenuNode wkDef = new MenuNode(false, "x-fa fa-font-awesome", "流程定义模块", "processDefinitionCenterPanel", null, true, true,null);
+		MenuNode indent = new MenuNode(false, "x-fa fa-leanpub", "货单模块", null, null, false, false,null);
+		MenuNode indent1 = new MenuNode(false, "x-fa fa-file-o", "货单申请模块", "indentCenterPanel", null, true, true,null);
+		MenuNode indent2 = new MenuNode(false, "x-fa fa-shopping-cart", "货单工作流模块", "indentProcessCenterPanel", null, true, true,null);
+		MenuNode com = new MenuNode(false, "x-fa fa-cubes", "商品管理", null, null, false, false,null);
+		MenuNode com1 = new MenuNode(false, "x-fa fa-cube", "管理商品模板", "comModel", null, true, true,null);
+		MenuNode com2 = new MenuNode(false, "x-fa fa-inbox", "校准库存", "stock", null, true, true,null);
+		MenuNode summary = new MenuNode(false, "x-fa fa-area-chart", "统计分析", null, null, false, false,null);
+		MenuNode sum1 = new MenuNode(false, "x-fa fa-line-chart", "采购统计", "purchaseStatisticsPanel", null, true, true,null);
+		MenuNode sum2 = new MenuNode(false, "x-fa fa-bar-chart", "销售统计", "salesStatisticsPanel", null, true, true,null);
+		MenuNode personal = new MenuNode(false, "x-fa fa-user", "我的信息", "personMsg", "personMsg", true, true,null);
+		MenuNode users = new MenuNode(false, "x-fa fa-group", "用户管理", null, null, false, false,null);
+		MenuNode users1 = new MenuNode(false, "x-fa fa-street-view", "管理用户信息", "users", null, true, true,null);
+		MenuNode users2 = new MenuNode(false, "fa fa-bar-chart fa-rotate-90", "职员整体概况", "usersChart", null, true, true,null);
 		
 		root.getChildren().add(home);
 		root.getChildren().add(wkDef);

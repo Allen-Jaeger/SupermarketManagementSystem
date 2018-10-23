@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -43,9 +44,30 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findById(id).get();
 	}
 	@Override
-	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable){
+	public Page<Commodity> findByCommodityType(Integer commodityType,Pageable pageable){
 		
-		return commodityRepository.findByCommodityType(commodityType,pageable) ;
+//		Page<Commodity> page = null;
+//		
+		CommodityType type = CommodityType.FOOD ;
+		
+		switch(commodityType) {
+			case 0: type = CommodityType.FOOD ; break ;
+			case 1: type = CommodityType.DRINK ;break ;
+			case 2: type = CommodityType.DAILY ;break ;
+			case 3: type = CommodityType.ELETRICAL ;break ;
+			case 4: type = CommodityType.COOKER ;break ;
+			case 5: type = CommodityType.BATH ;break ;
+			case 6: type = CommodityType.INFANT ;break ;
+			case 7: type = CommodityType.FRESH ;break ;
+			case 8: type = CommodityType.DRESS ;break ;
+			case 9: type = CommodityType.FURNITURE ;break ;
+			case 10: type = CommodityType.SPORT ;break ;
+			case 11: type = CommodityType.STUDY ;break ;
+			case 12: type = CommodityType.ELSE ;break ;
+		}
+		
+		return commodityRepository.findByCommodityType(type, pageable);
+		
 	}
 	@Override
 	public Page<Commodity> findAll(Pageable pageable) {

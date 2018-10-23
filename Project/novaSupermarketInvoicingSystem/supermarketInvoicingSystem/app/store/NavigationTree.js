@@ -4,27 +4,27 @@
     storeId: 'NavigationTree',
     // model:'SupermarketInvoicingSystem.model.MenuTreeModel',
 
-    // proxy:{
-    //     type: 'direct',
-    //     url: '/getMenu',
-    //     reader : {  
-    //         type : 'json',  
-    //         rootProperty  : 'root',
-    //     }
-    // }, 
-    // autoLoad: true,
-    root: {
-        expanded: true,
-        children: [
-            {
-                text: 'Dashboard',
-                iconCls: 'x-fa fa-desktop',
-                viewType: 'admindashboard',
-                routeId: 'dashboard', // routeId defaults to viewType
-                leaf: true
-            },
-        ]
-    },
+    proxy:{
+        type: 'ajax',
+        url: '/getMenu',
+        reader : {  
+            type : 'json',  
+            // rootProperty  : 'root',
+        }
+    }, 
+    autoLoad: true,
+    // root: {
+    //     expanded: true,
+    //     children: [
+    //         {
+    //             text: 'Dashboard',
+    //             iconCls: 'x-fa fa-desktop',
+    //             viewType: 'admindashboard',
+    //             routeId: 'dashboard', // routeId defaults to viewType
+    //             leaf: true
+    //         },
+    //     ]
+    // },
 
 });
 

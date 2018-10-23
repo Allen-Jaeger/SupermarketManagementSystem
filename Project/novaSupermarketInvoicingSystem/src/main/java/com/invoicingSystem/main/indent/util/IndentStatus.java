@@ -14,7 +14,8 @@ public enum IndentStatus {
 	EXTRACTING(3,"入库清点中"),		//货物在仓库管理员手中
 	FINISHED(4,"订单完成"),
 	ERROR(5,"订单异常"),
-	DISAPPROVED(6,"审核不通过"),;
+	DISAPPROVED(6,"审核不通过"),
+	ROUND_GET(7,"入库失败/提货中");
 
 	private final int index;
 	private final String mean;

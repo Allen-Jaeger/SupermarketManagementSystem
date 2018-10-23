@@ -48,7 +48,7 @@
                 '->',//使用查找
                 {
                     xtype: 'tbtext',
-                    text: '用户名:SupermarketInvoicingSystem',
+                    text: 'Supermark',
                     id:'loginUserName',
                     cls: 'top-user-name'
                 },{

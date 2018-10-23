@@ -31,13 +31,17 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
         width: 100,
         renderer:function(val, cellmeta, record, rowIndex, columnIndex, store){
           if(record.data.taskClaimTime == null)
-          return '<button>签收</button>';
-         else if(record.data.taskName == '订单审批') 
-          return'<button>审批</button>';
-         else if(record.data.taskName == '通知取货')
-          return'<button>通知取货</button>';
-         else if(record.data.taskName == '仓库管理员审查')
-          return'<button>完成审查</button>';
+            return '<button>签收</button>';
+          else if(record.data.taskName == '订单审批' ||record.data.taskName =='负责人审批') 
+            return'<button>审批</button>';
+          else if(record.data.taskName == '通知取货')
+            return'<button>通知取货</button>';
+          else if(record.data.taskName == '仓库管理员审查')
+            return'<button>完成审查</button>';
+          else if(record.data.taskName == '确认收货')
+            return'<button>确认收货</button>';
+          else if(record.data.taskName == '申请退回')
+            return'<button>申请退回</button>';
         },
         listeners:{
           click:'signIndent'

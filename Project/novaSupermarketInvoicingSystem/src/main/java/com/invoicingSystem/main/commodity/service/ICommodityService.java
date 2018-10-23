@@ -34,8 +34,9 @@ public interface ICommodityService {
 	public void deleteAll(List<Commodity> commodities);
 	public Page<Commodity> findAllStock(Pageable pageable);
 
-	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
-	
+
+	public Page<Commodity> findByCommodityType(Integer commodityType,Pageable pageable);
+
 	public Commodity findByBarCodeAndExpDateFromWareHouse(Long wareHouseId,Long barCode,Date ExpDate);
 	public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
 

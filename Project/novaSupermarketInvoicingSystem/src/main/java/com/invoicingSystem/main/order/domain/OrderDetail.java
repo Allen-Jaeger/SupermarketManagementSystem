@@ -1,12 +1,16 @@
 package com.invoicingSystem.main.order.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="t_order_detail")
 @Entity
 public class OrderDetail {
+	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id ;
 	//订单号
