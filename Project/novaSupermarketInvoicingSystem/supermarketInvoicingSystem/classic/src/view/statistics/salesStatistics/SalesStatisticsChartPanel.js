@@ -16,6 +16,7 @@
         'Ext.chart.PolarChart',
      // 'Ext.chart.theme.Muted',
     'Ext.ux.layout.ResponsiveColumn',
+    'SupermarketInvoicingSystem.model.statistics.SalesStatisticsOrderDetailModel'
     ],
     //layout: 'fit',
    // width: 650,
@@ -81,11 +82,11 @@
     items: [{
           xtype: 'cartesian',
           reference: 'bar3dchart',
-          userCls: 'big-60 small-100',
+          userCls: 'big-50 small-100',
           title: '月份销售统计',
           iconCls: 'x-fa fa-bar-chart',
           ui: 'light',
-          width: 550,
+          //width: 550,
           height: 500,
           tbar: [
             '->',
@@ -107,7 +108,7 @@
           animation: {
               duration: 200
           },
-          bind:'{salesStatisticsLists}',//改
+          bind:'{salesStatisticsBarStoreLists}',//改
       /*legend: {
               type: 'dom',
               docked: 'bottom'
@@ -132,7 +133,7 @@
               },
               grid: true
           }],
-          series: {
+          series: [{
               type: 'bar3d',
               stacked: false,
               xField: 'month',
@@ -150,15 +151,15 @@
                       trackMouse: true,
                       renderer: 'onBar3dSeriesTooltipRender'
               }
-          }
+          }]
       },{
           xtype: 'polar',
           reference: 'piechart',
-          userCls: 'big-40 small-100',
-          width: 550,
+          userCls: 'big-50 small-100',
+          //width: 550,
           title: '季度销售统计',
         iconCls: 'x-fa fa-pie-chart',
-      ui: 'light',
+        ui: 'light',
           downloadServerUrl: '//svg.sencha.io',
           innerPadding: 40,
          // width: '100%',
@@ -176,7 +177,7 @@
                 handler: 'onDownloadPiechart'
             }
         ],
-          bind:'{salesStatisticsLists}',//
+          bind:'{salesStatisticsPieStoreLists}',//
           //theme: 'Muted',
           interactions: ['itemhighlight', 'rotate'],
           // legend: {
@@ -200,6 +201,104 @@
                       renderer: 'onPieSeriesTooltipRender'
                   }
               }]
-      }]
+      },
+    /*{
+          style: 'margin-top: 10px;',
+          xtype: 'container',
+          layout: {
+              type: 'hbox',
+              pack: 'center'
+          },
+          width: '100%',
+          items: [{
+              xtype: 'gridpanel',
+              title:'销售明细',
+              width: 650,
+              columns : {
+                  defaults: {
+                      sortable: false,
+                      menuDisabled: true,
+                      renderer: 'onGridColumnRender'
+                  },
+                  items: [
+                      { text: 'Quarter', dataIndex: 'quarter', renderer: Ext.identityFn },
+                      { text: 'quarterSales', dataIndex: 'quarterProfits' },
+                      { text: 'quarterProfits', dataIndex: 'quarterProfits' }
+                  ]
+              },
+              bind:'{salesStatisticsLists}'
+          }]
+    }*/
+      {
+        xtype: 'gridpanel',
+        title: '销售明细',
+        bind:'{salesStatisticsGridStoreLists}',
+        columns: [{
+            width: 145,
+            text: '销售订单号',
+            dataIndex: 'orderId'
+        },{
+            width: 145,
+            text: '订单完成日期',
+            dataIndex: 'payTime'
+        },{
+            width: 145,
+            text: '商品总成本',
+            dataIndex: 'goodsTotalCost',
+            // flex: 1,
+            hideable: false
+        },{
+            width: 145,
+            text: '订单总价',
+            dataIndex: 'orderAmount'
+        },{
+            
+            text: '订单利润',
+            dataIndex: 'ordeProfits'
+        }],
+        width: 750,
+        height: 450,
+        leadingBufferZone: 8,
+        trailingBufferZone: 8,
+
+        plugins: {
+            rowwidget: {
+                widget: {
+	                xtype: 'grid',
+	                autoLoad: true,
+	                bind: {
+	                    store: '{record.SalesStatisticsOrderDetailModels}',
+	                    title: '订单号: {record.orderId} 订单详情'
+	                },
+	                columns: [{
+	                    text: '商品名称',
+	                    dataIndex: 'itemTitle',
+	                    width: 75
+	                }, {
+	                    text: '商品数量',
+	                    dataIndex: 'itemNum',
+	                    width: 265
+	                }, {
+	                    text: '商品价格',
+	                    dataIndex: 'itemPrice',
+	                    // xtype: 'numbercolumn',
+	                    width: 100
+	                    // align: 'right'
+	                }, {
+	                    width: 120,
+	                    text: '商品折扣',
+	                    dataIndex: 'itemDiscount'
+	                }],
+	                listeners:{
+	                	afterRender:'aterRenderLoad'
+	                }
+	            }
+            }
+        }
+
+      }
+
+
+      ]
     
 });

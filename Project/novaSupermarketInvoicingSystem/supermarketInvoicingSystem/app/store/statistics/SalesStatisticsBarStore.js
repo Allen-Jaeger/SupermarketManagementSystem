@@ -1,11 +1,11 @@
-﻿Ext.define('SupermarketInvoicingSystem.store.statistics.SalesStatisticsStore', {
+﻿Ext.define('SupermarketInvoicingSystem.store.statistics.SalesStatisticsBarStore', {
     extend: 'Ext.data.Store',
-    storeId:'salesStatisticsStore',
-    alias: 'store.salesStatisticsStore',
-	model:'SupermarketInvoicingSystem.model.statistics.SalesStatisticsModel',
-   
+    storeId:'salesStatisticsBarStore',
+    alias: 'store.salesStatisticsBarStore',
+//	model:'SupermarketInvoicingSystem.model.statistics.SalesStatisticsModel',
+    fields: ['monthSales', 'monthProfits', 'month', 'mothTotalCosts'],
+    	
     proxy: {
-        //type: 'memory',
         type: 'ajax',
         method:'get',
         url: '/salesStatistics/getAllSales',	//mvc url  xxx.json //data文件夹要放到webapp下

@@ -14,6 +14,7 @@ public class SalesStatisticsQueryDTO {
     @DateTimeFormat(pattern="yyyy/MM/dd HH:mm:ss")
     private Date endDate;//查询结束日期
     private Long shopId;//shop id
+    private String charType;//charType
 	public Date getStarDate() {
 		return starDate;
 	}
@@ -31,6 +32,12 @@ public class SalesStatisticsQueryDTO {
 	}
 	public void setShopId(Long shopId) {
 		this.shopId = shopId;
+	}
+	public String getCharType() {
+		return charType;
+	}
+	public void setCharType(String charType) {
+		this.charType = charType;
 	}
     
     

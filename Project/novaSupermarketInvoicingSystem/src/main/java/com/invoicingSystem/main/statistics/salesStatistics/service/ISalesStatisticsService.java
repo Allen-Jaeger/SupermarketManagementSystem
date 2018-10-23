@@ -12,6 +12,6 @@ import com.invoicingSystem.main.statistics.salesStatistics.domain.SalesStatistic
 public interface ISalesStatisticsService {
 	//季度月份销售统计
 	public List<Map<String, String>> findAllSalesByQuarterAndMonth(SalesStatisticsQueryDTO salesStatisticsQueryDTO);
-	
+	public List<Map<String, String>> findSalesDetail(String orderId);
 
 }

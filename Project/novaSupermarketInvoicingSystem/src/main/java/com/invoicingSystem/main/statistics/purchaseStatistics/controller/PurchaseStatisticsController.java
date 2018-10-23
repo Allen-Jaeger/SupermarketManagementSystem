@@ -29,18 +29,6 @@ public class PurchaseStatisticsController {
 //		System.out.println(indentList);
 		
 	}
-	
-//	@GetMapping(value = "/getAll")
-//	public void  getAll(){
-//		List<Object> resultList = indentRepository.findAllCounts();
-//		for (int i = 0; i < resultList.size(); i++) {
-//			Object[] obj = (Object[]) resultList.get(i);
-//			System.out.println(obj[0]+"----"+obj[1]);
-//			
-//		}
-//		 
-////		System.out.println(indentList);
-//		
-//	}
+
 
 }

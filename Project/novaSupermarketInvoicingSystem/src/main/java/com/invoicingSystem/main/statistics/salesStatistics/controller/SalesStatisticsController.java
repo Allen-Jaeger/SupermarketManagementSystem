@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.invoicingSystem.main.statistics.salesStatistics.domain.SalesStatisticsQueryDTO;
@@ -23,6 +24,13 @@ public class SalesStatisticsController {
 	@GetMapping(value = "/getAllSales")
 	public List<Map<String,String>> getAllSales(SalesStatisticsQueryDTO salesStatisticsQueryDTO){
 		return salesStatisticsService.findAllSalesByQuarterAndMonth(salesStatisticsQueryDTO);
+		
+	}
+	
+	@GetMapping(value = "/getSalesDetail")
+	public List<Map<String,String>> getSalesDetail(@RequestParam(name = "orderId") String orderId){
+//		return salesStatisticsService.findAllSalesByQuarterAndMonth(salesStatisticsQueryDTO);
+		return salesStatisticsService.findSalesDetail(orderId);
 		
 	}
 }
