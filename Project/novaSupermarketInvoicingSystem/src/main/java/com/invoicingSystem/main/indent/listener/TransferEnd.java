@@ -46,7 +46,8 @@ public class TransferEnd implements TaskListener {
         Commodity cmd, toCmd, fromCmd;
         List<Commodity> cmdList;
         int num;
-        if (indent.getIndentStatus().toString().equals("APPROVED")) {
+        
+        if (delegateTask.getVariable("examinationPass").toString() =="true") {
 
             cmdList = indent.getCommodities();//获取调货单商品列表
             for (int i = 0; i < cmdList.size(); i++) {
@@ -60,6 +61,7 @@ public class TransferEnd implements TaskListener {
                         BeanUtils.copyProperties(cmd, newCmd);
                         
                         newCmd.setId(null);
+                        newCmd.setIndent(null);
                         newCmd.setWarehouse(indent.getToWarehouse());
                         //newCmd.setShop(null);
                         newCmd.setCommodityStatus(CommodityStatus.SALEABLE);
@@ -90,6 +92,7 @@ public class TransferEnd implements TaskListener {
                         BeanUtils.copyProperties(cmd, newCmd);
                         
                         newCmd.setId(null);
+                        newCmd.setIndent(null);
                         newCmd.setWarehouse(indent.getToWarehouse());
                         //newCmd.setShop(null);
                         newCmd.setCommodityStatus(CommodityStatus.SALEABLE);
@@ -119,6 +122,7 @@ public class TransferEnd implements TaskListener {
                         BeanUtils.copyProperties(cmd, newCmd);
                         
                         newCmd.setId(null);
+                        newCmd.setIndent(null);
                         //newCmd.setWarehouse(indent.getToWarehouse());
                         newCmd.setShop(indent.getToShop());
                         newCmd.setCommodityStatus(CommodityStatus.SALEABLE);
@@ -140,7 +144,8 @@ public class TransferEnd implements TaskListener {
             }
             indent.setIndentStatus(IndentStatus.FINISHED);
         } else {
-            indent.setIndentStatus(IndentStatus.ERROR);
+            indent.setIndentStatus(IndentStatus.ROUND_GET);
         }
+        indent.setGoodsCheckingReason(delegateTask.getVariable("goodsCheckingReason").toString());
     }
 }

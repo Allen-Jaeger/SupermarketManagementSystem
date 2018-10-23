@@ -31,23 +31,29 @@
   }});
   }else{//审批
       
-      if(record.data.taskName == '订单审批'){
+      if(record.data.taskName == '订单审批'||record.data.taskName =='负责人审批'){
       var store = Ext.data.StoreManager.lookup('leftStore');
       Ext.apply(store.proxy.extraParams, {indentId:record.get('id')});
       store.load({params:{start:0, limit:20, page:1}});
       var win = view.up('container').up('container').add(Ext.widget('indentProcessLookupWindow'));
       win.show();
-      record.data.toWarehouseName = record.data.toWarehouse.name;
+      if(null!=record.data.toWarehouse)
+        record.data.toPlaceName = record.data.toWarehouse.name;
+      else
+        record.data.toPlaceName = record.data.toShop.name;
       record.data.creatorName = record.data.creator.name;
       win.down('form').getForm().loadRecord(record);
     }else if(record.data.taskName == '通知取货'){
       var url = 'indent/complete/' + record.data.taskId;
       var variables = [];
     this.complete(url,variables);
-    }else if(record.data.taskName == '仓库管理员审查'){
+    }else if(record.data.taskName == '仓库管理员审查' || record.data.taskName == '确认收货'){
       var win = view.up('container').up('container').add(Ext.widget('indentProcessGoodsCheck'));
       win.show();
-      record.data.toWarehouseName = record.data.toWarehouse.name;
+      if(null!=record.data.toWarehouse)
+        record.data.toPlaceName = record.data.toWarehouse.name;
+      else
+        record.data.toPlaceName = record.data.toShop.name;
       record.data.creatorName = record.data.creator.name;
       win.down('form').getForm().loadRecord(record);
     }

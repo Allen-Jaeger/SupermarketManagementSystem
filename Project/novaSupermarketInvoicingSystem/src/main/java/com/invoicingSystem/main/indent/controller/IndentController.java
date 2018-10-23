@@ -460,19 +460,20 @@ public class IndentController {
     public @ResponseBody ExtAjaxResponse start(@RequestParam(name = "id") Long indentId,  HttpServletRequest request) {
         try {
         	User user = userService.findById((Long)request.getSession().getAttribute("userId"));
-        	
             Indent indent = indentService.findById(indentId);
-            Warehouse toWarehouse = indent.getToWarehouse();
-            User keeper = toWarehouse.getKeeper();
             String userName = user.getName();
-            String keeperName = keeper.getName();
+            
            
             Map<String, Object> variables = new HashMap<String, Object>();
             // 此处编写流程图需要的variables
-            //variables.put("receiverId", indent.getKeeper().getId()); // 请求接受方
+            
             variables.put("applicantId", userName); // 请求申请方
             
-            if (indent.getIndentType() == IndentType.PURCHASE) {// 判断货单是否为采购订单
+            if (indent.getIndentType() == IndentType.PURCHASE) {// 判断货单为采购订单
+                
+                Warehouse toWarehouse = indent.getToWarehouse();
+                User keeper = toWarehouse.getKeeper();
+                String keeperName = keeper.getName();
 
             	variables.put("manager", "SUPER_MANAGER");
                 variables.put("applyId", userName);
@@ -480,11 +481,14 @@ public class IndentController {
                 variables.put("KEEPER", keeperName);
                 indentService.startWorkflow(userName,"purchase",indentId, variables);
 
-            } else {// 否则跑调货流程
+            } else {// 判断货单为调货流程
+                variables.put("receiverId", indent.getKeeper().getName()); // 请求接受方
                 if (indent.getIndentType() == IndentType.RETREAT) {// 判断调货单是否为处理残旧品
-                    variables.put("applyId", indent.getKeeper().getId());// 处理残旧品为接受端接收.
+                    variables.put("applyId", indent.getKeeper().getName());// 处理残旧品为接受端接收.
+                    variables.put("goodFromId", userName);// 处理残旧品为申请端提供.
                 } else {
                     variables.put("applyId", userName);// 处理其余调货为申请端接收.
+                    variables.put("goodFromId", indent.getKeeper().getName());// 处理其余调货为接受端发送.
                 }
                 indentService.startWorkflow(userName, "transfer", indentId, variables);
             }

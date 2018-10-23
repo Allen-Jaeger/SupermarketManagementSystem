@@ -47,7 +47,7 @@
     ,{x:20,y:40,xtype: 'displayfield',fieldLabel: '创建时间',name:'createDate',renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')}
     ,{x:20,y:80,xtype: 'displayfield',fieldLabel: '订单状态', name:'indentStatus'}
     ,{x:20,y:120,xtype: 'displayfield',fieldLabel: '订单创建者',name:'creatorName'}
-    ,{x:20,y:160,xtype: 'displayfield',fieldLabel: '进货仓库',name:'toWarehouseName' }
+    ,{x:20,y:160,xtype: 'displayfield',fieldLabel: '进货点',name:'toPlaceName' }
     ,{x:20,y:200,xtype: 'displayfield',fieldLabel: '总成本',name: 'cost'}
     
     ,{x:20,y:240,xtype: 'displayfield',fieldLabel: '备注',name: 'note',grow:true,}
