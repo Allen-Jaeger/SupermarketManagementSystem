@@ -2,7 +2,11 @@ package com.invoicingSystem.main.order.domain;
 
 import java.util.Date;
 
+import org.apache.ibatis.jdbc.Null;
+import org.hibernate.loader.custom.Return;
+
 public class OrderInfoDTO {
+	private Long id ;
 	
 	//订单号
 	private String orderId ;
@@ -46,6 +50,24 @@ public class OrderInfoDTO {
 	//预留字段（删除判断）
 	private Integer type;
 	
+	//根据C端传入参数构造Business Object
+	public Object getBo(Object object) {
+		
+		
+		
+		return null ;
+	}
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 	//Getter And Setter
 	

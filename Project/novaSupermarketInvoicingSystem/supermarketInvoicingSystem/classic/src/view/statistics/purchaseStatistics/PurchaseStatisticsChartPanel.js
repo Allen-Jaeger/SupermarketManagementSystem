@@ -17,100 +17,114 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
     layout: 'fit',
     //width: 650,
     title:'采购统计分析',
-  tbar: ['->',{
-            xtype: 'combobox',
-            reference:'searchWarehouseFieldName',
-            hideLabel: true,
-            store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有仓库
-          	fields: ["name", "index"],
-                 proxy: {
-              //type: 'memory',
-              type: 'ajax',
-              method:'post',
-              url: '/warehouse/findAll',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
-              reader:{
-	              type:'json'
-	              // rootProperty:'warehouseLists'
-	          }
-          },
-          autoLoad: 'true'
-      }),
-            displayField: 'name',
-            valueField:'index',
-            //value:'2',
-            editable: false,
-            allowBlank:false,
-            blankText:'不能为空！',
-            queryMode: 'remote',
-            triggerAction: 'all',
-            emptyText: '请选择仓库',
-            width: 135
-        }, '|',{
-        xtype: 'combobox',
-            reference:'searchDateFieldName',
-            hideLabel: true,
-            store:Ext.create("Ext.data.Store", {
-          fields: ["name", "value"],
-          data: [
-              { name: '今年', value: 'thisYear' },
-              { name: '时间段', value: 'inputDate' }
-          ]
+//   tbar: ['->',{
+//             xtype: 'combobox',
+//             reference:'searchWarehouseFieldName',
+//             hideLabel: true,
+//             store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有仓库
+//             fields: ["name", "index"],
+//                  proxy: {
+//               //type: 'memory',
+//               type: 'ajax',
+//               method:'post',
+//               url: '/warehouse/findAll',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
+//               reader:{
+//                 type:'json'
+//                 // rootProperty:'warehouseLists'
+//             }
+//           },
+//           autoLoad: 'true'
+//       }),
+//             displayField: 'name',
+//             valueField:'index',
+//             //value:'2',
+//             editable: false,
+//             allowBlank:false,
+//             blankText:'不能为空！',
+//             queryMode: 'remote',
+//             triggerAction: 'all',
+//             emptyText: '请选择仓库',
+//             width: 135
+//         }, '|',{
+//         xtype: 'combobox',
+//             reference:'searchDateFieldName',
+//             hideLabel: true,
+//             store:Ext.create("Ext.data.Store", {
+//           fields: ["name", "value"],
+//           data: [
+//               { name: '今年', value: 'thisYear' },
+//               { name: '时间段', value: 'inputDate' }
+//           ]
           
-      }),
-            displayField: 'name',
-            valueField:'value',
-            //value:'interDate',
-            editable: false,
-            allowBlank:false,
-            blankText:'不能为空！',
-            queryMode: 'local',
-            triggerAction: 'all',
-            emptyText: '请选择时间',
-            width: 135,
-            listeners:{
-              select: 'searchTimeComboboxSelectChuang'
-            }
-    }, '-',{
-      xtype: 'datefield',
-      emptyText: '起始日期',
-      maxValue:new Date(),
-      hideLabel: true,
-      editable:false,
-      hidden:true,
-      format: 'Y/m/d',
-            formatText:'',
-      reference:'searchDataFieldValueFrom',
-      fieldLabel: 'From',
-      name: 'from_date',
-      listeners:{
-        select: 'searchDataFieldValueChuang'
-      }
-      //,id:'from_date',
-      //vtype: 'daterange',
-      //endDateField: 'to_date'
-    }, {
-      xtype: 'datefield',
-      emptyText: '截止日期',
-      maxValue:new Date(),
-      hideLabel: true,
-      editable:false,
-      hidden:true,
-      format: 'Y/m/d',
-            formatText:'',
-      reference:'searchDataFieldValueTo',
-      fieldLabel: 'To',
-      name: 'to_date',
-      listeners:{
-        select: 'searchDataFieldValueChuang'
-      }
-      //,id:'to_date',
-      //vtype: 'daterange',
-      //startDateField: 'from_date'
-      },'-',{
-          text: '查询',
-          iconCls: 'fa fa-search',
-          handler: 'quickSearch'
-      },'->'],
+//       }),
+//             displayField: 'name',
+//             valueField:'value',
+//             //value:'interDate',
+//             editable: false,
+//             allowBlank:false,
+//             blankText:'不能为空！',
+//             queryMode: 'local',
+//             triggerAction: 'all',
+//             emptyText: '请选择时间',
+//             width: 135,
+//             listeners:{
+//               select: 'searchTimeComboboxSelectChuang'
+//             }
+//     }, '-',{
+//       xtype: 'datefield',
+//       emptyText: '起始日期',
+//       maxValue:new Date(),
+//       hideLabel: true,
+//       editable:false,
+//       hidden:true,
+//       format: 'Y/m/d',
+//             formatText:'',
+//       reference:'searchDataFieldValueFrom',
+//       fieldLabel: 'From',
+//       name: 'from_date',
+//       listeners:{
+//         select: 'searchDataFieldValueChuang'
+//       }
+//       //,id:'from_date',
+//       //vtype: 'daterange',
+//       //endDateField: 'to_date'
+//     }, {
+//       xtype: 'datefield',
+//       emptyText: '截止日期',
+//       maxValue:new Date(),
+//       hideLabel: true,
+//       editable:false,
+//       hidden:true,
+//       format: 'Y/m/d',
+//             formatText:'',
+//       reference:'searchDataFieldValueTo',
+//       fieldLabel: 'To',
+//       name: 'to_date',
+//       listeners:{
+//         select: 'searchDataFieldValueChuang'
+//       }
+//       //,id:'to_date',
+//       //vtype: 'daterange',
+//       //startDateField: 'from_date'
+//       },'-',{
+//           text: '查询',
+//           iconCls: 'fa fa-search',
+//           handler: 'quickSearch'
+//       },/*{
+//             text: 'Preview',
+//             handler: 'onPreview'
+//         },
+//         {
+//                 text: 'Reset pan/zoom',
+//                 handler: 'onPanZoomReset'
+//         },
+//         listeners: {
+//         afterrender: 'onAfterRender'
+//     },
+// */
+
+
+//       '->'],
   
     items: {
         xtype: 'cartesian',
@@ -195,10 +209,103 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
         }
     },
     
-  bbar: {
+  tbar: {
         reference: 'toolbar',
         items: [
-          //'->',
+        '->',{
+            xtype: 'combobox',
+            reference:'searchWarehouseFieldName',
+            hideLabel: true,
+            store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有仓库
+            fields: ["name", "index"],
+                 proxy: {
+              //type: 'memory',
+              type: 'ajax',
+              method:'post',
+              url: '/warehouse/findAll',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
+              reader:{
+                type:'json'
+                // rootProperty:'warehouseLists'
+              }
+            },
+            autoLoad: 'true'
+        }),
+              displayField: 'name',
+              valueField:'index',
+              //value:'2',
+              editable: false,
+              allowBlank:false,
+              blankText:'不能为空！',
+              queryMode: 'remote',
+              triggerAction: 'all',
+              emptyText: '请选择仓库',
+              width: 135
+          }, '|',{
+          xtype: 'combobox',
+              reference:'searchDateFieldName',
+              hideLabel: true,
+              store:Ext.create("Ext.data.Store", {
+            fields: ["name", "value"],
+            data: [
+                { name: '今年', value: 'thisYear' },
+                { name: '时间段', value: 'inputDate' }
+            ]
+            
+        }),
+              displayField: 'name',
+              valueField:'value',
+              //value:'interDate',
+              editable: false,
+              allowBlank:false,
+              blankText:'不能为空！',
+              queryMode: 'local',
+              triggerAction: 'all',
+              emptyText: '请选择时间',
+              width: 135,
+              listeners:{
+                select: 'searchTimeComboboxSelectChuang'
+              }
+      }, '-',{
+        xtype: 'datefield',
+        emptyText: '起始日期',
+        maxValue:new Date(),
+        hideLabel: true,
+        editable:false,
+        hidden:true,
+        format: 'Y/m/d',
+              formatText:'',
+        reference:'searchDataFieldValueFrom',
+        fieldLabel: 'From',
+        name: 'from_date',
+        listeners:{
+          select: 'searchDataFieldValueChuang'
+        }
+        //,id:'from_date',
+        //vtype: 'daterange',
+        //endDateField: 'to_date'
+      }, {
+        xtype: 'datefield',
+        emptyText: '截止日期',
+        maxValue:new Date(),
+        hideLabel: true,
+        editable:false,
+        hidden:true,
+        format: 'Y/m/d',
+              formatText:'',
+        reference:'searchDataFieldValueTo',
+        fieldLabel: 'To',
+        name: 'to_date',
+        listeners:{
+          select: 'searchDataFieldValueChuang'
+        }
+        //,id:'to_date',
+        //vtype: 'daterange',
+        //startDateField: 'from_date'
+        },'-',{
+            text: '查询',
+            iconCls: 'fa fa-search',
+            handler: 'quickSearch'
+        },'-',
           {
             text: 'Preview',
             handler: 'onPreview'
@@ -206,7 +313,7 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
         {
                 text: 'Reset pan/zoom',
                 handler: 'onPanZoomReset'
-            }
+            },'->'
       ]
     },
     

@@ -30,7 +30,7 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         // var store = btn.up('salesStatisticsChartPanel').getStore();
         var cartesianStore = btn.up('salesStatisticsChartPanel').down('cartesian').getStore();//月份销售柱状图store
         var polarStore = btn.up('salesStatisticsChartPanel').down('polar').getStore();//季度销售饼图store
-        
+        var gridpanelStore = btn.up('salesStatisticsChartPanel').down('gridpanel').getStore();
         var currentYear =new Date();
 
         var regex=/^(1|2)(\d{3})$/;//正则表达式，校验输入的年份格式是否正确
@@ -53,20 +53,38 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
             return;
         }
 
-        Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",startDate:"",endDate:""});
+        Ext.apply(cartesianStore.proxy.extraParams, {shopId:"",starDate:"",endDate:"",charType:""});
+        Ext.apply(polarStore.proxy.extraParams, {shopId:"",starDate:"",endDate:"",charType:""});
+        Ext.apply(gridpanelStore.proxy.extraParams, {shopId:"",starDate:"",endDate:"",charType:""});
         
       	var thisYearFirstDay=searchYearFieldValue.getFullYear() +"/01" + "/01";//该年一月一日
       	var nextYearFirstDay=(searchYearFieldValue.getFullYear()+1) +"/01" + "/01";//下年一月一日
         
         Ext.apply(cartesianStore.proxy.extraParams, {shopId:searchShopFieldValue});
-        
+        Ext.apply(polarStore.proxy.extraParams, {shopId:searchShopFieldValue});
+        Ext.apply(gridpanelStore.proxy.extraParams, {shopId:searchShopFieldValue});
+
+        Ext.apply(cartesianStore.proxy.extraParams, {charType:"bar"});
+        Ext.apply(polarStore.proxy.extraParams, {charType:"pie"});
+        Ext.apply(gridpanelStore.proxy.extraParams, {charType:"gridpanel"});
+
         Ext.apply(cartesianStore.proxy.extraParams,{
-	        startDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
+	        starDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
 	        endDate:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
 	    });
+        Ext.apply(polarStore.proxy.extraParams,{
+            starDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
+            endDate:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
+        });
+        Ext.apply(gridpanelStore.proxy.extraParams,{
+            starDate:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
+            endDate:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
+        });
         
         
         cartesianStore.load();
+        polarStore.load();
+        gridpanelStore.load();
         //console.log(store);
     }, 
 
@@ -79,16 +97,16 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
         // ourselves except adding a thousands separator, but at the same time
         // don't want to loose the formatting done by the native renderer,
         // we let the native renderer process the value first.
-        var value = layoutContext.renderer(label) / 1000;
-        return value === 0 ? '￥0' : Ext.util.Format.number(value, '￥0K');
+        var value = layoutContext.renderer(label/1000);
+        return value === 0 ? '￥0' : Ext.util.Format.number(value, '￥0.00K');
     },
 
     onSeriesLabelRender: function (value) {
-        return Ext.util.Format.number(value / 1000, '￥0K');
+        return Ext.util.Format.number(value/1000, '￥0.00K');
     },
 
     onGridColumnRender: function (v) {
-        return Ext.util.Format.number(v, '￥0,000');
+        return Ext.util.Format.number(v, '￥0,000K');
     },
 
     onPreviewBar3dchart: function () {
@@ -112,9 +130,14 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
     },
 
     onBar3dSeriesTooltipRender: function (tooltip, record, item) {
-        tooltip.setHtml(record.get('month') + '月销售额: ' + record.get('monthSales')+'<br/>'+'月份总成本: '+record.get('mothTotalCosts')+'<br/>'+'月份利润: '+record.get('monthProfits'));
+        tooltip.setHtml(record.get('month') + '月销售额(RMB): ' + record.get('monthSales')+'<br/>'+'月份总成本(RMB): '+record.get('mothTotalCosts')+'<br/>'+'月份利润(RMB): '+record.get('monthProfits'));
     },
-    
+
+    /*Line chart function*/
+    onLineSeriesTooltipRender:function (value) {
+        tooltip.setHtml(record.get('month') + '月份利润(RMB): ' + record.get('monthProfits'));
+        
+    },
 
     /*Pie chart function*/
    
@@ -150,8 +173,19 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.salesStatistics.SalesStat
     },
 
     onPieSeriesTooltipRender: function (tooltip, record, item) {
-        tooltip.setHtml(record.get('quarter') + '季度销售额: ' + record.get('quarterSales')+'<br/>'+'季度总成本: '+record.get('quarterTotalCosts')+'<br/>'+'季度利润: '+record.get('quarterProfits'));
+        tooltip.setHtml(record.get('quarter') + '季度销售额(RMB): ' + record.get('quarterSales')+'<br/>'+'季度总成本(RMB): '+record.get('quarterTotalCosts')+'<br/>'+'季度利润(RMB): '+record.get('quarterProfits'));
+    },
+
+
+    /*Grid rowwidget function*/
+    aterRenderLoad:function(view){
+        // var cartesianStore = btn.up('salesStatisticsChartPanel').down('cartesian').getStore();
+        // var searchYearFieldValue = this.lookupReference('searchYearField').getValue();
+        console.log(this);
+        console.log(view);
+        console.log(view.getStore());
     }
-  
+
+    
   
 });
