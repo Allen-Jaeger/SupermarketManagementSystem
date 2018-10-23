@@ -3,6 +3,8 @@ package com.invoicingSystem.main.user.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.invoicingSystem.main.user.domain.User;
+
 /**
  * @author LiJuncong
  * at 2018年10月22日
@@ -16,6 +18,7 @@ public class MenuNode {
 	private String routeId;
 	private boolean leaf;
 	private boolean selectable;
+	private Privilege pri;
 	private List<MenuNode> children = new ArrayList<>();
 	
 	/**
@@ -29,7 +32,7 @@ public class MenuNode {
 	 * @param selectable
 	 */
 	public MenuNode(boolean expanded,String iconCls, String text, String viewType,
-			String routeId, boolean leaf, boolean selectable) {
+			String routeId, boolean leaf, boolean selectable, Privilege privilege) {
 		super();
 		this.expanded = expanded;
 		this.iconCls = iconCls;
@@ -38,8 +41,16 @@ public class MenuNode {
 		this.routeId = routeId;
 		this.leaf = leaf;
 		this.selectable = selectable;
+		this.pri = privilege;
 	}
 
+	public void addChild(User user, MenuNode mn) {
+		if(!user.hasPrivilege(mn.getPri())) {
+			return;
+		}
+		this.children.add(mn);
+	}
+	
 	public boolean isExpanded() {
 		return expanded;
 	}
@@ -71,7 +82,9 @@ public class MenuNode {
 	public boolean isSelectable() {
 		return selectable;
 	}
-
+	public Privilege getPri() {
+		return pri;
+	}
 	public void setExpanded(boolean expanded) {
 		this.expanded = expanded;
 	}
@@ -102,6 +115,10 @@ public class MenuNode {
 
 	public void setSelectable(boolean selectable) {
 		this.selectable = selectable;
+	}
+
+	public void setPri(Privilege pri) {
+		this.pri = pri;
 	}
 	
 }
