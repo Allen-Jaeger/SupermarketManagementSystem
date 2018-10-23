@@ -1,0 +1,100 @@
+*{
+	margin: 0;
+	user-select: none;
+}
+body{
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(to right, #074C1C, #54FDA6);
+	text-align: center;
+	animation: bgc 1.5s;
+	overflow: hidden;
+}
+.center{
+	width: 500px;
+	height: 300px;
+	margin: 150px auto;
+	/*background-color: rgba(255,255,255,0.5);*/
+}
+.t1{
+	color: white;
+	font-size: 60px;
+	letter-spacing: 6px;
+	font-weight: normal;
+	/*text-shadow: white 1px 1px 1px;*/
+	animation: Title 3s;
+}
+li{
+	color: white;
+	text-align: left;
+	text-decoration: none;
+	margin: 5px 0 0 0;
+}
+ul{
+	margin: 10px auto;
+	width: 70%;
+	animation: ulF 3s;
+}
+.btn{
+	background: rgba(255,255,255,0.2);
+	border-style: none;
+/*	width: 100px;
+	height: 40px;*/
+	font-size: 15px;
+	padding: 10px 15px;
+	color: white;
+	float: right;
+	margin: 40px 80px;
+	font-weight: lighter;
+	animation: BTtoRight 3s;
+}
+@keyframes BTtoRight
+{
+	from {transform: rotateY(-180deg) translateX(200%); opacity:0;}
+	to {transform: rotateY(0deg) translateX(0%); opacity:1;}
+}
+@keyframes Title
+{
+	from {transform: rotateX(-180deg) translateY(-100%); opacity:0;}
+	to {transform: rotateX(0deg) translateY(0%); opacity:1;}
+}
+@keyframes ulF
+{
+	from {transform: rotateY(-180deg) translateX(-50%); opacity:0;}
+	to {transform: rotateY(0deg) translateX(0%); opacity:1;}
+}
+@keyframes forCar
+{
+	from {left: -100px; opacity:0;}
+	to {left:100px;opacity:1;}
+}
+@keyframes forBR
+{
+	from {left: 0px; opacity:0;}
+	to {left: -200px; opacity:1;}
+}
+.foot{
+	/*background: linear-gradient(to right, #0faf00, #DEFCDB);*/
+	font-weight: lighter;
+	font-size: 70px;
+	color: white;
+	position: absolute;
+	bottom: 5%;
+	left: 5%;
+	z-index: 99;
+}
+.up{
+	/*border: solid black 1px;*/
+	width: 250px;
+	height: 100px;
+	left:0;
+	background: linear-gradient(to right, #2c9123, #4ca545);
+	animation: forBR 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 3s;
+	z-index: 999;
+}
+.bbgg{
+	z-index: 9;
+	background-color: #3E8238;
+}

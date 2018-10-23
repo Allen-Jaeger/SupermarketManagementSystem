@@ -2,12 +2,28 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="purchase" name="采购流程" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="applyUserId"></startEvent>
-    <userTask id="indentAudit" name="订单审批" activiti:candidateGroups="${manager}"></userTask>
+    <userTask id="indentAudit" name="订单审批" activiti:candidateGroups="${manager}">
+      <extensionElements>
+        <activiti:taskListener event="complete" delegateExpression="${indentCheckingEndListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <userTask id="inform" name="通知取货" activiti:assignee="${PURCHASER}"></userTask>
-    <userTask id="examination" name="仓库管理员审查" activiti:assignee="${KEEPER}"></userTask>
+    <userTask id="inform" name="通知取货" activiti:assignee="${purchaser}">
+      <extensionElements>
+        <activiti:taskListener event="complete" delegateExpression="${informKeeperEndListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="examination" name="仓库管理员审查" activiti:assignee="${KEEPER}">
+      <extensionElements>
+        <activiti:taskListener event="complete" delegateExpression="${goodsCheckingEndListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
-    <userTask id="modifyIndent" name="订单修改" activiti:assignee="${applyUserId}"></userTask>
+    <userTask id="modifyIndent" name="订单修改" activiti:assignee="${applyUserId}">
+      <extensionElements>
+        <activiti:taskListener event="complete" delegateExpression="${whetherModifyEndListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway"></exclusiveGateway>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="indentAudit"></sequenceFlow>

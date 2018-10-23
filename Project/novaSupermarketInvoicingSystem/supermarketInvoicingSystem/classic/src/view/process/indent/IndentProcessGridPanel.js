@@ -2,6 +2,7 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
   extend: Ext.panel.Panel,
   xtype: 'indentProcessGridPanel',
   layout: 'fit',
+  id:'indentProcessGridPanel',
   requires: [
     'Ext.grid.Panel',
     'Ext.toolbar.Paging',
@@ -17,23 +18,64 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
     title: 'IndentGrid Results',
     bind: '{indentProcessLists}',
     scrollable: false,
-    selModel: {
-      type: 'checkboxmodel'
-    },
+    
     columns: [{
         header: 'id',
         dataIndex: 'id',
         width: 60,
         sortable: true,
         hidden: true
+      },{
+        header: '签收操作',
+        dataIndex: 'manager',
+        width: 100,
+        renderer:function(val, cellmeta, record, rowIndex, columnIndex, store){
+          if(record.data.taskClaimTime == null)
+            return '<button>签收</button>';
+          else if(record.data.taskName == '订单审批' ||record.data.taskName =='负责人审批') 
+            return'<button>审批</button>';
+          else if(record.data.taskName == '通知取货')
+            return'<button>通知取货</button>';
+          else if(record.data.taskName == '仓库管理员审查')
+            return'<button>完成审查</button>';
+          else if(record.data.taskName == '确认收货')
+            return'<button>确认收货</button>';
+          else if(record.data.taskName == '申请退回')
+            return'<button>申请退回</button>';
+        },
+        listeners:{
+          click:'signIndent'
+        }
       },
       {
         header: 'indentNum',
         dataIndex: 'indentNum',
         width: 180,
         align:'center',
+      },{
+        header: 'taskId',
+        dataIndex: 'taskId',
+        width: 180,
+        align:'center',
+        hidden:true,
+        
+      },
+       {
+        header: 'taskName',
+        dataIndex: 'taskName',
+        width: 180,
+        align:'center',
+        hidden:true,
+        
       },
       {
+        header: 'taskClaimTime',
+        dataIndex: 'taskClaimTime',
+        width: 180,
+        align:'center',
+        hidden:true,
+      },
+      { 
         header: 'createDate',
         dataIndex: 'createDate',
         align:'center',
@@ -45,6 +87,7 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
       {
         header: 'creatorName',
         dataIndex: 'creator',
+       //id:'creatorName',
         width: 120,
         align:'center',
         renderer: function (val) {
@@ -84,10 +127,12 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
           } else if (val == 'APPROVED') {
             return '<span style="color:orange;">审核通过/提货中</span>';
           } else if (val == 'EXTRACTING') {
-            return '<span style="color:orange;">入库清点中</span>';
+            return '<span style="color:blue;">入库清点中</span>';
           } else if (val == 'FINISHED') {
-            return '<span style="color:orange;">订单完成</span>';
-          } else {
+            return '<span style="color:grey;">订单完成</span>';
+          } else if (val == 'DISAPPROVED') {
+            return '<span style="color:red;">审核不通过/待修改</span>';
+          }  else {
             return '<span style="color:red;">订单异常</span>';
           }
           return val;
@@ -109,67 +154,30 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
         
         items: [{
             xtype: 'button',
-            tooltip: '查看订单 ',
-            iconCls: 'x-fa fa-object-group',
-            handler: 'openIndentProcessLookupWindow'//需要修改读取indentType来选择窗口.
-          },
-          {
-            xtype: 'button',
-            iconCls: 'x-fa fa-close',
-            tooltip: '审核订单',
-            handler: 'checkIndent'
-          },
-          {
-            xtype: 'button',
-            iconCls: 'x-fa fa-star',
-            tooltip: '发起申请',
+            tooltip: '修改订单 ',
             getClass: function (v, meta, rec) {
-              if (rec.get('processInstanceId') != '') {
+              if (rec.get('indentStatus') != 'DISAPPROVED') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-pencil';
+            },
+            handler: 'openEditWindow'//需要修改读取indentType来选择窗口.
+            
+          }, {
+            xtype: 'button',
+            tooltip: '重新提交',
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') != 'DISAPPROVED') {
                 return 'x-hidden';
               }
               return 'x-fa fa-star';
             },
-            handler: 'starIndentProcess'
-          }, {
-            xtype: 'button',
-            iconCls: 'x-fa fa-ban',
-            tooltip: '取消申请',
-            getClass: function (v, meta, rec) {
-              if (rec.get('processInstanceId') == '') {
-                return 'x-hidden';
-              }
-              return 'x-fa fa-ban';
-            },
-            handler: 'cancelIndentProcess'
+            handler: 'reSubmitIndentProcess'
           }
-        ]
+       ]
       }
     ],
-      plugins: {
-        rowexpander: {
-            rowBodyTpl: new Ext.XTemplate(
-                 '<p>订单编号：{indentNum}</p>',
-                 '<p>最后修改日期：{createDate:this.formatChange}</p>',
-                 '<p>创建人:{creator.name}</p>',
-                 '<p>状态：{indentStatus}</p>',
-                 '<p>备注：{note}</p>',
-                 '<p>总成本：{cost}</p>',
-                 '<p>进货点：{toWarehouse.location.address}  {toWarehouse.name}</p>',
-                 {                
-                      formatChange:function(v) { 
-                      var year = v.getFullYear(); 
-                      var month = v.getMonth() + 1; 
-                      var day = v.getDate(); 
-                      var hour = v.getHours(); 
-                      var minute = v.getMinutes(); 
-                      var second = v.getSeconds(); 
-                      return year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second ; 
-                    
-                      } 
-                }
-                )
-        }
-    },
+      
     
     tbar: [{
         xtype: 'combobox',
@@ -248,9 +256,7 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
       bind: '{indentProcessLists}'
     }],
     listeners: {
-      selectionchange: function (selModel, selections) {
-        this.down('#indentGridPanelRemove').setDisabled(selections.length === 0);
-      }
+     
     }
   }]
 });

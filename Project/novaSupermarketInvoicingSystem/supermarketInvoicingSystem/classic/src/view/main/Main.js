@@ -3,7 +3,10 @@
 
     requires: [
         'Ext.button.Segmented',
-        'Ext.list.Tree'
+        'Ext.list.Tree',
+        'Ext.data.schema.Schema',
+        'Ext.data.reader.Reader',
+        'Ext.data.writer.Writer'
     ],
 
     controller: 'main',
@@ -45,7 +48,7 @@
                 '->',//使用查找
                 {
                     xtype: 'tbtext',
-                    //text: '用户名:SupermarketInvoicingSystem',
+                    text: 'Supermark',
                     id:'loginUserName',
                     cls: 'top-user-name'
                 },{
@@ -74,6 +77,13 @@
                       Ext.getCmp('toolBarIcon').getEl().dom.src = '../../../../../resources/usersIcon/' + record.iconUrl;
                       Ext.getCmp('loginUserName').getEl().dom.innerHTML = record.name;
                     }); 
+                    // let menuTree = Ext.data.StoreManager.lookup('MenuTreeId');
+                    // let child = {text: "Collapsed leaf node 1",leaf: true};
+                    // let children = [];
+                    // children = menuTree.data.children;
+                    // children[children.length]=child;
+                    // menuTree.root = {expanded: true,children:[{text:'shit'}]};
+                    // console.log(menuTree);
                 }
             },
         },
@@ -88,13 +98,13 @@
                     reference: 'navigationTreeList',
                     itemId: 'navigationTreeList',
                     ui: 'nav',
-                    micro:true,
+                    micro: true,
                     store: 'NavigationTree',
                     width: 64,
                     expanderFirst: false,
                     expanderOnly: false,
                     listeners: {
-                        selectionchange: 'onNavigationTreeSelectionChange'
+                        selectionchange: 'onNavigationTreeSelectionChange',
                     }
                 },
                 {
@@ -108,7 +118,7 @@
                         anchor: '100%'
                     }
                 }
-            ]
+            ],
         }
     ]
 });

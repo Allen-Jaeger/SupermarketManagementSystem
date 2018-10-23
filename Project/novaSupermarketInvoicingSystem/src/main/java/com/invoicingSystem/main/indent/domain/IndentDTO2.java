@@ -54,6 +54,7 @@ public class IndentDTO2{
     private String taskId;
     private String taskName;
     private Date   taskCreateTime;
+    private Date   taskClaimTime;
     private String assignee;
     private String taskDefinitionKey;
     /*流程实例*/
@@ -223,6 +224,12 @@ public class IndentDTO2{
 	}
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	public Date getTaskClaimTime() {
+		return taskClaimTime;
+	}
+	public void setTaskClaimTime(Date taskClaimTime) {
+		this.taskClaimTime = taskClaimTime;
 	}
     
     

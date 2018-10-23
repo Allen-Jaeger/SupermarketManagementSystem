@@ -62,6 +62,8 @@ public class Indent {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Shop toShop;
 	private String note;
+	private String indentCheckingReason;//供管理员审核Indent时填写备注
+	private String goodsCheckingReason;//供keeper清点时填写备注
 	private String supplier;	//供应商
 	
 	//用于接收前端发来的货单中的订单列表
@@ -241,6 +243,24 @@ public class Indent {
 
 	public void setCommoditiesJSON(String commoditiesJSON) {
 		this.commoditiesJSON = commoditiesJSON;
+	}
+	
+	
+
+	public String getIndentCheckingReason() {
+		return indentCheckingReason;
+	}
+
+	public void setIndentCheckingReason(String indentCheckingReason) {
+		this.indentCheckingReason = indentCheckingReason;
+	}
+
+	public String getGoodsCheckingReason() {
+		return goodsCheckingReason;
+	}
+
+	public void setGoodsCheckingReason(String goodsCheckingReason) {
+		this.goodsCheckingReason = goodsCheckingReason;
 	}
 
 	@Override

@@ -33,18 +33,21 @@
     
     items: [
     
-      {xtype: 'textfield',fieldLabel: 'id',name:'id',id:"indentId",hidden: true}
+      {xtype: 'textfield',fieldLabel: 'id',name:'id',id:"indentId",hidden: true},
+      {xtype: 'textfield',fieldLabel: 'taskId',name:'taskId',id:"taskId",hidden: true},
+      {xtype: 'textfield',fieldLabel: 'taskName',name:'taskName',id:"taskName",hidden: true},
+      //{xtype: 'textfield',fieldLabel: 'taskC',name:'taskName',id:"taskName",hidden: true}
     //订单状态:默认为创建
     
     //订单类型:默认为订货单，枚举类型
     //{xtype: 'textfield',fieldLabel: 'indentType',name:'indentType',hidden: true,value:'1'}
     //订单编号：自动生成 随机
    
-    ,{x:20,y:0,xtype: 'displayfield',fieldLabel: '订单编号',name:'indentNum'}
+    {x:20,y:0,xtype: 'displayfield',fieldLabel: '订单编号',name:'indentNum'}
     ,{x:20,y:40,xtype: 'displayfield',fieldLabel: '创建时间',name:'createDate',renderer: Ext.util.Format.dateRenderer('Y/m/d H:i:s')}
     ,{x:20,y:80,xtype: 'displayfield',fieldLabel: '订单状态', name:'indentStatus'}
     ,{x:20,y:120,xtype: 'displayfield',fieldLabel: '订单创建者',name:'creatorName'}
-    ,{x:20,y:160,xtype: 'displayfield',fieldLabel: '进货仓库',name:'toWarehouseName' }
+    ,{x:20,y:160,xtype: 'displayfield',fieldLabel: '进货点',name:'toPlaceName' }
     ,{x:20,y:200,xtype: 'displayfield',fieldLabel: '总成本',name: 'cost'}
     
     ,{x:20,y:240,xtype: 'displayfield',fieldLabel: '备注',name: 'note',grow:true,}
@@ -93,11 +96,11 @@
         //订单编号：自动生成 随机
         {xtype: 'radiogroup',fieldLabel: '审批',labelWidth:50,
             items:[
-              {boxLabel:'同意',name:'check',inputValue:'agree',width:70,checked:true},
-              {boxLabel:'不同意',name:'check',inputValue:'disagree',width:100}
+              {boxLabel:'同意',name:'check',inputValue:true,width:70,checked:true},
+              {boxLabel:'不同意',name:'check',inputValue:false,width:100}
             ]
           },
-        {xtype: 'textareafield',fieldLabel: '备注',labelWidth:50,width:350,height:150,grow:false
+        {xtype: 'textareafield',fieldLabel: '备注',name:'reason',labelWidth:50,width:350,height:150,grow:false
             
           }  
         
@@ -110,7 +113,7 @@
     }],
   buttons: ['->',{
         xtype: 'button',
-        text: '签收',
+        text: '提交',
         iconCls: 'fa fa-search',
         handler: 'submitIndentProcessWindow'
     },{

@@ -8,6 +8,7 @@ public class WorkflowDTO
     private String taskId;
     private String taskName;
     private Date   taskCreateTime;
+    private Date   taskClaimTime;
     private String assignee;
     private String taskDefinitionKey;
     /*流程实例*/
@@ -79,6 +80,14 @@ public class WorkflowDTO
 	}
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss",timezone="GMT+8")
+	public Date getTaskClaimTime() {
+		return taskClaimTime;
+	}
+	public void setTaskClaimTime(Date taskClaimTime) {
+		this.taskClaimTime = taskClaimTime;
 	}
 	@Override
 	public String toString() {

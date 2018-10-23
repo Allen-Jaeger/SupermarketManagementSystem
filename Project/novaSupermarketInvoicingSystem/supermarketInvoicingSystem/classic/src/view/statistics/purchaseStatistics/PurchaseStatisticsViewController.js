@@ -1,77 +1,83 @@
-﻿Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.PurchaseStatisticsViewController', {
+﻿
+Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.PurchaseStatisticsViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.purchaseStatisticsViewController',
   
   searchDataFieldValueChuang:function(){
-  	  var datefrom = this.lookupReference('searchDataFieldValueFrom').getValue();
-  	  var dateto = 	this.lookupReference('searchDataFieldValueTo').getValue();
-	  if((dateto-datefrom)<0 && dateto !==null){
-	  	  Ext.Msg.alert("提示","输入错误！截止日期要大于起始日期！");
-	  	  this.lookupReference('searchDataFieldValueTo').reset();
-	  }
-	  this.lookupReference('searchDataFieldValueTo').setMinValue(this.lookupReference('searchDataFieldValueFrom').getValue());
-	},
+      var datefrom = this.lookupReference('searchDataFieldValueFrom').getValue();
+      var dateto =  this.lookupReference('searchDataFieldValueTo').getValue();
+    if((dateto-datefrom)<0 && dateto !==null){
+        Ext.Msg.alert("提示","输入错误！截止日期要大于起始日期！");
+        this.lookupReference('searchDataFieldValueTo').reset();
+    }
+    this.lookupReference('searchDataFieldValueTo').setMinValue(this.lookupReference('searchDataFieldValueFrom').getValue());
+  },
+
+searchCommodityComboboxSelectChuang:function(combo,record,index){
+    //alert(record.data.name);
+    var searchField = this.lookupReference('searchCommodityFieldName').getValue();
+    if(searchField==='all'){
+      this.lookupReference('searchCommodityFieldValue').hide();
+    }else{
+      this.lookupReference('searchCommodityFieldValue').show();
+    }
+  },
 
   searchTimeComboboxSelectChuang:function(combo,record,index){
-		//alert(record.data.name);
-		var searchField = this.lookupReference('searchDateFieldName').getValue();
-		if(searchField==='inputDate'){
-			this.lookupReference('searchDataFieldValueFrom').show();
-			this.lookupReference('searchDataFieldValueTo').show();
-		}else{
-			this.lookupReference('searchDataFieldValueFrom').hide();
-			this.lookupReference('searchDataFieldValueTo').hide();
-		}
-	},
+    //alert(record.data.name);
+    var searchField = this.lookupReference('searchDateFieldName').getValue();
+    if(searchField==='inputDate'){
+      this.lookupReference('searchDataFieldValueFrom').show();
+      this.lookupReference('searchDataFieldValueTo').show();
+    }else{
+      this.lookupReference('searchDataFieldValueFrom').hide();
+      this.lookupReference('searchDataFieldValueTo').hide();
+    }
+  },
 
-	/*Quick Search*/	
+  /*Quick Search*/  
   quickSearch:function(btn) {
-		var searchCommodityField = this.lookupReference('searchCommodityFieldName').getValue();
-		var searchCommodityFieldValue = this.lookupReference('searchCommodityFieldValue').getValue();
-		
-		var searchWarehouseFieldValue = this.lookupReference('searchWarehouseFieldName').getValue();
-		
-		var searchDateField = this.lookupReference('searchDateFieldName').getValue();
-		var searchDataFieldValueFrom = this.lookupReference('searchDataFieldValueFrom').getValue();
-		var searchDataFieldValueTo = this.lookupReference('searchDataFieldValueTo').getValue();
-		
-		var store =	btn.up('purchaseStatisticsChartPanel').down('cartesian').getStore();
-		//alert(store);
-		//console.log(store);
-		//var store = Ext.getCmp('userGridPanel').getStore();// Ext.getCmp(）需要在OrderPanel设置id属性
-		if(searchCommodityField===null||searchCommodityFieldValue===""||searchWarehouseFieldValue===null||searchDateField===null){
-			Ext.Msg.alert("提示","请输入完整信息！");
-			return;
-		}
-		Ext.apply(store.proxy.extraParams, {barCode:"",commodityName:"",warehouseId:"",createTimeStart:"",createTimeEnd:""});
+    
+    var searchWarehouseFieldValue = this.lookupReference('searchWarehouseFieldName').getValue();
+    
+    var searchDateField = this.lookupReference('searchDateFieldName').getValue();
+    var searchDataFieldValueFrom = this.lookupReference('searchDataFieldValueFrom').getValue();
+    var searchDataFieldValueTo = this.lookupReference('searchDataFieldValueTo').getValue();
+    
+    var store = btn.up('purchaseStatisticsChartPanel').down('cartesian').getStore();
+    //alert(store);
+    //console.log(store);
+    //var store = Ext.getCmp('userGridPanel').getStore();// Ext.getCmp(）需要在OrderPanel设置id属性
+    if(searchWarehouseFieldValue===null||searchDateField===null){
+      Ext.Msg.alert("提示","请输入完整信息！");
+      return;
+    }
+    Ext.apply(store.proxy.extraParams, {warehouseId:"",createTimeStart:"",createTimeEnd:""});
 
-		Ext.apply(store.proxy.extraParams, {warehouseId:searchWarehouseFieldValue});
-		if(searchCommodityField==='barCode'){
-			Ext.apply(store.proxy.extraParams, {barCode:searchCommodityFieldValue});
-		}else{
-			Ext.apply(store.proxy.extraParams, {commodityName:searchCommodityFieldValue});
-		}
-		if(searchDateField==='inputDate'){//输入时间段
-			if(searchDataFieldValueFrom===null||searchDataFieldValueTo===null){
-					Ext.Msg.alert("提示","请输入完整信息！");
-					return;
-			}
-			Ext.apply(store.proxy.extraParams,{
-				createTimeStart:Ext.util.Format.date(searchDataFieldValueFrom, 'Y/m/d H:i:s'),
-				createTimeEnd:Ext.util.Format.date(new Date(searchDataFieldValueTo.getTime()+24*60*60*1000), 'Y/m/d H:i:s')
-			});
-		}else{//时间段为本年
-			var nowDate=new Date();//当前日期
-			var thisYearFirstDay=nowDate.getFullYear() +"/01" + "/01";//本年一月一日
-			Ext.apply(store.proxy.extraParams,{
-				createTimeStart:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
-				createTimeEnd:Ext.util.Format.date(nowDate, 'Y/m/d H:i:s')
-			});
-		}
-		
-		store.load();
-		//console.log(store);
-	}, 
+    Ext.apply(store.proxy.extraParams, {warehouseId:searchWarehouseFieldValue});
+    
+    if(searchDateField==='inputDate'){//输入时间段
+      if(searchDataFieldValueFrom===null||searchDataFieldValueTo===null){
+          Ext.Msg.alert("提示","请输入完整信息！");
+          return;
+      }
+      Ext.apply(store.proxy.extraParams,{
+        createTimeStart:Ext.util.Format.date(searchDataFieldValueFrom, 'Y/m/d H:i:s'),
+        createTimeEnd:Ext.util.Format.date(new Date(searchDataFieldValueTo.getTime()+24*60*60*1000), 'Y/m/d H:i:s')
+      });
+    }else{//时间段为本年
+      var nowDate=new Date();//当前日期
+      var thisYearFirstDay=nowDate.getFullYear() +"/01" + "/01";//本年一月一日
+      var nextYearFirstDay=(nowDate.getFullYear()+1) +"/01" + "/01";//下一年一月一日
+      Ext.apply(store.proxy.extraParams,{
+        createTimeStart:Ext.util.Format.date(thisYearFirstDay, 'Y/m/d H:i:s'),
+        createTimeEnd:Ext.util.Format.date(nextYearFirstDay, 'Y/m/d H:i:s')
+      });
+    }
+    
+    store.load();
+    //console.log(store);
+  }, 
   
   
   onAxisLabelRender: function (axis, label, layoutContext) {
@@ -84,8 +90,8 @@
     },
 
     onSeriesTooltipRender: function (tooltip, record, item) {
-    	var time = Ext.util.Format.date(record.get('time'),'Y/m/d');
-        tooltip.setHtml(time + '采购额: ' + record.get('value'));
+      var time = Ext.util.Format.date(record.get('time'),'Y/m/d H:i:s');
+        tooltip.setHtml(time + '采购额: ' + record.get('purchaseAmount'));
     },
 
     onItemHighlight: function (chart, newHighlightItem, oldHighlightItem) {
@@ -120,10 +126,10 @@
     },
     
     onAfterRender: function () {
-    	var chart = this.lookup('chart'),
-       		toolbar = this.lookup('toolbar'),
-        	panzoom = chart.getInteractions()[0];
-   		toolbar.add(panzoom.getModeToggleButton());
+      var chart = this.lookup('chart'),
+          toolbar = this.lookup('toolbar'),
+          panzoom = chart.getInteractions()[0];
+      toolbar.add(panzoom.getModeToggleButton());
     }
   
   

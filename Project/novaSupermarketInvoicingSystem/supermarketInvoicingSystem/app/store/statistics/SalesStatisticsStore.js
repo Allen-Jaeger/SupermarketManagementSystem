@@ -8,14 +8,15 @@
         //type: 'memory',
         type: 'ajax',
         method:'get',
-        url: 'data/SalesStatisticsdata.json',	//mvc url  xxx.json //data文件夹要放到webapp下
+        url: '/salesStatistics/getAllSales',	//mvc url  xxx.json //data文件夹要放到webapp下
 	    reader:{
-	    	type:'json',
-	    	rootProperty:'salesStatisticsLists'
+	    	type:'json'
+	    	// rootProperty:'salesStatisticsData'
 	    }
-    },
+    }
+    // ,
     	
-    autoLoad: 'true'
+    // autoLoad: 'true'
 //listeners: {}
 
 

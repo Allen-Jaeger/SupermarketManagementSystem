@@ -22,5 +22,24 @@ Ext.define('SupermarketInvoicingSystem.Application', {
                 }
             }
         );
-    }
+    },
+    // init:function(){
+    //     let rootStore = Ext.create('Ext.data.Store',{
+    //         model:'SupermarketInvoicingSystem.model.MenuTreeModel',
+    //         proxy:{
+    //             type:'ajax',
+    //             url:'/getMenu',
+    //             reader : {  
+    //                 type : 'json',  
+    //                 // rootProperty  : 'root',
+    //             }
+    //         },
+    //     });
+    //     rootStore.load();
+    //     rootStore.on('load',function(){
+    //         console.log(rootStore.getAt(0));
+    //         let newRoot2 = rootStore.getAt(0).data;
+    //         Ext.data.StoreManager.lookup('NavigationTree').setRoot(newRoot2);
+    //     });
+    // }
 });

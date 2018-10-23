@@ -110,9 +110,7 @@
       Ext.getCmp('rightList').show();
     }
   },
-  editBlock: function (grid, rowIndex, colIndex) {
-    alert('1');
-  },
+  
   openAddPurchaseWindow: function (toolbar, rowIndex, colIndex) {
     Ext.Ajax.request({
       url: 'indent/fillUser',
@@ -193,7 +191,7 @@
       }
     });
     if (record) {
-      if (record.data.indentStatus == 'INIT'&& record.data.indentType == 'PURCHASE' ) {
+      if ((record.data.indentStatus == 'INIT' || record.data.indentStatus == 'DISAPPROVED')&& record.data.indentType == 'PURCHASE' ) {
         var win = grid.up('container').up('container').add(Ext.widget('indentEditWindow'));
         win.show();
 
@@ -205,9 +203,7 @@
       }
     }
   },
-  openSearchWindow: function (toolbar, rowIndex, colIndex) {
-    toolbar.up('panel').up('container').add(Ext.widget('indentSearchWindow')).show();
-  },
+  
   searchByCommodityKey: function () {
     var selectedCat = Ext.getCmp('commodityType').getValue();
     var key = Ext.getCmp('commoditySearchField').getValue();

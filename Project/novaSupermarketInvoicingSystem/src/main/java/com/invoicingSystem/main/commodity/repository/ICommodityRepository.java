@@ -1,5 +1,7 @@
 package com.invoicingSystem.main.commodity.repository;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -45,7 +47,11 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 	@Query("from Commodity commodity where commodity.commodityStatus IS NOT ?2 AND commodity.commodityStatus IS NOT ?1")
 	public Page<Commodity> findAllStock(CommodityStatus s1,CommodityStatus s2,Pageable pageable);
 	
-	 //limit (start-1)*limit,limit
-	//@Query(value = "SELECT * FROM Commodity WHERE commodityType = ?1  ", nativeQuery = true)
+	@Query("from Commodity commodity where commodity.commodityStatus=2 and commodity.warehouse.id =?1 and commodity.barCode = ?2 and commodity.period=?3")
+    public Commodity findByBarCodeAndExpDateFromWareHouse(Long wareHouseId,Long barCode,Date ExpDate);
+	
+	@Query("from Commodity commodity where commodity.commodityStatus=2 and commodity.shop.id =?1 and commodity.barCode = ?2 and commodity.period=?3")
+    public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
+	
 	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
 }

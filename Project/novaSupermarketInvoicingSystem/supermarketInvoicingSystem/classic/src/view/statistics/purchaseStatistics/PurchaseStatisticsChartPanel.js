@@ -1,4 +1,5 @@
-﻿Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.PurchaseStatisticsChartPanel', {
+﻿
+Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.PurchaseStatisticsChartPanel', {
     extend: 'Ext.panel.Panel',
     xtype: 'purchaseStatisticsChartPanel',
     
@@ -15,54 +16,27 @@
     ],
     layout: 'fit',
     //width: 650,
-    
-	tbar: ['->',{
-            xtype: 'combobox',
-            reference:'searchCommodityFieldName',
-            hideLabel: true,
-            store:Ext.create("Ext.data.Store", {
-			    fields: ["name", "value"],
-			    data: [
-			      	{ name: '商品条形码', value: 'barCode' },
-					{ name: '商品名称', value: 'commodityName' }
-			    ]
-			}),
-            displayField: 'name',
-            valueField:'value',
-            //value:'barCode',
-            editable: false,
-            allowBlank:false,
-            blankText:'不能为空！',
-            queryMode: 'local',
-            triggerAction: 'all',
-            emptyText: '请选择商品信息',
-            width: 150
-        }, '-',{
-        	xtype:'textfield',
-        	allowBlank:false,
-            blankText:'不能为空！',
-        	reference:'searchCommodityFieldValue',
-        	name:'purchaseStatisticsCommoditySearchField'
-		}, '|',{
+    title:'采购统计分析',
+  tbar: ['->',{
             xtype: 'combobox',
             reference:'searchWarehouseFieldName',
             hideLabel: true,
             store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有仓库
-			    fields: ["name", "id"],
+          	fields: ["name", "index"],
                  proxy: {
-			        //type: 'memory',
-			        type: 'ajax',
-			        method:'get',
-			        url: 'data/ck.json',	//mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
-				    reader:{
-				    	type:'json',
-				    	rootProperty:'warehouseLists'
-				    }
-			    },
-    			autoLoad: 'true'
-			}),
+              //type: 'memory',
+              type: 'ajax',
+              method:'post',
+              url: '/warehouse/findAll',  //mvc url  xxx.json //data文件夹要放到webapp下//ck连接后台需要改
+              reader:{
+	              type:'json'
+	              // rootProperty:'warehouseLists'
+	          }
+          },
+          autoLoad: 'true'
+      }),
             displayField: 'name',
-            valueField:'id',
+            valueField:'index',
             //value:'2',
             editable: false,
             allowBlank:false,
@@ -72,71 +46,72 @@
             emptyText: '请选择仓库',
             width: 135
         }, '|',{
-		    xtype: 'combobox',
+        xtype: 'combobox',
             reference:'searchDateFieldName',
             hideLabel: true,
             store:Ext.create("Ext.data.Store", {
-			    fields: ["name", "value"],
-			    url: 'data/PurchaseStatisticsdata.json',
-			    data: [
-			      	{ name: '本年', value: 'thisYear' },
-					{ name: '时间段', value: 'inputDate' }
-			    ]
-			    
-			}),
+          fields: ["name", "value"],
+          data: [
+              { name: '今年', value: 'thisYear' },
+              { name: '时间段', value: 'inputDate' }
+          ]
+          
+      }),
             displayField: 'name',
             valueField:'value',
             //value:'interDate',
             editable: false,
             allowBlank:false,
             blankText:'不能为空！',
-            queryMode: 'remote',
+            queryMode: 'local',
             triggerAction: 'all',
             emptyText: '请选择时间',
             width: 135,
             listeners:{
-				select: 'searchTimeComboboxSelectChuang'
-			}
-		}, '-',{
-			xtype: 'datefield',
-			emptyText: '起始日期',
-			maxValue:new Date(),
-			hideLabel: true,
-			editable:false,
-			hidden:true,
-			format: 'Y/m/d',
-			reference:'searchDataFieldValueFrom',
-			fieldLabel: 'From',
-			name: 'from_date',
-			listeners:{
-				select: 'searchDataFieldValueChuang'
-			}
-			//,id:'from_date',
-			//vtype: 'daterange',
-			//endDateField: 'to_date'
-		}, {
-			xtype: 'datefield',
-			emptyText: '截止日期',
-			maxValue:new Date(),
-			hideLabel: true,
-			editable:false,
-			hidden:true,
-			format: 'Y/m/d',
-			reference:'searchDataFieldValueTo',
-			fieldLabel: 'To',
-			name: 'to_date',
-			listeners:{
-				select: 'searchDataFieldValueChuang'
-			}
-			//,id:'to_date',
-			//vtype: 'daterange',
-			//startDateField: 'from_date'
-     	},'-',{
-	        text: '查询',
-	        iconCls: 'fa fa-search',
-	        handler: 'quickSearch'
-	    },'->'],
-	
+              select: 'searchTimeComboboxSelectChuang'
+            }
+    }, '-',{
+      xtype: 'datefield',
+      emptyText: '起始日期',
+      maxValue:new Date(),
+      hideLabel: true,
+      editable:false,
+      hidden:true,
+      format: 'Y/m/d',
+            formatText:'',
+      reference:'searchDataFieldValueFrom',
+      fieldLabel: 'From',
+      name: 'from_date',
+      listeners:{
+        select: 'searchDataFieldValueChuang'
+      }
+      //,id:'from_date',
+      //vtype: 'daterange',
+      //endDateField: 'to_date'
+    }, {
+      xtype: 'datefield',
+      emptyText: '截止日期',
+      maxValue:new Date(),
+      hideLabel: true,
+      editable:false,
+      hidden:true,
+      format: 'Y/m/d',
+            formatText:'',
+      reference:'searchDataFieldValueTo',
+      fieldLabel: 'To',
+      name: 'to_date',
+      listeners:{
+        select: 'searchDataFieldValueChuang'
+      }
+      //,id:'to_date',
+      //vtype: 'daterange',
+      //startDateField: 'from_date'
+      },'-',{
+          text: '查询',
+          iconCls: 'fa fa-search',
+          handler: 'quickSearch'
+      },'->'],
+  
     items: {
         xtype: 'cartesian',
         reference: 'chart',
@@ -146,11 +121,11 @@
             type: 'panzoom',
             zoomOnPanGesture: true
         },
-	        
+          
         animation: {
             duration: 200
         },
-	    /*store: {
+      /*store: {
             type: 'purchaseStatisticsStore'
         },*/
         bind: '{purchaseStatisticsLists}',
@@ -167,7 +142,7 @@
             //fields: ['value'],
             //grid: true,
             minimum: 0,
-            maximum: 150,
+            //maximum: 150,
             renderer: 'onAxisLabelRender',
             title: {
                 text: '采购额（元）'
@@ -192,7 +167,7 @@
         series: [{
             type: 'line',
             xField: 'time',
-            yField: 'value',
+            yField: 'purchaseAmount',
             style: {
                 lineWidth: 2,
                 fillStyle: '#115fa6',
@@ -220,22 +195,22 @@
         }
     },
     
- 	bbar: {
+  bbar: {
         reference: 'toolbar',
         items: [
-	        //'->',
-	        {
-		        text: 'Preview',
-		        handler: 'onPreview'
-	    	},
-	    	{
+          //'->',
+          {
+            text: 'Preview',
+            handler: 'onPreview'
+        },
+        {
                 text: 'Reset pan/zoom',
                 handler: 'onPanZoomReset'
             }
-	    ]
+      ]
     },
-   	
-   	listeners: {
+    
+    listeners: {
         afterrender: 'onAfterRender'
     }
     
