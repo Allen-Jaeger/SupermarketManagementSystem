@@ -184,6 +184,9 @@ public class User {
 	}
 	
 	public boolean hasPrivilege(Privilege p) {
+		if(p == null) {
+			return true;
+		}
 		for(Privilege has :this.privileges) {
 			if(has.equals(Privilege.ALL) || has.equals(p)) {
 				return true;
