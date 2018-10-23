@@ -7,6 +7,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.AlternativeJdkIdGenerator;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
@@ -70,7 +71,16 @@ public class TransferEnd implements TaskListener {
                             fromCmd = commodityService.findByBarCodeAndExpDateFromWareHouse(
                                     indent.getFromWarehouse().getId(), cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
 
                         } else {// 仓库存在同批商品时
                             num = toCmd.getAmount();
@@ -78,7 +88,16 @@ public class TransferEnd implements TaskListener {
                             fromCmd = commodityService.findByBarCodeAndExpDateFromWareHouse(
                                     indent.getFromWarehouse().getId(), cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
 
                         }
                     }
@@ -101,7 +120,16 @@ public class TransferEnd implements TaskListener {
                             fromCmd = commodityService.findByBarCodeAndExpDateFromShop(indent.getFromShop().getId(),
                                     cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
 
                         } else {// 仓库存在同批商品时
                             num = toCmd.getAmount();
@@ -109,7 +137,16 @@ public class TransferEnd implements TaskListener {
                             fromCmd = commodityService.findByBarCodeAndExpDateFromShop(indent.getFromShop().getId(),
                                     cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
 
                         }
                     }
@@ -132,15 +169,32 @@ public class TransferEnd implements TaskListener {
                             fromCmd = commodityService.findByBarCodeAndExpDateFromWareHouse(
                                     indent.getFromWarehouse().getId(), cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
-
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
                         } else {// 超市存在同批商品时
                             num = toCmd.getAmount();
                             toCmd.setAmount(num + cmd.getAmount());// 同批商品增加数量
                             fromCmd = commodityService.findByBarCodeAndExpDateFromWareHouse(
                                     indent.getFromWarehouse().getId(), cmd.getBarCode(), cmd.getPeriod());
                             num = fromCmd.getAmount();
-                            fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
+                            if(num==cmd.getAmount())
+                                commodityService.deleteById(fromCmd.getId());
+                            else if(num<cmd.getAmount())
+                            {
+                                System.out.println("出现错误!!!商品数量不足以转运!\n订单将自动设置为错误!");
+                                indent.setIndentStatus(IndentStatus.ERROR);
+                                return;
+                            }
+                            else
+                                fromCmd.setAmount(num - cmd.getAmount());// 来源商品减少数量
                         }
                     }
                 }
