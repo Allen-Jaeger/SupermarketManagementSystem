@@ -69,6 +69,13 @@ public class CommodityService implements ICommodityService {
 		return commodityRepository.findByCommodityType(type, pageable);
 		
 	}
+	
+	public Page<Commodity> findByName(String commodityName, Pageable pageable){
+		return commodityRepository.findByNameLike("%" + commodityName + "%" ,pageable);
+	}
+	
+	
+	
 	@Override
 	public Page<Commodity> findAll(Pageable pageable) {
 		return commodityRepository.findAll(pageable);

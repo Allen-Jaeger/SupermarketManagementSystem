@@ -54,4 +54,6 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
     public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
 	
 	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
+
+	public Page<Commodity> findByNameLike(String commodityName, Pageable pageable);
 }
