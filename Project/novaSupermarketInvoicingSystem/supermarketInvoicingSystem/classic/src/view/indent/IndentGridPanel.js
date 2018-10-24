@@ -91,6 +91,8 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
             return '<span style="color:grey;">订单完成</span>';
           } else if (val == 'DISAPPROVED') {
             return '<span style="color:red;">审核不通过/待修改</span>';
+          }else if (val == 'ROUND_GET') {
+            return '<span style="color:yellow;">入库不通过/提货中</span>';
           }  else {
             return '<span style="color:red;">订单异常</span>';
           }
@@ -127,7 +129,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
             tooltip: '删除订单',
             handler: 'deleteOneIndentRow',
             getClass: function (v, meta, rec) {
-              if (rec.get('indentStatus') != 'INIT') {
+              if (rec.get('indentStatus') != 'INIT' && rec.get('indentStatus') != 'ERROR') {
                 return 'x-hidden';
               }
               return 'x-fa fa-close';
@@ -144,17 +146,6 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
               return 'x-fa fa-star';
             },
             handler: 'starIndentProcess'
-          }, {
-            xtype: 'button',
-            iconCls: 'x-fa fa-ban',
-            tooltip: '取消申请',
-            getClass: function (v, meta, rec) {
-              if (rec.get('processInstanceId') == '') {
-                return 'x-hidden';
-              }
-              return 'x-fa fa-ban';
-            },
-            handler: 'cancelIndentProcess'
           }
 
         ]
@@ -174,6 +165,9 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
                  '<tpl if="fromShop!=null"><p>出货点(超市)：{fromShop.location.address}  {fromShop.name}</p></tpl>',
                  '<tpl if="toWarehouse!=null"><p>进货点(仓库)：{toWarehouse.location.address}  {toWarehouse.name}</p></tpl>',
                  '<tpl if="toShop!=null"><p>进货点(超市)：{toShop.location.address}  {toShop.name}</p></tpl>',
+                 '<tpl if="indentCheckingReason!=null"><p>审批意见：{indentCheckingReason}</p></tpl>',
+                 '<tpl if="goodsCheckingReason!=null"><p>货物检查意见：{goodsCheckingReason}</p></tpl>',
+
                  {                
                       formatChange:function(v) { 
                       var year = v.getFullYear(); 

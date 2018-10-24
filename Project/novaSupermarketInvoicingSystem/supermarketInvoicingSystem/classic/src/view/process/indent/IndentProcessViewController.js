@@ -19,19 +19,17 @@
   win.down('form').getForm().loadRecord(record);
 },signIndent:function(view, recIndex, cellIndex, item, e, record){
   
-  //if(record.get('manager') == null ||record.get('manager')!=record.data.creatorName ) //签收
-   if(record.data.taskClaimTime == null)
-   {  
-    Ext.Ajax.request({
-     url: 'indent/claim/' + record.get('taskId'),
-      params:{indentId:record.get('id')},
-      method:'POST', success:function(response, options) {
-    var res = response.responseText;
-     Ext.data.StoreManager.lookup('indentProcessStore').load();
-  }});
-  }else{//审批
+  if (record.data.taskClaimTime == null) {
+    if(document.getElementById('claimButton').innerHTML != '无效')
+    { 
+      Ext.Ajax.request({url:'indent/claim/' + record.get('taskId'), params:{indentId:record.get('id')}, method:'POST', success:function(response, options) {
+      var res = response.responseText;
+      Ext.data.StoreManager.lookup('indentProcessStore').load();
+     }});
+    }
+  } else{//审批
       
-      if(record.data.taskName == '订单审批'||record.data.taskName =='负责人审批'){
+      if((record.data.taskName == '订单审批' && document.getElementById('checkingButton').innerHTML != "无效")||record.data.taskName =='负责人审批'){
       var store = Ext.data.StoreManager.lookup('leftStore');
       Ext.apply(store.proxy.extraParams, {indentId:record.get('id')});
       store.load({params:{start:0, limit:20, page:1}});
@@ -136,5 +134,42 @@
       type: 'B'
     }];
     this.complete(url,variables);
-}
+},cancelIndentProcess:function(grid, rowIndex, colIndex) {
+  var indentStatus = grid.getStore().getAt(rowIndex).get('indentStatus');
+  var indetnId2 = grid.getStore().getAt(rowIndex).get('id');
+  if(indentStatus == 'CHECKING' || indentStatus == 'DISAPPROVED')
+  var processInstanceId = grid.getStore().getAt(rowIndex).get('processInstanceId');
+  Ext.Ajax.request({
+      url: 'indent/delete/' + processInstanceId,
+      method: 'post',
+      params:{indentId:indetnId2},
+      success: function (response, options) {
+        var json = Ext.util.JSON.decode(response.responseText);
+        if (json.success) {
+          Ext.Msg.alert('操作成功', json.msg, function() {
+        Ext.data.StoreManager.lookup('indentProcessStore').load();
+      });
+        } else {
+          Ext.Msg.alert('操作失败', json.msg);
+        }
+      }
+    });
+},
+    //流程跟踪
+    onClickGraphTrace: function (view, rowIndex, colIndex, item, e, record, row) {
+      var diagramResourceUrl = '/indent/resource?pid=' + record.get('processInstanceId');
+      var win = new Ext.window.Window({
+          title: '流程跟踪',
+          width: 860,
+          height: 500,
+          layout: 'fit',
+          items: [new Ext.Panel({
+              resizeTabs: true,
+              autoScroll: true,
+              html: '<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src=' + diagramResourceUrl + '></iframe>'
+          })]
+      });
+      win.show();
+  }
+
 });

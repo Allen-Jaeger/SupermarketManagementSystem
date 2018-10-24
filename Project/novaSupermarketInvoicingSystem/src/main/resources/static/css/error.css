@@ -5,10 +5,21 @@
 body{
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(to right, #074C1C, #54FDA6);
+	/*background: linear-gradient(to right, #074C1C, #54FDA6);*/
+	background: url(../image/bg02.jpg);
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;*/
 	text-align: center;
 	animation: bgc 1.5s;
 	overflow: hidden;
+}
+.cover{
+	position: absolute;
+	top: 0px;
+	background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+	width: 100%;
+	height: 999999px;
+	z-index: -9;
 }
 .center{
 	width: 500px;
@@ -29,11 +40,29 @@ li{
 	text-align: left;
 	text-decoration: none;
 	margin: 5px 0 0 0;
+	animation: ulF 2s;
+	opacity: 0;
+	animation-fill-mode: forwards;
 }
+.wait1{
+	animation-delay: 0.5s;
+}
+.wait2{
+	animation-delay: 0.8s;
+}
+.wait3{
+	animation-delay: 1.1s;
+}
+.wait4{
+	animation-delay: 1.4s;
+}
+.wait5{
+	animation-delay: 1.7s;
+}
+
 ul{
 	margin: 10px auto;
 	width: 70%;
-	animation: ulF 3s;
 }
 .btn{
 	background: rgba(255,255,255,0.2);
@@ -60,7 +89,7 @@ ul{
 }
 @keyframes ulF
 {
-	from {transform: rotateY(-180deg) translateX(-50%); opacity:0;}
+	from {transform: rotateY(-180deg) translateX(100%); opacity:0;}
 	to {transform: rotateY(0deg) translateX(0%); opacity:1;}
 }
 @keyframes forCar

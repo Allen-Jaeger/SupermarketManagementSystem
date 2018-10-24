@@ -143,17 +143,16 @@
           },
           columns:[
             {header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:4}
-            ,{header: 'num',dataIndex:'num',width: 60,sortable: true,flex:1.5
-              , editor: {xtype:'textfield',
+            ,{header: 'num',dataIndex:'num',width: 60,sortable: true,flex:1.5, 
+              editor: {xtype:'textfield',
                          selectOnEdit :true,
-                          listeners:{change:'updateSingleCost',
-                                      
-
-                                 },
-                           
-                        }
-              
-            }
+                          listeners:{change:'updateSingleCost'}
+                       }
+             }
+             , {header: 'barCode',dataIndex:'barCode',width: 60,sortable: true,hidden:true}
+             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
+             , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
+             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true,hidden:true}
             ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true}
             ,{header: 'price',dataIndex:'price',width: 60,sortable: true,flex:1.5},
             {xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:1.5,
@@ -191,11 +190,12 @@
           border:1,
           columns: [
              {header: 'id',dataIndex:'id',width: 60,sortable: true,hidden:true}
-             , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:6
-                  
-           }
+             , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:6}
              , {header: 'cost',dataIndex:'cost',width: 60,sortable: true,flex:2}
-            
+             , {header: 'barCode',dataIndex:'barCode',width: 60,sortable: true,hidden:true}
+             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
+             , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
+             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true}
              ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:2,
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}

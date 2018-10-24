@@ -533,10 +533,14 @@
     var leftgridDataJson = [];
     for (var i in leftgridData) {
       leftgridDataJson.push({
-        'name': leftgridData[i].get('name'),
-        'num': leftgridData[i].get('num'),
-        'cost': leftgridData[i].get('cost'),
-        'price': leftgridData[i].get('price')
+        'name':leftgridData[i].get('name'), 
+      'num':leftgridData[i].get('num'), 
+      'cost':leftgridData[i].get('cost'), 
+      'price':leftgridData[i].get('price'),
+      'barCode':leftgridData[i].get('barCode'),
+      'picUrl':leftgridData[i].get('picUrl'),
+      'commodityType':leftgridData[i].get('commodityType'),
+      'note':leftgridData[i].get('note')
       });
     }
     var removecharacter = Ext.encode(leftgridDataJson);
@@ -559,10 +563,14 @@
     var leftgridDataJson = [];
     for (var i in leftgridData) {
       leftgridDataJson.push({
-        'name': leftgridData[i].get('name'),
-        'num': leftgridData[i].get('amount'),
-        'cost': leftgridData[i].get('cost'),
-        'price': leftgridData[i].get('price')
+        'name':leftgridData[i].get('name'), 
+      'num':leftgridData[i].get('num'), 
+      'cost':leftgridData[i].get('cost'), 
+      'price':leftgridData[i].get('price'),
+      'barCode':leftgridData[i].get('barCode'),
+      'picUrl':leftgridData[i].get('picUrl'),
+      'commodityType':leftgridData[i].get('commodityType'),
+      'note':leftgridData[i].get('note')
       });
     }
     var removecharacter = Ext.encode(leftgridDataJson);
@@ -646,39 +654,37 @@
         }
       }, this);
     } else {
-      Ext.Msg.alert('提示', "只可以删除'初始化'以及'订单异常'状态的信息！");
+      Ext.Msg.alert('提示', "只可以删除'初始化/错误订单'以及'订单异常'状态的信息！");
     }
   },
   deleteMoreRows: function (btn, rowIndex, colIndex) {
     var grid = btn.up('gridpanel');
     var selModel = grid.getSelectionModel();
+    var selNum = selModel.getCount();
     if (selModel.hasSelection()) {
       Ext.Msg.confirm('警告', '确定要删除吗？', function (button) {
         if (button == 'yes') {
           var rows = selModel.getSelection();
           var selectIds = [];
           Ext.each(rows, function (row) {
-            if (row.data.indentStatus == 'INIT'|| record.data.indentStatus == 'ERROR') {
+            if (row.data.indentStatus == 'INIT'|| row.data.indentStatus == 'ERROR') {
               selectIds.push(row.data.id);
             }
           });
-          Ext.Ajax.request({
-            url: '/indent/deletes',
-            method: 'post',
-            params: {
-              ids: selectIds
-            },
-            success: function (response, options) {
-              var json = Ext.util.JSON.decode(response.responseText);
-              if (json.success) {
-                Ext.Msg.alert('操作成功', json.msg, function () {
-                  grid.getStore().reload();
-                });
-              } else {
-                Ext.Msg.alert('操作失败', json.msg);
+          if(selectIds.length == selNum){
+        Ext.Ajax.request({url:'/indent/deletes', method:'post', params:{ids:selectIds}, success:function(response, options) {
+          var json = Ext.util.JSON.decode(response.responseText);
+          if (json.success) {
+            Ext.Msg.alert('操作成功', json.msg, function() {
+              grid.getStore().reload();
+            });
+          } else {
+            Ext.Msg.alert('操作失败', json.msg);
+          }
+        }});}else{
+            Ext.Msg.alert('操作失败', "只可以删除'初始化/订单异常'状态的信息！");
               }
-            }
-          });
+        
         }
       });
     } else {

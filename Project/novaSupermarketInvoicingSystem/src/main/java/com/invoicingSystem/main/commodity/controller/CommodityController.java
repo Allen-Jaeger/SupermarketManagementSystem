@@ -66,10 +66,14 @@ public class CommodityController {
 		return page;
 	}
 	
-//	@RequestParam(value="commodityType")Integer commodityType ,
-//	@RequestParam(value="page")Integer currentPage ,
-//	@RequestParam(value="size")Integer pagesize 
 	
+	/**
+	 * 根据商品类型查找商品分页
+	 * @param commodityType
+	 * @param currentPage
+	 * @param pagesize
+	 * @return
+	 */
 	@GetMapping(value="/listByType" )
 	public Map<String,Object> getListByType(@RequestParam(value="commodityType")Integer commodityType ,
 			@RequestParam(value="page")Integer currentPage ,

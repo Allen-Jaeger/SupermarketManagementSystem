@@ -17,6 +17,8 @@ public interface IWorkflowService
 	public void claim(String taskId,String userId);
 	//4.完成流程任务
 	public void complete(String taskId, Map variables);
+	//5.取消流程任务
+	public void delete(String processInstanceId,String deleteReason);
 	
 	public Map getTaskVariables(String taskId);
 	//5.结束(终止)流程实例

@@ -11,7 +11,10 @@ import org.apache.commons.collections.map.HashedMap;
 import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +60,11 @@ public class OrderController {
 	
 	//分页查询订单列表
 	@GetMapping(value="/getOrderList")
-	public Page<OrderInfo> getOrderList(Pageable pageable) {
+	public Page<OrderInfo> getOrderList(Integer page, Integer size) {
+		Sort sort = new Sort(Direction.DESC, "id");
+
+		Pageable pageable = PageRequest.of(page, size, sort);
+		
 		return orderInfoService.list(pageable) ;
 	}
 	

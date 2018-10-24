@@ -1,7 +1,7 @@
 Ext.define('SupermarketInvoicingSystem.store.indent.LeftStore', {
   extend:Ext.data.ArrayStore, 
   alias:'store.leftStore', 
-  fields:['name', 'num','cost','price'], 
+   fields:['name', 'num', 'cost', 'price','barCode','picUrl','commodityType','note'],
   storeId:'leftStore', 
   data:{},
   proxy: {

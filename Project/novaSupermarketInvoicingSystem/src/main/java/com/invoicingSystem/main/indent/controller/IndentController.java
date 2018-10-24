@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,9 +28,11 @@ import com.invoicingSystem.main.activiti.util.WorkflowVariable;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
+import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.common.web.ProcessDiagramUtil;
 import com.invoicingSystem.main.common.web.SessionUtil;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
@@ -109,12 +112,21 @@ public class IndentController {
                     int amount = Integer.parseInt(job.get("num").toString());
                     double cost = Integer.parseInt(job.get("cost").toString());
                     double price = Integer.parseInt(job.get("price").toString());
-                    Commodity commodity = new Commodity();
+                    Long barCode = Long.parseLong(job.get("barCode").toString());
+                    CommodityType commodityType = CommodityType.valueOf(job.get("commodityType").toString());
+                    String note = job.get("note").toString();
+                    String picUrl = job.get("picUrl").toString();
+                    
+                     Commodity commodity = new Commodity();
                     commodity.setName(name);
                     commodity.setAmount(amount);
                     commodity.setCost(cost);
                     commodity.setPrice(price);
                     commodity.setIndent(indent);
+                    commodity.setBarCode(barCode);
+                    commodity.setCommodityType(commodityType);
+                    commodity.setPicUrl(picUrl);
+                    commodity.setNote(note);
                     commodityService.save(commodity);
                     indent.getCommodities().add(commodity);
                 }
@@ -475,8 +487,9 @@ public class IndentController {
                 User keeper = toWarehouse.getKeeper();
                 String keeperName = keeper.getName();
 
-            	variables.put("manager", "SUPER_MANAGER");
-                variables.put("applyId", userName);
+                variables.put("manager", "SUPER_MANAGER");
+            	variables.put("applyUser", userName);
+            	
                 variables.put("purchaser", userName);
                 variables.put("KEEPER", keeperName);
                 indentService.startWorkflow(userName,"purchase",indentId, variables);
@@ -552,6 +565,39 @@ public class IndentController {
             e.printStackTrace();
             return new ExtAjaxResponse(false, "任务签收失败!");
         }
+    }
+
+    /**
+     * 取消任务
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "delete/{id}")
+    public @ResponseBody ExtAjaxResponse delete(@PathVariable("id") String processInstanceId,@RequestParam(name = "indentId") Long indentId) {
+        try {
+            indentService.delete(processInstanceId,"???");
+            Indent indent = indentService.findById(indentId);
+            indent.setIndentStatus(IndentStatus.ERROR);
+            indentService.save(indent);
+            return new ExtAjaxResponse(true, "任务取消成功!");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ExtAjaxResponse(false, "任务取消失败!");
+        }
+    }
+    
+    /**
+     * 流程任务跟踪
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/resource")
+    public void readResource(@RequestParam("pid") String processInstanceId, HttpServletResponse response)
+            throws Exception {
+        ProcessDiagramUtil.getFlowImgByInstanceId(processInstanceId, response.getOutputStream());
     }
 
 }

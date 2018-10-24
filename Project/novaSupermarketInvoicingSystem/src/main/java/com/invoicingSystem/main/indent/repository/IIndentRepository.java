@@ -18,7 +18,5 @@ import com.invoicingSystem.main.indent.domain.Indent;
 @Repository
 public interface IIndentRepository extends PagingAndSortingRepository<Indent, Long>,JpaSpecificationExecutor<Indent>{
     
-    @Query("from Indent indent where indent.userId = ?1") 
-    public Page<Indent> findLeave(String userId,Pageable pageable); 
-
+   
 }

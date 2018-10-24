@@ -45,7 +45,7 @@ public class IndentCheckingEndListener implements TaskListener
         }else {
         	indent.setIndentStatus(IndentStatus.DISAPPROVED);
         }
-        
-        indent.setIndentCheckingReason(delegateTask.getVariable("indentCheckingReason").toString());
+        Object reason = delegateTask.getVariable("indentCheckingReason");
+        indent.setIndentCheckingReason(reason==null?"":reason.toString());
     }
 }

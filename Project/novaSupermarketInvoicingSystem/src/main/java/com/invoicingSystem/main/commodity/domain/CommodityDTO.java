@@ -38,7 +38,9 @@ public class CommodityDTO {
 	public CommodityDTO(Commodity commodity) {
 		this.id = commodity.getId();
 		this.barCode = commodity.getBarCode();
-		this.commodityType = commodity.getCommodityType().getChineseName();
+		if(null != commodity.getCommodityType()) {
+			this.commodityType = commodity.getCommodityType().getChineseName();
+		}
 		this.period = commodity.getPeriod();
 		this.name = commodity.getName();
 		this.picUrl = commodity.getPicUrl();

@@ -58,8 +58,11 @@ public class WorkflowService implements IWorkflowService {
 	{
 		List<WorkflowDTO> results=null;
         // 根据当前人的ID查询
-        TaskQuery taskQuery = taskService.createTaskQuery().taskCandidateOrAssigned(userId);
-        List<Task> tasks = taskQuery.list();
+        TaskQuery taskQuery1 = taskService.createTaskQuery().taskCandidateOrAssigned(userId);
+        TaskQuery taskQuery2 = taskService.createTaskQuery().taskCandidateGroup(userId);
+        List<Task> tasks = taskQuery1.list();
+        List<Task> tasks2 = taskQuery2.list();
+        tasks.addAll(tasks2);
         if(null!=tasks) {
         	results= new ArrayList<WorkflowDTO>();
         	 // 根据流程的业务ID查询实体并关联
@@ -102,7 +105,6 @@ public class WorkflowService implements IWorkflowService {
      */
 	public void claim(String taskId, String userId) {
 		taskService.claim(taskId, userId);
-		
 	}
 
 	 /**
@@ -115,7 +117,22 @@ public class WorkflowService implements IWorkflowService {
 	@Override
 	public void complete(String taskId, Map variables) {
 		taskService.complete(taskId, variables);
+		
 	}
+	
+	/**
+     * 取消流程任务
+     *
+     * @param taskId 任务ID
+     * @param variables 流程变量
+     * @return
+     */
+	@Override
+	public void delete(String processInstanceId,String deleteReason) {
+		//taskService.deleteTask(taskId);
+		runtimeService.deleteProcessInstance(processInstanceId, deleteReason);
+	}
+	
 
 	 /**
     * 查询流程定义对象
