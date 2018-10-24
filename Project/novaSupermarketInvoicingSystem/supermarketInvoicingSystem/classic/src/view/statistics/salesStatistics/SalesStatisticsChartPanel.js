@@ -200,7 +200,7 @@
       },{
           xtype: 'gridpanel',
           title: '销售订单记录',
-          userCls: 'big-50 small-100',
+          userCls: 'big-60 small-100',
           //width: 750,
           height: 450,
           bind:'{salesStatisticsGridStoreLists}',
