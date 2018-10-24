@@ -8,6 +8,11 @@
 	<title>首页</title>
 	<script src = "js/jquery-3.3.1.min.js"></script>
 	<script src = "js/home.js"></script>
+	<script>
+		function jump(){
+			location.replace("http://localhost:8080/settlement.html");
+		}
+	</script>
 </head>
 <body>
 	<div class="head">
@@ -19,11 +24,9 @@
 		<div class="headUp">
 			hello
 		</div>
-		<form action="localhost:8080/settlement.html">
-			<button class="btnSp show">
-				<i class="fa fa-shopping-cart"> 销售系统</i>
-			</button>
-		</form>
+		<button class="btnSp show" onclick="jump()">
+			<i class="fa fa-shopping-cart"> 销售系统</i>
+		</button>
 		
 	</div>
 	<div class="cover">
