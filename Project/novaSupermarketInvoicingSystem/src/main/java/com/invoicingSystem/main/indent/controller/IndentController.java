@@ -117,7 +117,7 @@ public class IndentController {
                     String note = job.get("note").toString();
                     String picUrl = job.get("picUrl").toString();
                     
-                     Commodity commodity = new Commodity();
+                    Commodity commodity = new Commodity();
                     commodity.setName(name);
                     commodity.setAmount(amount);
                     commodity.setCost(cost);
