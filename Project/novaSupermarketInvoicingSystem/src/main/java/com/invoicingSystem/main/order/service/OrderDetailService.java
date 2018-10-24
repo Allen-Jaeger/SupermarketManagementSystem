@@ -22,8 +22,8 @@ public class OrderDetailService implements IOrderDetailService{
 
 	@Override
 	public List<OrderDetail> findByOrderId(String orderId) {
-		orderDetailRepository.findByOrderId(orderId);
-		return null;
+		
+		return orderDetailRepository.findByOrderId(orderId);
 	}
 
 
