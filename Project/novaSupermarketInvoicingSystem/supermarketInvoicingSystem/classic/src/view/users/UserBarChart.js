@@ -50,12 +50,13 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
         //'Ext.chart.*' 
         'Ext.chart.theme.Muted'
     ],
-    width: 650,
+    width: '100%',
+    padding:'50 100 50 100',
 
     bodyStyle: 'background: transparent;',
 
     tbar: ['->', {
-        text: 'Preview',
+        text: '查看大图',
         handler: 'onPreview'
     }],
 
@@ -66,7 +67,7 @@ Ext.define('SupermarketInvoicingSystem.view.users.UserBarChart', {
         captions: {
             title: '职员整体概况'
         },
-        height: 500,
+        height: 400,
         legend: {
             docked: 'right'
         },
