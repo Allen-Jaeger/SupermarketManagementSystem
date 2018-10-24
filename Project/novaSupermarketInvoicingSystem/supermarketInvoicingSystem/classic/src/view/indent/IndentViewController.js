@@ -20,7 +20,7 @@
       var rowLength = leftgrid.getStore().data.length + 1;
       var addingRowCommoditiesName = rightgridrecord[i].data.name;
       rightgridrecord[i].data.num = 0;
-      rightgridrecord[i].data.price = 0;
+      rightgridrecord[i].data.costMulNum = 0;
       rightgridrecord[i].data.amount = '';
       var flag = 0;
       leftgrid.store.each(function (record) {
@@ -39,7 +39,7 @@
     var leftgrid = Ext.getCmp('leftList');
     var rowLength = leftgrid.getStore().data.length + 1;
     var addingRowCommoditiesName = rightgridrecord.data.name;
-    rightgridrecord.data.price = 0;
+    rightgridrecord.data.costMulNum = 0;
     rightgridrecord.data.amount = '';
     var flag = 0;
     leftgrid.store.each(function (record) {
@@ -60,12 +60,12 @@
     var record = grid.getSelectionModel().getSelection();
     var num = record[0].get('num');
     var cost = record[0].data.cost;
-    record[0].set('price', val.value * cost);
+    record[0].set('costMulNum', val.value * cost);
     var gridLength = grid.getStore().getCount();
     var sum = 0;
     var money = 0;
     for (var i = 0; i < gridLength; i++) {
-      sum += grid.getStore().getAt(i).get('price');
+      sum += grid.getStore().getAt(i).get('costMulNum');
     }
     Ext.getCmp('cost').setValue(sum);
 
@@ -81,7 +81,7 @@
     var sum = 0;
     var gridLength = leftgrid.getStore().getCount();
     for (var i = 0; i < gridLength; i++) {
-      sum += leftgrid.getStore().getAt(i).get('price');
+      sum += leftgrid.getStore().getAt(i).get('costMulNum');
     }
     Ext.getCmp('cost').setValue(sum);
   },
@@ -91,7 +91,7 @@
     var sum = 0;
     var gridLength = grid.getStore().getCount();
     for (var i = 0; i < gridLength; i++) {
-      sum += grid.getStore().getAt(i).get('price');
+      sum += grid.getStore().getAt(i).get('costMulNum');
     }
     Ext.getCmp('cost').setValue(sum);
   },

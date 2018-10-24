@@ -124,8 +124,8 @@
           
           columns:[
              {header: 'id' ,dataIndex:'id',width: 60,sortable: true,hidden:true}
-            ,{header: 'name' ,dataIndex:'name',width: 60,sortable: true,flex:4}
-            ,{header: 'num',dataIndex:'amount',width: 60,sortable: true,flex:1.5,
+            ,{header: '商品名' ,dataIndex:'name',width: 60,sortable: true,flex:2.5}
+            ,{header: '数量',dataIndex:'amount',width: 60,sortable: true,flex:2,
                editor: {xtype:'textfield',
                           listeners:{change:'updateSingleCost'},
                            
@@ -136,9 +136,10 @@
             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
             , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true,hidden:true}
-            ,{header: 'cost',dataIndex:'cost',width: 60,sortable: true,hidden:true,flex:1.5}
-            ,{header: 'price',dataIndex:'price',width: 60,sortable: true,flex:1.5}
-            ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',flex:1.5,
+            ,{header: '单价',dataIndex:'cost',width: 60,sortable: true,hidden:true,flex:2}
+             ,{header: '售价',dataIndex:'price',width: 60,sortable: true,flex:1.5,hidden:true},
+            ,{header: '单条合计',dataIndex:'costMulNum',width: 60,sortable: true,flex:2},
+            ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: '操作',tooltip: 'edit ',flex:1.5,
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-minus',handler: 'deleteOneSelectedIndent'}
               ]
@@ -176,16 +177,47 @@
           id:'rightList',
           columns: [
              {header: 'id',dataIndex:'id',width: 60,sortable: true,hidden:true}
-             , {header: 'name',dataIndex:'name',width: 60,sortable: true,flex:1
+             , {header: '商品名',dataIndex:'name',width: 60,sortable: true,flex:4
                   
            }
-             , {header: 'cost',dataIndex:'cost',width: 60,sortable: true}
+             , {header: '单价',dataIndex:'cost',width: 60,sortable: true,flex:2}
+             , {header: 'price',dataIndex:'price',width: 60,sortable: true}
              , {header: 'barCode',dataIndex:'barCode',width: 60,sortable: true,hidden:true}
-             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
+             , {header: '备注',dataIndex:'note',width: 60,sortable: true,hidden:true}
              , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
-             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true}
+             , {header: '商品类型',dataIndex:'commodityType',width: 60,sortable: true,flex:2,
+            renderer: function (val) {
+                 if (val == 'FOOD') {
+                  return '<span>粮油零食</span>';
+                } else if (val == 'DRINK') {
+                  return '<span>酒水饮料</span>';
+                } else if (val == 'DAILY') {
+                  return '<span>清洁洗护</span>';
+                } else if (val == 'ELETRICAL') {
+                  return '<span>家电数码</span>';
+                } else if (val == 'COOKER') {
+                  return '<span>厨房用品</span>';
+                } else if (val == 'BATH') {
+                  return '<span>首饰美容</span>';
+                } else if (val == 'INFANT') {
+                  return '<span>玩具母婴</span>';
+                } else if (val == 'FRESH') {
+                  return '<span>果蔬生鲜</span>';
+                } else if (val == 'DRESS') {
+                  return '<span>时装箱包</span>';
+                } else if (val == 'FURNITURE') {
+                  return '<span>家具摆饰</span>';
+                } else if (val == 'SPORT') {
+                  return '<span>体育棋牌</span>';
+                } else if (val == 'STUDY') {
+                  return '<span>文具书簿</span>';
+                }   else {
+                  return '<span>其他</span>';
+                }
+                return val;
+              }}
 
-             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: 'Actions',tooltip: 'edit ',
+             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: '操作',flex:2,tooltip: 'edit ',
               items: [
                 {xtype: 'button', iconCls: 'x-fa fa-plus',handler: 'addOneIntoselectcommoditiesList'}
               ]
@@ -207,6 +239,12 @@
               ,{name:'美容洗浴',value:'BATH'}
               ,{name:'母婴用品',value:'INFANT'}
               ,{name:'果蔬生鲜',value:'FRESH'}
+              ,{name:'时装箱包',value:'DRESS'}
+              ,{name:'家具摆饰',value:'FURNITURE'}
+              ,{name:'体育棋牌',value:'SPORT'}
+              ,{name:'文具书簿',value:'STUDY'}
+              ,{name:'其他',value:'ELSE'}
+
 
               
             ]}),  
