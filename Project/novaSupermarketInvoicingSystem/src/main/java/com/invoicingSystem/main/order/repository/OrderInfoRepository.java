@@ -13,8 +13,6 @@ import com.invoicingSystem.main.order.domain.OrderInfo;
 @Repository
 public interface OrderInfoRepository extends JpaRepository<OrderInfo, Long>{
 	
-
-	
 	//季度查询
 	@Query(value="select CONCAT(YEAR(pay_time),'_',quarter(pay_time)) quarter,sum(goods_total_cost) as quarterTotalCosts, sum(order_amount) as quarterTotalSales FROM t_order_info WHERE shop_id = :shopid and pay_time BETWEEN :starDate AND :endDate group by quarter",nativeQuery=true)
 	public List<Object> findAllSalesByQuarter(@Param("shopid") Long shopid,@Param("starDate") Date starDate,@Param("endDate") Date endDate);

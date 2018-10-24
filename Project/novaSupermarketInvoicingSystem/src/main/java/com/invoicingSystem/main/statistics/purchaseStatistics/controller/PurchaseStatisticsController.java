@@ -24,10 +24,7 @@ public class PurchaseStatisticsController {
 	
 	@GetMapping(value = "/getAllPurchase")
 	public List<Map<String,String>> getAllPurchase(PurchaseStatisticsQueryDTO purchaseQueryDTO){
-		
 		return purchaseStatisticsService.findAll(PurchaseStatisticsQueryDTO.buildSpecification(purchaseQueryDTO));
-//		System.out.println(indentList);
-		
 	}
 
 
