@@ -25,6 +25,7 @@ import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.domain.CommodityDTO;
 import com.invoicingSystem.main.commodity.domain.CommodityQueryDTO;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CategoryNode;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.enum_tools.EnumTool;
@@ -326,5 +327,19 @@ public class CommodityController {
 	public String delStock(Long stockId) {
 		String res = commodityService.deleteById(stockId);
 		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
+	}
+	
+	@GetMapping(value="/findAllModel")
+	public CategoryNode findAllModel(ExtjsPageRequest pageable) {
+		CategoryNode root = CategoryNode.constructCate();
+		List<Commodity> coms = commodityService.findAllComModel();
+		for(Commodity com: coms) {
+			for(CategoryNode cate:root.getChildren()) {
+				if(cate.getText().equals(com.getCommodityType().getChineseName())){
+					cate.appendChild(CategoryNode.modelToLeaf(com));
+				}
+			}
+		}
+		return root;
 	}
 }

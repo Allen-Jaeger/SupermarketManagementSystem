@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
-import com.invoicingSystem.main.commodity.util.CommodityType;
 
 /**
  * @author LiJuncong
@@ -39,6 +38,6 @@ public interface ICommodityService {
 
 	public Commodity findByBarCodeAndExpDateFromWareHouse(Long wareHouseId,Long barCode,Date ExpDate);
 	public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
-
+	public List<Commodity> findAllComModel();
 	public String deleteById(Long id);
 }
