@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,7 @@ import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.common.web.ProcessDiagramUtil;
 import com.invoicingSystem.main.common.web.SessionUtil;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
@@ -585,4 +587,17 @@ public class IndentController {
             return new ExtAjaxResponse(false, "任务取消失败!");
         }
     }
+    
+    /**
+     * 流程任务跟踪
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/resource")
+    public void readResource(@RequestParam("pid") String processInstanceId, HttpServletResponse response)
+            throws Exception {
+        ProcessDiagramUtil.getFlowImgByInstanceId(processInstanceId, response.getOutputStream());
+    }
+
 }

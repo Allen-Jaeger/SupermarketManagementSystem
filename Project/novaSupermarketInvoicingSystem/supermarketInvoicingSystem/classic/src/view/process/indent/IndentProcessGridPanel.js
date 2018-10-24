@@ -204,6 +204,16 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
               return 'x-fa fa-ban';
             },
             handler: 'cancelIndentProcess'
+          }, {
+            xtype: 'button',
+            tooltip: '查看实时流程',
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') == 'INIT' || rec.get('indentStatus') == 'ERROR') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-tasks';
+            },
+            handler: 'onClickGraphTrace'
           }
        ]
       }
