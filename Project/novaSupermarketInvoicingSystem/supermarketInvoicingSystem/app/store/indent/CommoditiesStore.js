@@ -20,7 +20,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.CommoditiesStore', {
 	autoLoad: true,
 	autoSync: true,
 	remoteSort: true,//全局(远程)排序
-	pageSize: 15,
+	pageSize: 99,
 	sorters: {
 		direction: 'ASC',property: 'id'
 	},

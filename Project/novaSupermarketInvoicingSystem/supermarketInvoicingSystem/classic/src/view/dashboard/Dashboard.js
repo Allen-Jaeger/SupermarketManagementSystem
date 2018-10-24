@@ -11,7 +11,7 @@ Ext.define('SupermarketInvoicingSystem.view.dashboard.Dashboard', {
         type: 'dashboard'
     },
 
-    layout: 'responsivecolumn',
+    layout: 'fit',
     
     listeners: {
         hide: 'onHideView',
@@ -37,6 +37,7 @@ Ext.define('SupermarketInvoicingSystem.view.dashboard.Dashboard', {
             // console.log(Ext.data.StoreManager.lookup('NavigationTree'));
         }
     },
-	html:'admindashboard'
+	width:'100%',
+    html:'<iframe src="/home.html" frameborder="0" width="100%" height="100%"></iframe>'
     //items: []
 });

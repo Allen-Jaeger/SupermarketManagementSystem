@@ -16,12 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.invoicingSystem.main.commodity.domain.Commodity;
 import com.invoicingSystem.main.commodity.domain.CommodityDTO;
 import com.invoicingSystem.main.commodity.domain.CommodityQueryDTO;
-import com.invoicingSystem.main.commodity.service.CommodityService;
 import com.invoicingSystem.main.commodity.service.ICommodityService;
+import com.invoicingSystem.main.commodity.util.CategoryNode;
 import com.invoicingSystem.main.commodity.util.CommodityStatus;
 import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.enum_tools.EnumTool;
@@ -354,5 +350,19 @@ public class CommodityController {
 	public String delStock(Long stockId) {
 		String res = commodityService.deleteById(stockId);
 		return "{\"success\":\"true\",\"info\":\"" +res+ "\"}";
+	}
+	
+	@GetMapping(value="/findAllModel")
+	public CategoryNode findAllModel(ExtjsPageRequest pageable) {
+		CategoryNode root = CategoryNode.constructCate();
+		List<Commodity> coms = commodityService.findAllComModel();
+		for(Commodity com: coms) {
+			for(CategoryNode cate:root.getChildren()) {
+				if(cate.getText().equals(com.getCommodityType().getChineseName())){
+					cate.appendChild(CategoryNode.modelToLeaf(com));
+				}
+			}
+		}
+		return root;
 	}
 }

@@ -56,4 +56,9 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
 
 	public Page<Commodity> findByNameLike(String commodityName, Pageable pageable);
+
+	
+	@Query("from Commodity commodity where commodity.commodityStatus IS NOT ?1 AND commodity.commodityStatus IS NOT ?2")
+	public List<Commodity> findAllComModel(CommodityStatus s1,CommodityStatus s2);
+
 }

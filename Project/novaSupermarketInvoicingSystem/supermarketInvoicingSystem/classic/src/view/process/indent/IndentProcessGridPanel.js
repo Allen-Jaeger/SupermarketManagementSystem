@@ -179,7 +179,10 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
               }
               return 'x-fa fa-pencil';
             },
-            handler: 'openEditWindow'//需要修改读取indentType来选择窗口.
+            listeners:{click:function(){
+                  Ext.msg.alert("请到货单申请模块修改");
+                }
+            }//需要修改读取indentType来选择窗口.
             
           }, {
             xtype: 'button',
@@ -201,6 +204,16 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
               return 'x-fa fa-ban';
             },
             handler: 'cancelIndentProcess'
+          }, {
+            xtype: 'button',
+            tooltip: '查看实时流程',
+            getClass: function (v, meta, rec) {
+              if (rec.get('indentStatus') == 'INIT' || rec.get('indentStatus') == 'ERROR') {
+                return 'x-hidden';
+              }
+              return 'x-fa fa-tasks';
+            },
+            handler: 'onClickGraphTrace'
           }
        ]
       }

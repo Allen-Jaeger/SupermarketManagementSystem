@@ -77,7 +77,6 @@ public class SalesStatisticsService implements ISalesStatisticsService {
 			}
 		}
 		
-//		System.out.println(list);
 		return list;
 	}
 	
@@ -95,11 +94,6 @@ public class SalesStatisticsService implements ISalesStatisticsService {
 			map.put("itemDiscount",decimalFormat.format(orderDetail.getItemDiscount()));
 			list.add(map);
 		}
-		
-//		{ name: 'itemTitle'},
-//        { name: 'itemNum'},
-//        { name: 'itemPrice'},
-//        { name: 'itemDiscount'}
 		
 		return list;
 	}

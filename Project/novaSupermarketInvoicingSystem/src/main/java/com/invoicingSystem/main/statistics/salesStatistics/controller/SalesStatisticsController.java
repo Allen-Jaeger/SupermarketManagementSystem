@@ -21,13 +21,13 @@ public class SalesStatisticsController {
 	@Autowired
 	ISalesStatisticsService salesStatisticsService;
 	
-	@GetMapping(value = "/getAllSales")
+	@GetMapping(value = "/getAllSales")//销售订单
 	public List<Map<String,String>> getAllSales(SalesStatisticsQueryDTO salesStatisticsQueryDTO){
 		return salesStatisticsService.findAllSalesByQuarterAndMonth(salesStatisticsQueryDTO);
 		
 	}
 	
-	@GetMapping(value = "/getSalesDetail")
+	@GetMapping(value = "/getSalesDetail")//销售订单详情
 	public List<Map<String,String>> getSalesDetail(@RequestParam(name = "orderId") String orderId){
 //		return salesStatisticsService.findAllSalesByQuarterAndMonth(salesStatisticsQueryDTO);
 		return salesStatisticsService.findSalesDetail(orderId);

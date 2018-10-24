@@ -65,7 +65,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value = "/login")
-	public String login(UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) {
+	public String login(UserDTO userDTO, HttpServletRequest request) {
 		User user = userService.findByWorkNum(userDTO.getWorkNum());
 		String loginResult = userService.userLogin(userDTO.toLoginUser(), user);
 		if(loginResult.equals("登陆成功")) {

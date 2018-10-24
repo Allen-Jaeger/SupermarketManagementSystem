@@ -15,8 +15,7 @@
         'Ext.chart.interactions.Rotate',
         'Ext.chart.PolarChart',
      // 'Ext.chart.theme.Muted',
-    'Ext.ux.layout.ResponsiveColumn',
-    'SupermarketInvoicingSystem.model.statistics.SalesStatisticsOrderDetailModel'
+      'Ext.ux.layout.ResponsiveColumn'
     ],
     //layout: 'fit',
    // width: 650,
@@ -31,7 +30,7 @@
           store:Ext.create("Ext.data.Store", {//需更改连接后台获取所有超市
           fields: ["name", "index"],
           //data:[{name:'Shop01',index:1},{name:'Shop02',index:2},{name:'Shop03',index:3}],
-               proxy: {
+          proxy: {
               //type: 'memory',
               type: 'ajax',
               method:'post',
@@ -109,7 +108,7 @@
               duration: 200
           },
           bind:'{salesStatisticsBarStoreLists}',//改
-      /*legend: {
+          /*legend: {
               type: 'dom',
               docked: 'bottom'
           },*/
@@ -118,10 +117,7 @@
               position: 'left',
               fields: ['monthSales'],
               grid: true,
-              title: {
-                  text: '销售额(元)',
-                  translationY: -170
-              },
+              title: '销售额(元)',
               renderer: 'onAxisLabelRender'
           }, {
               type: 'category3d',
@@ -158,8 +154,8 @@
           userCls: 'big-50 small-100',
           //width: 550,
           title: '季度销售统计',
-        iconCls: 'x-fa fa-pie-chart',
-        ui: 'light',
+          iconCls: 'x-fa fa-pie-chart',
+          ui: 'light',
           downloadServerUrl: '//svg.sencha.io',
           innerPadding: 40,
          // width: '100%',
@@ -201,100 +197,72 @@
                       renderer: 'onPieSeriesTooltipRender'
                   }
               }]
-      },
-    /*{
-          style: 'margin-top: 10px;',
-          xtype: 'container',
-          layout: {
-              type: 'hbox',
-              pack: 'center'
-          },
-          width: '100%',
-          items: [{
-              xtype: 'gridpanel',
-              title:'销售明细',
-              width: 650,
-              columns : {
-                  defaults: {
-                      sortable: false,
-                      menuDisabled: true,
-                      renderer: 'onGridColumnRender'
-                  },
-                  items: [
-                      { text: 'Quarter', dataIndex: 'quarter', renderer: Ext.identityFn },
-                      { text: 'quarterSales', dataIndex: 'quarterProfits' },
-                      { text: 'quarterProfits', dataIndex: 'quarterProfits' }
-                  ]
-              },
-              bind:'{salesStatisticsLists}'
-          }]
-    }*/
-      {
-        xtype: 'gridpanel',
-        title: '销售明细',
-        bind:'{salesStatisticsGridStoreLists}',
-        columns: [{
-            width: 145,
-            text: '销售订单号',
-            dataIndex: 'orderId'
-        },{
-            width: 145,
-            text: '订单完成日期',
-            dataIndex: 'payTime'
-        },{
-            width: 145,
-            text: '商品总成本',
-            dataIndex: 'goodsTotalCost',
-            // flex: 1,
-            hideable: false
-        },{
-            width: 145,
-            text: '订单总价',
-            dataIndex: 'orderAmount'
-        },{
-            
-            text: '订单利润',
-            dataIndex: 'ordeProfits'
-        }],
-        width: 750,
-        height: 450,
-        leadingBufferZone: 8,
-        trailingBufferZone: 8,
+      },{
+          xtype: 'gridpanel',
+          title: '销售订单记录',
+          userCls: 'big-60 small-100',
+          //width: 750,
+          height: 450,
+          bind:'{salesStatisticsGridStoreLists}',
+          columns: [{
+              width: 145,
+              text: '销售订单号',
+              dataIndex: 'orderId'
+          },{
+              width: 160,
+              text: '订单完成日期',
+              dataIndex: 'payTime'
+          },{
+              width: 145,
+              text: '商品总成本',
+              dataIndex: 'goodsTotalCost',
+              // flex: 1,
+              hideable: false
+          },{
+              width: 145,
+              text: '订单总价',
+              dataIndex: 'orderAmount'
+          },{
+              
+              text: '订单利润',
+              dataIndex: 'ordeProfits'
+          }],
+          
+          leadingBufferZone: 8,
+          trailingBufferZone: 8,
 
-        plugins: {
-            rowwidget: {
-                widget: {
-	                xtype: 'grid',
-	                autoLoad: true,
-	                bind: {
-	                    store: '{record.SalesStatisticsOrderDetailModels}',
-	                    title: '订单号: {record.orderId} 订单详情'
-	                },
-	                columns: [{
-	                    text: '商品名称',
-	                    dataIndex: 'itemTitle',
-	                    width: 75
-	                }, {
-	                    text: '商品数量',
-	                    dataIndex: 'itemNum',
-	                    width: 265
-	                }, {
-	                    text: '商品价格',
-	                    dataIndex: 'itemPrice',
-	                    // xtype: 'numbercolumn',
-	                    width: 100
-	                    // align: 'right'
-	                }, {
-	                    width: 120,
-	                    text: '商品折扣',
-	                    dataIndex: 'itemDiscount'
-	                }],
-	                listeners:{
-	                	afterRender:'aterRenderLoad'
-	                }
-	            }
-            }
-        }
+          plugins: {
+              rowwidget: {
+                  widget: {
+                    xtype: 'grid',
+                    autoLoad: true,
+                    bind: {
+                        store: '{salesStatisticsOrderDetailLists}',
+                        title: '订单号: {record.orderId} 订单详情'
+                    },
+                    columns: [{
+                        text: '商品名称',
+                        dataIndex: 'itemTitle',
+                        width: 170
+                    }, {
+                        text: '商品数量',
+                        dataIndex: 'itemNum',
+                        width: 160
+                    }, {
+                        text: '商品价格',
+                        dataIndex: 'itemPrice',
+                        // xtype: 'numbercolumn',
+                        width: 160
+                        // align: 'right'
+                    }, {
+                        width: 160,
+                        text: '商品折扣',
+                        dataIndex: 'itemDiscount'
+                    }]
+                },
+                onWidgetAttach:'onWidgetAttach'
+              }
+          }
 
       }
 

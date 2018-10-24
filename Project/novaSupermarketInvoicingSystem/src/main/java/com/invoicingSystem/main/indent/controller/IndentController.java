@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,7 @@ import com.invoicingSystem.main.commodity.util.CommodityType;
 import com.invoicingSystem.main.common.beans.BeanUtils;
 import com.invoicingSystem.main.common.web.ExtAjaxResponse;
 import com.invoicingSystem.main.common.web.ExtjsPageRequest;
+import com.invoicingSystem.main.common.web.ProcessDiagramUtil;
 import com.invoicingSystem.main.common.web.SessionUtil;
 import com.invoicingSystem.main.indent.domain.Indent;
 import com.invoicingSystem.main.indent.domain.IndentDTO;
@@ -115,7 +117,7 @@ public class IndentController {
                     String note = job.get("note").toString();
                     String picUrl = job.get("picUrl").toString();
                     
-                     Commodity commodity = new Commodity();
+                    Commodity commodity = new Commodity();
                     commodity.setName(name);
                     commodity.setAmount(amount);
                     commodity.setCost(cost);
@@ -575,7 +577,9 @@ public class IndentController {
     public @ResponseBody ExtAjaxResponse delete(@PathVariable("id") String processInstanceId,@RequestParam(name = "indentId") Long indentId) {
         try {
             indentService.delete(processInstanceId,"???");
-            indentService.findById(indentId).setIndentStatus(IndentStatus.ERROR);
+            Indent indent = indentService.findById(indentId);
+            indent.setIndentStatus(IndentStatus.ERROR);
+            indentService.save(indent);
             return new ExtAjaxResponse(true, "任务取消成功!");
             
         } catch (Exception e) {
@@ -583,4 +587,17 @@ public class IndentController {
             return new ExtAjaxResponse(false, "任务取消失败!");
         }
     }
+    
+    /**
+     * 流程任务跟踪
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/resource")
+    public void readResource(@RequestParam("pid") String processInstanceId, HttpServletResponse response)
+            throws Exception {
+        ProcessDiagramUtil.getFlowImgByInstanceId(processInstanceId, response.getOutputStream());
+    }
+
 }
