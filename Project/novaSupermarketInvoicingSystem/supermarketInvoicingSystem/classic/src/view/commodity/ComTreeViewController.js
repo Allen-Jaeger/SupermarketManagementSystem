@@ -1,3 +1,4 @@
+console.log(Ext.data.StoreManager.lookup('categoryStoreId'));
 Ext.define('SupermarketInvoicingSystem.view.commodity.ComTreeViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.comTreeViewController',

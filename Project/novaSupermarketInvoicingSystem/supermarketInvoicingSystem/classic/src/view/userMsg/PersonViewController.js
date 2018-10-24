@@ -46,7 +46,12 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonViewController', {
 				//刷新
 			    var res = this.result.info;
 			    if (res == '修改成功') {
-			      location.reload();
+		            var recordStore = Ext.data.StoreManager.lookup('personStoreId');
+		            recordStore.load();
+		            recordStore.on("load", function() { 
+		              let record = recordStore.getAt(0).data.content[0];
+		              Ext.getCmp('toolBarIcon').getEl().dom.src = '../../../../../resources/usersIcon/' + record.iconUrl;
+		            }); 
 			    } else {
 			      Ext.MessageBox.alert('错误', res);
 			    }

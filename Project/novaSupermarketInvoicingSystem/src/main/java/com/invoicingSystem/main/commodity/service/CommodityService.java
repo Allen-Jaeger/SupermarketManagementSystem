@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -234,5 +233,13 @@ public class CommodityService implements ICommodityService {
 		com = this.deletePic(com);
 		commodityRepository.delete(com);
 		return "删除成功";
+	}
+
+	/* (non-Javadoc)
+	 * 获取所有模板
+	 */
+	@Override
+	public List<Commodity> findAllComModel() {
+		return  commodityRepository.findAllComModel(CommodityStatus.ALLOW,CommodityStatus.UNALLOWED);
 	}
 }

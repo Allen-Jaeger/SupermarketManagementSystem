@@ -54,4 +54,7 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
     public Commodity findByBarCodeAndExpDateFromShop(Long shopId,Long barCode,Date ExpDate);
 	
 	public Page<Commodity> findByCommodityType(CommodityType commodityType,Pageable pageable);
+	
+	@Query("from Commodity commodity where commodity.commodityStatus IS NOT ?1 AND commodity.commodityStatus IS NOT ?2")
+	public List<Commodity> findAllComModel(CommodityStatus s1,CommodityStatus s2);
 }
