@@ -2,7 +2,7 @@
     extend: 'Ext.data.TreeStore',
 
     storeId: 'NavigationTree',
-    // model:'SupermarketInvoicingSystem.model.MenuTreeModel',
+    model:'SupermarketInvoicingSystem.model.MenuTreeModel',
 
     proxy:{
         type: 'ajax',
