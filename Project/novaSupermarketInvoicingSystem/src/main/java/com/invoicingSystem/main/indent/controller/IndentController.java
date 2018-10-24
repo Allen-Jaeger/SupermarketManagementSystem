@@ -575,7 +575,9 @@ public class IndentController {
     public @ResponseBody ExtAjaxResponse delete(@PathVariable("id") String processInstanceId,@RequestParam(name = "indentId") Long indentId) {
         try {
             indentService.delete(processInstanceId,"???");
-            indentService.findById(indentId).setIndentStatus(IndentStatus.ERROR);
+            Indent indent = indentService.findById(indentId);
+            indent.setIndentStatus(IndentStatus.ERROR);
+            indentService.save(indent);
             return new ExtAjaxResponse(true, "任务取消成功!");
             
         } catch (Exception e) {

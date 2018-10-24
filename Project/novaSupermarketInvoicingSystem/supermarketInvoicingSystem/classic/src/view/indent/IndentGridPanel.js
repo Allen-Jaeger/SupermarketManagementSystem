@@ -129,7 +129,7 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
             tooltip: '删除订单',
             handler: 'deleteOneIndentRow',
             getClass: function (v, meta, rec) {
-              if (rec.get('indentStatus') != 'INIT') {
+              if (rec.get('indentStatus') != 'INIT' && rec.get('indentStatus') != 'ERROR') {
                 return 'x-hidden';
               }
               return 'x-fa fa-close';
@@ -165,6 +165,9 @@ Ext.define('SupermarketInvoicingSystem.view.indent.IndentGridPanel', {
                  '<tpl if="fromShop!=null"><p>出货点(超市)：{fromShop.location.address}  {fromShop.name}</p></tpl>',
                  '<tpl if="toWarehouse!=null"><p>进货点(仓库)：{toWarehouse.location.address}  {toWarehouse.name}</p></tpl>',
                  '<tpl if="toShop!=null"><p>进货点(超市)：{toShop.location.address}  {toShop.name}</p></tpl>',
+                 '<tpl if="indentCheckingReason!=null"><p>审批意见：{indentCheckingReason}</p></tpl>',
+                 '<tpl if="goodsCheckingReason!=null"><p>货物检查意见：{goodsCheckingReason}</p></tpl>',
+
                  {                
                       formatChange:function(v) { 
                       var year = v.getFullYear(); 
