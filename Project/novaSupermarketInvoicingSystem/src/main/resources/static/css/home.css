@@ -31,10 +31,10 @@ body{
 }
 .show{
 	/*background-clip: text;*/
-	background-size: 500% 100%;
+	background-size: 500% 500%;
 	/*-webkit-text-fill-color: transparent;*/
     /*-webkit-background-clip: text;*/
-	background-image: -webkit-linear-gradient(left, black,gray 2%,black 4% ,black);
+	background-image: -webkit-linear-gradient(-30deg, black, black 20%,gray 22%,black 24% ,black);
 
 	animation: flowBg 20s infinite linear;
 	/*animation-delay: 5s;*/
@@ -43,13 +43,24 @@ body{
     0% {background-position: 0 0;}
     100% {background-position: -500% 0;}
 }
+@keyframes lineGrow {
+    0% {width: 0;}
+    100% {width: 220px;}
+}
+.lineG{
+	animation: lineGrow 3s;
+	color: white;
+	width: 220px;
+	position: absolute;
+	margin: 7px 5px 0 -2px;
+}
 .title{
 	letter-spacing: 0.1em;
 	font-size: 50px;
 	font-weight: lighter;
-	border-color: white;
-	border-width: 0 0 2px 0;
-	border-style: solid;
+	/*border-color: white;*/
+	/*border-width: 0 0 2px 0;*/
+	/*border-style: solid;*/
 	padding:0 0 10px 0;
 }
 .note{
