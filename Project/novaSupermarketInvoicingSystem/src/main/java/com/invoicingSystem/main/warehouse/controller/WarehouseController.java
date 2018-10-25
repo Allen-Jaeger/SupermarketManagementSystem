@@ -37,42 +37,6 @@ import com.invoicingSystem.main.warehouse.service.IWarehouseService;
 public class WarehouseController {
     @Autowired
     private IWarehouseService warehouseService;
-
-    @PostMapping
-    public @ResponseBody ExtAjaxResponse save(Warehouse warehouse) {
-          try {  
-             
-             
-            return new ExtAjaxResponse(true, "操作成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ExtAjaxResponse(false, "操作失败!");
-        }
-    }
-    
-    @PutMapping
-    public @ResponseBody ExtAjaxResponse update(Warehouse warehouse) {
-        try {
-            warehouseService.save(warehouse);
-            return new ExtAjaxResponse(true, "操作成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ExtAjaxResponse(false, "操作失败!");
-        }
-    }
-    
-    @DeleteMapping
-    public @ResponseBody ExtAjaxResponse delete(Long id) {
-        try {
-            Warehouse entity = warehouseService.findById(id);
-            if(entity!=null) {
-                warehouseService.delete(id);}
-            return new ExtAjaxResponse(true, "操作成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ExtAjaxResponse(false, "操作失败!");
-        }
-    }
     
     @RequestMapping(value = "/findAll")
     public List<Map<String, String>> findAll() 
