@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -55,8 +57,11 @@ public class CommodityController {
 
 	@GetMapping
 	public Page<Commodity> findAll(CommodityQueryDTO commodityQueryDTO, ExtjsPageRequest pageable) {
+		
 		Page<Commodity> page;
+		
 		commodityQueryDTO.setCommodityStatus(CommodityStatus.ALLOW);
+		
 		page = commodityService.findAll(CommodityQueryDTO.getWhereClause(commodityQueryDTO), pageable.getPageable());
 
 		return page;
@@ -73,17 +78,33 @@ public class CommodityController {
 	@GetMapping(value="/listByType" )
 	public Map<String,Object> getListByType(@RequestParam(value="commodityType")Integer commodityType ,
 			@RequestParam(value="page")Integer currentPage ,
-			@RequestParam(value="size")Integer pagesize ){
+			@RequestParam(value="size")Integer pagesize ,HttpSession session){
 		
 		Pageable pageable = PageRequest.of(currentPage, pagesize) ;
 		
 		Map<String,Object> res = new HashMap<String,Object>(); 
 		
+		//Long userId = Long.parseLong( session.getAttribute("userId").toString() )   ;
+		
 		res.put("commodityList",commodityService.findByCommodityType(commodityType, pageable) ) ;
 		
 		return res ;
-		
 	}
+	
+	@GetMapping(value="/search")
+	public Map <String,Object> searchCommodities(@RequestParam(value="name")String commodityName ,
+			@RequestParam(value="page")Integer currentPage ,
+			@RequestParam(value="size")Integer pagesize ) {
+		
+		Pageable pageable = PageRequest.of(currentPage, pagesize);
+		
+		Map<String,Object> res = new HashMap<String,Object>(); 
+		
+		res.put("commodityList",commodityService.findByName(commodityName, pageable) ) ;
+		
+		return res ;
+	}
+	
 
 	@RequestMapping(value = "/findAll1")
 	public Page<Commodity> findCommodities(ExtjsPageRequest pageable) {

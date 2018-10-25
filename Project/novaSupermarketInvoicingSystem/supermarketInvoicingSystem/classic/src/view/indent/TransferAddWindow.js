@@ -221,6 +221,21 @@
                 }, {
                     name: '果蔬生鲜',
                     value: 'FRESH'
+                }, {
+                    name: '时装箱包',
+                    value: 'DRESS'
+                }, {
+                    name: '家具摆饰',
+                    value: 'FURNITURE'
+                }, {
+                    name: '体育棋牌',
+                    value: 'SPORT'
+                }, {
+                    name: '文具书簿',
+                    value: 'STUDY'
+                }, {
+                    name: '其他',
+                    value: 'ELSE'
                 }]
             }),
             displayField: 'name',
@@ -312,7 +327,7 @@
             }
         },
         {
-            id:'note',
+            id: 'note',
             name: 'note',
             xtype: 'textareafield',
             x: 10,
