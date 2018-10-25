@@ -26,7 +26,7 @@ public class CommodityDTO {
 	private String commodityStatus;
 	private String indentNum;
 	private String depName = "";
-
+	private Double costMulNum;
 	public CommodityDTO() {
 		super();
 	}
@@ -49,6 +49,7 @@ public class CommodityDTO {
 		this.price = commodity.getPrice();
 		this.cost = commodity.getCost();
 		this.note = commodity.getNote();
+		this.costMulNum = commodity.getCostMulNum();
 		this.commodityStatus = commodity.getCommodityStatus().getChineseName();
 		if(null != commodity.getIndent()) {
 			this.indentNum = commodity.getIndent().getIndentNum();
@@ -163,5 +164,14 @@ public class CommodityDTO {
 	public void setDepName(String depName) {
 		this.depName = depName;
 	}
+
+	public Double getCostMulNum() {
+		return costMulNum;
+	}
+
+	public void setCostMulNum(Double costMulNum) {
+		this.costMulNum = costMulNum;
+	}
+	
 	
 }

@@ -110,9 +110,10 @@ public class IndentController {
                     // 得到 每个对象中的属性值
                     String name = job.get("name").toString();
                     int amount = Integer.parseInt(job.get("num").toString());
-                    double cost = Integer.parseInt(job.get("cost").toString());
+                    double cost = Integer.parseInt(job.get("cost1").toString());
                     double price = Integer.parseInt(job.get("price").toString());
                     Long barCode = Long.parseLong(job.get("barCode").toString());
+                    double costMulNum = Integer.parseInt(job.get("costMulNum").toString());
                     CommodityType commodityType = CommodityType.valueOf(job.get("commodityType").toString());
                     String note = job.get("note").toString();
                     String picUrl = job.get("picUrl").toString();
@@ -121,6 +122,7 @@ public class IndentController {
                     commodity.setName(name);
                     commodity.setAmount(amount);
                     commodity.setCost(cost);
+                    commodity.setCostMulNum(costMulNum);
                     commodity.setPrice(price);
                     commodity.setIndent(indent);
                     commodity.setBarCode(barCode);
@@ -194,10 +196,18 @@ public class IndentController {
                             // 检测数量是否需要修改
                             Commodity oldCommodity = commodityService.findByIndentIdAndCommodityName(id, commodityName);
                             int oldAmount = oldCommodity.getAmount();
+                            double oldCost = oldCommodity.getCost();
                             int amount = Integer.parseInt(job.get("num").toString());
+                            double cost = Integer.parseInt(job.get("cost1").toString());
+                            double costMulNum = Integer.parseInt(job.get("costMulNum").toString());
                             if (oldAmount != amount) {
                                 oldCommodity.setAmount(amount);
-                                oldCommodity.setPrice(amount * oldCommodity.getCost());
+                                 oldCommodity.setCostMulNum(costMulNum);
+                                commodityService.save(oldCommodity);
+
+                            }if (oldCost != cost) {
+                                oldCommodity.setCost(cost);
+                                oldCommodity.setCostMulNum(costMulNum);
                                 commodityService.save(oldCommodity);
 
                             }
@@ -205,13 +215,15 @@ public class IndentController {
                         // -----------------------添加-----------------------
                         else {
                             int amount = Integer.parseInt(job.get("num").toString());
-                            double cost = Integer.parseInt(job.get("cost").toString());
+                            double cost = Integer.parseInt(job.get("cost1").toString());
                             double price = Integer.parseInt(job.get("price").toString());
+                            double costMulNum = Integer.parseInt(job.get("costMulNum").toString());
                             Commodity commodity = new Commodity();
                             commodity.setName(commodityName);
                             commodity.setAmount(amount);
                             commodity.setCost(cost);
                             commodity.setPrice(price);
+                            commodity.setCostMulNum(costMulNum);
                             commodity.setIndent(indent);
                             commodityService.save(commodity);
                             indent.getCommodities().add(commodity);
