@@ -20,7 +20,7 @@ Ext.define('SupermarketInvoicingSystem.store.indent.TransferLeftStore', {
 	//autoLoad: true,//先不自动更新获取
 	//autoSync: true,
 	remoteSort: true,//全局(远程)排序
-	pageSize: 15,
+	pageSize: 50,
 	sorters: {
 		direction: 'ASC',property: 'id'
 	},
