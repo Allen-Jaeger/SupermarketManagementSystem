@@ -127,7 +127,7 @@
             ,{header: '商品名' ,dataIndex:'name',width: 60,sortable: true,flex:2.5}
             ,{header: '数量',dataIndex:'amount',width: 60,sortable: true,flex:2,
                editor: {xtype:'textfield',
-                          listeners:{change:'updateSingleCost'},
+                          listeners:{change:'updateSingleCost4'},
                            
                         }
               
@@ -136,7 +136,11 @@
             , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
             , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
             , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true,hidden:true}
-            ,{header: '单价',dataIndex:'cost',width: 60,sortable: true,hidden:true,flex:2}
+            ,{header: '单价',dataIndex:'cost',width: 60,sortable: true,flex:2,editor: {xtype:'textfield',
+                         selectOnEdit :true,
+                          listeners:{change:'updateSingleCost3'}
+                       }
+                     }
              ,{header: '售价',dataIndex:'price',width: 60,sortable: true,flex:1.5,hidden:true},
             ,{header: '单条合计',dataIndex:'costMulNum',width: 60,sortable: true,flex:2},
             ,{xtype: 'actioncolumn',cls: 'content-column', width: 80,text: '操作',tooltip: 'edit ',flex:1.5,

@@ -153,7 +153,12 @@
              , {header: 'note',dataIndex:'note',width: 60,sortable: true,hidden:true}
              , {header: 'picUrl',dataIndex:'picUrl',width: 60,sortable: true,hidden:true}
              , {header: 'commodityType',dataIndex:'commodityType',width: 60,sortable: true,hidden:true}
-            ,{header: '单价',dataIndex:'cost',width: 60,sortable: true,hidden:true}
+              ,{header: '单价',dataIndex:'cost1',width: 60,sortable: true,
+              editor: {xtype:'textfield',
+                         selectOnEdit :true,
+                          listeners:{change:'updateSingleCost2'}
+                       }
+                     }
             ,{header: '售价',dataIndex:'price',width: 60,sortable: true,flex:1.5,hidden:true},
             ,{header: '单条合计',dataIndex:'costMulNum',width: 60,sortable: true,flex:3},
             {xtype: 'actioncolumn',cls: 'content-column', width: 80,text: '操作',tooltip: 'edit ',flex:1.5,

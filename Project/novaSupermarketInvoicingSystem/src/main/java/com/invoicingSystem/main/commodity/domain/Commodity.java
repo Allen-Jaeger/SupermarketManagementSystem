@@ -40,6 +40,7 @@ public class Commodity {
 	private String picUrl;
 	private int amount;
 	private int saveStock;	//安全库存量，低于这个数值高亮
+	private Double costMulNum;
 	private Double price;
 	private Double cost;	//单价，总价=cost*amount
 	private String note;
@@ -167,4 +168,14 @@ public class Commodity {
     public void setShop(Shop shop) {
         this.shop = shop;
     }
+
+	public Double getCostMulNum() {
+		return costMulNum;
+	}
+
+	public void setCostMulNum(Double costMulNum) {
+		this.costMulNum = costMulNum;
+	}
+    
+    
 }

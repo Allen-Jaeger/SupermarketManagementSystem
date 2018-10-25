@@ -21,6 +21,8 @@
       var addingRowCommoditiesName = rightgridrecord[i].data.name;
       rightgridrecord[i].data.num = 0;
       rightgridrecord[i].data.costMulNum = 0;
+      rightgridrecord[i].data.cost = 0;
+      rightgridrecord[i].data.cost1 = 0;
       rightgridrecord[i].data.amount = '';
       var flag = 0;
       leftgrid.store.each(function (record) {
@@ -39,7 +41,10 @@
     var leftgrid = Ext.getCmp('leftList');
     var rowLength = leftgrid.getStore().data.length + 1;
     var addingRowCommoditiesName = rightgridrecord.data.name;
-    rightgridrecord.data.costMulNum = 0;
+    rightgridrecord[0].data.num = 0;
+      rightgridrecord[0].data.costMulNum = 0;
+      rightgridrecord[0].data.cost = 0;
+      rightgridrecord[i].data.cost1 = 0;
     rightgridrecord.data.amount = '';
     var flag = 0;
     leftgrid.store.each(function (record) {
@@ -59,8 +64,56 @@
     var grid = Ext.getCmp('leftList');
     var record = grid.getSelectionModel().getSelection();
     var num = record[0].get('num');
-    var cost = record[0].data.cost;
-    record[0].set('costMulNum', val.value * cost);
+    var cost1 = record[0].get('cost1');
+    record[0].set('costMulNum', val.value * cost1);
+    var gridLength = grid.getStore().getCount();
+    var sum = 0;
+    var money = 0;
+    for (var i = 0; i < gridLength; i++) {
+      sum += grid.getStore().getAt(i).get('costMulNum');
+    }
+    Ext.getCmp('cost').setValue(sum);
+
+  },updateSingleCost2: function (val) {
+    var val2 = (val.value.replace(/[^0-9]/ig, "")).replace(/\b(0+)/gi, "");
+    val.setValue(val2 == '' ? 0 : val2);
+    var grid = Ext.getCmp('leftList');
+    var record = grid.getSelectionModel().getSelection();
+    var num = record[0].get('num');
+    var cost1 = record[0].get('cost1');
+    record[0].set('costMulNum', val.value * num);
+    var gridLength = grid.getStore().getCount();
+    var sum = 0;
+    var money = 0;
+    for (var i = 0; i < gridLength; i++) {
+      sum += grid.getStore().getAt(i).get('costMulNum');
+    }
+    Ext.getCmp('cost').setValue(sum);
+
+  },updateSingleCost3: function (val) {
+    var val2 = (val.value.replace(/[^0-9]/ig, "")).replace(/\b(0+)/gi, "");
+    val.setValue(val2 == '' ? 0 : val2);
+    var grid = Ext.getCmp('leftList');
+    var record = grid.getSelectionModel().getSelection();
+    var num = record[0].get('amount');
+    var cost1 = record[0].get('cost');
+    record[0].set('costMulNum', val.value * num);
+    var gridLength = grid.getStore().getCount();
+    var sum = 0;
+    var money = 0;
+    for (var i = 0; i < gridLength; i++) {
+      sum += grid.getStore().getAt(i).get('costMulNum');
+    }
+    Ext.getCmp('cost').setValue(sum);
+
+  },updateSingleCost4: function (val) {
+    var val2 = (val.value.replace(/[^0-9]/ig, "")).replace(/\b(0+)/gi, "");
+    val.setValue(val2 == '' ? 0 : val2);
+    var grid = Ext.getCmp('leftList');
+    var record = grid.getSelectionModel().getSelection();
+    var num = record[0].get('amount');
+    var cost1 = record[0].get('cost');
+    record[0].set('costMulNum', val.value * cost1);
     var gridLength = grid.getStore().getCount();
     var sum = 0;
     var money = 0;
@@ -533,9 +586,10 @@
     var leftgridDataJson = [];
     for (var i in leftgridData) {
       leftgridDataJson.push({
-        'name':leftgridData[i].get('name'), 
+      'name':leftgridData[i].get('name'), 
       'num':leftgridData[i].get('num'), 
-      'cost':leftgridData[i].get('cost'), 
+      'cost1':leftgridData[i].get('cost1'), 
+      'costMulNum':leftgridData[i].get('costMulNum'), 
       'price':leftgridData[i].get('price'),
       'barCode':leftgridData[i].get('barCode'),
       'picUrl':leftgridData[i].get('picUrl'),
@@ -564,8 +618,9 @@
     for (var i in leftgridData) {
       leftgridDataJson.push({
         'name':leftgridData[i].get('name'), 
-      'num':leftgridData[i].get('num'), 
-      'cost':leftgridData[i].get('cost'), 
+      'num':leftgridData[i].get('amount'), 
+      'cost1':leftgridData[i].get('cost'), 
+      'costMulNum':leftgridData[i].get('costMulNum'), 
       'price':leftgridData[i].get('price'),
       'barCode':leftgridData[i].get('barCode'),
       'picUrl':leftgridData[i].get('picUrl'),
