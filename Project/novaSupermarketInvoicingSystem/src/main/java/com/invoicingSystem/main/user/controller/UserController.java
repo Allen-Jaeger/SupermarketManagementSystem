@@ -322,7 +322,9 @@ public class UserController {
 			userDTO.setHireDate(new Date());
 		}
 		User user = userDTO.toUserObject();
-		userService.buildDepartment(user, Long.parseLong(userDTO.getDepName()));
+		if(null != userDTO.getDepName()) {
+			userService.buildDepartment(user, Long.parseLong(userDTO.getDepName()));
+		}
 		userService.save(user);
 		org.activiti.engine.identity.User userForWS = identityService.newUser(user.getName());
 		identityService.saveUser(userForWS);
