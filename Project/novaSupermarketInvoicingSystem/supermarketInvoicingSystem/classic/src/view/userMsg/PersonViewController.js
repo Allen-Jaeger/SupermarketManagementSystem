@@ -55,6 +55,7 @@ Ext.define('SupermarketInvoicingSystem.view.userMsg.PersonViewController', {
 			    } else {
 			      Ext.MessageBox.alert('错误', res);
 			    }
+			    Ext.getCmp('uploadButton').setDisabled(true);
 			},
 			// failure: function (response, options) {
 			// 	Ext.MessageBox.alert('失败', '请求超时或网络故障，错误编号：' + response.status);
