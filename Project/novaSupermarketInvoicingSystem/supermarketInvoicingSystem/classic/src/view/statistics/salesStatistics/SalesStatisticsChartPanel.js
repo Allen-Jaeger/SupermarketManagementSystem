@@ -85,6 +85,7 @@
           title: '月份销售统计',
           iconCls: 'x-fa fa-bar-chart',
           ui: 'light',
+          border:true,
           //width: 550,
           height: 500,
           tbar: [
@@ -159,6 +160,7 @@
           downloadServerUrl: '//svg.sencha.io',
           innerPadding: 40,
          // width: '100%',
+          border:true,
           height: 500,
           tbar: [
             '->',
@@ -199,6 +201,7 @@
               }]
       },{
           xtype: 'gridpanel',
+          border:true,
           title: '销售订单记录',
           userCls: 'big-60 small-100',
           //width: 750,
@@ -215,16 +218,19 @@
           },{
               width: 145,
               text: '商品总成本',
+              sortable:false,
               dataIndex: 'goodsTotalCost',
               // flex: 1,
               hideable: false
           },{
               width: 145,
               text: '订单总价',
+              sortable:false,
               dataIndex: 'orderAmount'
           },{
               
               text: '订单利润',
+              sortable:false,
               dataIndex: 'ordeProfits'
           }],
           
@@ -243,21 +249,26 @@
                     columns: [{
                         text: '商品名称',
                         dataIndex: 'itemTitle',
+                        sortable:false,
                         width: 170
                     }, {
                         text: '商品数量',
                         dataIndex: 'itemNum',
+                        sortable:false,
                         width: 160
                     }, {
                         text: '商品价格',
                         dataIndex: 'itemPrice',
+                        sortable:false,
                         // xtype: 'numbercolumn',
                         width: 160
                         // align: 'right'
                     }, {
                         width: 160,
+                        sortable:false,
                         text: '商品折扣',
                         dataIndex: 'itemDiscount'
+
                     }]
                 },
                 onWidgetAttach:'onWidgetAttach'

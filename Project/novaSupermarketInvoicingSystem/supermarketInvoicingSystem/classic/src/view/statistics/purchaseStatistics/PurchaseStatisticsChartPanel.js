@@ -130,7 +130,8 @@ Ext.define('SupermarketInvoicingSystem.view.statistics.purchaseStatistics.Purcha
         xtype: 'cartesian',
         reference: 'chart',
         width: '100%',
-        //height: 500,
+        height: 470,
+        padding:'50 100 50 100',
         interactions: {
             type: 'panzoom',
             zoomOnPanGesture: true
