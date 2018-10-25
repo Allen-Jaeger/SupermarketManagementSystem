@@ -84,9 +84,7 @@ public class CommodityController {
 		
 		Map<String,Object> res = new HashMap<String,Object>(); 
 		
-		Long userId = Long.parseLong( session.getAttribute("userId").toString() )   ;
-		
-		
+		//Long userId = Long.parseLong( session.getAttribute("userId").toString() )   ;
 		
 		res.put("commodityList",commodityService.findByCommodityType(commodityType, pageable) ) ;
 		

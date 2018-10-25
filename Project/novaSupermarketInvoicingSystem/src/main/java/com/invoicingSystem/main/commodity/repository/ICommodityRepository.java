@@ -57,6 +57,9 @@ public interface ICommodityRepository extends PagingAndSortingRepository<Commodi
 
 	public Page<Commodity> findByNameLike(String commodityName, Pageable pageable);
 
+//	@Query(value="UPDATE xxEntity xe SET xe.data= :date WHERE xe.id= :id")
+//	public int update(@Param("date")Date date, @Param("id") int id);
+
 	
 	@Query("from Commodity commodity where commodity.commodityStatus IS NOT ?1 AND commodity.commodityStatus IS NOT ?2")
 	public List<Commodity> findAllComModel(CommodityStatus s1,CommodityStatus s2);
