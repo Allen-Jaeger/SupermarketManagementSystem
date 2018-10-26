@@ -31,7 +31,7 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
         width: 100,
         renderer:function(val, cellmeta, record, rowIndex, columnIndex, store){
         if(record.data.taskClaimTime == null){
-          if(record.data.taskName == '订单审批' &&document.getElementById('loginUserName').innerHTML != '温俊超')
+          if(record.data.taskName == '订单审批' &&document.getElementById('loginUserName').innerHTML != '温予新')
           return'<button id="claimButton" hidden=true>无效</button>';
         else  return '<button id="claimButton">签收</button>';
         }
@@ -40,7 +40,7 @@ Ext.define('SupermarketInvoicingSystem.view.process.indent.IndentProcessGridPane
         }
          
         if(record.data.taskName == '订单审批') {
-          if(document.getElementById('loginUserName').innerHTML != '温俊超')
+          if(document.getElementById('loginUserName').innerHTML != '温予新')
           return'<button id="checkingButton" hidden=true>无效</button>';
           else return '<button id="checkingButton">审批</button>';
         }
